@@ -43,7 +43,7 @@
         */
 %>
 
-
+/
 <% /* Prepare Freemarker components to allow .ftl templates to be included from jsp */
     FreemarkerHttpServlet.getFreemarkerComponentsForJsp(request);
 %>
