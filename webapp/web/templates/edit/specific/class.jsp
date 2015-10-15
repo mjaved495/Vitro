@@ -6,7 +6,7 @@
 
 <tr class="editformcell">
     <td valign="bottom" colspan="3">
-        <h3 class="blue">FacultyMember <img src="/vivo/images/edit.png" onclick="editClass()"> </img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
+        <h3 class="blue">${VClass} <img src="/vivo/images/edit.png" onclick="editClass()"> </img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
 
         <input type="text" readonly="true" value="http://www.vivo.cornell.edu/hr.owl/FacultyMember"></input>
         <input type="checkbox"></input> Edit URI
