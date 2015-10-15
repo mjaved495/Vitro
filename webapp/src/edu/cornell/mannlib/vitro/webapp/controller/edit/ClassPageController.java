@@ -2,6 +2,10 @@ package edu.cornell.mannlib.vitro.webapp.controller.edit;
 
 import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.ReasoningOption.ASSERTIONS_ONLY;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +48,29 @@ public class ClassPageController extends BaseEditController {
         	vcl = request.getUnfilteredWebappDaoFactory()
         	        .getVClassDao().getTopConcept();
         }
+        
+        VClassDao vcDao = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY).getVClassDao();
+        VClassDao displayVcDao = ModelAccess.on(getServletContext()).getWebappDaoFactory().getVClassDao();
+        
+        List<VClass> superVClasses = getVClassesForURIList(
+                vcDao.getSuperClassURIs(vcl.getURI(),false), displayVcDao);
+        sortForPickList(superVClasses, request);
+        request.setAttribute("superclasses",superVClasses);
+
+        List<VClass> subVClasses = getVClassesForURIList(
+                vcDao.getSubClassURIs(vcl.getURI()), displayVcDao);
+        sortForPickList(subVClasses, request);
+        request.setAttribute("subclasses",subVClasses);
+            
+        List<VClass> djVClasses = getVClassesForURIList(
+                vcDao.getDisjointWithClassURIs(vcl.getURI()), displayVcDao);
+        sortForPickList(djVClasses, request);
+        request.setAttribute("disjointClasses",djVClasses);
+
+        List<VClass> eqVClasses = getVClassesForURIList(
+                vcDao.getEquivalentClassURIs(vcl.getURI()), displayVcDao);
+        sortForPickList(eqVClasses, request);
+        request.setAttribute("equivalentClasses",eqVClasses);
 
         RequestDispatcher rd = request.getRequestDispatcher(Controllers.BASIC_JSP);
         request.setAttribute("VClass",vcl);
@@ -64,4 +91,17 @@ public class ClassPageController extends BaseEditController {
 	public void doGet (HttpServletRequest req, HttpServletResponse response) {
 		doPost(req, response);
 	}
+	
+	private List<VClass> getVClassesForURIList(List<String> vclassURIs, VClassDao vcDao) {
+        List<VClass> vclasses = new ArrayList<VClass>();
+        Iterator<String> urIt = vclassURIs.iterator();
+        while (urIt.hasNext()) {
+            String vclassURI = urIt.next();
+            VClass vclass = vcDao.getVClassByURI(vclassURI);
+            if (vclass != null) {
+                vclasses.add(vclass);
+            }
+        }
+        return vclasses;
+    }
 }

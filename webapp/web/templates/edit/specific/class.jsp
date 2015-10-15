@@ -6,9 +6,9 @@
 
 <tr class="editformcell">
     <td valign="bottom" colspan="3">
-        <h3 class="blue">${VClass} <img src="/vivo/images/edit.png" onclick="editClass()"> </img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
+        <h3 class="blue">${VClass.getName()} <img src="/vivo/images/edit.png" onclick="editClass()"> </img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
 
-        <input type="text" readonly="true" value="http://www.vivo.cornell.edu/hr.owl/FacultyMember"></input>
+        <input type="text" readonly="true" value="${VClass.getURI()}"></input>
         <input type="checkbox"></input> Edit URI
     </td>
     <td valign="bottom" colspan="1">
@@ -20,23 +20,27 @@
 	<td valign="bottom" colspan="4">
         <!-- TODO make this scrollable -->
 		<b>Subclass of:</b> <img src="/vivo/images/new.png" onclick="editSuperclasses()"></img> <br/>
-	    <p>Employee</p>
-        <p>FacultyMember</p>
+        <c:forEach items="${superclasses}" var="superclass">
+    	    <p>${superclass.getName()}/p>
+        </c:forEach>
 	</td>
 </tr>
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="bottom" colspan="4">
 		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()"></img> <br/>
-        <p>Person and hasPosition some FacultyPosition</p>
+        <c:forEach items="${equivalentClasses}" var="eqClass">
+            <p>${eqClass.getName()}/p>
+        </c:forEach>
 	</td>
 </tr>
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="top" colspan="4">
 		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()"></img> <br/>
-	    <p>NonFacultyAcademic</p>
-        <p>Librarian</p>
+	    <c:forEach items="${disjointClasses}" var="djClass">
+            <p>${djClass.getName()}/p>
+        </c:forEach>
 	</td>
 </tr>
 <tr class="editformcell">
