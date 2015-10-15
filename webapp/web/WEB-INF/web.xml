@@ -544,6 +544,15 @@
     <servlet-name>VclassRetryController</servlet-name>
     <url-pattern>/vclass_retry</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ClassPageController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ClassPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ClassPageController</servlet-name>
+  	<url-pattern>/classpage</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>DatatypeRetryController</servlet-name>

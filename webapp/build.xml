@@ -172,7 +172,7 @@
 			depending on which languages are selected. -->
 		<patternset id="language_files" />
 	    
-		<script language="javascript"> <![CDATA[
+		<!-- <script language="javascript"> <![CDATA[
 	        function echo(e, message) {
 	            e.setMessage(message);
 	            e.perform();
@@ -191,7 +191,7 @@
 	        } else {
 	            ps.setExcludes(["**/*"])
 	        }
-	    ]]> </script>
+	    ]]> </script> -->
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
