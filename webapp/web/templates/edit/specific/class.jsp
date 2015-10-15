@@ -2,6 +2,8 @@
 
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
+<!-- TODO: replace /vivo with base URL, add onclicks to edit and delete within superclasses, equivalent, disjoint, etc. -->
+
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0">
 
 <tr class="editformcell">
@@ -21,7 +23,7 @@
         <!-- TODO make this scrollable -->
 		<b>Subclass of:</b> <img src="/vivo/images/new.png" onclick="editSuperclasses()"></img> <br/>
         <c:forEach items="${superclasses}" var="superclass">
-    	    <p>${superclass.getName()}/p>
+    	    <p>${superclass.getName()} <img src="/vivo/images/edit.png"> </img> <img src="/vivo/images/delete.png"></img></p>
         </c:forEach>
 	</td>
 </tr>
@@ -30,7 +32,7 @@
 	<td valign="bottom" colspan="4">
 		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()"></img> <br/>
         <c:forEach items="${equivalentClasses}" var="eqClass">
-            <p>${eqClass.getName()}/p>
+            <p>${eqClass.getName()} <img src="/vivo/images/edit.png"> </img> <img src="/vivo/images/delete.png"></img></p>
         </c:forEach>
 	</td>
 </tr>
@@ -39,7 +41,7 @@
 	<td valign="top" colspan="4">
 		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()"></img> <br/>
 	    <c:forEach items="${disjointClasses}" var="djClass">
-            <p>${djClass.getName()}/p>
+            <p>${djClass.getName()} <img src="/vivo/images/edit.png"> </img> <img src="/vivo/images/delete.png"></img></p>
         </c:forEach>
 	</td>
 </tr>
