@@ -3,12 +3,15 @@
 <link href="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
-	$('.item-detail[title]').qtip({
-		position: {
-			my: "top left",
-			at: "bottom left"
-		}
-	});
+	var identifiers = ['.item-detail', '.action-delete', '.action-edit', '.action-add'];
+	for(var i = 0; i < identifiers.length; i++) {
+		$(identifiers[i]).qtip({
+			position: {
+				my: "top left",
+				at: "bottom left"
+			}
+		})
+	}
 });
 
 function editClass() {
