@@ -1,6 +1,7 @@
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 <script src="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
 <link href="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
+<script src="/vivo/js/jquery.color.js"></script> <!-- use base url -->
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
 	var identifiers = ['.item-detail', '.action-delete', '.action-edit', '.action-add'];
@@ -20,6 +21,16 @@ $(document).ready(function() {
 		input.css({"width": "100% !important"});
 		itemDetail.html('');
 		itemDetail.append(input);
+
+		$(input).keypress(function(e) {
+			if(e.keyCode == 13) {
+				var text = $(this).val();
+				itemDetail.html("<p>"+text+"</p>");
+				itemDetail.css({'background-color': '#FFFFAA'});
+				itemDetail.animate({'backgroundColor': '#FFFFFF'}, 1500);
+			}
+		})
+
 	});
 
 });
