@@ -8,9 +8,12 @@
 
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
 
+<!-- <link href="/vivo/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="/vivo/js/bootstrap.min.js"></script> -->
+
 <tr class="editformcell">
     <td valign="bottom" colspan="2">
-         <h3 class="blue">${VClass.getName()} <img src="/vivo/images/edit.png" onclick="editClass()" class="action"> </img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
+         <h3 class="blue">${VClass.getName()} <span class="glyphicon glyphicon-plus-sign action" onclick="editClass()"></span>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
     </td>
     <td valign="bottom" colspan="1">
         Last update: June 02, 2015
@@ -32,7 +35,7 @@
 		<b>Subclass of:</b> <img src="/vivo/images/new.png" onclick="editSuperclasses()" class="action"></img> <br/>
         <table>
             <c:forEach items="${superclasses}" var="superclass">
-                <tr>
+                <tr class="class-item">
         	       <td class="item-detail"><p>${superclass.getName()}</p></td> <td class="item-action"> <img src="/vivo/images/edit.png" class="action"> </img></td><td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img> </td>
                 </tr>
             </c:forEach>
@@ -45,7 +48,7 @@
 		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()" class="action"></img> <br/>
         <table>
             <c:forEach items="${equivalentClasses}" var="eqClass">
-                <tr>
+                <tr class="class-item">
                     <td class="item-detail"><p>${eqClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td></tr>
             </c:forEach>
         </table>
@@ -54,10 +57,10 @@
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="top" colspan="4">
-		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()"></img> <br/>
+		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()" class="action"></img> <br/>
         <table>
     	    <c:forEach items="${disjointClasses}" var="djClass">
-                <tr>
+                <tr class="class-item">
                     <td class="item-detail"><p>${djClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td>
                 </tr>
             </c:forEach>
@@ -70,5 +73,8 @@
         <p><input type="submit" class="submit" name="_object" value="Raw Statements with This Resource as Object"></input></p>
     </td>
 </tr>
+
+<script src="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
+<link href="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
 
 </jsp:root>

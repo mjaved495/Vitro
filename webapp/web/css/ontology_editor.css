@@ -1,5 +1,11 @@
 img.action {
 	cursor:pointer;
+	width:16px;
+	height:16px;
+}
+
+tr.class-item {
+	padding-top:10px;
 }
 
 td.item-detail {
