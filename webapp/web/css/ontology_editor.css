@@ -9,10 +9,14 @@ tr.class-item {
 }
 
 td.item-detail {
-	width:90%;
+	width:20%;
 }
 
-td.item-actions {
+td.item-spacer {
+	width:70%;
+}
+
+td.item-action {
 	width:5%;
 }
 

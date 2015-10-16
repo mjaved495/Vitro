@@ -37,6 +37,7 @@
             <c:forEach items="${superclasses}" var="superclass">
                 <tr class="class-item">
         	       <td class="item-detail" title="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
+                   <td class="item-spacer"></td>
                    <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit" title="Replace with different class"> </img></td>
                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this superclass"></img> </td>
                 </tr>
@@ -52,6 +53,7 @@
             <c:forEach items="${equivalentClasses}" var="eqClass">
                 <tr class="class-item">
                     <td class="item-detail" title="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
+                    <td class="item-spacer"></td>
                     <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit" title="Replace with different class"> </img></td> 
                     <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this equivalent class"></img></td></tr>
             </c:forEach>
@@ -66,6 +68,7 @@
     	    <c:forEach items="${disjointClasses}" var="djClass">
                 <tr class="class-item">
                     <td class="item-detail" title="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
+                    <td class="item-spacer"></td>
                     <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit" title="Replace with different class"> </img></td> 
                     <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this disjoint class"></img></td>
                 </tr>
