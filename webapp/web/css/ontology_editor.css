@@ -1,0 +1,11 @@
+img.action {
+	cursor:pointer;
+}
+
+td.item-detail {
+	width:80%;
+}
+
+td.item-actions {
+	width:20%;
+}
