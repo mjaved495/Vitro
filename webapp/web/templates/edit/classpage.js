@@ -20,4 +20,13 @@ function editEquivalentClasses() {
 function editDisjointClasses() {
 	window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=disjointWith"
 }
+
+function toggleURIEditable() {
+	if(document.getElementById("uri").hasAttribute("readonly")) {
+		document.getElementById("uri").removeAttribute("readonly");
+	}
+	else {
+		document.getElementById("uri").setAttribute("readonly", "true");
+	}
+}
 </script>

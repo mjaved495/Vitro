@@ -19,10 +19,10 @@
 
 <tr class="editformcell">
     <td id="uri-field">
-         <input type="text" readonly="true" value="${VClass.getURI()}"></input>
+         <input type="text" readonly="true" value="${VClass.getURI()}" id="uri"></input>
     </td>
     <td id="uri-checkbox">
-       <input type="checkbox"></input> Edit URI
+       <input type="checkbox" onclick="toggleURIEditable()"></input> Edit URI
      </td>
 </tr>
 
