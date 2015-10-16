@@ -33,6 +33,10 @@ $(document).ready(function() {
 
 	});
 
+	$(".action-delete").click(function() {
+		$(this).parent().parent().fadeOut(500);
+	})
+
 });
 
 function editClass() {
