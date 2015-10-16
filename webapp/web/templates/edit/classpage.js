@@ -1,5 +1,16 @@
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
+<script src="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
+<link href="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
 <script language="JavaScript" type="text/javascript"> 
+$(document).ready(function() {
+	$('.item-detail[title]').qtip({
+		position: {
+			my: "top left",
+			at: "bottom left"
+		}
+	});
+});
+
 function editClass() {
 	window.location.href = "/vivo/vclass_retry";
 }

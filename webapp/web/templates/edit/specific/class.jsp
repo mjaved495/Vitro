@@ -36,7 +36,7 @@
         <table>
             <c:forEach items="${superclasses}" var="superclass">
                 <tr class="class-item">
-        	       <td class="item-detail"><p>${superclass.getName()}</p></td> <td class="item-action"> <img src="/vivo/images/edit.png" class="action"> </img></td><td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img> </td>
+        	       <td class="item-detail" title="${superclass.getURI()}"><p>${superclass.getName()}</p></td> <td class="item-action"> <img src="/vivo/images/edit.png" class="action"> </img></td><td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img> </td>
                 </tr>
             </c:forEach>
         </table>
@@ -49,7 +49,7 @@
         <table>
             <c:forEach items="${equivalentClasses}" var="eqClass">
                 <tr class="class-item">
-                    <td class="item-detail"><p>${eqClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td></tr>
+                    <td class="item-detail" title="${superclass.getURI()}"><p>${eqClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td></tr>
             </c:forEach>
         </table>
 	</td>
@@ -61,7 +61,7 @@
         <table>
     	    <c:forEach items="${disjointClasses}" var="djClass">
                 <tr class="class-item">
-                    <td class="item-detail"><p>${djClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td>
+                    <td class="item-detail" title="${superclass.getURI()}"><p>${djClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td>
                 </tr>
             </c:forEach>
         </table>
