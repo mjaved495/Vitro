@@ -13,7 +13,7 @@
 
 <tr class="editformcell">
     <td valign="bottom" colspan="2">
-         <h3 class="blue">${VClass.getName()} <img src="/vivo/images/edit.png" class="action action-edit" title="Edit this class" onclick="editClass()"></img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
+         <h3 class="blue"><span class="vclass-label">${VClass.getName()}</span> <img src="/vivo/images/edit.png" class="action action-edit" title="Edit class label" onclick="editClass()"></img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
     </td>
     <td valign="bottom" colspan="1">
         Last update: June 02, 2015

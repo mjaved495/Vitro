@@ -39,8 +39,24 @@ $(document).ready(function() {
 
 });
 
+/* TODO: abstract action-edit and editClass into single function */
+
 function editClass() {
-	window.location.href = "/vivo/vclass_retry";
+	var labelSpan = $(".vclass-label");
+	var labelText = labelSpan.text();
+	var input = $("<input type='text' value='" + labelText + "'></input>");
+	input.css({"width": "100% !important"});
+	labelSpan.html('');
+	labelSpan.append(input);
+
+	$(input).keypress(function(e) {
+		if(e.keyCode == 13) {
+			var text = $(this).val();
+			labelSpan.html(text);
+			labelSpan.parent().css({'background-color': '#FFFFAA'});
+			labelSpan.parent().animate({'backgroundColor': '#FFFFFF'}, 1500);
+		}
+	});
 }
 
 function deleteClass() {
