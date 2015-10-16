@@ -5,10 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DeleteEquivalentClassController extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		
-	}
-	
+
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		
 	}

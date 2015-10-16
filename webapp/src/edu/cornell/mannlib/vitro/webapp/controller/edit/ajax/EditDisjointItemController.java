@@ -5,9 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class EditDisjointItemController extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		
-	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		

@@ -6,9 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 public class EditVClassLabelController extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		
-	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		
