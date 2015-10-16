@@ -18,16 +18,12 @@
 </tr>
 
 <tr class="editformcell">
-    <td class="editing-form-action">
+    <td id="uri-field">
          <input type="text" readonly="true" value="${VClass.getURI()}"></input>
     </td>
-    <td class="editing-form-action">
+    <td id="uri-checkbox">
        <input type="checkbox"></input> Edit URI
      </td>
-</tr>
-        
-    </td>
-    
 </tr>
 
 <tr class="editformcell">
@@ -37,7 +33,7 @@
         <table>
             <c:forEach items="${superclasses}" var="superclass">
                 <tr>
-        	       <td class="item-detail"><p>${superclass.getName()}</p></td> <td class="item-actions"> <img src="/vivo/images/edit.png" class="action"> </img> <img src="/vivo/images/delete.png" class="action"></img> </td>
+        	       <td class="item-detail"><p>${superclass.getName()}</p></td> <td class="item-action"> <img src="/vivo/images/edit.png" class="action"> </img></td><td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img> </td>
                 </tr>
             </c:forEach>
         </table>
@@ -47,18 +43,25 @@
 <tr class="editformcell">
 	<td valign="bottom" colspan="4">
 		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()" class="action"></img> <br/>
-        <c:forEach items="${equivalentClasses}" var="eqClass">
-            <p>${eqClass.getName()} <img src="/vivo/images/edit.png" class="action"> </img> <img src="/vivo/images/delete.png" class="action"></img></p>
-        </c:forEach>
+        <table>
+            <c:forEach items="${equivalentClasses}" var="eqClass">
+                <tr>
+                    <td class="item-detail"><p>${eqClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td></tr>
+            </c:forEach>
+        </table>
 	</td>
 </tr>
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="top" colspan="4">
 		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()"></img> <br/>
-	    <c:forEach items="${disjointClasses}" var="djClass">
-            <p>${djClass.getName()} <img src="/vivo/images/edit.png" class="action"> </img> <img src="/vivo/images/delete.png" class="action"></img></p>
-        </c:forEach>
+        <table>
+    	    <c:forEach items="${disjointClasses}" var="djClass">
+                <tr>
+                    <td class="item-detail"><p>${djClass.getName()}</p></td> <td class="item-action"><img src="/vivo/images/edit.png" class="action"> </img></td> <td class="item-action"> <img src="/vivo/images/delete.png" class="action"></img></td>
+                </tr>
+            </c:forEach>
+        </table>
 	</td>
 </tr>
 <tr class="editformcell">

@@ -3,9 +3,21 @@ img.action {
 }
 
 td.item-detail {
-	width:80%;
+	width:90%;
 }
 
 td.item-actions {
+	width:5%;
+}
+
+td#uri-field {
+	width:40%;
+}
+
+td#uri-field input[type='text'] {
+	width:100% !important;
+}
+
+td#uri-checkbox {
 	width:20%;
 }
