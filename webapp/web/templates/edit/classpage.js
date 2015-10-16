@@ -12,6 +12,16 @@ $(document).ready(function() {
 			}
 		})
 	}
+
+	$(".action-edit").click(function() {
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		var itemDetailText = itemDetail.text();
+		var input = $("<input type='text' value='" + itemDetailText + "'></input>");
+		input.css({"width": "100% !important"});
+		itemDetail.html('');
+		itemDetail.append(input);
+	});
+
 });
 
 function editClass() {

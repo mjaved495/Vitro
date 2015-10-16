@@ -24,7 +24,7 @@ td#uri-field {
 	width:40%;
 }
 
-td#uri-field input[type='text'] {
+td#uri-field input[type='text'], td#editable-item-detail input[type='text'] {
 	width:100% !important;
 }
 
