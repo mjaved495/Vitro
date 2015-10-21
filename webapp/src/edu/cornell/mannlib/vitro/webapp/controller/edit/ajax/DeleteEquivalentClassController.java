@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteEquivalentClassController extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
-		
+		String eqClassURI = req.getParameter("eqClassURI");
+		String vClassURI = req.getParameter("vClassURI");
 	}
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EditDisjointItemController extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
-		
+		String disjointClassURI = req.getParameter("disjointClassURI");
+		String vClassURI = req.getParameter("vClassURI");
 	}
 }
