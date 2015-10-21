@@ -546,6 +546,60 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>EditVClassLabelController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditVClassLabelController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditVClassLabelController</servlet-name>
+  	<url-pattern>/edit_api/edit_label</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>EditSubclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSubclassItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditSubclassItemController</servlet-name>
+  	<url-pattern>/edit_api/edit_subclass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>EditEquivalentItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditEquivalentItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditEquivalentItemController</servlet-name>
+  	<url-pattern>/edit_api/edit_eqclass</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>DeleteSubclassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSubclassController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteSubclassController</servlet-name>
+  	<url-pattern>/edit_api/delete_subclass</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>DeleteEquivalentClassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEquivalentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteEquivalentClassController</servlet-name>
+  	<url-pattern>/edit_api/delete_eqclass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DeleteDisjointClassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteDisjointController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteDisjointClassController</servlet-name>
+  	<url-pattern>/edit_api/delete_disjoint</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>ClassPageController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ClassPageController</servlet-class>
   </servlet>
