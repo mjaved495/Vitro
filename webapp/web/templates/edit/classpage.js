@@ -139,11 +139,16 @@ $(document).ready(function() {
 	});
 
 	var actionDeleteDisjointCallback = function(row) {
-
+		var disjointClassURI = row.find(".item-detail").attr("data-disjoint-uri");
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		$.post("/vivo/edit_api/delete_disjoint", {"vclassURI": vclassURI, "disjointClassURI": disjointClassURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	$(".action-delete-disjoint").click(function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteDisjointCallback);
 	});
 
 	function toggleURIEditable() {

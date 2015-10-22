@@ -72,7 +72,7 @@
                     <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
                     <td class="item-spacer"></td>
                     <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-disjoint" title="Replace with different class"> </img></td> 
-                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this disjoint class"></img></td>
+                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-disjoint" title="Remove this disjoint class"></img></td>
                 </tr>
             </c:forEach>
         </table>

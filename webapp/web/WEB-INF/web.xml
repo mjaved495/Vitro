@@ -601,7 +601,7 @@
   
   <servlet>
   	<servlet-name>DeleteDisjointClassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteDisjointController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteDisjointClassController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>DeleteDisjointClassController</servlet-name>
