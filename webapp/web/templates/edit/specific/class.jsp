@@ -34,7 +34,7 @@
 <tr class="editformcell">
 	<td valign="bottom" colspan="4">
         <!-- TODO make this scrollable -->
-		<b>Subclass of:</b> <img src="/vivo/images/new.png" onclick="editSuperclasses()" title="Add a superclass" class="action action-add"></img> <br/>
+		<b>Subclass of:</b> <img src="/vivo/images/new.png" onclick="editSuperclasses()" title="Add a superclass" class="action action-add action-add-superclass"></img> <br/>
         <table>
             <c:forEach items="${superclasses}" var="superclass">
                 <tr class="class-item">
@@ -50,7 +50,7 @@
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="bottom" colspan="4">
-		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()" title="Add equivalent class" class="action action-add"></img> <br/>
+		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()" title="Add equivalent class" class="action action-add action-add-eqclass"></img> <br/>
         <table>
             <c:forEach items="${equivalentClasses}" var="eqClass">
                 <tr class="class-item">
@@ -65,7 +65,7 @@
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="top" colspan="4">
-		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()" title="Add disjoint class" class="action action-add"></img> <br/>
+		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()" title="Add disjoint class" class="action action-add action-add-disjoint"></img> <br/>
         <table>
     	    <c:forEach items="${disjointClasses}" var="djClass">
                 <tr class="class-item">

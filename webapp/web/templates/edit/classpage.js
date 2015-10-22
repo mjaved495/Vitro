@@ -151,6 +151,23 @@ $(document).ready(function() {
 		deleteItem(row, actionDeleteDisjointCallback);
 	});
 
+	// adding elements
+
+	$(".action-add-superclass").click(function() {
+		var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
+		window.location.href = "/vivo/editForm?SubclassURI=" + vclassURI + "&controller=Classes2Classes";
+	});
+
+	$(".action-add-eqclass").click(function() {
+		var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
+		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=equivalentClass"
+	});
+
+	$(".action-add-disjoint").click(function() {
+		var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
+		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=disjointWith"
+	});
+
 	function toggleURIEditable() {
 		if(document.getElementById("uri").hasAttribute("readonly")) {
 			document.getElementById("uri").removeAttribute("readonly");
