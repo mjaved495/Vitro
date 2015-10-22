@@ -40,7 +40,7 @@
                 <tr class="class-item">
         	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
                    <td class="item-spacer"></td>
-                   <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit" title="Replace with different class"> </img></td>
+                   <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-superclass" title="Replace with different class"> </img></td>
                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this superclass"></img> </td>
                 </tr>
             </c:forEach>

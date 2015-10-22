@@ -14,7 +14,7 @@ $(document).ready(function() {
 		})
 	}
 
-	function replaceWithInput(jQElement, onSubmitCallback) {
+	var replaceWithInput = function(jQElement, onSubmitCallback) {
 		var text = jQElement.text();
 		input = $("<input type='text' value='" + text + "'></input>");
 		input.css({"width": "100% !important"});
@@ -26,46 +26,53 @@ $(document).ready(function() {
 				var text = $(this).val();
 				jQElement.html(text);
 				jQElement.parent().css({'background-color': '#FFFFAA'});
-				jQElement.parent().animate({'backgroundColor': '#FFFFFF'}, 1500);
-				console.log(onSubmitCallback);
-				onSubmitCallback();
+				jQElement.parent().animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
+					console.log(onSubmitCallback);
+					onSubmitCallback(jQElement);
+				});
 			}
 		});
 	}
 
-	$(".action-edit").click(function() {
+	/* $(".action-edit").click(function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, function() {});
 
-	});
+	}); */
 
 	$(".action-delete").click(function() {
 		$(this).parent().parent().fadeOut(500);
 	})
 
 	function editClass() {
-		replaceWithInput($(".vclass-label"), function() {});
+		// replaceWithInput($(".vclass-label"), function() {});
 	}
 
 	function deleteClass() {
 		window.location.href = "/vivo/vclass_retry"; // is there a more specific URL?
 	}
 
-	$(".edit-class").click(function() {
-		var itemDetail = $(this).parent().find("item-detail");
-		replaceWithInput(itemDetail, function() {
-			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			var oldSuperclassURI = $(itemDetail).attr("data-superclass-uri");
-			var newSuperclassURI = getURI($(itemDetail).text());
-			$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
-				"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
-				function(res) {
-					console.log('done');
-					if(!(res === newSuperclassURI)) {
-						console.log("error: " + res);
-					}
-				});
+	function getURI(className) {
+		return "http://vivoweb.org/ontology/core#"+className; // todo: make smarter
+	}
+
+	var actionEditCallback = function(itemDetail) {
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		var oldSuperclassURI = itemDetail.attr("data-superclass-uri");
+		var newSuperclassURI = getURI(itemDetail.text());
+		$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
+		"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
+		function(res) {
+			console.log('done');
+			if(!(res === newSuperclassURI)) {
+				console.log("error: " + res);
+			}
 		});
+	}
+
+	$(".action-edit-superclass").click(function() {
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		console.log("hello");
+		replaceWithInput(itemDetail, actionEditCallback);
 	});
 
 	function editEquivalentClasses() {

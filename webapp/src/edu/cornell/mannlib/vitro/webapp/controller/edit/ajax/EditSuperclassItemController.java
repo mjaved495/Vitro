@@ -23,7 +23,7 @@ public class EditSuperclassItemController extends HttpServlet {
         VClassDao vcwDao = wadf.getVClassDao();
 		
 		vcwDao.removeSuperclass(vclassURI, oldSuperclassURI);
-		vcwDao.addSubclass(vclassURI, newSuperclassURI);
+		vcwDao.addSuperclass(vclassURI, newSuperclassURI);
 		
 		res.getWriter().print(newSuperclassURI);
 	}
