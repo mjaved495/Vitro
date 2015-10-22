@@ -65,7 +65,6 @@ $(document).ready(function() {
 		$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
 		"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
 		function(res) {
-			console.log('done');
 			if(!(res === newSuperclassURI)) {
 				console.log("error: " + res);
 			}
@@ -94,11 +93,9 @@ $(document).ready(function() {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldEqClassURI = itemDetail.attr("data-eqclass-uri");
 		var newEqClassURI = getURI(itemDetail.text());
-		console.log(vclassURI);
 		$.post("/vivo/edit_api/edit_eqclass", {"vclassURI": vclassURI, 
 		"oldEqClassURI": oldEqClassURI, "newEqClassURI": newEqClassURI},
 		function(res) {
-			console.log('done');
 			if(!(res === newEqClassURI)) {
 				console.log("error: " + res);
 			}
@@ -124,11 +121,21 @@ $(document).ready(function() {
 	});
 
 	var actionEditDisjointCallback = function(itemDetail) {
-
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		var oldDisjointClassURI = itemDetail.attr("data-disjoint-uri");
+		var newDisjointClassURI = getURI(itemDetail.text());
+		$.post("/vivo/edit_api/edit_disjoint", {"vclassURI": vclassURI, 
+		"oldDisjointClassURI": oldDisjointClassURI, "newDisjointClassURI": newDisjointClassURI},
+		function(res) {
+			if(!(res === newDisjointClassURI)) {
+				console.log("error: " + res);
+			}
+		});
 	}
 
 	$(".action-edit-disjoint").click(function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditDisjointCallback);
 	});
 
 	var actionDeleteDisjointCallback = function(row) {

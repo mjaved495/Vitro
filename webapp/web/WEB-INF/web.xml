@@ -573,6 +573,15 @@
   </servlet-mapping>
   
    <servlet>
+  	<servlet-name>EditDisjointItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditDisjointItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditDisjointItemController</servlet-name>
+  	<url-pattern>/edit_api/edit_disjoint</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
   	<servlet-name>DeleteSuperclassController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSuperclassController</servlet-class>
   </servlet>

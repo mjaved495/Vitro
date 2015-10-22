@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteDisjointClassController extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
-		String disjointClassURI = req.getParameter("disjointClassURI");
-		String vclassURI = req.getParameter("vClassURI");
+		String oldDisjointClassURI = req.getParameter("oldDisjointClassURI");
+		String newDisjointClassURI = req.getParameter("newDisjointClassURI");
+		String vclassURI = req.getParameter("vclassURI");
 	}
 }
