@@ -90,13 +90,49 @@ $(document).ready(function() {
 		deleteItem(row, actionDeleteSuperclassCallback);
 	});
 
-	function editEquivalentClasses() {
-		window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=equivalentClass"
+	var actionEditEqclassCallback = function(itemDetail) {
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		var oldEqClassURI = itemDetail.attr("data-eqclass-uri");
+		var newEqClassURI = getURI(itemDetail.text());
+		console.log(vclassURI);
+		$.post("/vivo/edit_api/edit_eqclass", {"vclassURI": vclassURI, 
+		"oldEqClassURI": oldEqClassURI, "newEqClassURI": newEqClassURI},
+		function(res) {
+			console.log('done');
+			if(!(res === newEqClassURI)) {
+				console.log("error: " + res);
+			}
+		});
 	}
 
-	function editDisjointClasses() {
-		window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=disjointWith"
+	$(".action-edit-eqclass").click(function() {
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditEqclassCallback);
+	});
+
+	var actionDeleteEqclassCallback = function(row) {
+
 	}
+
+	$(".action-delete-eqclass").click(function() {
+
+	});
+
+	var actionEditDisjointCallback = function(itemDetail) {
+
+	}
+
+	$(".action-edit-disjoint").click(function() {
+
+	});
+
+	var actionDeleteDisjointCallback = function(row) {
+
+	}
+
+	$(".action-delete-disjoint").click(function() {
+
+	});
 
 	function toggleURIEditable() {
 		if(document.getElementById("uri").hasAttribute("readonly")) {
