@@ -34,14 +34,17 @@ $(document).ready(function() {
 		});
 	}
 
+	var deleteItem = function(jQElement, onRemovalCallback) {
+		var jQElementCopy = jQElement.clone();
+		jQElement.fadeOut(500, function() {
+			onRemovalCallback(jQElementCopy);
+		});
+	}
+
 	/* $(".action-edit").click(function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
 
 	}); */
-
-	$(".action-delete").click(function() {
-		$(this).parent().parent().fadeOut(500);
-	})
 
 	function editClass() {
 		// replaceWithInput($(".vclass-label"), function() {});
@@ -55,7 +58,7 @@ $(document).ready(function() {
 		return "http://vivoweb.org/ontology/core#"+className; // todo: make smarter
 	}
 
-	var actionEditCallback = function(itemDetail) {
+	var actionEditSuperclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSuperclassURI = itemDetail.attr("data-superclass-uri");
 		var newSuperclassURI = getURI(itemDetail.text());
@@ -71,8 +74,20 @@ $(document).ready(function() {
 
 	$(".action-edit-superclass").click(function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		console.log("hello");
-		replaceWithInput(itemDetail, actionEditCallback);
+		replaceWithInput(itemDetail, actionEditSuperclassCallback);
+	});
+
+	var actionDeleteSuperclassCallback = function(row) {
+		var superclassURI = row.find(".item-detail").attr("data-superclass-uri");
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		$.post("/vivo/edit_api/delete_superclass", {"vclassURI": vclassURI, "superclassURI": superclassURI}, function(res) {
+			console.log(res);
+		});
+	}
+
+	$(".action-delete-superclass").click(function() {
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteSuperclassCallback);
 	});
 
 	function editEquivalentClasses() {
