@@ -21,7 +21,6 @@ public class DeleteSuperclassController extends HttpServlet {
         VClassDao vcwDao = wadf.getVClassDao();
         
         vcwDao.removeSuperclass(vclassURI, superclassURI);
-		List<String> strings = vcwDao.getAllSuperClassURIs(vclassURI);
         
 		res.getWriter().print("done");
 	}

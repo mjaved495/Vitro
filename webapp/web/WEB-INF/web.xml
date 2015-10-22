@@ -583,7 +583,7 @@
   
    <servlet>
   	<servlet-name>DeleteEquivalentClassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEquivalentController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEquivalentClassController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>DeleteEquivalentClassController</servlet-name>

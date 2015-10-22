@@ -57,7 +57,7 @@
                     <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
                     <td class="item-spacer"></td>
                     <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-eqclass" title="Replace with different class"> </img></td> 
-                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this equivalent class"></img></td></tr>
+                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this equivalent class"></img></td></tr>
             </c:forEach>
         </table>
 	</td>

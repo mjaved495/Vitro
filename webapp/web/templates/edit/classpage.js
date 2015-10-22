@@ -111,11 +111,16 @@ $(document).ready(function() {
 	});
 
 	var actionDeleteEqclassCallback = function(row) {
-
+		var eqClassURI = row.find(".item-detail").attr("data-eqclass-uri");
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		$.post("/vivo/edit_api/delete_eqclass", {"vclassURI": vclassURI, "eqClassURI": eqClassURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	$(".action-delete-eqclass").click(function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteEqclassCallback);
 	});
 
 	var actionEditDisjointCallback = function(itemDetail) {
