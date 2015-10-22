@@ -555,12 +555,12 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>EditSubclassItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSubclassItemController</servlet-class>
+  	<servlet-name>EditSuperclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSuperclassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>EditSubclassItemController</servlet-name>
-  	<url-pattern>/edit_api/edit_subclass</url-pattern>
+  	<servlet-name>EditSuperclassItemController</servlet-name>
+  	<url-pattern>/edit_api/edit_superclass</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -573,12 +573,12 @@
   </servlet-mapping>
   
    <servlet>
-  	<servlet-name>DeleteSubclassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSubclassController</servlet-class>
+  	<servlet-name>DeleteSuperclassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSuperclassController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DeleteSubclassController</servlet-name>
-  	<url-pattern>/edit_api/delete_subclass</url-pattern>
+  	<servlet-name>DeleteSuperclassController</servlet-name>
+  	<url-pattern>/edit_api/delete_superclass</url-pattern>
   </servlet-mapping>
   
    <servlet>

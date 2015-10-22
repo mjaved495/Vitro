@@ -12,19 +12,19 @@ import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.dao.jena.VClassDaoJena;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
-public class EditSubclassItemController extends HttpServlet {
+public class EditSuperclassItemController extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		String newSubclassURI = req.getParameter("newSubclassURI");
-		String oldSubclassURI = req.getParameter("oldSubclassURI");
-		String vclassURI = req.getParameter("superclassURI");
+		String newSuperclassURI = req.getParameter("newSuperclassURI");
+		String oldSuperclassURI = req.getParameter("oldSuperclassURI");
+		String vclassURI = req.getParameter("vclassURI");
 		
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory();
         VClassDao vcwDao = wadf.getVClassDao();
 		
-		vcwDao.removeSubclass(vclassURI, oldSubclassURI);
-		vcwDao.addSubclass(vclassURI, newSubclassURI);
+		vcwDao.removeSuperclass(vclassURI, oldSuperclassURI);
+		vcwDao.addSubclass(vclassURI, newSuperclassURI);
 		
-		res.getWriter().print(newSubclassURI);
+		res.getWriter().print(newSuperclassURI);
 	}
 }

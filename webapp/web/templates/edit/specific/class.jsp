@@ -11,6 +11,8 @@
 <!-- <link href="/vivo/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="/vivo/js/bootstrap.min.js"></script> -->
 
+<input type="hidden" id="vclass-uri" data-vclass-uri="${VClass.getURI()}"/>
+
 <tr class="editformcell">
     <td valign="bottom" colspan="2">
          <h3 class="blue"><span class="vclass-label">${VClass.getName()}</span> <img src="/vivo/images/edit.png" class="action action-edit" title="Edit class label" onclick="editClass()"></img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
@@ -36,7 +38,7 @@
         <table>
             <c:forEach items="${superclasses}" var="superclass">
                 <tr class="class-item">
-        	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
+        	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
                    <td class="item-spacer"></td>
                    <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit" title="Replace with different class"> </img></td>
                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete" title="Remove this superclass"></img> </td>

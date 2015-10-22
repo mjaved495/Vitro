@@ -14,22 +14,28 @@ $(document).ready(function() {
 		})
 	}
 
-	$(".action-edit").click(function() {
-		var itemDetail = $(this).parent().parent().find(".item-detail");
-		var itemDetailText = itemDetail.text();
-		var input = $("<input type='text' value='" + itemDetailText + "'></input>");
+	function replaceWithInput(jQElement, onSubmitCallback) {
+		var text = jQElement.text();
+		input = $("<input type='text' value='" + text + "'></input>");
 		input.css({"width": "100% !important"});
-		itemDetail.html('');
-		itemDetail.append(input);
+		jQElement.html('');
+		jQElement.append(input);
 
 		$(input).keypress(function(e) {
 			if(e.keyCode == 13) {
 				var text = $(this).val();
-				itemDetail.html("<p>"+text+"</p>");
-				itemDetail.css({'background-color': '#FFFFAA'});
-				itemDetail.animate({'backgroundColor': '#FFFFFF'}, 1500);
+				jQElement.html(text);
+				jQElement.parent().css({'background-color': '#FFFFAA'});
+				jQElement.parent().animate({'backgroundColor': '#FFFFFF'}, 1500);
+				console.log(onSubmitCallback);
+				onSubmitCallback();
 			}
-		})
+		});
+	}
+
+	$(".action-edit").click(function() {
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, function() {});
 
 	});
 
@@ -37,51 +43,47 @@ $(document).ready(function() {
 		$(this).parent().parent().fadeOut(500);
 	})
 
-});
+	function editClass() {
+		replaceWithInput($(".vclass-label"), function() {});
+	}
 
-/* TODO: abstract action-edit and editClass into single function */
+	function deleteClass() {
+		window.location.href = "/vivo/vclass_retry"; // is there a more specific URL?
+	}
 
-function editClass() {
-	var labelSpan = $(".vclass-label");
-	var labelText = labelSpan.text();
-	var input = $("<input type='text' value='" + labelText + "'></input>");
-	input.css({"width": "100% !important"});
-	labelSpan.html('');
-	labelSpan.append(input);
-
-	$(input).keypress(function(e) {
-		if(e.keyCode == 13) {
-			var text = $(this).val();
-			labelSpan.html(text);
-			labelSpan.parent().css({'background-color': '#FFFFAA'});
-			labelSpan.parent().animate({'backgroundColor': '#FFFFFF'}, 1500);
-		}
+	$(".edit-class").click(function() {
+		var itemDetail = $(this).parent().find("item-detail");
+		replaceWithInput(itemDetail, function() {
+			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			var oldSuperclassURI = $(itemDetail).attr("data-superclass-uri");
+			var newSuperclassURI = getURI($(itemDetail).text());
+			$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
+				"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
+				function(res) {
+					console.log('done');
+					if(!(res === newSuperclassURI)) {
+						console.log("error: " + res);
+					}
+				});
+		});
 	});
-}
 
-function deleteClass() {
-	window.location.href = "/vivo/vclass_retry"; // is there a more specific URL?
-}
-
-function editSuperclasses() {
-	// replace the URI with the actual URI of the class
-	window.location.href = "http://localhost:8080/vivo/editForm?SubclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&controller=Classes2Classes"
-}
-
-function editEquivalentClasses() {
-	window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=equivalentClass"
-}
-
-function editDisjointClasses() {
-	window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=disjointWith"
-}
-
-function toggleURIEditable() {
-	if(document.getElementById("uri").hasAttribute("readonly")) {
-		document.getElementById("uri").removeAttribute("readonly");
+	function editEquivalentClasses() {
+		window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=equivalentClass"
 	}
-	else {
-		document.getElementById("uri").setAttribute("readonly", "true");
+
+	function editDisjointClasses() {
+		window.location.href = "http://localhost:8080/vivo/editForm?controller=Classes2Classes&SuperclassURI=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember&opMode=disjointWith"
 	}
-}
+
+	function toggleURIEditable() {
+		if(document.getElementById("uri").hasAttribute("readonly")) {
+			document.getElementById("uri").removeAttribute("readonly");
+		}
+		else {
+			document.getElementById("uri").setAttribute("readonly", "true");
+		}
+	}
+
+});
 </script>
