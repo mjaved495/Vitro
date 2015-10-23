@@ -40,7 +40,7 @@ $(document).ready(function() {
 		});
 	}
 
-	var addItem = function(jQElement, onAddCallback) {
+	var addItem = function(jQElement, onAddCallback, type) {
 		/*
 		<tr class="class-item">
         <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
@@ -64,13 +64,13 @@ $(document).ready(function() {
 				/* fill out rest of table row */
 
 				tableRow.append($("<td class='item-spacer'></td>"));
-				tableRow.append($("<td class='item-action'><img src='/vivo/images/edit.png' class='action action-edit action-edit-eqclass' title='Edit/replace with different class'></img></td>"))
-				tableRow.append($("<td class='item-action'><img src='/vivo/images/delete.png' class='action action-delete action-delete-eqclass' title='Remove this equivalent class'></img></td>"))
+				tableRow.append($("<td class='item-action'><img src='/vivo/images/edit.png' class='action action-edit action-edit-" + type + "' title='Edit/replace with different class'></img></td>"))
+				tableRow.append($("<td class='item-action'><img src='/vivo/images/delete.png' class='action action-delete action-delete-" + type + "' title='Remove this'></img></td>"))
 
 				input.remove();
 				tableRow.css({'background-color': '#FFFFAA'});
 				tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
-					onAddCallback(td);
+					onAddCallback(tdItemDetail);
 				})
 			}
 		})
@@ -106,10 +106,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".action-edit-superclass").click(function() {
+	var actionEditSuperclass = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
 		replaceWithInput(itemDetail, actionEditSuperclassCallback);
-	});
+	}
+
+	$(".action-edit-superclass").click(actionEditSuperclass);
 
 	var actionDeleteSuperclassCallback = function(row) {
 		var superclassURI = row.find(".item-detail").attr("data-superclass-uri");
@@ -119,10 +121,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".action-delete-superclass").click(function() {
+	var actionDeleteSuperclass = function() {
 		var row = $(this).parent().parent();
 		deleteItem(row, actionDeleteSuperclassCallback);
-	});
+	}
+
+	$(".action-delete-superclass").click(actionDeleteSuperclass);
 
 	var actionEditEqclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
@@ -137,10 +141,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".action-edit-eqclass").click(function() {
+	var actionEditEqClass = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
 		replaceWithInput(itemDetail, actionEditEqclassCallback);
-	});
+	}
+
+	$(".action-edit-eqclass").click(actionEditEqClass);
 
 	var actionDeleteEqclassCallback = function(row) {
 		var eqClassURI = row.find(".item-detail").attr("data-eqclass-uri");
@@ -150,10 +156,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".action-delete-eqclass").click(function() {
+	var actionDeleteEqClass = function() {
 		var row = $(this).parent().parent();
 		deleteItem(row, actionDeleteEqclassCallback);
-	});
+	}
+
+	$(".action-delete-eqclass").click(actionDeleteEqClass);
 
 	var actionEditDisjointCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
@@ -168,10 +176,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".action-edit-disjoint").click(function() {
+	var actionEditDisjoint = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
 		replaceWithInput(itemDetail, actionEditDisjointCallback);
-	});
+	}
+
+	$(".action-edit-disjoint").click(actionEditDisjoint);
 
 	var actionDeleteDisjointCallback = function(row) {
 		var disjointClassURI = row.find(".item-detail").attr("data-disjoint-uri");
@@ -181,10 +191,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".action-delete-disjoint").click(function() {
+	var actionDeleteDisjoint = function() {
 		var row = $(this).parent().parent();
 		deleteItem(row, actionDeleteDisjointCallback);
-	});
+	}
+
+	$(".action-delete-disjoint").click(actionDeleteDisjoint);
 
 	// adding elements
 
@@ -196,8 +208,12 @@ $(document).ready(function() {
 				if(res != superclassURI) {
 					console.log("error: " + res);
 				}
+				else {
+					td.parent().find(".action-edit-superclass").click(actionEditSuperclass);
+					td.parent().find(".action-delete-superclass").click(actionDeleteSuperclass);
+				}
 			})
-		});
+		}, "superclass");
 	});
 
 	$(".action-add-eqclass").click(function() {
@@ -209,8 +225,12 @@ $(document).ready(function() {
 					console.log("error: " + res);
 
 				}
+				else {
+					td.parent().find(".action-edit-eqclass").click(actionEditEqClass);
+					td.parent().find(".action-delete-eqclass").click(actionDeleteEqClass);
+				}
 			})
-		})
+		}, "eqclass")
 		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
 		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=equivalentClass" */
 	});
@@ -223,8 +243,12 @@ $(document).ready(function() {
 				if(res != disjointClassURI) {
 					console.log("error: " + res);
 				}
+				else {
+					td.parent().find(".action-edit-disjoint").click(actionEditDisjoint);
+					td.parent().find(".action-delete-disjoint").click(actionDeleteDisjoint);
+				}
 			});
-		})
+		}, "disjoint")
 		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
 		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=disjointWith" */
 	});

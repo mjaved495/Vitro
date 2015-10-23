@@ -41,7 +41,7 @@
         	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
                    <td class="item-spacer"></td>
                    <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-superclass" title="Edit/replace with different class"> </img></td>
-                   <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-superclass" title="Remove this superclass"></img> </td>
+                   <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-superclass" title="Remove this"></img> </td>
                 </tr>
             </c:forEach>
         </table>
@@ -57,7 +57,7 @@
                     <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
                     <td class="item-spacer"></td>
                     <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-eqclass" title="Edit/replace with different class"> </img></td> 
-                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this equivalent class"></img></td></tr>
+                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this"></img></td></tr>
             </c:forEach>
         </table>
 	</td>
@@ -72,7 +72,7 @@
                     <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
                     <td class="item-spacer"></td>
                     <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-disjoint" title="Edit/replace with different class"> </img></td> 
-                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-disjoint" title="Remove this disjoint class"></img></td>
+                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-disjoint" title="Remove this"></img></td>
                 </tr>
             </c:forEach>
         </table>
