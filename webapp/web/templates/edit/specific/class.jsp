@@ -18,7 +18,7 @@
          <h3 class="blue"><span class="vclass-label">${VClass.getName()}</span> <img src="/vivo/images/edit.png" class="action action-edit" title="Edit class label" onclick="editClass()"></img>    <input type="submit" class="delete" name="_delete" value="Delete" onclick="deleteClass()"></input>  </h3>
     </td>
     <td valign="bottom" colspan="1">
-        Last update: June 02, 2015
+
     </td>
 </tr>
 
@@ -34,13 +34,13 @@
 <tr class="editformcell">
 	<td valign="bottom" colspan="4">
         <!-- TODO make this scrollable -->
-		<b>Subclass of:</b> <img src="/vivo/images/new.png" onclick="editSuperclasses()" title="Add a superclass" class="action action-add action-add-superclass"></img> <br/>
+		<b>Subclass of:</b> <img src="/vivo/images/new.png" title="Add a superclass" class="action action-add action-add-superclass"></img> <br/>
         <table>
             <c:forEach items="${superclasses}" var="superclass">
                 <tr class="class-item">
         	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
                    <td class="item-spacer"></td>
-                   <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-superclass" title="Replace with different class"> </img></td>
+                   <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-superclass" title="Edit/replace with different class"> </img></td>
                    <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-superclass" title="Remove this superclass"></img> </td>
                 </tr>
             </c:forEach>
@@ -56,7 +56,7 @@
                 <tr class="class-item">
                     <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
                     <td class="item-spacer"></td>
-                    <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-eqclass" title="Replace with different class"> </img></td> 
+                    <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-eqclass" title="Edit/replace with different class"> </img></td> 
                     <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this equivalent class"></img></td></tr>
             </c:forEach>
         </table>
@@ -71,7 +71,7 @@
                 <tr class="class-item">
                     <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
                     <td class="item-spacer"></td>
-                    <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-disjoint" title="Replace with different class"> </img></td> 
+                    <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-disjoint" title="Edit/replace with different class"> </img></td> 
                     <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-disjoint" title="Remove this disjoint class"></img></td>
                 </tr>
             </c:forEach>

@@ -27,7 +27,6 @@ $(document).ready(function() {
 				jQElement.html(text);
 				jQElement.parent().css({'background-color': '#FFFFAA'});
 				jQElement.parent().animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
-					console.log(onSubmitCallback);
 					onSubmitCallback(jQElement);
 				});
 			}
@@ -39,6 +38,27 @@ $(document).ready(function() {
 		jQElement.fadeOut(500, function() {
 			onRemovalCallback(jQElementCopy);
 		});
+	}
+
+	var addItem = function(jQElement, onAddCallback) {
+		var tableRow = $("<tr></tr>");
+		var td = $("<td id='editable-item-detail'></td>");
+		var input = $("<input type='text'></input>");
+		td.append(input);
+		tableRow.append(td);
+		jQElement.parent().parent().find("table").append(tableRow);
+
+		$(input).keypress(function(e) {
+			if(e.keyCode == 13) {
+				e.preventDefault();
+				var text = $(this).val();
+				tableRow.text = $(this).val();
+				tableRow.css({'background-color': '#FFFFAA'});
+				tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
+					onAddCallback(tableRow);
+				})
+			}
+		})
 	}
 
 	/* $(".action-edit").click(function() {
@@ -154,8 +174,12 @@ $(document).ready(function() {
 	// adding elements
 
 	$(".action-add-superclass").click(function() {
-		var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
+		addItem($(this), function(tableRow) {
+			alert("ok");
+		});
+		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
 		window.location.href = "/vivo/editForm?SubclassURI=" + vclassURI + "&controller=Classes2Classes";
+		*/
 	});
 
 	$(".action-add-eqclass").click(function() {
@@ -194,6 +218,14 @@ $(document).ready(function() {
 		tabbedDiv.append(label);
 		tabbedDiv.append(classChoice);
 		$("#merge-class-container").append(tabbedDiv);
+	}
+
+	function moveInstancesCallback(e) {
+		// 
+	}
+
+	function splitClassCallback(e) {
+
 	}
 
 	$("#move-class").click(notYetImplemented)
