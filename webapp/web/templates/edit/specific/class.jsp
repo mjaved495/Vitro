@@ -50,7 +50,7 @@
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="bottom" colspan="4">
-		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" onClick="editEquivalentClasses()" title="Add equivalent class" class="action action-add action-add-eqclass"></img> <br/>
+		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" title="Add equivalent class" class="action action-add action-add-eqclass"></img> <br/>
         <table>
             <c:forEach items="${equivalentClasses}" var="eqClass">
                 <tr class="class-item">

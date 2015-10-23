@@ -183,14 +183,21 @@ $(document).ready(function() {
 				}
 			})
 		});
-		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
-		window.location.href = "/vivo/editForm?SubclassURI=" + vclassURI + "&controller=Classes2Classes";
-		*/
 	});
 
 	$(".action-add-eqclass").click(function() {
-		var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
-		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=equivalentClass"
+		addItem($(this), function(td) {
+			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			var eqClassURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_eqclass', {'vclassURI': vclassURI, 'eqClassURI': eqClassURI}, function(res) {
+				if(res != eqClassURI) {
+					console.log("error: " + res);
+					console.log(res + " is not equal to " + eqClassURI);
+				}
+			})
+		})
+		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
+		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=equivalentClass" */
 	});
 
 	$(".action-add-disjoint").click(function() {
