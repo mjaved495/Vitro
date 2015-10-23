@@ -253,6 +253,19 @@ $(document).ready(function() {
 		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=disjointWith" */
 	});
 
+	$(".action-delete-vclass").click(function() {
+		var sure = confirm("Are you sure you want to delete this class?");
+		if(sure) {
+			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			$.post("/vivo/edit_api/delete_vclass", {"vclassURI": vclassURI}, function(res) {
+				if(res === "done") {
+					window.location.href = "/vivo/siteAdmin";
+				}
+			})
+		}
+		
+	})
+
 	function toggleURIEditable() {
 		if(document.getElementById("uri").hasAttribute("readonly")) {
 			document.getElementById("uri").removeAttribute("readonly");
