@@ -177,5 +177,32 @@ $(document).ready(function() {
 		}
 	}
 
+	var notYetImplemented = function() {
+		alert("not implemented yet");
+	}
+
+	function moveClassCallback() {
+		// display hierarchy
+	}
+
+	function mergeClassCallback(e) {
+		e.preventDefault();
+
+		var tabbedDiv = $("<div id='tabbed'></div>");
+		var classChoice = $("<input type='text' name='classChoice' placeholder='Class name...'/>");
+		var label = $("<p>Merge into class:</p>");
+		tabbedDiv.append(label);
+		tabbedDiv.append(classChoice);
+		$("#merge-class-container").append(tabbedDiv);
+	}
+
+	$("#move-class").click(notYetImplemented)
+	$("#merge-class").click(mergeClassCallback)
+	$("#move-instances").click(notYetImplemented)
+	$("#split-class").click(notYetImplemented)
+	$("#specialize").click(notYetImplemented)
+	$("#generalize").click(notYetImplemented)
+	$("#sibling-disjoint").click(notYetImplemented)
+
 });
 </script>

@@ -88,15 +88,29 @@
     <td valign="top" colspan="2">
         <b>Other operations</b>
         <ul>
-            <li><a href="#">Move class in hierarchy</a></li>
-            <li><a href="#">Merge class into</a></li>
-            <li><a href="#">Move instances into</a></li>
-            <li><a href="#">Split class into</a></li>
+            <div id="move-class-container">
+                <li><a href="#" id="move-class">Move class in hierarchy</a></li>
+            </div>
+            <div id="merge-class-container">
+                <li><a href="#" id="merge-class">Merge class into</a></li>
+            </div>
+            <div id="move-instances-container">
+                <li><a href="#" id="move-instances">Move instances into</a></li>
+            </div>
+            <div id="split-class-container">
+                <li><a href="#" id="split-class">Split class into</a></li>
+            </div>
             <hr/>
-            <li><a href="#">Specialize</a></li>
-            <li><a href="#">Generalize</a></li>
+            <div id="specialize-container">
+                <li><a href="#" id="specialize">Specialize</a></li>
+            </div>
+            <div id="generalize-container">
+                <li><a href="#" id="generalize">Generalize</a></li>
+            </div>
             <hr/>
-            <li><a href="#">Make sibling classes disjoint</a></li>
+            <div id="sibling-disjoint">
+                <li><a href="#" id="sibling-disjoint">Make sibling classes disjoint</a></li>
+            </div>
         </ul>
     </td>
 </tr>

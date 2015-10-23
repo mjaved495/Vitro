@@ -41,3 +41,8 @@ div.frame-right {
 	float:left;
 	width:25%;
 }
+
+#tabbed {
+	margin-top:20px;
+	padding-left:20px;
+}
