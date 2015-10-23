@@ -31,3 +31,13 @@ td#uri-field input[type='text'], td#editable-item-detail input[type='text'] {
 td#uri-checkbox {
 	width:20%;
 }
+
+div.frame-left {
+	float:left;
+	width:65%;
+}
+
+div.frame-right {
+	float:left;
+	width:25%;
+}

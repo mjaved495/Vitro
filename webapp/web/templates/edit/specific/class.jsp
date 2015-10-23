@@ -84,7 +84,22 @@
         <p><input type="submit" class="submit" name="_object" value="Raw Statements with This Resource as Object"></input></p>
     </td>
 </tr>
-
+<tr class="editformcell">
+    <td valign="top" colspan="2">
+        <b>Other operations</b>
+        <ul>
+            <li><a href="#">Move class in hierarchy</a></li>
+            <li><a href="#">Merge class into</a></li>
+            <li><a href="#">Move instances into</a></li>
+            <li><a href="#">Split class into</a></li>
+            <hr/>
+            <li><a href="#">Specialize</a></li>
+            <li><a href="#">Generalize</a></li>
+            <hr/>
+            <li><a href="#">Make sibling classes disjoint</a></li>
+        </ul>
+    </td>
+</tr>
 
 
 </jsp:root>
