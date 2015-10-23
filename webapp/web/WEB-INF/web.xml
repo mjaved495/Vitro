@@ -555,12 +555,30 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>EditSuperclassItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSuperclassItemController</servlet-class>
+  	<servlet-name>AddSuperclassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSuperclassController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>EditSuperclassItemController</servlet-name>
-  	<url-pattern>/edit_api/edit_superclass</url-pattern>
+  	<servlet-name>AddSuperclassController</servlet-name>
+  	<url-pattern>/edit_api/add_superclass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddEquivalentItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddEquivalentItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddEquivalentItemController</servlet-name>
+  	<url-pattern>/edit_api/add_eqclass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddDisjointItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddDisjointItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddDisjointItemController</servlet-name>
+  	<url-pattern>/edit_api/add_disjoint</url-pattern>
   </servlet-mapping>
   
   <servlet>

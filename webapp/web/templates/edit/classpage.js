@@ -48,14 +48,14 @@ $(document).ready(function() {
 		tableRow.append(td);
 		jQElement.parent().parent().find("table").append(tableRow);
 
-		$(input).keypress(function(e) {
+		input.keypress(function(e) {
 			if(e.keyCode == 13) {
 				e.preventDefault();
-				var text = $(this).val();
-				tableRow.text = $(this).val();
+				td.text(input.val());
+				input.remove();
 				tableRow.css({'background-color': '#FFFFAA'});
 				tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
-					onAddCallback(tableRow);
+					onAddCallback(td);
 				})
 			}
 		})
@@ -174,8 +174,14 @@ $(document).ready(function() {
 	// adding elements
 
 	$(".action-add-superclass").click(function() {
-		addItem($(this), function(tableRow) {
-			alert("ok");
+		addItem($(this), function(td) {
+			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			var superclassURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_superclass', {'vclassURI': vclassURI, 'superclassURI': superclassURI}, function(res) {
+				if(res != superclassURI) {
+					console.log("error: " + res);
+				}
+			})
 		});
 		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
 		window.location.href = "/vivo/editForm?SubclassURI=" + vclassURI + "&controller=Classes2Classes";
