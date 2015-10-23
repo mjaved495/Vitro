@@ -192,7 +192,7 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_eqclass', {'vclassURI': vclassURI, 'eqClassURI': eqClassURI}, function(res) {
 				if(res != eqClassURI) {
 					console.log("error: " + res);
-					console.log(res + " is not equal to " + eqClassURI);
+
 				}
 			})
 		})
@@ -201,8 +201,17 @@ $(document).ready(function() {
 	});
 
 	$(".action-add-disjoint").click(function() {
-		var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
-		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=disjointWith"
+		addItem($(this), function(td) {
+			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			var disjointClassURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_disjoint', {'vclassURI': vclassURI, 'disjointClassURI': disjointClassURI}, function(res) {
+				if(res != disjointClassURI) {
+					console.log("error: " + res);
+				}
+			});
+		})
+		/* var vclassURI = encodeURIComponent($("#vclass-uri").attr("data-vclass-uri"));
+		window.location.href = "/vivo/editForm?SuperclassURI=" + vclassURI + "&controller=Classes2Classes&opMode=disjointWith" */
 	});
 
 	function toggleURIEditable() {

@@ -65,7 +65,7 @@
 <tr><td colspan="4"><hr class="formDivider"/></td></tr>
 <tr class="editformcell">
 	<td valign="top" colspan="4">
-		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" onClick="editDisjointClasses()" title="Add disjoint class" class="action action-add action-add-disjoint"></img> <br/>
+		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" title="Add disjoint class" class="action action-add action-add-disjoint"></img> <br/>
         <table>
     	    <c:forEach items="${disjointClasses}" var="djClass">
                 <tr class="class-item">
