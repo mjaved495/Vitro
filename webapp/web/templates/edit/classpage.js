@@ -41,17 +41,32 @@ $(document).ready(function() {
 	}
 
 	var addItem = function(jQElement, onAddCallback) {
-		var tableRow = $("<tr></tr>");
-		var td = $("<td id='editable-item-detail'></td>");
+		/*
+		<tr class="class-item">
+        <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
+        <td class="item-spacer"></td>
+        <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-eqclass" title="Edit/replace with different class"> </img></td> 
+        <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this equivalent class"></img></td></tr>
+        */
+		var tableRow = $("<tr class='class-item'></tr>");
+		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
 		var input = $("<input type='text'></input>");
-		td.append(input);
-		tableRow.append(td);
+		tdItemDetail.append(input);
+		tableRow.append(tdItemDetail);
 		jQElement.parent().parent().find("table").append(tableRow);
 
 		input.keypress(function(e) {
 			if(e.keyCode == 13) {
 				e.preventDefault();
-				td.text(input.val());
+				tdItemDetail.text(input.val());
+				tdItemDetail.attr('title', getURI(input.val()));
+
+				/* fill out rest of table row */
+
+				tableRow.append($("<td class='item-spacer'></td>"));
+				tableRow.append($("<td class='item-action'><img src='/vivo/images/edit.png' class='action action-edit action-edit-eqclass' title='Edit/replace with different class'></img></td>"))
+				tableRow.append($("<td class='item-action'><img src='/vivo/images/delete.png' class='action action-delete action-delete-eqclass' title='Remove this equivalent class'></img></td>"))
+
 				input.remove();
 				tableRow.css({'background-color': '#FFFFAA'});
 				tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
