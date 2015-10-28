@@ -68,7 +68,7 @@ public class ClassPageController extends BaseEditController {
         
         for(VClass vClass : superVClasses) {
         	List<VClass> vClassSubclasses = getVClassesForURIList(
-        		vcDao.getSubClassURIs(vcl.getURI()), displayVcDao);
+        		vcDao.getSubClassURIs(vClass.getURI()), displayVcDao);
         	for(VClass subclass : vClassSubclasses) {
         		if(!(siblingVClasses.contains(subclass)) && !(subclass.equals(vcl))) {
         			siblingVClasses.add(subclass);

@@ -636,6 +636,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>MakeSiblingsDisjointController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.MakeSiblingsDisjointController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MakeSiblingsDisjointController</servlet-name>
+  	<url-pattern>/edit_api/siblings_disjoint</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>ClassPageController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ClassPageController</servlet-class>
   </servlet>

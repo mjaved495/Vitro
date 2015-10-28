@@ -86,18 +86,22 @@
 </tr>
 <tr class="editformcell">
     <td valign="top" colspan="2">
+        <p><b>Class hierarchy:</b></p>
         <table>
             <tr>
+                <td><p>Superclasses:</p></td>
                 <c:forEach items="${superclasses}" var="superclass">
                     <td><input type="submit" class="submit" value="${superclass.getName()}"/></td>
                 </c:forEach>
             </tr>
             <tr>
+                <td><p>Sibling classes:</p></td>
                 <c:forEach items="${siblings}" var="sibling">
                     <td><input type="submit" class="submit" value="${sibling.getName()}"/></td>
                 </c:forEach>
             </tr>
             <tr>
+                <td><p>Subclasses:</p></td>
                 <c:forEach items="${subclasses}" var="subclass">
                     <td><input type="submit" class="submit" value="${subclass.getName()}"/></td>
                 </c:forEach>
@@ -129,8 +133,8 @@
                 <li><a href="#" id="generalize">Generalize</a></li>
             </div>
             <hr/>
-            <div id="sibling-disjoint">
-                <li><a href="#" id="sibling-disjoint">Make sibling classes disjoint</a></li>
+            <div id="siblings-disjoint-container">
+                <li><a href="#" id="siblings-disjoint">Make sibling classes disjoint</a></li>
             </div>
         </ul>
     </td>

@@ -302,13 +302,24 @@ $(document).ready(function() {
 
 	}
 
+	function makeSiblingsDisjoint() {
+		$.post('/vivo/edit_api/siblings_disjoint', function(res) {
+			if(res == "done") {
+				alert("Made sibling classes disjoint.");
+			}
+			else {
+				alert("Error: " + res);
+			}
+		})
+	}
+
 	$("#move-class").click(notYetImplemented)
 	$("#merge-class").click(mergeClassCallback)
 	$("#move-instances").click(notYetImplemented)
 	$("#split-class").click(notYetImplemented)
 	$("#specialize").click(notYetImplemented)
 	$("#generalize").click(notYetImplemented)
-	$("#sibling-disjoint").click(notYetImplemented)
+	$("#siblings-disjoint").click(makeSiblingsDisjoint)
 
 });
 </script>
