@@ -86,6 +86,27 @@
 </tr>
 <tr class="editformcell">
     <td valign="top" colspan="2">
+        <table>
+            <tr>
+                <c:forEach items="${superclasses}" var="superclass">
+                    <td><input type="submit" class="submit" value="${superclass.getName()}"/></td>
+                </c:forEach>
+            </tr>
+            <tr>
+                <c:forEach items="${siblings}" var="sibling">
+                    <td><input type="submit" class="submit" value="${sibling.getName()}"/></td>
+                </c:forEach>
+            </tr>
+            <tr>
+                <c:forEach items="${subclasses}" var="subclass">
+                    <td><input type="submit" class="submit" value="${subclass.getName()}"/></td>
+                </c:forEach>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr class="editformcell">
+    <td valign="top" colspan="2">
         <b>Other operations</b>
         <ul>
             <div id="move-class-container">

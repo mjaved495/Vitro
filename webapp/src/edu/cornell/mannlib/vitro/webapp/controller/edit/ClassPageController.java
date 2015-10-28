@@ -61,6 +61,23 @@ public class ClassPageController extends BaseEditController {
                 vcDao.getSubClassURIs(vcl.getURI()), displayVcDao);
         sortForPickList(subVClasses, request);
         request.setAttribute("subclasses",subVClasses);
+        
+        /* generate a list of sibling classes */
+        
+        List<VClass> siblingVClasses = new ArrayList<VClass>();
+        
+        for(VClass vClass : superVClasses) {
+        	List<VClass> vClassSubclasses = getVClassesForURIList(
+        		vcDao.getSubClassURIs(vcl.getURI()), displayVcDao);
+        	for(VClass subclass : vClassSubclasses) {
+        		if(!(siblingVClasses.contains(subclass)) && !(subclass.equals(vcl))) {
+        			siblingVClasses.add(subclass);
+        		}
+        	}
+        }
+        
+        sortForPickList(siblingVClasses, request);
+        request.setAttribute("siblings", siblingVClasses);
             
         List<VClass> djVClasses = getVClassesForURIList(
                 vcDao.getDisjointWithClassURIs(vcl.getURI()), displayVcDao);
@@ -71,7 +88,7 @@ public class ClassPageController extends BaseEditController {
                 vcDao.getEquivalentClassURIs(vcl.getURI()), displayVcDao);
         sortForPickList(eqVClasses, request);
         request.setAttribute("equivalentClasses",eqVClasses);
-
+        
         RequestDispatcher rd = request.getRequestDispatcher(Controllers.BASIC_JSP);
         request.setAttribute("VClass",vcl);
         request.setAttribute("bodyJsp","/templates/edit/formBasic.jsp");
