@@ -6,9 +6,13 @@
 
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0">
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
 
-<script src="/vivo/js/jstree.min.js"></script>
+<style>
+
+.ui-resizable-helper { border: 1px dotted gray; }
+</style>
 
 <!-- <link href="/vivo/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="/vivo/js/bootstrap.min.js"></script> -->

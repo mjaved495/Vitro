@@ -321,5 +321,8 @@ $(document).ready(function() {
 	$("#generalize").click(notYetImplemented)
 	$("#siblings-disjoint").click(makeSiblingsDisjoint)
 
+	$(".stretch-panel").css({'height': '50px', 'margin-top': '150px'});
+	$(".stretch-panel").resizable({handles: 'n', maxHeight: 200});
+
 });
 </script>
