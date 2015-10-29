@@ -44,7 +44,7 @@ public class MakeSiblingsDisjointController extends HttpServlet {
         	vcwDao.addDisjointWithClass(vcl.getURI(), vClass.getURI());
         }
         
-        res.getWriter().println("done");
+        res.getWriter().println("ok");
 	}
 	
 	private List<VClass> getVClassesForURIList(List<String> vclassURIs, VClassDao vcDao) {

@@ -89,9 +89,12 @@ public class ClassPageController extends BaseEditController {
         sortForPickList(eqVClasses, request);
         request.setAttribute("equivalentClasses",eqVClasses);
         
+        String blankJsp = "/templates/edit/blank.jsp";
+        
         RequestDispatcher rd = request.getRequestDispatcher(Controllers.BASIC_JSP);
         request.setAttribute("VClass",vcl);
-        request.setAttribute("bodyJsp","/templates/edit/formBasic.jsp");
+        request.setAttribute("bodyJsp", blankJsp);
+        boolean isBlank = blankJsp.equals((String) request.getAttribute("bodyJsp"));
         request.setAttribute("formJsp","/templates/edit/specific/class.jsp");
         request.setAttribute("colspan","4");
         request.setAttribute("scripts","/templates/edit/classpage.js");

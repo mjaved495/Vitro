@@ -304,7 +304,7 @@ $(document).ready(function() {
 
 	function makeSiblingsDisjoint() {
 		$.post('/vivo/edit_api/siblings_disjoint', function(res) {
-			if(res == "done") {
+			if(res == "ok") {
 				alert("Made sibling classes disjoint.");
 			}
 			else {
