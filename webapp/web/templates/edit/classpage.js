@@ -22,9 +22,17 @@ $(document).ready(function() {
 
 	var replaceWithInput = function(jQElement, onSubmitCallback) {
 		var text = jQElement.text();
-		input = $("<input type='text' value='" + text + "'></input>");
+		var input = $("<input type='text' value='" + text + "' style='width:100px !important;'></input>");
 		jQElement.html('');
 		jQElement.append(input);
+		var cancelSpan = $("<span>&nbsp;<a href='#' id='cancel'>cancel</a></span>");
+		jQElement.append(cancelSpan);
+
+		$("#cancel").click(function(e) {
+			e.preventDefault();
+			jQElement.html('');
+			jQElement.text(text);
+		});
 
 		$(input).keypress(function(e) {
 			if(e.keyCode == 13) {
@@ -57,8 +65,15 @@ $(document).ready(function() {
 		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail' placeholder='Class name...'></td>");
 		var input = $("<input type='text' style='width:100px !important;'></input>");
 		tdItemDetail.append(input);
+		var cancelSpan = $("<span>&nbsp;<a href='#' id='cancel'>cancel</a></span>");
+		tdItemDetail.append(cancelSpan);
 		tableRow.append(tdItemDetail);
 		jQElement.parent().parent().find("table").append(tableRow);
+
+		$("#cancel").click(function(e) {
+			e.preventDefault();
+			$(this).parent().parent().remove();
+		})
 
 		input.keypress(function(e) {
 			if(e.keyCode == 13) {
