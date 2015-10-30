@@ -14,9 +14,6 @@
 .ui-resizable-helper { border: 1px dotted gray; }
 </style>
 
-<!-- <link href="/vivo/css/bootstrap.min.css" rel="stylesheet"/>
-<script src="/vivo/js/bootstrap.min.js"></script> -->
-
 <input type="hidden" id="vclass-uri" data-vclass-uri="${VClass.getURI()}"/>
 
 <div class="tree-container">
@@ -24,27 +21,48 @@
         <table>
             <tr class="editformcell">
                 <td valign="top" colspan="4">
-                    <p><b>Class hierarchy:</b></p>
+                    <h4>Class hierarchy</h4>
                     <table>
                         <tr>
-                            <td><p>Superclasses:</p>
-                            <c:forEach items="${superclasses}" var="superclass">
-                                <p><a href="#">${superclass.getName()}</a></p>
-                            </c:forEach>
+                            <td><p><b>Superclasses</b></p>
+                            <c:choose>
+                                <c:when test="${empty superclasses}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${superclasses}" var="superclass">
+                                        <p><a href="#">${superclass.getName()}</a></p>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                             </td>
                         </tr>
                         <tr>
-                            <td><p>Sibling classes:</p>
-                            <c:forEach items="${siblings}" var="sibling">
-                               <p><a href="#">${sibling.getName()}</a></p>
-                            </c:forEach>
+                            <td><p><b>Sibling classes</b></p>
+                            <c:choose>
+                                <c:when test="${empty siblings}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${siblings}" var="sibling">
+                                       <p><a href="#">${sibling.getName()}</a></p>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                             </td>
                         </tr>
                         <tr>
-                            <td><p>Subclasses:</p>
-                            <c:forEach items="${subclasses}" var="subclass">
-                                <p><a href="#">${subclass.getName()}</a></p>
-                            </c:forEach>
+                            <td><p><b>Subclasses</b></p>
+                            <c:choose>
+                                <c:when test="${empty subclasses}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${subclasses}" var="subclass">
+                                        <p><a href="#">${subclass.getName()}</a></p>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                             </td>
                         </tr>
                     </table>
@@ -75,7 +93,7 @@
                      <input type="text" readonly="true" value="${VClass.getURI()}" id="uri"></input>
                 </td>
                 <td id="uri-checkbox">
-                   <input type="checkbox" onclick="toggleURIEditable()"></input> Edit URI
+                   <input type="checkbox" id="uri-check"></input> Edit URI
                  </td>
             </tr>
         </table>
@@ -144,21 +162,18 @@
         </table>
     </div>
 
-    <div class="item">
-        <table>
-            <tr class="editformcell">
-                <td valign="top" colspan="2">
-                    <p><input type="submit" class="submit" name="_subject" value="Raw Statements with This Resource as Subject"></input></p>
-                    <p><input type="submit" class="submit" name="_object" value="Raw Statements with This Resource as Object"></input></p>
-                </td>
-            </tr>
-        </table>
+    <div class="item raw-statements">
+        <p><b>Raw Statements</b></p>
+        <p><input type="submit" class="submit" name="_subject" value="Resource as Subject"></input>
+        <input type="submit" class="submit" name="_object" value="Resource as Object"></input></p>
     </div>
 </div>
 
 <div class="stretch-panel">
-    <div>
+    <div class="stretch-panel-header">
         <p><b>Composite operations</b></p>
+    </div>
+    <div class="stretch-panel-body">
         <p>
             <input type="submit" class="submit" id="move-class" value="Move class in hierarchy"/> 
             <input type="submit" class="submit" id="merge-class" value="Merge class into"/> 

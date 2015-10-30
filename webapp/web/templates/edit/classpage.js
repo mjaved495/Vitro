@@ -1,9 +1,15 @@
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 <script src="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
 <link href="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
+<script src="/vivo/js/jstree.js"></script>
 <script src="/vivo/js/jquery.color.js"></script> <!-- use base url -->
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
+	$("#uri-check").click(function() {
+		$("#uri-field").removeAttr("readonly");
+	})
+
 	var identifiers = ['.item-detail', '.action-delete', '.action-edit', '.action-add'];
 	for(var i = 0; i < identifiers.length; i++) {
 		$(identifiers[i]).qtip({
@@ -49,7 +55,7 @@ $(document).ready(function() {
         <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this equivalent class"></img></td></tr>
         */
 		var tableRow = $("<tr class='class-item'></tr>");
-		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
+		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail' placeholder='Class name...'></td>");
 		var input = $("<input type='text'></input>");
 		tdItemDetail.append(input);
 		tableRow.append(tdItemDetail);
@@ -322,7 +328,15 @@ $(document).ready(function() {
 	$("#siblings-disjoint").click(makeSiblingsDisjoint)
 
 	$(".stretch-panel").css({'height': '50px', 'margin-top': '150px'});
-	$(".stretch-panel").resizable({handles: 'n', maxHeight: 200});
+	$(".stretch-panel").resizable({handles: 'n', maxHeight: 200, minHeight: 50});
+	$(".stretch-panel-header").click(function() {
+		if($(this).parent().height() > 50) {
+			$(this).parent().animate({'height': 50, 'margin-top': 150})
+		}
+		else {
+			$(this).parent().animate({'height': 200, 'margin-top': 0});
+		}
+	})
 
 });
 </script>
