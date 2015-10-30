@@ -23,7 +23,6 @@ $(document).ready(function() {
 	var replaceWithInput = function(jQElement, onSubmitCallback) {
 		var text = jQElement.text();
 		input = $("<input type='text' value='" + text + "'></input>");
-		input.css({"width": "100% !important"});
 		jQElement.html('');
 		jQElement.append(input);
 
@@ -56,7 +55,7 @@ $(document).ready(function() {
         */
 		var tableRow = $("<tr class='class-item'></tr>");
 		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail' placeholder='Class name...'></td>");
-		var input = $("<input type='text'></input>");
+		var input = $("<input type='text' style='width:100px !important;'></input>");
 		tdItemDetail.append(input);
 		tableRow.append(tdItemDetail);
 		jQElement.parent().parent().find("table").append(tableRow);
@@ -327,14 +326,13 @@ $(document).ready(function() {
 	$("#generalize").click(notYetImplemented)
 	$("#siblings-disjoint").click(makeSiblingsDisjoint)
 
-	$(".stretch-panel").css({'height': '50px', 'margin-top': '150px'});
-	$(".stretch-panel").resizable({handles: 'n', maxHeight: 200, minHeight: 50});
+	$(".stretch-panel").css({'height': '50px', 'margin-top': 0});
 	$(".stretch-panel-header").click(function() {
 		if($(this).parent().height() > 50) {
-			$(this).parent().animate({'height': 50, 'margin-top': 150})
+			$(this).parent().animate({'height': 50})
 		}
 		else {
-			$(this).parent().animate({'height': 200, 'margin-top': 0});
+			$(this).parent().animate({'height': 200});
 		}
 	})
 

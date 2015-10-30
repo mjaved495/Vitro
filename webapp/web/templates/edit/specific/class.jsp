@@ -163,6 +163,7 @@
     </div>
 
     <div class="item raw-statements">
+        <hr/>
         <p><b>Raw Statements</b></p>
         <p><input type="submit" class="submit" name="_subject" value="Resource as Subject"></input>
         <input type="submit" class="submit" name="_object" value="Resource as Object"></input></p>
@@ -174,15 +175,21 @@
         <p><b>Composite operations</b></p>
     </div>
     <div class="stretch-panel-body">
-        <p>
-            <input type="submit" class="submit" id="move-class" value="Move class in hierarchy"/> 
-            <input type="submit" class="submit" id="merge-class" value="Merge class into"/> 
-            <input type="submit" class="submit" id="move-instances" value="Move instances into"/> 
-            <input type="submit" class="submit" id="split-class" value="Split class into"/> 
-            <input type="submit" class="submit" id="specialize" value="Specialize"/>
-            <input type="submit" class="submit" id="generalize" value="Generalize"/>
-            <input type="submit" class="submit" id="siblings-disjoint" value="Make sibling classes disjoint"/>
-        </p>
+        <table class="stretch-panel-table">
+            <tr>
+                <td><p><a href="#">Move class in hierarchy</a></p></td>
+                <td><p><a href="#">Merge class into</a></p></td>
+                <td><p><a href="#">Move instances into</a></p></td>
+            </tr>
+            <tr>
+                <td><p><a href="#">Split class into</a></p></td>
+                <td><p><a href="#">Specialize</a></p></td>
+                <td><p><a href="#">Generalize</a></p></td>
+            </tr>
+            <tr>
+                <td><p><a href="#">Make sibling classes disjoint</a></p></td>
+            </tr>
+        </table>
     </div>
 </div>
 
