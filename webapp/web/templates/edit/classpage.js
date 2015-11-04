@@ -148,6 +148,42 @@ $(document).ready(function() {
 
 	$(".action-delete-superclass").click(actionDeleteSuperclass);
 
+	var actionEditSubclassCallback = function(itemDetail) {
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		var oldSubclassURI = itemDetail.attr("data-subclass-uri");
+		var newSubclassURI = getURI(itemDetail.text());
+		$.post("/vivo/edit_api/edit_subclass", {"vclassURI": vclassURI, 
+		"oldSubclassURI": oldSubclassURI, "newSubclassURI": newSubclassURI},
+		function(res) {
+			if(!(res === newSubclassURI)) {
+				console.log("error: " + res);
+			}
+		});
+	}
+
+	var actionEditSubclass = function() {
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditSubclassCallback);
+	}
+
+	$(".action-edit-subclass").click(actionEditSubclass);
+
+	var actionDeleteSubclassCallback = function(row) {
+		var superclassURI = row.find(".item-detail").attr("data-subclass-uri");
+		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+		$.post("/vivo/edit_api/delete_subclass", {"vclassURI": vclassURI, "subclassURI": superclassURI}, function(res) {
+			console.log(res);
+		});
+	}
+
+	var actionDeleteSubclass = function() {
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteSubclassCallback);
+	}
+
+	$(".action-delete-subclass").click(actionDeleteSubclass);
+
+
 	var actionEditEqclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldEqClassURI = itemDetail.attr("data-eqclass-uri");
@@ -234,6 +270,22 @@ $(document).ready(function() {
 				}
 			})
 		}, "superclass");
+	});
+
+	$(".action-add-subclass").click(function() {
+		addItem($(this), function(td) {
+			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			var subclassURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_subclass', {'vclassURI': vclassURI, 'subclassURI': superclassURI}, function(res) {
+				if(res != subclassURI) {
+					console.log("error: " + res);
+				}
+				else {
+					td.parent().find(".action-edit-subclass").click(actionEditSubclass);
+					td.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
+				}
+			})
+		}, "subclass");
 	});
 
 	$(".action-add-eqclass").click(function() {
@@ -341,7 +393,7 @@ $(document).ready(function() {
 	$("#generalize").click(notYetImplemented)
 	$("#siblings-disjoint").click(makeSiblingsDisjoint)
 
-	$(".stretch-panel").css({'height': '50px', 'margin-top': 0});
+	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
 	$(".stretch-panel-header").click(function() {
 		if($(this).parent().height() > 50) {
 			$(this).parent().animate({'height': 50})

@@ -17,6 +17,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 
 import edu.cornell.mannlib.vedit.beans.EditProcessObject;
 import edu.cornell.mannlib.vedit.controller.BaseEditController;
+import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.Controllers;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
@@ -40,8 +41,9 @@ public class ClassPageController extends BaseEditController {
         
         // get the VClass
         
-        VClassDao vcwDao = ModelAccess.on(getServletContext())
-        		.getWebappDaoFactory(ASSERTIONS_ONLY).getVClassDao();
+        WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
+        
+        VClassDao vcwDao = wadf.getVClassDao();
         VClass vcl = (VClass)vcwDao.getVClassByURI(request.getParameter("uri"));
         
         if (vcl == null) {
@@ -49,8 +51,34 @@ public class ClassPageController extends BaseEditController {
         	        .getVClassDao().getTopConcept();
         }
         
-        VClassDao vcDao = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY).getVClassDao();
-        VClassDao displayVcDao = ModelAccess.on(getServletContext()).getWebappDaoFactory().getVClassDao();
+        VClassDao vcDao = wadf.getVClassDao();
+        VClassDao displayVcDao = wadf.getVClassDao();
+      
+        if(vcl.getNamespace() != null) {
+        	log.debug("namespace is " + vcl.getNamespace());
+        	 Ontology ont = wadf.getOntologyDao().getOntologyByURI(vcl.getNamespace());
+             
+             request.setAttribute("ontology",  ont);
+             request.setAttribute("allClasses", ont.getVClassesList());
+             log.debug("allClasses is " + ont.getVClassesList().size() + " elements long");
+        }
+        else {
+        	log.debug("namespace is null");
+        	log.debug("uri is " + vcl.getURI());
+        }
+       
+        
+        String hiddenFromDisplay = (vcl.getHiddenFromDisplayBelowRoleLevel() == null ? "(unspecified)"
+				: vcl.getHiddenFromDisplayBelowRoleLevel().getDisplayLabel());
+		String prohibitedFromUpdate = (vcl
+				.getProhibitedFromUpdateBelowRoleLevel() == null ? "(unspecified)"
+				: vcl.getProhibitedFromUpdateBelowRoleLevel().getUpdateLabel());
+		String hiddenFromPublish = (vcl.getHiddenFromPublishBelowRoleLevel() == null ? "(unspecified)"
+				: vcl.getHiddenFromPublishBelowRoleLevel().getDisplayLabel());
+		
+		request.setAttribute("displayLevel", hiddenFromDisplay);
+		request.setAttribute("updateLevel", prohibitedFromUpdate);
+		request.setAttribute("publishLevel", hiddenFromPublish);
         
         List<VClass> superVClasses = getVClassesForURIList(
                 vcDao.getSuperClassURIs(vcl.getURI(),false), displayVcDao);

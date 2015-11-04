@@ -80,7 +80,11 @@
                      <h3 class="blue"><span class="vclass-label">${VClass.getName()}</span> <img src="/vivo/images/edit.png" class="action action-edit action-edit-vclass-label" title="Edit class label" onclick="editClass()"></img>   <input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input>  </h3>
                 </td>
                 <td valign="bottom" colspan="1">
-
+                    <select>
+                        <c:forEach items="${allClasses}" var="class">
+                            <option>${class.getName()}</option>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
         </table>
@@ -116,6 +120,28 @@
                         </c:forEach>
                     </table>
             	</td>
+            </tr>
+        </table>
+    </div>
+
+     <div class="item">
+        <table>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+            <tr>
+                <td valign="bottom" colspan="4">
+                    <!-- TODO make this scrollable -->
+                    <b>Subclasses:</b> <img src="/vivo/images/new.png" title="Add a subclass" class="action action-add action-add-subclass"></img> <br/>
+                    <table>
+                        <c:forEach items="${subclasses}" var="subclass">
+                            <tr class="class-item">
+                               <td class="item-detail" id="editable-item-detail" title="${subclass.getURI()}" data-superclass-uri="${subclass.getURI()}"><p>${superclass.getName()}</p></td> 
+                               <td class="item-spacer"></td>
+                               <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-subclass" title="Edit/replace with different class"> </img></td>
+                               <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-subclass" title="Remove this"></img> </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </td>
             </tr>
         </table>
     </div>
@@ -162,11 +188,21 @@
         </table>
     </div>
 
-    <div class="item raw-statements">
+</div>
+
+<div class="info-container">
+    <h4>Information</h4>
+    <div class="item">
+        <p><b>Ontology:</b> ${ontology.getName()}</p>
+        <p><b>Class group:</b> ${VClass.getGroup().getURI()}</p>
         <hr/>
-        <p><b>Raw Statements</b></p>
-        <p><input type="submit" class="submit" name="_subject" value="Resource as Subject"></input>
-        <input type="submit" class="submit" name="_object" value="Resource as Object"></input></p>
+        <p><b>Display level:</b> ${displayLevel}</p>
+        <p><b>Update level:</b> ${updateLevel}</p>
+        <p><b>Publish level:</b> ${publishLevel}</p>
+        <hr/>
+        <p><b>Raw statements</b></p>
+        <p><input type="submit" class="submit" value="This as Subject"/></p>
+        <p><input type="submit" class="submit" value="This as Object"/></p>
     </div>
 </div>
 
