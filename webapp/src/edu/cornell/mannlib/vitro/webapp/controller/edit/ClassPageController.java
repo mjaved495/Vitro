@@ -33,11 +33,6 @@ public class ClassPageController extends BaseEditController {
 	
 	public void doPost (HttpServletRequest req, HttpServletResponse response) {
 		VitroRequest request = new VitroRequest(req);
-		
-		// not sure if the below two lines are useful yet
-		
-		EditProcessObject epo = super.createEpo(request, FORCE_NEW);
-        request.setAttribute("epoKey", epo.getKey());
         
         // get the VClass
         
@@ -122,7 +117,6 @@ public class ClassPageController extends BaseEditController {
         RequestDispatcher rd = request.getRequestDispatcher(Controllers.BASIC_JSP);
         request.setAttribute("VClass",vcl);
         request.setAttribute("bodyJsp", blankJsp);
-        boolean isBlank = blankJsp.equals((String) request.getAttribute("bodyJsp"));
         request.setAttribute("formJsp","/templates/edit/specific/class.jsp");
         request.setAttribute("colspan","4");
         request.setAttribute("scripts","/templates/edit/classpage.js");
@@ -131,7 +125,7 @@ public class ClassPageController extends BaseEditController {
         try {
             rd.forward(request, response);
         } catch (Exception e) {
-            log.error("VclassRetryController could not forward to view.", e);
+            log.error("ClassPageController could not forward to view.", e);
             throw new RuntimeException(e);
         }
 	}

@@ -679,6 +679,15 @@
   	<servlet-name>ClassPageController</servlet-name>
   	<url-pattern>/classpage</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>ObjectPropertyPageController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ObjectPropertyPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ObjectPropertyPageController</servlet-name>
+  	<url-pattern>/propertypage</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>DatatypeRetryController</servlet-name>
