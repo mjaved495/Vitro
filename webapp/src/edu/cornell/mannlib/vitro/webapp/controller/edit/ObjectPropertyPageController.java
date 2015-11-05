@@ -48,10 +48,12 @@ public class ObjectPropertyPageController extends BaseEditController {
 		List<Object> superproperties = new ArrayList<Object>();
 		List<Object> siblings = new ArrayList<Object>();
 		List<Object> subproperties = new ArrayList<Object>();
+		List<Object> inverses = new ArrayList<Object>();
 		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("siblings", siblings);
 		request.setAttribute("subproperties", subproperties);
+		request.setAttribute("inverses", inverses);
 		
 		String blankJsp = "/templates/edit/blank.jsp";
 		

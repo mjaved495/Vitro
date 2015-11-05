@@ -83,10 +83,66 @@
             </tr>
         </table>
     </div>
+    <div class="item">
+        <table>
+            <tr>
+                <td id="uri-field">
+                     <input type="text" readonly="true" value="${objectProperty.getURI()}" id="uri"></input>
+                </td>
+                <td id="uri-checkbox">
+
+                   <p><input type="checkbox" id="uri-check"></input> Edit URI</p>
+                 </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="item">
+        <table>
+            <tr>
+            	<td valign="bottom" colspan="4">
+                    <!-- TODO make this scrollable -->
+            	   <p><b>Inverse properties:</b> <span class="fa fa-plus action action-add-inverse"></span></p>
+                   <div class="scroll-list">
+                    <table>
+                            <c:forEach items="${inverses}" var="inverse">
+                                <tr class="class-item">
+                        	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-superclass-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace with different property"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
+                    </table>
+                    </div>
+            	</td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 
 <div class="info-container">
-	<p>Placeholder</p>
+	 <div class="item">
+        <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
+        <hr/>
+        <p>Transitive? <input type="checkbox" id="transitive-check"/></p>
+        <p>Symmetric? <input type="checkbox" id="symmetric-check"/></p>
+        <p>Functional? <input type="checkbox" id="functional-check"/></p>
+        <p>Inverse functional? <input type="checkbox" id="inverse-functional-check"/></p>
+        <input type="submit" class="submit" value="Save changes"/>
+    </div>
+</div>
+
+<div class="stretch-panel">
+    <div class="stretch-panel-header">
+        <p><b>Composite operations</b></p>
+    </div>
+    <div class="stretch-panel-body">
+        <table class="stretch-panel-table">
+
+        </table>
+    </div>
 </div>
 
 </jsp:root>
