@@ -19,6 +19,9 @@ import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.ReasoningOption.ASSERTIONS_ONLY;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("serial")
 public class ObjectPropertyPageController extends BaseEditController {
 
@@ -41,6 +44,14 @@ public class ObjectPropertyPageController extends BaseEditController {
              request.setAttribute("allClasses", ont.getVClassesList());
              request.setAttribute("allProperties", ont.getPropsList());
 		}
+		
+		List<Object> superproperties = new ArrayList<Object>();
+		List<Object> siblings = new ArrayList<Object>();
+		List<Object> subproperties = new ArrayList<Object>();
+		
+		request.setAttribute("superproperties", superproperties);
+		request.setAttribute("siblings", siblings);
+		request.setAttribute("subproperties", subproperties);
 		
 		String blankJsp = "/templates/edit/blank.jsp";
 		
