@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
 <style>
 
@@ -21,7 +22,6 @@
         <table>
             <tr class="editformcell">
                 <td valign="top" colspan="4">
-                    <h4>Class hierarchy</h4>
                     <table>
                         <tr>
                             <td><p><b>Superclasses</b></p>
@@ -30,9 +30,11 @@
                                     <p>None</p>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach items="${superclasses}" var="superclass">
-                                        <p><a href="#">${superclass.getName()}</a></p>
-                                    </c:forEach>
+                                    <div class="scroll-list">
+                                        <c:forEach items="${superclasses}" var="superclass">
+                                            <p><a href="#">${superclass.getName()}</a></p>
+                                        </c:forEach>
+                                    </div>
                                 </c:otherwise>
                             </c:choose>
                             </td>
@@ -44,9 +46,11 @@
                                     <p>None</p>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach items="${siblings}" var="sibling">
-                                       <p><a href="#">${sibling.getName()}</a></p>
-                                    </c:forEach>
+                                    <div class="scroll-list">
+                                        <c:forEach items="${siblings}" var="sibling">
+                                           <p><a href="#">${sibling.getName()}</a></p>
+                                        </c:forEach>
+                                    </div>
                                 </c:otherwise>
                             </c:choose>
                             </td>
@@ -58,9 +62,11 @@
                                     <p>None</p>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach items="${subclasses}" var="subclass">
-                                        <p><a href="#">${subclass.getName()}</a></p>
-                                    </c:forEach>
+                                    <div class="scroll-list">
+                                        <c:forEach items="${subclasses}" var="subclass">
+                                            <p><a href="#">${subclass.getName()}</a></p>
+                                        </c:forEach>
+                                    </div>
                                 </c:otherwise>
                             </c:choose>
                             </td>
@@ -77,15 +83,10 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <h3 class="blue"><span class="vclass-label">${VClass.getName()} <b>(CLASS)</b></span> <img src="/vivo/images/edit.png" class="action action-edit action-edit-vclass-label" title="Edit class label" onclick="editClass()"></img>   <input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input>  </h3>
+                     <span class="vclass-label">${VClass.getName()} <b class="concept">(CLASS)</b> <i class="fa fa-pencil"></i> </span>
                 </td>
-                <td valign="bottom" colspan="1">
-                    <!-- <select>
-                        <option>Select class...</option>
-                        <c:forEach items="${allClasses}" var="class">
-                            <option>${class.getName()}</option>
-                        </c:forEach>
-                    </select> -->
+                <td valign="bottom" colspan="2" id="edit-delete-vclass">
+                    <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
                 </td>
             </tr>
         </table>
@@ -98,7 +99,8 @@
                      <input type="text" readonly="true" value="${VClass.getURI()}" id="uri"></input>
                 </td>
                 <td id="uri-checkbox">
-                   <input type="checkbox" id="uri-check"></input> Edit URI
+
+                   <p><input type="checkbox" id="uri-check"></input> Edit URI</p>
                  </td>
             </tr>
         </table>
@@ -109,17 +111,19 @@
             <tr>
             	<td valign="bottom" colspan="4">
                     <!-- TODO make this scrollable -->
-            		<b>Subclass of:</b> <img src="/vivo/images/new.png" title="Add a superclass" class="action action-add action-add-superclass"></img> <br/>
+            	   <p><b>Superclasses:</b> <span class="fa fa-plus action action-add-superclass"></span></p>
+                   <div class="scroll-list">
                     <table>
-                        <c:forEach items="${superclasses}" var="superclass">
-                            <tr class="class-item">
-                    	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
-                               <td class="item-spacer"></td>
-                               <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-superclass" title="Edit/replace with different class"> </img></td>
-                               <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-superclass" title="Remove this"></img> </td>
-                            </tr>
-                        </c:forEach>
+                            <c:forEach items="${superclasses}" var="superclass">
+                                <tr class="class-item">
+                        	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-superclass" title="Edit/replace with different class"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-superclass" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
                     </table>
+                    </div>
             	</td>
             </tr>
         </table>
@@ -131,17 +135,19 @@
             <tr>
                 <td valign="bottom" colspan="4">
                     <!-- TODO make this scrollable -->
-                    <b>Subclasses:</b> <img src="/vivo/images/new.png" title="Add a subclass" class="action action-add action-add-subclass"></img> <br/>
+                    <p><b>Subclasses:</b> <span class="fa fa-plus action action-add-subclass"></span></p>
+                    <div class="scroll-list">
                     <table>
                         <c:forEach items="${subclasses}" var="subclass">
                             <tr class="class-item">
                                <td class="item-detail" id="editable-item-detail" title="${subclass.getURI()}" data-subclass-uri="${subclass.getURI()}"><p>${subclass.getName()}</p></td> 
                                <td class="item-spacer"></td>
-                               <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-subclass" title="Edit/replace with different class"> </img></td>
-                               <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-subclass" title="Remove this"></img> </td>
+                               <td class="item-action"> <i class="fa fa-pencil action action-edit-subclass" title="Edit/replace with different class"> </i></td>
+                               <td class="item-action"> <i class="fa fa-trash action action-delete-subclass" title="Remove this"></i> </td>
                             </tr>
                         </c:forEach>
                     </table>
+                </div>
                 </td>
             </tr>
         </table>
@@ -152,16 +158,18 @@
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="bottom" colspan="4">
-            		<b>Equivalent classes:</b> <img src="/vivo/images/new.png" title="Add equivalent class" class="action action-add action-add-eqclass"></img> <br/>
-                    <table>
-                        <c:forEach items="${equivalentClasses}" var="eqClass">
-                            <tr class="class-item">
-                                <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
-                                <td class="item-spacer"></td>
-                                <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-eqclass" title="Edit/replace with different class"> </img></td> 
-                                <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this"></img></td></tr>
-                        </c:forEach>
-                    </table>
+            		<p><b>Equivalent classes:</b> <span class="fa fa-plus action action-add-eqclass"></span></p>
+                    <div class="scroll-list">
+                        <table>
+                            <c:forEach items="${equivalentClasses}" var="eqClass">
+                                <tr class="class-item">
+                                    <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
+                                    <td class="item-spacer"></td>
+                                    <td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace with different class"> </i></td> 
+                                    <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td></tr>
+                            </c:forEach>
+                        </table>
+                    </div>
             	</td>
             </tr>
         </table>
@@ -172,38 +180,39 @@
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="top" colspan="4">
-            		<b>Disjoint classes:</b> <img src="/vivo/images/new.png" title="Add disjoint class" class="action action-add action-add-disjoint"></img> <br/>
-                    <table>
-                	    <c:forEach items="${disjointClasses}" var="djClass">
-                            <tr class="class-item">
-                                <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
-                                <td class="item-spacer"></td>
-                                <td class="item-action"><img src="/vivo/images/edit.png" class="action action-edit action-edit-disjoint" title="Edit/replace with different class"> </img></td> 
-                                <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-disjoint" title="Remove this"></img></td>
-                            </tr>
-                        </c:forEach>
-                    </table>
+            		<p><b>Disjoint classes:</b> <span class="fa fa-plus action action-add-disjoint"></span></p>
+                    <div class="scroll-list">
+                        <table>
+                    	    <c:forEach items="${disjointClasses}" var="djClass">
+                                <tr class="class-item">
+                                    <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
+                                    <td class="item-spacer"></td>
+                                    <td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace with different class"></i></td> 
+                                    <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
             	</td>
             </tr>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
         </table>
     </div>
 
+    <div class="item">
+        <p ><input type="submit" class="submit" value="Raw statements: class as subject"/><input type="submit" class="submit" value="Raw statements: class as object"/></p>
+    </div>
+
 </div>
 
 <div class="info-container">
-    <h4>Information</h4>
     <div class="item">
-        <p><b>Ontology:</b> ${ontology.getName()}</p>
-        <p><b>Class group:</b> ${VClass.getGroup().getURI()}</p>
+        <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
+        <p class="right-pane-item"><b>Class group:</b> ${VClass.getGroup().getURI()}</p>
         <hr/>
-        <p><b>Display level:</b> ${displayLevel}</p>
-        <p><b>Update level:</b> ${updateLevel}</p>
-        <p><b>Publish level:</b> ${publishLevel}</p>
-        <hr/>
-        <p><b>Raw statements</b></p>
-        <p><input type="submit" class="submit" value="This as Subject"/></p>
-        <p><input type="submit" class="submit" value="This as Object"/></p>
+        <p class="right-pane-item"><b>Display level:</b> ${displayLevel}</p>
+        <p class="right-pane-item"><b>Update level:</b> ${updateLevel}</p>
+        <p class="right-pane-item"><b>Publish level:</b> ${publishLevel}</p>
     </div>
 </div>
 
@@ -221,10 +230,15 @@
             <tr>
                 <td><p><a href="#">Split class into</a></p></td>
                 <td><p><a href="#">Specialize</a></p></td>
-                <td><p><a href="#">Generalize</a></p></td>
+                <td><p><a href="#">Show asserted individuals</a></p></td>
             </tr>
             <tr>
                 <td><p><a href="#">Make sibling classes disjoint</a></p></td>
+                <td><p><a href="#">Add new individual of this class</a></p></td>
+                <td><p><a href="#">Show inferred individuals</a></p></td>
+            </tr>
+            <tr>
+                <td><p><a href="#">Show asserted individuals</a></p></td>
             </tr>
         </table>
     </div>

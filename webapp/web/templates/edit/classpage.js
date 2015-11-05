@@ -85,8 +85,8 @@ $(document).ready(function() {
 				/* fill out rest of table row */
 
 				tableRow.append($("<td class='item-spacer'></td>"));
-				tableRow.append($("<td class='item-action'><img src='/vivo/images/edit.png' class='action action-edit action-edit-" + type + "' title='Edit/replace with different class'></img></td>"))
-				tableRow.append($("<td class='item-action'><img src='/vivo/images/delete.png' class='action action-delete action-delete-" + type + "' title='Remove this'></img></td>"))
+				tableRow.append($("<td class='item-action'><i class='fa fa-pencil action action-edit-" + type + "' title='Edit/replace with different class'></i></td>"))
+				tableRow.append($("<td class='item-action'><i class='fa fa-trash action action-delete-" + type + "' title='Remove this'></i></td>"))
 
 				input.remove();
 				tableRow.css({'background-color': '#FFFFAA'});
@@ -400,7 +400,7 @@ $(document).ready(function() {
 			$(this).parent().animate({'height': 50})
 		}
 		else {
-			$(this).parent().animate({'height': 200});
+			$(this).parent().animate({'height': 250});
 		}
 	})
 
