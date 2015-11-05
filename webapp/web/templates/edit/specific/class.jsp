@@ -77,14 +77,15 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <h3 class="blue"><span class="vclass-label">${VClass.getName()}</span> <img src="/vivo/images/edit.png" class="action action-edit action-edit-vclass-label" title="Edit class label" onclick="editClass()"></img>   <input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input>  </h3>
+                     <h3 class="blue"><span class="vclass-label">${VClass.getName()} <b>(CLASS)</b></span> <img src="/vivo/images/edit.png" class="action action-edit action-edit-vclass-label" title="Edit class label" onclick="editClass()"></img>   <input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input>  </h3>
                 </td>
                 <td valign="bottom" colspan="1">
-                    <select>
+                    <!-- <select>
+                        <option>Select class...</option>
                         <c:forEach items="${allClasses}" var="class">
                             <option>${class.getName()}</option>
                         </c:forEach>
-                    </select>
+                    </select> -->
                 </td>
             </tr>
         </table>
@@ -134,7 +135,7 @@
                     <table>
                         <c:forEach items="${subclasses}" var="subclass">
                             <tr class="class-item">
-                               <td class="item-detail" id="editable-item-detail" title="${subclass.getURI()}" data-superclass-uri="${subclass.getURI()}"><p>${superclass.getName()}</p></td> 
+                               <td class="item-detail" id="editable-item-detail" title="${subclass.getURI()}" data-subclass-uri="${subclass.getURI()}"><p>${subclass.getName()}</p></td> 
                                <td class="item-spacer"></td>
                                <td class="item-action"> <img src="/vivo/images/edit.png" class="action action-edit action-edit-subclass" title="Edit/replace with different class"> </img></td>
                                <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-subclass" title="Remove this"></img> </td>

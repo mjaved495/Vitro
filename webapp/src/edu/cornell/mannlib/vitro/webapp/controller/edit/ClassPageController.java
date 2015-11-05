@@ -60,7 +60,7 @@ public class ClassPageController extends BaseEditController {
              
              request.setAttribute("ontology",  ont);
              request.setAttribute("allClasses", ont.getVClassesList());
-             log.debug("allClasses is " + ont.getVClassesList().size() + " elements long");
+             // log.debug("allClasses is " + ont.getVClassesList().size() + " elements long");
         }
         else {
         	log.debug("namespace is null");

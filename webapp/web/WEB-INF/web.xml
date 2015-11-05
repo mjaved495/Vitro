@@ -564,6 +564,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>AddSubclassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSubclassController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddSubclassController</servlet-name>
+  	<url-pattern>/edit_api/add_subclass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>AddEquivalentItemController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddEquivalentItemController</servlet-class>
   </servlet>
@@ -588,6 +597,15 @@
   <servlet-mapping>
     <servlet-name>DeleteVClassController</servlet-name>
     <url-pattern>/edit_api/delete_vclass</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>EditSubclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSubclassItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditSubclassItemController</servlet-name>
+  	<url-pattern>/edit_api/edit_subclass</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -615,6 +633,15 @@
   <servlet-mapping>
   	<servlet-name>DeleteSuperclassController</servlet-name>
   	<url-pattern>/edit_api/delete_superclass</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DeleteSubclassController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSubclassController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteSubclassController</servlet-name>
+  	<url-pattern>/edit_api/delete_subclass</url-pattern>
   </servlet-mapping>
   
    <servlet>

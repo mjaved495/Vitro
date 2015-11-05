@@ -62,8 +62,8 @@ $(document).ready(function() {
         <td class="item-action"> <img src="/vivo/images/delete.png" class="action action-delete action-delete-eqclass" title="Remove this equivalent class"></img></td></tr>
         */
 		var tableRow = $("<tr class='class-item'></tr>");
-		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail' placeholder='Class name...'></td>");
-		var input = $("<input type='text' style='width:100px !important;'></input>");
+		var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
+		var input = $("<input type='text' style='width:100px !important;margin-top:5px;' placeholder='Class name...'></input>");
 		tdItemDetail.append(input);
 		var cancelSpan = $("<span>&nbsp;<a href='#' id='cancel'>cancel</a></span>");
 		tdItemDetail.append(cancelSpan);
@@ -80,6 +80,7 @@ $(document).ready(function() {
 				e.preventDefault();
 				tdItemDetail.text(input.val());
 				tdItemDetail.attr('title', getURI(input.val()));
+				tdItemDetail.attr('data-' + type + '-uri', getURI(input.val()));
 
 				/* fill out rest of table row */
 
@@ -169,9 +170,9 @@ $(document).ready(function() {
 	$(".action-edit-subclass").click(actionEditSubclass);
 
 	var actionDeleteSubclassCallback = function(row) {
-		var superclassURI = row.find(".item-detail").attr("data-subclass-uri");
+		var subclassURI = row.find(".item-detail").attr("data-subclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_subclass", {"vclassURI": vclassURI, "subclassURI": superclassURI}, function(res) {
+		$.post("/vivo/edit_api/delete_subclass", {"vclassURI": vclassURI, "subclassURI": subclassURI}, function(res) {
 			console.log(res);
 		});
 	}
@@ -276,7 +277,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			var subclassURI = getURI(td.text());
-			$.post('/vivo/edit_api/add_subclass', {'vclassURI': vclassURI, 'subclassURI': superclassURI}, function(res) {
+			$.post('/vivo/edit_api/add_subclass', {'vclassURI': vclassURI, 'subclassURI': subclassURI}, function(res) {
 				if(res != subclassURI) {
 					console.log("error: " + res);
 				}
