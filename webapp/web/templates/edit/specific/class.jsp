@@ -200,7 +200,8 @@
     </div>
 
     <div class="item">
-        <p ><input type="submit" class="submit" value="Raw statements: class as subject"/><input type="submit" class="submit" value="Raw statements: class as object"/></p>
+        <h4>Raw Statements</h4>
+        <p><input type="submit" class="submit" value="Class as subject"/><input type="submit" class="submit" value="Class as object"/></p>
     </div>
 
 </div>
