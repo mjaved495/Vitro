@@ -10,11 +10,6 @@
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
-<style>
-
-.ui-resizable-helper { border: 1px dotted gray; }
-</style>
-
 <input type="hidden" id="vclass-uri" data-vclass-uri="${VClass.getURI()}"/>
 
 <div class="tree-container">
