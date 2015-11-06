@@ -119,7 +119,7 @@ public class ClassPageController extends BaseEditController {
         request.setAttribute("bodyJsp", blankJsp);
         request.setAttribute("formJsp","/templates/edit/specific/class.jsp");
         request.setAttribute("colspan","4");
-        request.setAttribute("scripts","/templates/edit/classpage.js");
+        request.setAttribute("scripts","/templates/edit/js/class.js");
         request.setAttribute("title","Class Editing Form");
         
         try {

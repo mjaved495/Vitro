@@ -50,10 +50,16 @@ public class ObjectPropertyPageController extends BaseEditController {
 		List<Object> subproperties = new ArrayList<Object>();
 		List<Object> inverses = new ArrayList<Object>();
 		
+		List<Object> domains = new ArrayList<Object>();
+		List<Object> ranges = new ArrayList<Object>();
+		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("siblings", siblings);
 		request.setAttribute("subproperties", subproperties);
 		request.setAttribute("inverses", inverses);
+		
+		request.setAttribute("domains", domains);
+		request.setAttribute("ranges", ranges);
 		
 		String blankJsp = "/templates/edit/blank.jsp";
 		
@@ -61,7 +67,7 @@ public class ObjectPropertyPageController extends BaseEditController {
         request.setAttribute("bodyJsp", blankJsp);
         request.setAttribute("formJsp","/templates/edit/specific/object_property.jsp");
         request.setAttribute("colspan","4");
-        request.setAttribute("scripts","/templates/edit/objectpropertypage.js");
+        request.setAttribute("scripts","/templates/edit/js/object_property.js");
         request.setAttribute("title","Object Property Editing Form");
 		
         try {

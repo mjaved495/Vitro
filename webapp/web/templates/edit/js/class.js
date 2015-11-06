@@ -7,7 +7,13 @@
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
 	$("#uri-check").click(function() {
-		$("#uri-field").removeAttr("readonly");
+		var uriInput = $("#uri-field").find("input");
+		if(uriInput.attr("readonly")) {
+			uriInput.removeAttr("readonly");
+		}
+		else {
+			uriInput.attr("readonly", "true");
+		}
 	})
 
 	var identifiers = ['.item-detail', '.action-delete', '.action-edit', '.action-add'];

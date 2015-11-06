@@ -101,7 +101,6 @@
         <table>
             <tr>
             	<td valign="bottom" colspan="4">
-                    <!-- TODO make this scrollable -->
             	   <p><b>Inverse properties:</b> <span class="fa fa-plus action action-add-inverse"></span></p>
                    <div class="scroll-list">
                     <table>
@@ -120,6 +119,53 @@
         </table>
     </div>
 
+    <div class="item">
+        <table>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+            <tr>
+                <td valign="bottom" colspan="4">
+                   <p><b>Domains:</b> <span class="fa fa-plus action action-add-domain"></span></p>
+                   <div class="scroll-list">
+                    <table>
+                            <c:forEach items="${domains}" var="domain">
+                                <tr class="class-item">
+                                   <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-superclass-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-domain" title="Edit/replace with different class"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-domain" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="item">
+        <table>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+            <tr>
+                <td valign="bottom" colspan="4">
+                   <p><b>Ranges:</b> <span class="fa fa-plus action action-add-range"></span></p>
+                   <div class="scroll-list">
+                    <table>
+                            <c:forEach items="${ranges}" var="range">
+                                <tr class="class-item">
+                                   <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-superclass-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range" title="Edit/replace with different class"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-range" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+        </table>
+    </div>
+
 </div>
 
 <div class="info-container">
@@ -130,6 +176,7 @@
         <p>Symmetric? <input type="checkbox" id="symmetric-check"/></p>
         <p>Functional? <input type="checkbox" id="functional-check"/></p>
         <p>Inverse functional? <input type="checkbox" id="inverse-functional-check"/></p>
+        <p>Reflexive? <input type="checkbox" id="reflexive-check"/></p>
         <input type="submit" class="submit" value="Save changes"/>
     </div>
 </div>
