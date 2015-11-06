@@ -187,8 +187,8 @@ $(document).ready(function() {
 	var addSuperproperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var inverseURI = getURI(td.text());
-			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
+			var superpropertyURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_superproperty', {'propertyURI': propertyURI, 'superpropertyURI': superpropertyURI}, function(res) {
 				if(res != inverseURI) {
 					console.log("error: " + res);
 				}
@@ -203,8 +203,8 @@ $(document).ready(function() {
 	var addSubproperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var inverseURI = getURI(td.text());
-			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
+			var subpropertyURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_subproperty', {'propertyURI': propertyURI, 'subpropertyURI': subpropertyURI}, function(res) {
 				if(res != inverseURI) {
 					console.log("error: " + res);
 				}
@@ -219,9 +219,9 @@ $(document).ready(function() {
 	var addEqProperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var inverseURI = getURI(td.text());
-			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
-				if(res != inverseURI) {
+			var eqPropertyURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_eqproperty', {'propertyURI': propertyURI, 'eqPropertyURI': inverseURI}, function(res) {
+				if(res != eqPropertyURI) {
 					console.log("error: " + res);
 				}
 				else {
@@ -268,7 +268,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var rangeURI = getURI(td.text());
-			$.post('/vivo/edit_api/add_domain', {'propertyURI': propertyURI, 'rangeURI': rangeURI}, function(res) {
+			$.post('/vivo/edit_api/add_range', {'propertyURI': propertyURI, 'rangeURI': rangeURI}, function(res) {
 				if(res != rangeURI) {
 					console.log("error: " + res);
 				}
