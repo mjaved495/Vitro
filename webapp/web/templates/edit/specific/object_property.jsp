@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
+<input type="hidden" id="property-uri" data-vclass-uri="${objectProperty.getURI()}"/>
+
 <div class="tree-container">
 	<div class="item">
 		<table>
@@ -100,6 +102,52 @@
     <div class="item">
         <table>
             <tr>
+                <td valign="bottom" colspan="4">
+                   <p><b>Superproperties:</b> <span class="fa fa-plus action action-add-superproperty"></span></p>
+                   <div class="scroll-list">
+                    <table>
+                            <c:forEach items="${superproperties}" var="superproperty">
+                                <tr class="class-item">
+                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superclass-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace with different property"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+        </table>
+    </div>
+
+    <div class="item">
+        <table>
+            <tr>
+                <td valign="bottom" colspan="4">
+                   <p><b>Subproperties:</b> <span class="fa fa-plus action action-add-subproperty"></span></p>
+                   <div class="scroll-list">
+                    <table>
+                            <c:forEach items="${subproperties}" var="subproperty">
+                                <tr class="class-item">
+                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-superclass-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace with different property"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+        </table>
+    </div>
+
+    <div class="item">
+        <table>
+            <tr>
             	<td valign="bottom" colspan="4">
             	   <p><b>Inverse properties:</b> <span class="fa fa-plus action action-add-inverse"></span></p>
                    <div class="scroll-list">
@@ -116,12 +164,12 @@
                     </div>
             	</td>
             </tr>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
         </table>
     </div>
 
     <div class="item">
         <table>
-            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr>
                 <td valign="bottom" colspan="4">
                    <p><b>Domains:</b> <span class="fa fa-plus action action-add-domain"></span></p>
@@ -186,9 +234,7 @@
         <p><b>Composite operations</b></p>
     </div>
     <div class="stretch-panel-body">
-        <table class="stretch-panel-table">
-
-        </table>
+        <p>Nothing here yet</p>
     </div>
 </div>
 
