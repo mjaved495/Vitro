@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
 <script src="/vivo/js/jstree.js"></script>
 <script src="/vivo/js/jquery.color.js"></script> <!-- use base url -->
+<script src="/vivo/js/helpers.js"></script>
 <script language="JavaScript" type="text/javascript">
 $(document).ready(function() {
 	$("#uri-check").click(function() {
@@ -14,6 +15,8 @@ $(document).ready(function() {
 		else {
 			uriInput.attr("readonly", "true");
 		}
-	})
+	});
+
+
 });
 </script>
