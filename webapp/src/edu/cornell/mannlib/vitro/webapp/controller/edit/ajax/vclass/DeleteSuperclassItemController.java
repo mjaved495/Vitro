@@ -1,4 +1,4 @@
-package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax;
+package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +11,7 @@ import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
-public class DeleteSuperclassController extends HttpServlet {
+public class DeleteSuperclassItemController extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String superclassURI = req.getParameter("superclassURI");

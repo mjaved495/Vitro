@@ -1,4 +1,4 @@
-package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax;
+package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass;
 
 import java.io.IOException;
 

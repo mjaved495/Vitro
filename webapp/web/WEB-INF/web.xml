@@ -547,7 +547,7 @@
   
   <servlet>
   	<servlet-name>EditVClassLabelController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditVClassLabelController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditVClassLabelController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EditVClassLabelController</servlet-name>
@@ -555,26 +555,26 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>AddSuperclassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSuperclassController</servlet-class>
+  	<servlet-name>AddSuperclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.AddSuperclassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>AddSuperclassController</servlet-name>
+  	<servlet-name>AddSuperclassItemController</servlet-name>
   	<url-pattern>/edit_api/add_superclass</url-pattern>
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>AddSubclassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSubclassController</servlet-class>
+  	<servlet-name>AddSubclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.AddSubclassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>AddSubclassController</servlet-name>
+  	<servlet-name>AddSubclassItemController</servlet-name>
   	<url-pattern>/edit_api/add_subclass</url-pattern>
   </servlet-mapping>
   
   <servlet>
   	<servlet-name>AddEquivalentItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddEquivalentItemController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.AddEquivalentItemController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddEquivalentItemController</servlet-name>
@@ -583,7 +583,7 @@
   
   <servlet>
   	<servlet-name>AddDisjointItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddDisjointItemController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.AddDisjointItemController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddDisjointItemController</servlet-name>
@@ -592,16 +592,16 @@
   
   <servlet>
     <servlet-name>DeleteVClassController</servlet-name>
-    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteVClassController</servlet-class>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteVClassController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeleteVClassController</servlet-name>
+    <servlet-name>DeleteVClassItemController</servlet-name>
     <url-pattern>/edit_api/delete_vclass</url-pattern>
   </servlet-mapping>
   
    <servlet>
   	<servlet-name>EditSubclassItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSubclassItemController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditSubclassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EditSubclassItemController</servlet-name>
@@ -610,7 +610,7 @@
   
   <servlet>
   	<servlet-name>EditEquivalentItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditEquivalentItemController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditEquivalentItemController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EditEquivalentItemController</servlet-name>
@@ -619,7 +619,7 @@
   
    <servlet>
   	<servlet-name>EditDisjointItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditDisjointItemController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditDisjointItemController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EditDisjointItemController</servlet-name>
@@ -627,44 +627,44 @@
   </servlet-mapping>
   
    <servlet>
-  	<servlet-name>DeleteSuperclassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSuperclassController</servlet-class>
+  	<servlet-name>DeleteSuperclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteSuperclassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DeleteSuperclassController</servlet-name>
+  	<servlet-name>DeleteSuperclassItemController</servlet-name>
   	<url-pattern>/edit_api/delete_superclass</url-pattern>
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>DeleteSubclassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSubclassController</servlet-class>
+  	<servlet-name>DeleteSubclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteSubclassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DeleteSubclassController</servlet-name>
+  	<servlet-name>DeleteSubclassItemController</servlet-name>
   	<url-pattern>/edit_api/delete_subclass</url-pattern>
   </servlet-mapping>
   
    <servlet>
-  	<servlet-name>DeleteEquivalentClassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEquivalentClassController</servlet-class>
+  	<servlet-name>DeleteEquivalentClassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteEquivalentClassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DeleteEquivalentClassController</servlet-name>
+  	<servlet-name>DeleteEquivalentClassItemController</servlet-name>
   	<url-pattern>/edit_api/delete_eqclass</url-pattern>
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>DeleteDisjointClassController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteDisjointClassController</servlet-class>
+  	<servlet-name>DeleteDisjointClassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteDisjointClassItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DeleteDisjointClassController</servlet-name>
+  	<servlet-name>DeleteDisjointClassItemController</servlet-name>
   	<url-pattern>/edit_api/delete_disjoint</url-pattern>
   </servlet-mapping>
   
   <servlet>
   	<servlet-name>MakeSiblingsDisjointController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.MakeSiblingsDisjointController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.MakeSiblingsDisjointController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>MakeSiblingsDisjointController</servlet-name>

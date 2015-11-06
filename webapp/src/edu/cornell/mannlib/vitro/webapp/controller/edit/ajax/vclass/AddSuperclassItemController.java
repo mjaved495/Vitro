@@ -1,4 +1,4 @@
-package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax;
+package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
-public class AddSuperclassController extends HttpServlet {
+public class AddSuperclassItemController extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String superclassURI = req.getParameter("superclassURI");
 		String vclassURI = req.getParameter("vclassURI");
