@@ -29,27 +29,42 @@ $(document).ready(function() {
 	});
 
 	var actionEditSuperproperty = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditSuperpropertyCallback);
 	}
 
 	var actionDeleteSuperproperty = function() {
-
+		var superpropertyURI = row.find(".item-detail").attr("data-superproperty-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_superproperty", {"propertyURI": propertyURI, "superpropertyURI": superpropertyURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	var actionEditSubproperty = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditSubpropertyCallback);
 	}
 
-	var actionDeleteSuperproperty = function() {
-
+	var actionDeleteSubproperty = function() {
+		var subpropertyURI = row.find(".item-detail").attr("data-subproperty-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_subproperty", {"propertyURI": propertyURI, "subpropertyURI": subpropertyURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	var actionEditEqProperty = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditEqPropertyCallback);
 	}
 
 	var actionDeleteEqProperty = function() {
-
+		var eqPropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_eqproperty", {"propertyURI": propertyURI, "eqPropertyURI": eqPropertyURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	var actionEditInverse = function() {
@@ -58,23 +73,92 @@ $(document).ready(function() {
 	}
 
 	var actionDeleteInverse = function() {
-
+		var inversePropertyURI = row.find(".item-detail").attr("data-inverse-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_eqproperty", {"propertyURI": propertyURI, "inverseURI": inverseURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	var actionEditDomain = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditDomainCallback);
 	}
 
 	var actionDeleteDomain = function() {
-
+		var domainURI = row.find(".item-detail").attr("data-domain-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_domain", {"propertyURI": propertyURI, "domainURI": domainURI}, function(res) {
+			console.log(res);
+		});
 	}
 
 	var actionEditRange = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditRangeCallback);
 	}
 
 	var actionDeleteRange = function() {
+		var domainURI = row.find(".item-detail").attr("data-range-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_range", {"propertyURI": propertyURI, "rangeURI": rangeURI}, function(res) {
+			console.log(res);
+		});
+	}
 
+	var actionEditSuperpropertyCallback = function() { };
+	var actionEditSubpropertyCallback = function() { };
+	var actionEditEqProperty = function() { };
+	var actionEditInverseCallback = function() { };
+	var actionEditDomainCallback = function() { };
+	var actionEditRangeCallback = function() { };
+
+	var addSuperproperty = function() {
+		addItem($(this), function(td) {
+			var propertyURI = $("#property-uri").attr("data-property-uri");
+			var inverseURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
+				if(res != inverseURI) {
+					console.log("error: " + res);
+				}
+				else {
+					td.parent().find(".action-edit-superproperty").click(actionEditSuperproperty);
+					td.parent().find(".action-delete-superproperty").click(actionDeleteSuperproperty);
+				}
+			})
+		}, "superproperty");
+	}
+
+	var addSubproperty = function() {
+		addItem($(this), function(td) {
+			var propertyURI = $("#property-uri").attr("data-property-uri");
+			var inverseURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
+				if(res != inverseURI) {
+					console.log("error: " + res);
+				}
+				else {
+					td.parent().find(".action-edit-subproperty").click(actionEditSubproperty);
+					td.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
+				}
+			})
+		}, "subproperty");
+	}
+
+	var addEqProperty = function() {
+		addItem($(this), function(td) {
+			var propertyURI = $("#property-uri").attr("data-property-uri");
+			var inverseURI = getURI(td.text());
+			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
+				if(res != inverseURI) {
+					console.log("error: " + res);
+				}
+				else {
+					td.parent().find(".action-edit-eqproperty").click(actionEditEqProperty);
+					td.parent().find(".action-delete-eqproperty").click(actionDeleteEqProperty);
+				}
+			})
+		}, "eqproperty");
 	}
 
 	var addInverse = function() {
@@ -86,8 +170,8 @@ $(document).ready(function() {
 					console.log("error: " + res);
 				}
 				else {
-					td.parent().find(".action-edit-superclass").click(actionEditInverse);
-					td.parent().find(".action-delete-superclass").click(actionDeleteInverse);
+					td.parent().find(".action-edit-inverse").click(actionEditInverse);
+					td.parent().find(".action-delete-inverse").click(actionDeleteInverse);
 				}
 			})
 		}, "inverse");
@@ -138,12 +222,12 @@ $(document).ready(function() {
 	$(".action-edit-range").click(actionEditRange);
 	$(".action-delete-range").click(actionDeleteRange);
 
-	
+	$(".action-add-superproperty").click(addSuperproperty);
+	$(".action-add-subproperty").click(addSubproperty);
+	$(".action-add-eqproperty").click(addEqProperty);
 	$(".action-add-inverse").click(addInverse);
 	$(".action-add-domain").click(addDomain);
 	$(".action-add-range").click(addRange);
-
-	$(".action-delete-vclass").click(deleteVClass);
 
 });
 </script>

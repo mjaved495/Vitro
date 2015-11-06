@@ -110,7 +110,7 @@
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superclass-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace with different property"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
@@ -133,7 +133,30 @@
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-superclass-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace with different property"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                </tr>
+                            </c:forEach>
+                    </table>
+                    </div>
+                </td>
+            </tr>
+            <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+        </table>
+    </div>
+
+    <div class="item">
+        <table>
+            <tr>
+                <td valign="bottom" colspan="4">
+                   <p><b>Equivalent properties:</b> <span class="fa fa-plus action action-add-eqproperty"></span></p>
+                   <div class="scroll-list">
+                    <table>
+                            <c:forEach items="${eqproperties}" var="eqproperty">
+                                <tr class="class-item">
+                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-superclass-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
+                                   <td class="item-spacer"></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
@@ -156,7 +179,7 @@
                                 <tr class="class-item">
                         	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-superclass-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace with different property"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
@@ -179,7 +202,7 @@
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-superclass-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-domain" title="Edit/replace with different class"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-domain" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-domain" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
@@ -202,7 +225,7 @@
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-superclass-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range" title="Edit/replace with different class"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-range" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>

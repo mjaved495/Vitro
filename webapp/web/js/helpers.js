@@ -34,7 +34,7 @@ var deleteItem = function(jQElement, onRemovalCallback) {
 var addItem = function(jQElement, onAddCallback, type) {
 	var tableRow = $("<tr class='class-item'></tr>");
 	var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
-	var input = $("<input type='text' style='width:100px !important;margin-top:5px;' placeholder='Class name...'></input>");
+	var input = $("<input type='text' style='width:100px !important;margin-top:5px;' placeholder='Name...'></input>");
 	tdItemDetail.append(input);
 	var cancelSpan = $("<span>&nbsp;<a href='#' id='cancel'>cancel</a></span>");
 	tdItemDetail.append(cancelSpan);
@@ -56,7 +56,7 @@ var addItem = function(jQElement, onAddCallback, type) {
 			/* fill out rest of table row */
 
 			tableRow.append($("<td class='item-spacer'></td>"));
-			tableRow.append($("<td class='item-action'><i class='fa fa-pencil action action-edit-" + type + "' title='Edit/replace with different class'></i></td>"))
+			tableRow.append($("<td class='item-action'><i class='fa fa-pencil action action-edit-" + type + "' title='Edit/replace'></i></td>"))
 			tableRow.append($("<td class='item-action'><i class='fa fa-trash action action-delete-" + type + "' title='Remove this'></i></td>"))
 
 			input.remove();

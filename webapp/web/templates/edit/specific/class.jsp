@@ -113,7 +113,7 @@
                                 <tr class="class-item">
                         	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-superclass" title="Edit/replace with different class"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-superclass" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-superclass" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
@@ -137,7 +137,7 @@
                             <tr class="class-item">
                                <td class="item-detail" id="editable-item-detail" title="${subclass.getURI()}" data-subclass-uri="${subclass.getURI()}"><p>${subclass.getName()}</p></td> 
                                <td class="item-spacer"></td>
-                               <td class="item-action"> <i class="fa fa-pencil action action-edit-subclass" title="Edit/replace with different class"> </i></td>
+                               <td class="item-action"> <i class="fa fa-pencil action action-edit-subclass" title="Edit/replace"> </i></td>
                                <td class="item-action"> <i class="fa fa-trash action action-delete-subclass" title="Remove this"></i> </td>
                             </tr>
                         </c:forEach>
@@ -160,7 +160,7 @@
                                 <tr class="class-item">
                                     <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
                                     <td class="item-spacer"></td>
-                                    <td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace with different class"> </i></td> 
+                                    <td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace"> </i></td> 
                                     <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td></tr>
                             </c:forEach>
                         </table>
@@ -182,7 +182,7 @@
                                 <tr class="class-item">
                                     <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
                                     <td class="item-spacer"></td>
-                                    <td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace with different class"></i></td> 
+                                    <td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> 
                                     <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td>
                                 </tr>
                             </c:forEach>
