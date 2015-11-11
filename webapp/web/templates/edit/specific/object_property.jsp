@@ -243,12 +243,11 @@
 	 <div class="item">
         <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
         <hr/>
-        <p>Transitive? <input type="checkbox" id="transitive-check"/></p>
-        <p>Symmetric? <input type="checkbox" id="symmetric-check"/></p>
-        <p>Functional? <input type="checkbox" id="functional-check"/></p>
-        <p>Inverse functional? <input type="checkbox" id="inverse-functional-check"/></p>
-        <p>Reflexive? <input type="checkbox" id="reflexive-check"/></p>
-        <input type="submit" class="submit" value="Save changes"/>
+        <p><input type="checkbox" id="transitive-check"/> Transitive</p>
+        <p><input type="checkbox" id="symmetric-check"/> Symmetric</p>
+        <p><input type="checkbox" id="functional-check"/> Functional</p>
+        <p><input type="checkbox" id="inverse-functional-check"/> Inverse functional</p>
+        <p><input type="checkbox" id="reflexive-check"/> Reflexive</p>
     </div>
 </div>
 

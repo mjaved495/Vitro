@@ -19,6 +19,7 @@ import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.ReasoningOption.ASSERTIONS_ONLY;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,12 @@ public class ObjectPropertyPageController extends BaseEditController {
 
 	private static final Log log = LogFactory.getLog(ClassPageController.class.getName());
 	
-	public void doPost (HttpServletRequest req, HttpServletResponse response) {
+	public void doPost (HttpServletRequest req, HttpServletResponse response) throws IOException {
+		if(req.getParameter("uri") == null) {
+			response.getWriter().println("");
+			return;
+		}
+		
 		VitroRequest request = new VitroRequest(req);
 		
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
@@ -78,7 +84,7 @@ public class ObjectPropertyPageController extends BaseEditController {
         }
 	}
 	
-	public void doGet (HttpServletRequest req, HttpServletResponse response) {
+	public void doGet (HttpServletRequest req, HttpServletResponse response) throws IOException {
 		doPost(req, response);
 	}
 }
