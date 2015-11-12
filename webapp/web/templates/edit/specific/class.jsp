@@ -12,6 +12,17 @@
 
 <input type="hidden" id="vclass-uri" data-vclass-uri="${VClass.getURI()}"/>
 
+<c:choose>
+    <c:when test="${empty allClasses}">
+        <input type="hidden" class="option-data" data-uri="" value="None"/>
+    </c:when>
+    <c:otherwise>
+        <c:forEach items="${allClasses}" var="vclass">
+            <input type="hidden" class="option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}"/>
+        </c:forEach>
+    </c:otherwise>
+</c:choose>
+
 <div class="tree-container">
     <div class="item">
         <table>

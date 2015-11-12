@@ -54,7 +54,8 @@ public class ClassPageController extends BaseEditController {
         	 Ontology ont = wadf.getOntologyDao().getOntologyByURI(vcl.getNamespace());
              
              request.setAttribute("ontology",  ont);
-             request.setAttribute("allClasses", ont.getVClassesList());
+             List<VClass> allClasses = getVClassesInOntology(vcDao, vcl);
+             request.setAttribute("allClasses", allClasses);
              // log.debug("allClasses is " + ont.getVClassesList().size() + " elements long");
         }
         else {
@@ -149,4 +150,45 @@ public class ClassPageController extends BaseEditController {
         }
         return vclasses;
     }
+	
+	private List<VClass> getSuperclasses(VClassDao vcDao, VClass root) {
+		return getVClassesForURIList(
+                vcDao.getSuperClassURIs(root.getURI(),false), vcDao);
+	}
+	
+	private List<VClass> getSubclasses(VClassDao vcDao, VClass root) {
+		return getVClassesForURIList(
+                vcDao.getSubClassURIs(root.getURI()), vcDao);
+	}
+	
+	public List<VClass> dfsTraversal(VClassDao vcDao, VClass root) {
+		// preorder traversal (depth-first search)
+		List<VClass> result = new ArrayList<VClass>();
+		if(getSubclasses(vcDao, root).size() == 0) {
+			result.add(root);
+			return result;
+		}
+		else {
+			for(VClass subclass : getSubclasses(vcDao, root)) {
+				result.addAll(dfsTraversal(vcDao, subclass));
+			}
+			return result;
+		}
+	}
+	
+	public List<VClass> getVClassesInOntology(VClassDao vcDao, VClass vcl) {
+		// travel up in class hierarchy tree until reaching root
+		
+		VClass currentVClass = vcl;
+		List<VClass> superclasses = getSuperclasses(vcDao, currentVClass);
+		while(superclasses.size() > 0) {
+			currentVClass = superclasses.get(0);
+			superclasses = getSuperclasses(vcDao, currentVClass);
+		}
+		
+		// now at root
+		// preorder traversal (depth-first search)
+		
+		return dfsTraversal(vcDao, currentVClass);
+	}
 }

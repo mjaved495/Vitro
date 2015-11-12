@@ -243,6 +243,15 @@ public class VClassDaoJena extends JenaBaseDao implements VClassDao {
         deleteVClass(cls.getURI(), ontModel);
     }
 
+    public List<VClass> getOtherClassesInOntology(VClass cls) {
+    	List<OntClass> classes = getOntModel().listClasses().toList();
+    	List<VClass> vclasses = new ArrayList<VClass>();
+    	for(OntClass ontClass : classes) {
+    		vclasses.add((VClass)ontClass);
+    	}
+    	return vclasses;
+    }
+    
     public List<String> getDisjointWithClassURIs(String classURI) {
         OntClass ontClass = getOntClass(getOntModel(), classURI);
         List<String> uriList = new ArrayList<String>();

@@ -41,10 +41,18 @@ var deleteItem = function(jQElement, onRemovalCallback) {
 	});
 }
 
+var createAutocompleteInput = function() {
+	var input = $("<select style='width:100px !important;margin-top:5px;' placeholder='Name...'></select>");
+	$.each(".option-data", function(i, optionInput) {
+		input.append($('<option data-uri="' + optionInput.attr('data-uri') + '">' + optionInput.val() + '</option>'));
+	});
+	return input;
+}
+
 var addItem = function(jQElement, onAddCallback, type) {
 	var tableRow = $("<tr class='class-item'></tr>");
 	var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
-	var input = $("<input type='text' style='width:100px !important;margin-top:5px;' placeholder='Name...'></input>");
+	var input = createAutocompleteInput();
 	tdItemDetail.append(input);
 	var cancelSpan = $("<span>&nbsp;<a href='#' id='cancel'>cancel</a></span>");
 	tdItemDetail.append(cancelSpan);
