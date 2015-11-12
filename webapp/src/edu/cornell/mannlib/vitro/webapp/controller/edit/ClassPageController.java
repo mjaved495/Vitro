@@ -99,6 +99,9 @@ public class ClassPageController extends BaseEditController {
         	}
         }
         
+        String group = (vcl.getGroup() == null ? "(unspecified)" : vcl.getGroup().getPublicName());
+        request.setAttribute("classGroup", group);
+        
         sortForPickList(siblingVClasses, request);
         request.setAttribute("siblings", siblingVClasses);
             

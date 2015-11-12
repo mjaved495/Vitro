@@ -26,7 +26,17 @@ var replaceWithInput = function(jQElement, onSubmitCallback) {
 
 var deleteItem = function(jQElement, onRemovalCallback) {
 	var jQElementCopy = jQElement.clone();
+	var scope = jQElement.parent().parent().parent().parent();
+	console.log(scope);
 	jQElement.fadeOut(500, function() {
+		// remove scrollbar if necessary
+		var scrollDiv = scope.find(".scroll-list");
+		console.log(scrollDiv);
+		if(scrollDiv.height() < 250) {
+			console.log("should remove scrollbar")
+			scrollDiv.css("overflow-y", "hidden");
+			console.log(scrollDiv.css("overflow-y"));
+		}
 		onRemovalCallback(jQElementCopy);
 	});
 }
@@ -39,7 +49,15 @@ var addItem = function(jQElement, onAddCallback, type) {
 	var cancelSpan = $("<span>&nbsp;<a href='#' id='cancel'>cancel</a></span>");
 	tdItemDetail.append(cancelSpan);
 	tableRow.append(tdItemDetail);
-	jQElement.parent().parent().find("table").append(tableRow);
+
+	var scope = jQElement.parent().parent();
+	scope.find("table").append(tableRow);
+
+	var scrollDiv = scope.find(".scroll-list");
+	console.log("scrollDiv is " + scrollDiv.height());
+	if(scrollDiv.height() >= 250) {
+		scrollDiv.css("overflow-y", "scroll");
+	}
 
 	$("#cancel").click(function(e) {
 		e.preventDefault();

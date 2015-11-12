@@ -204,7 +204,7 @@
 <div class="info-container">
     <div class="item">
         <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
-        <p class="right-pane-item"><b>Class group:</b> ${VClass.getGroup().getURI()}</p>
+        <p class="right-pane-item"><b>Class group:</b> ${classGroup}</p>
         <hr/>
         <p class="right-pane-item"><b>Display level:</b> ${displayLevel}</p>
         <p class="right-pane-item"><b>Update level:</b> ${updateLevel}</p>

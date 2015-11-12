@@ -6,6 +6,16 @@
 <script src="/vivo/js/helpers.js"></script>
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
+
+	$.each($(".scroll-list"), function(i, div) {
+		if($(div).height() < 250) {
+			$(div).css("overflow-y", "hidden");
+		}
+		else {
+			$(div).css("overflow-y", "scroll");
+		}
+	});
+
 	/* stretch panel */
 
 	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
