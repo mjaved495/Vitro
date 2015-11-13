@@ -30,7 +30,7 @@ var deleteItem = function(jQElement, onRemovalCallback) {
 	jQElement.fadeOut(500, function() {
 		// remove scrollbar if necessary
 		var scrollDiv = scope.find(".scroll-list");
-		if(scrollDiv.height() < 250) {
+		if(scrollDiv.height() <= 75) {
 			scrollDiv.css("overflow-y", "visible");
 		}
 		onRemovalCallback(jQElementCopy);
@@ -61,7 +61,7 @@ var addItem = function(jQElement, onAddCallback, type) {
 	scope.find("table").append(tableRow);
 
 	var scrollDiv = scope.find(".scroll-list");
-	if(scrollDiv.height() >= 250) {
+	if(scrollDiv.height() >= 75) {
 		scrollDiv.css("overflow-y", "scroll");
 	}
 
