@@ -23,6 +23,7 @@
     </c:otherwise>
 </c:choose>
 
+<!-- old tree structure
 <div class="tree-container">
     <div class="item">
         <table>
@@ -81,6 +82,25 @@
                 </td>
             </tr>
         </table>
+    </div>
+</div>
+-->
+
+<div class="tree-container">
+    <div class="item">
+        <div id="tree">
+            <ul>
+                <c:forEach items="${superclasses}" var="superclass">
+                    <li>${superclass.getName()}
+                        <ul>
+                            <c:forEach items="${siblings}" var="sibling">
+                                <li>${sibling.getName()}</li>
+                            </c:forEach>
+                        </ul>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
     </div>
 </div>
 
