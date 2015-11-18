@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -18,11 +21,14 @@ import com.google.gson.GsonBuilder;
 
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
+import edu.cornell.mannlib.vitro.webapp.controller.edit.ClassPageController;
 import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class GetClassHierarchyTree extends HttpServlet {
+	
+	private static final Log log = LogFactory.getLog(ClassPageController.class.getName());
 	
 	private List<VClass> getVClassesForURIList(List<String> vclassURIs, VClassDao vcDao) {
         List<VClass> vclasses = new ArrayList<VClass>();
@@ -56,6 +62,7 @@ public class GetClassHierarchyTree extends HttpServlet {
 		gsonBuilder.addSerializationExclusionStrategy(new ExclusionStrategy() {
 			@Override
 			public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+				log.debug(fieldAttributes.getName());
 				return fieldAttributes.getName().equals("parent");
 			}
 			@Override 
