@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
@@ -49,7 +52,18 @@ public class GetClassHierarchyTree extends HttpServlet {
 	}
 	
 	private String jsonTree(VClass root, VClassDao vcDao) {
-		Gson gson = new Gson();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.addSerializationExclusionStrategy(new ExclusionStrategy() {
+			@Override
+			public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+				return fieldAttributes.getName().equals("parent");
+			}
+			@Override 
+			public boolean shouldSkipClass(Class<?> myClass) {
+				return false;
+			}
+		});
+		Gson gson = gsonBuilder.create();
 		return gson.toJson(generateTree(root, vcDao));
 	}
 	

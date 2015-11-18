@@ -11,6 +11,10 @@
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
 
+	$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(data) {
+		console.log(data);
+	});
+
 	$.each($(".scroll-list"), function(i, div) {
 		$(div).css("min-height", "75px");
 		if($(div).height() <= 75) {

@@ -595,7 +595,7 @@
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteVClassController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeleteVClassItemController</servlet-name>
+    <servlet-name>DeleteVClassController</servlet-name>
     <url-pattern>/edit_api/delete_vclass</url-pattern>
   </servlet-mapping>
   
@@ -660,6 +660,15 @@
   <servlet-mapping>
   	<servlet-name>DeleteDisjointClassItemController</servlet-name>
   	<url-pattern>/edit_api/delete_disjoint</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GetClassHierarchyTree</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.GetClassHierarchyTree</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetClassHierarchyTree</servlet-name>
+  	<url-pattern>/edit_api/get_hierarchy</url-pattern>
   </servlet-mapping>
   
   <servlet>
