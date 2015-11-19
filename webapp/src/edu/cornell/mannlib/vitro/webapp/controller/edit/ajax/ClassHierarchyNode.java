@@ -9,7 +9,6 @@ import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 
 public class ClassHierarchyNode {
 	
-	@Expose
 	private VClass vcl;
 	@Expose
 	private List<ClassHierarchyNode> children;
@@ -28,12 +27,15 @@ public class ClassHierarchyNode {
 		this.children = children;
 		this.vClassName = vcl.getName();
 		this.vClassURI = vcl.getURI();
-		this.ontName = ""; // TODO implement this
+		this.ontName = ontName;
 	}
 	
 	public ClassHierarchyNode(VClass vcl) {
 		this.vcl = vcl;
 		this.children = new ArrayList<ClassHierarchyNode>();
+		this.vClassName = vcl.getName();
+		this.vClassURI = vcl.getURI();
+		this.ontName = ontName;
 	}
 	
 	public void addChild(ClassHierarchyNode node) {
