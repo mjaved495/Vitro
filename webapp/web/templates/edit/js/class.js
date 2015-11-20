@@ -22,6 +22,10 @@ $(document).ready(function() {
 			$("#tree").on("click", "a", function(e) {
 				window.location.href = "/vivo/classpage?uri=" + $(this).attr("data-vclass-uri");
 			});
+			$("#tree").on("click", "i", function(e) {
+				var link = $(this).parent().find("a");
+				link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot-open.png')");
+			})
 		});
 	});
 
