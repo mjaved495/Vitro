@@ -14,7 +14,7 @@ public class ClassHierarchyNode {
 	private List<ClassHierarchyNode> children;
 	
 	@Expose
-	public String vClassName;
+	public String text;
 	
 	@Expose
 	public String vClassURI;
@@ -22,20 +22,25 @@ public class ClassHierarchyNode {
 	@Expose
 	public String ontName;
 	
+	@Expose
+	public String icon;
+	
 	public ClassHierarchyNode(VClass vcl, List<ClassHierarchyNode> children) {
 		this.vcl = vcl;
 		this.children = children;
-		this.vClassName = vcl.getName();
+		this.text = vcl.getName();
 		this.vClassURI = vcl.getURI();
 		this.ontName = ontName;
+		this.icon = "/vivo/images/orangedot.png";
 	}
 	
 	public ClassHierarchyNode(VClass vcl) {
 		this.vcl = vcl;
 		this.children = new ArrayList<ClassHierarchyNode>();
-		this.vClassName = vcl.getName();
+		this.text = vcl.getName();
 		this.vClassURI = vcl.getURI();
 		this.ontName = ontName;
+		this.icon = "/vivo/images/orangedot.png";
 	}
 	
 	public void addChild(ClassHierarchyNode node) {

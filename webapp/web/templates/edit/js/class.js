@@ -11,8 +11,14 @@
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
 
-	$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(data) {
+	$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+		var data = JSON.parse(jsonData);
 		console.log(data);
+		$("#tree").jstree({
+			"core": {
+				"data": [ "Thing", data ]
+			} 
+		});
 	});
 
 	$.each($(".scroll-list"), function(i, div) {
@@ -48,10 +54,6 @@ $(document).ready(function() {
 			uriInput.attr("readonly", "true");
 		}
 	})
-
-	/* tree structure for subclass/superclass hierarchy */
-
-	$("#tree").jstree();
 
 	/* tooltips */
 

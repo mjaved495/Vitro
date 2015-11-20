@@ -89,17 +89,7 @@
 <div class="tree-container">
     <div class="item">
         <div id="tree">
-            <ul>
-                <c:forEach items="${superclasses}" var="superclass">
-                    <li>${superclass.getName()}
-                        <ul>
-                            <c:forEach items="${siblings}" var="sibling">
-                                <li>${sibling.getName()}</li>
-                            </c:forEach>
-                        </ul>
-                    </li>
-                </c:forEach>
-            </ul>
+            <p>Loading tree...</p>
         </div>
     </div>
 </div>
