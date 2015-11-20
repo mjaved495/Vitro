@@ -1,6 +1,7 @@
 package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
@@ -25,6 +26,9 @@ public class ClassHierarchyNode {
 	@Expose
 	public String icon;
 	
+	@Expose
+	public Hashtable<String, String> a_attr;
+	
 	public ClassHierarchyNode(VClass vcl, List<ClassHierarchyNode> children) {
 		this.vcl = vcl;
 		this.children = children;
@@ -32,6 +36,8 @@ public class ClassHierarchyNode {
 		this.vClassURI = vcl.getURI();
 		this.ontName = ontName;
 		this.icon = "/vivo/images/orangedot.png";
+		this.a_attr = new Hashtable<String, String>();
+		this.a_attr.put("data-vclass-uri", vcl.getURI());
 	}
 	
 	public ClassHierarchyNode(VClass vcl) {
@@ -41,6 +47,8 @@ public class ClassHierarchyNode {
 		this.vClassURI = vcl.getURI();
 		this.ontName = ontName;
 		this.icon = "/vivo/images/orangedot.png";
+		this.a_attr = new Hashtable<String, String>();
+		this.a_attr.put("data-vclass-uri", vcl.getURI());
 	}
 	
 	public void addChild(ClassHierarchyNode node) {

@@ -18,6 +18,13 @@ $(document).ready(function() {
 			"core": {
 				"data": [ data ]
 			} 
+		}).on("ready.jstree", function(e, data) {
+			$.each($(".jstree-anchor"), function(i, el) {
+				$(el).click(function(e) {
+					e.preventDefault();
+					window.location.href = "/vivo/classpage?uri=" + $(this).attr("data-vclass-uri");
+				})
+			});
 		});
 	});
 
