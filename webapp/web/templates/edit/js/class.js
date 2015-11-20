@@ -16,7 +16,7 @@ $(document).ready(function() {
 		console.log(data);
 		$("#tree").jstree({
 			"core": {
-				"data": [ "Thing", data ]
+				"data": [ data ]
 			} 
 		});
 	});
