@@ -25,7 +25,7 @@ $(document).ready(function() {
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
 				link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot-open.png')");
-			})
+			});
 		});
 	});
 
