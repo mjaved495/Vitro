@@ -24,7 +24,14 @@ $(document).ready(function() {
 			});
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
-				link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot-open.png')");
+				console.log(link.find(".jstree-icon").css("background-image"));
+				if(link.find(".jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
+					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot.png')");
+				}
+				else {
+					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot-open.png')");
+				}
+				
 			});
 		});
 	});
