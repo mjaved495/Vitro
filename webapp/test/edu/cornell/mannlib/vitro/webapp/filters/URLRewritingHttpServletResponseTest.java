@@ -391,8 +391,8 @@ public class URLRewritingHttpServletResponseTest {
     "/vivo/js/jquery_plugins/ui.datepicker.js"); }
     @Test
     public void test18546(){ urlEncodingStyleA(
-    "/vivo/js/jquery-ui/js/jquery-ui-1.8.9.custom.min.js",
-    "/vivo/js/jquery-ui/js/jquery-ui-1.8.9.custom.min.js"); }
+    "/vivo/js/jquery-ui/js/jquery-ui.min.js",
+    "/vivo/js/jquery-ui/js/jquery-ui.min.js"); }
     @Test
     public void test185470(){ urlEncodingStyleA(
     "/vivo/js/customFormUtils.js", "/vivo/js/customFormUtils.js"); }

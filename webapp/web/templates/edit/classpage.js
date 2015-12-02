@@ -6,6 +6,13 @@
 <script src="/vivo/js/jquery.color.js"></script> <!-- use base url -->
 <script language="JavaScript" type="text/javascript"> 
 $(document).ready(function() {
+
+	// quick fix for jquery ui
+
+	$.curCSS = function(element, attr, val) {
+		$(element).css(attr, val);
+	}
+
 	$("#uri-check").click(function() {
 		$("#uri-field").removeAttr("readonly");
 	})
