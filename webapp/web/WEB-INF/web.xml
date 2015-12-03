@@ -599,6 +599,15 @@
     <url-pattern>/edit_api/delete_vclass</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>VClassInfoController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.VClassInfoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>VClassInfoController</servlet-name>
+  	<url-pattern>/edit_api/classinfo</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
   	<servlet-name>EditSubclassItemController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditSubclassItemController</servlet-class>
