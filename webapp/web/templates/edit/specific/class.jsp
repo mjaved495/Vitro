@@ -129,7 +129,7 @@
                     <!-- TODO make this scrollable -->
             	   <p><b>Superclasses:</b> <span class="fa fa-plus action action-add-superclass"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="superclass-table">
                             <c:forEach items="${superclasses}" var="superclass">
                                 <tr class="class-item">
                         	       <td class="item-detail" id="editable-item-detail" title="${superclass.getURI()}" data-superclass-uri="${superclass.getURI()}"><p>${superclass.getName()}</p></td> 
@@ -153,7 +153,7 @@
                     <!-- TODO make this scrollable -->
                     <p><b>Subclasses:</b> <span class="fa fa-plus action action-add-subclass"></span></p>
                     <div class="scroll-list">
-                    <table>
+                    <table id="subclass-table">
                         <c:forEach items="${subclasses}" var="subclass">
                             <tr class="class-item">
                                <td class="item-detail" id="editable-item-detail" title="${subclass.getURI()}" data-subclass-uri="${subclass.getURI()}"><p>${subclass.getName()}</p></td> 
@@ -170,7 +170,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table id="eqclass-table">
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="bottom" colspan="4">
@@ -192,7 +192,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table id="disjoint-table">
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="top" colspan="4">
