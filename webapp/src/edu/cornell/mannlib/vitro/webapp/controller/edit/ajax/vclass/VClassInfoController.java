@@ -3,6 +3,7 @@ package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass;
 import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.ReasoningOption.ASSERTIONS_ONLY;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -34,7 +35,7 @@ public class VClassInfoController extends HttpServlet {
         WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
         
         VClassDao vcwDao = wadf.getVClassDao();
-        VClass vcl = (VClass)vcwDao.getVClassByURI(request.getParameter("uri"));
+        VClass vcl = (VClass)vcwDao.getVClassByURI(URLDecoder.decode(request.getParameter("uri"), "UTF-8"));
         
         if (vcl == null) {
         	vcl = request.getUnfilteredWebappDaoFactory()
