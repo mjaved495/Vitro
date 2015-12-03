@@ -39,8 +39,9 @@ $(document).ready(function() {
 	});
 
 	$.each($(".scroll-list"), function(i, div) {
-		$(div).css("min-height", "75px");
-		if($(div).height() <= 75) {
+		$(div).css("min-height", "80px");
+		$(div).css("max-height", "81px");
+		if($(div).height() <= 80) {
 			$(div).css("overflow-y", "visible");
 		}
 		else {
@@ -364,6 +365,16 @@ $(document).ready(function() {
 				$("#disjoint-table").append(disjointDiv);
 			}
 			
+			$.each($(".scroll-list"), function(i, div) {
+				$(div).css("min-height", "80px");
+				$(div).css("max-height", "81px");
+				if($(div).height() <= 80) {
+					$(div).css("overflow-y", "visible");
+				}
+				else {
+					$(div).css("overflow-y", "scroll");
+				}
+			});
 		});
 	}
 

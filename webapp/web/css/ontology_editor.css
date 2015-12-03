@@ -76,12 +76,14 @@ td#uri-checkbox {
 	padding-bottom:5px;
 	border-right:1px solid #CCCCCC;
 	background-color:#F5F5F5;
+	height:820px;
 }
 
 .item-container {
 	width:46%;
 	float:left;
 	padding-left:20px;
+	height:820px;
 }
 
 .info-container {
@@ -90,6 +92,7 @@ td#uri-checkbox {
 	background-color:#FBFBFB;
 	margin-left:20px;
 	padding:10px;
+	height:820px;
 }
 
 .item table {
@@ -142,4 +145,8 @@ td#uri-checkbox {
 
 #tree {
 	font-size:13px;
+}
+
+.scroll-list {
+	margin:0px;
 }
