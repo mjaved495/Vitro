@@ -290,7 +290,7 @@ $(document).ready(function() {
 	}
 
 	var updateData = function(uri) {
-		$.get("/vivo/classinfo", {"uri": uri}, function(jsonData) {
+		$.get("/vivo/edit_api/classinfo", {"uri": uri}, function(jsonData) {
 
 			/* jsonData will look like this:
 
