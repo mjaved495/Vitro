@@ -182,7 +182,8 @@
                                     <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
                                     <td class="item-spacer"></td>
                                     <td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace"> </i></td> 
-                                    <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td></tr>
+                                    <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>
@@ -224,12 +225,12 @@
 
 <div class="info-container">
     <div class="item">
-        <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
-        <p class="right-pane-item"><b>Class group:</b> ${classGroup}</p>
+        <p class="right-pane-item"><b>Ontology:</b> <span id="ontology-name">${ontology.getName()}</span></p>
+        <p class="right-pane-item"><b>Class group:</b> <span id="class-group">${classGroup}</span></p>
         <hr/>
-        <p class="right-pane-item"><b>Display level:</b> ${displayLevel}</p>
-        <p class="right-pane-item"><b>Update level:</b> ${updateLevel}</p>
-        <p class="right-pane-item"><b>Publish level:</b> ${publishLevel}</p>
+        <p class="right-pane-item"><b>Display level:</b> <span id="display-level">${displayLevel}</span></p>
+        <p class="right-pane-item"><b>Update level:</b> <span id="update-level">${updateLevel}</span></p>
+        <p class="right-pane-item"><b>Publish level:</b> <span id="publish-level">${publishLevel}</span></p>
     </div>
 </div>
 

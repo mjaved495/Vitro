@@ -66,8 +66,8 @@ td#uri-checkbox {
 }
 
 .tree-container {
-	min-width:25%;
-	max-width:25%;
+	min-width:26%;
+	max-width:26%;
 	min-height:500px;
 	overflow-x:scroll;
 	float:left;
@@ -79,7 +79,7 @@ td#uri-checkbox {
 }
 
 .item-container {
-	width:40%;
+	width:46%;
 	float:left;
 	padding-left:20px;
 }

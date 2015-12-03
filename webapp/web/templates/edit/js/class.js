@@ -27,7 +27,7 @@ $(document).ready(function() {
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
 				console.log(link.find(".jstree-icon").css("background-image"));
-				if(link.find(".jstree-icon").css("background-image") != undefined && link.find("jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
+				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
 					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot.png')");
 				}
 				else {
@@ -294,13 +294,25 @@ $(document).ready(function() {
 
 			/* jsonData will look like this:
 
-			{"label": "the class label",
+			{"displayLevel": "display level",
+			"updateLevel": "update level",
+			"publishLevel": "publish level",
+			"label": "the class label",
+			"group": "group",
+			"ontology": "ontology name",
 			"superclasses": [{"uri": "some uri", "name": "the name"}, ... ],
 			"subclasses": [{"uri": "some uri", "name": "the name"}, ... ],
 			"eqclasses": [{"uri": "some uri", "name": "the name"}, ... ],
 			"disjoints": [{"uri": "some uri", "name": "the name"}, ... ]} */
 
 			var data = JSON.parse(jsonData);
+
+			var ontology = data["ontology"];
+			var group = data["group"];
+			var displayLevel = data["displayLevel"];
+			var updateLevel = data["updateLevel"];
+			var publishLevel = data["publishLevel"];
+
 			var classLabel = data["label"];
 			var superclasses = data["superclasses"];
 			var subclasses = data["subclasses"];
@@ -309,6 +321,13 @@ $(document).ready(function() {
 
 			$("#vclass-uri").attr("data-vclass-uri", uri);
 			$("#vclass-uri").val(uri);
+
+			$("#update-level").text(updateLevel);
+			$("#publish-level").text(publishLevel);
+			$("#display-level").text(displayLevel);
+
+			$("#ontology-name").text(ontology);
+			$("#class-group").text(group);
 
 			$(".vclass-label").text(classLabel);
 			$("#uri").val(uri);

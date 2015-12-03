@@ -50,6 +50,13 @@ public class VClassInfoController extends HttpServlet {
         if(vcl.getNamespace() != null) {
         	ont = wadf.getOntologyDao().getOntologyByURI(vcl.getNamespace());
         }
+        
+        if(ont == null) {
+        	responseObject.put("ontology", "(unspecified)");
+        }
+        else {
+        	responseObject.put("ontology", ont.getName());
+        }
        
         String hiddenFromDisplay = (vcl.getHiddenFromDisplayBelowRoleLevel() == null ? "(unspecified)"
 				: vcl.getHiddenFromDisplayBelowRoleLevel().getDisplayLabel());
@@ -59,7 +66,13 @@ public class VClassInfoController extends HttpServlet {
 		String hiddenFromPublish = (vcl.getHiddenFromPublishBelowRoleLevel() == null ? "(unspecified)"
 				: vcl.getHiddenFromPublishBelowRoleLevel().getDisplayLabel());
 		
+		responseObject.put("displayLevel", hiddenFromDisplay);
+		responseObject.put("updateLevel", prohibitedFromUpdate);
+		responseObject.put("publishLevel", hiddenFromPublish);
+		
         String group = (vcl.getGroup() == null ? "(unspecified)" : vcl.getGroup().getPublicName());
+        
+        responseObject.put("group", group);
         
         List<VClass> superVClasses = getVClassesForURIList(
                 vcDao.getSuperClassURIs(vcl.getURI(),false), displayVcDao);
