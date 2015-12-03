@@ -38,6 +38,7 @@ public class ClassHierarchyNode {
 		this.icon = "/vivo/images/orangedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
+		this.a_attr.put("title", vcl.getURI());
 	}
 	
 	public ClassHierarchyNode(VClass vcl) {
@@ -49,6 +50,7 @@ public class ClassHierarchyNode {
 		this.icon = "/vivo/images/orangedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
+		this.a_attr.put("title", vcl.getURI());
 	}
 	
 	public void addChild(ClassHierarchyNode node) {

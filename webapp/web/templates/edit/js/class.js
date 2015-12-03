@@ -20,12 +20,14 @@ $(document).ready(function() {
 			} 
 		}).on("ready.jstree", function(e, data) {
 			$("#tree").on("click", "a", function(e) {
-				window.location.href = "/vivo/classpage?uri=" + $(this).attr("data-vclass-uri");
+				// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
+				var uri = $(this).attr("data-vclass-uri");
+				updateData(uri);
 			});
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
 				console.log(link.find(".jstree-icon").css("background-image"));
-				if(link.find(".jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
+				if(link.find(".jstree-icon").css("background-image") != undefined && link.find("jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
 					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot.png')");
 				}
 				else {
@@ -284,6 +286,47 @@ $(document).ready(function() {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		$.post("/vivo/edit_api/delete_disjoint", {"vclassURI": vclassURI, "disjointClassURI": disjointClassURI}, function(res) {
 			console.log(res);
+		});
+	}
+
+	var updateData = function(uri) {
+		$.get("/vivo/classinfo", {"uri": uri}, function(jsonData) {
+
+			/* jsonData will look like this:
+
+			{"label": "the class label",
+			"superclasses": [{"uri": "some uri", "name": "the name"}, ... ],
+			"subclasses": [{"uri": "some uri", "name": "the name"}, ... ],
+			"eqclasses": [{"uri": "some uri", "name": "the name"}, ... ],
+			"disjoints": [{"uri": "some uri", "name": "the name"}, ... ]} */
+
+			var data = JSON.parse(jsonData);
+			var classLabel = data["label"];
+			var superclasses = data["superclasses"];
+			var subclasses = data["subclasses"];
+			var eqclasses = data["eqclasses"];
+			var disjoints = data["disjoints"];
+
+			$("#vclass-uri").attr("data-vclass-uri", uri);
+			$("#vclass-uri").val(uri);
+
+			$(".vclass-label").text(classLabel);
+			$("#uri").val(uri);
+
+			$("#superclass-table").html('');
+
+			for(var i = 0; i < superclasses.length; i++) {
+				var superclass = superclasses[i];
+				var superclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + superclass["uri"] + '" data-superclass-uri="' + superclass["uri"] + '"><p>' + superclass["name"] + '</p></td><td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-superclass" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-superclass" title="Remove this"></i> </td></tr>')
+				$("#superclass-table").append(superclassDiv);
+			}
+
+			$("#subclass-table").html('');
+
+			$("#eqclass-table").html('');
+
+			$("#disjoint-table").html('')
+			
 		});
 	}
 
