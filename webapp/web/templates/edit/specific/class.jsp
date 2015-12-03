@@ -170,13 +170,13 @@
     </div>
 
     <div class="item">
-        <table id="eqclass-table">
+        <table>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="bottom" colspan="4">
             		<p><b>Equivalent classes:</b> <span class="fa fa-plus action action-add-eqclass"></span></p>
                     <div class="scroll-list">
-                        <table>
+                        <table id="eqclass-table">
                             <c:forEach items="${equivalentClasses}" var="eqClass">
                                 <tr class="class-item">
                                     <td class="item-detail" id="editable-item-detail" title="${eqClass.getURI()}" data-eqclass-uri="${eqClass.getURI()}"><p>${eqClass.getName()}</p></td> 
@@ -193,13 +193,13 @@
     </div>
 
     <div class="item">
-        <table id="disjoint-table">
+        <table>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="top" colspan="4">
             		<p><b>Disjoint classes:</b> <span class="fa fa-plus action action-add-disjoint"></span></p>
                     <div class="scroll-list">
-                        <table>
+                        <table id="disjoint-table">
                     	    <c:forEach items="${disjointClasses}" var="djClass">
                                 <tr class="class-item">
                                     <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
