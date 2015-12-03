@@ -323,9 +323,27 @@ $(document).ready(function() {
 
 			$("#subclass-table").html('');
 
+			for(var i = 0; i < subclasses.length; i++) {
+				var subclass = subclasses[i];
+				var subclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + subclass["uri"] + '" data-subclass-uri="' + subclass["uri"] + '"><p>' + subclass["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-subclass" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-subclass" title="Remove this"></i> </td></tr>')
+				$("#subclass-table").append(subclassDiv);
+			}
+
 			$("#eqclass-table").html('');
 
+			for(var i = 0; i < eqclasses.length; i++) {
+				var eqclass = eqclasses[i];
+				var eqclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + eqclass["uri"] + '" data-eqclass-uri="' + eqclass["uri"] + '"><p>' + eqclass["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td></tr>')
+				$("#eqclass-table").append(eqclassDiv);
+			}
+
 			$("#disjoint-table").html('')
+
+			for(var i = 0; i < disjoints.length; i++) {
+				var disjoint = disjoints[i];
+				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjoint-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
+				$("#disjoint-table").append(disjointDiv);
+			}
 			
 		});
 	}
