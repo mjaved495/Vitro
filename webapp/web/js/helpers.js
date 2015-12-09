@@ -70,10 +70,23 @@ var addItem = function(jQElement, onAddCallback, type) {
 		$(this).parent().parent().remove();
 	})
 
+	var getOptionURI = function(input, val) {
+		var attr = "";
+		opts = $(input).find("option")
+		for(var i = 0; i < opts.length; i++) {
+			el = opts[i];
+			if($(el).text() == val) {
+				attr = el.getAttribute("data-uri");
+			}
+		}
+		return attr;
+	}
+
 	$("#save-select").click(function() {
 		tdItemDetail.text(input.val());
-		tdItemDetail.attr('title', getURI(input.val()));
-		tdItemDetail.attr('data-' + type + '-uri', getURI(input.val()));
+		var uri = getOptionURI(input, input.val());
+		tdItemDetail.attr('title', uri);
+		tdItemDetail.attr('data-' + type + '-uri', uri);
 
 		/* fill out rest of table row */
 
@@ -86,9 +99,6 @@ var addItem = function(jQElement, onAddCallback, type) {
 		tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500, function() {
 			onAddCallback(tdItemDetail);
 		})
+		
 	})
-}
-
-function getURI(className) {
-	return "http://vivoweb.org/ontology/core#"+className; // todo: make smarter
 }

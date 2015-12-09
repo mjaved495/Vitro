@@ -3,7 +3,21 @@
 }
 
 tr.class-item {
-	padding-top:10px;
+	/* padding-top:10px; */
+}
+
+.class-item {
+	padding:0;
+	margin:0;
+}
+
+.class-item td {
+	padding:0;
+	margin:0;
+}
+
+p {
+	margin-bottom:0 !important;
 }
 
 td.item-detail {
@@ -16,6 +30,7 @@ td.item-spacer {
 
 td.item-action {
 	width:5%;
+	margin:0;
 }
 
 td#uri-field {
@@ -76,23 +91,25 @@ td#uri-checkbox {
 	padding-bottom:5px;
 	border-right:1px solid #CCCCCC;
 	background-color:#F5F5F5;
-	height:820px;
+	height:680px;
 }
 
 .item-container {
-	width:46%;
+	width:53%;
 	float:left;
 	padding-left:20px;
-	height:820px;
+	height:680px;
+	font-size:14px;
 }
 
 .info-container {
-	width:20%;
+	width:13%;
 	float:left;
 	background-color:#FBFBFB;
 	margin-left:20px;
 	padding:10px;
-	height:820px;
+	height:680px;
+	font-size:14px;
 }
 
 .item table {
@@ -105,6 +122,7 @@ td#uri-checkbox {
 
 .stretch-panel table {
 	width:100%;
+	font-size:14px;
 }
 
 #newinput {
@@ -116,7 +134,7 @@ td#uri-checkbox {
 }
 
 .right-pane-item .submit {
-	font-size:12px;
+	font-size:14px;
 }
 
 .concept {
@@ -144,7 +162,7 @@ td#uri-checkbox {
 }
 
 #tree {
-	font-size:13px;
+	font-size:14px;
 }
 
 .scroll-list {

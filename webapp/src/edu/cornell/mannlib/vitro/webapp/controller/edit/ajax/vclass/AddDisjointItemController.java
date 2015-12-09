@@ -18,8 +18,12 @@ public class AddDisjointItemController extends HttpServlet {
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory();
         VClassDao vcwDao = wadf.getVClassDao();
 		
-		vcwDao.addDisjointWithClass(vclassURI, disjointClassURI);
-		
-		res.getWriter().print(disjointClassURI);
+        try {
+			vcwDao.addDisjointWithClass(vclassURI, disjointClassURI);
+			res.getWriter().print(disjointClassURI);
+        }
+        catch(Exception e) {
+        	res.getWriter().print("Could not add disjoint class.");
+        }
 	}
 }
