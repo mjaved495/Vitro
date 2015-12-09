@@ -39,9 +39,9 @@ $(document).ready(function() {
 	});
 
 	$.each($(".scroll-list"), function(i, div) {
-		$(div).css("min-height", "80px");
-		$(div).css("max-height", "81px");
-		if($(div).height() <= 80) {
+		$(div).css("min-height", "60px");
+		$(div).css("max-height", "61px");
+		if($(div).height() <= 60) {
 			$(div).css("overflow-y", "visible");
 		}
 		else {
@@ -130,7 +130,7 @@ $(document).ready(function() {
 	var addSuperclass = function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			var superclassURI = getURI(td.text());
+			var superclassURI = td.attr("data-superclass-uri");
 			$.post('/vivo/edit_api/add_superclass', {'vclassURI': vclassURI, 'superclassURI': superclassURI}, function(res) {
 				if(res != superclassURI) {
 					console.log("error: " + res);
@@ -146,7 +146,7 @@ $(document).ready(function() {
 	var addSubclass = function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			var subclassURI = getURI(td.text());
+			var subclassURI = td.attr("data-subclass-uri");
 			$.post('/vivo/edit_api/add_subclass', {'vclassURI': vclassURI, 'subclassURI': subclassURI}, function(res) {
 				if(res != subclassURI) {
 					console.log("error: " + res);
@@ -162,7 +162,7 @@ $(document).ready(function() {
 	var addEqClass = function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			var eqClassURI = getURI(td.text());
+			var eqClassURI = td.attr("data-eqclass-uri");
 			$.post('/vivo/edit_api/add_eqclass', {'vclassURI': vclassURI, 'eqClassURI': eqClassURI}, function(res) {
 				if(res != eqClassURI) {
 					console.log("error: " + res);
@@ -172,14 +172,14 @@ $(document).ready(function() {
 					td.parent().find(".action-edit-eqclass").click(actionEditEqClass);
 					td.parent().find(".action-delete-eqclass").click(actionDeleteEqClass);
 				}
-			})
+			});
 		}, "eqclass")
 	}
 
 	var addDisjoint = function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			var disjointClassURI = getURI(td.text());
+			var disjointClassURI = td.attr("data-disjoint-uri");
 			$.post('/vivo/edit_api/add_disjoint', {'vclassURI': vclassURI, 'disjointClassURI': disjointClassURI}, function(res) {
 				if(res != disjointClassURI) {
 					console.log("error: " + res);
@@ -209,13 +209,15 @@ $(document).ready(function() {
 	var actionEditSuperclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSuperclassURI = itemDetail.attr("data-superclass-uri");
-		var newSuperclassURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
-		"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
-		function(res) {
-			if(!(res === newSuperclassURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+			var newSuperclassURI = data;
+			$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
+			"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
+			function(res) {
+				if(!(res === newSuperclassURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
@@ -230,13 +232,15 @@ $(document).ready(function() {
 	var actionEditSubclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSubclassURI = itemDetail.attr("data-subclass-uri");
-		var newSubclassURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_subclass", {"vclassURI": vclassURI, 
-		"oldSubclassURI": oldSubclassURI, "newSubclassURI": newSubclassURI},
-		function(res) {
-			if(!(res === newSubclassURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+			var newSubclassURI = data;
+			$.post("/vivo/edit_api/edit_subclass", {"vclassURI": vclassURI, 
+			"oldSubclassURI": oldSubclassURI, "newSubclassURI": newSubclassURI},
+			function(res) {
+				if(!(res === newSubclassURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
@@ -251,13 +255,15 @@ $(document).ready(function() {
 	var actionEditEqclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldEqClassURI = itemDetail.attr("data-eqclass-uri");
-		var newEqClassURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_eqclass", {"vclassURI": vclassURI, 
-		"oldEqClassURI": oldEqClassURI, "newEqClassURI": newEqClassURI},
-		function(res) {
-			if(!(res === newEqClassURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+			var newEqClassURI = data;
+			$.post("/vivo/edit_api/edit_eqclass", {"vclassURI": vclassURI, 
+			"oldEqClassURI": oldEqClassURI, "newEqClassURI": newEqClassURI},
+			function(res) {
+				if(!(res === newEqClassURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
@@ -272,13 +278,15 @@ $(document).ready(function() {
 	var actionEditDisjointCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldDisjointClassURI = itemDetail.attr("data-disjoint-uri");
-		var newDisjointClassURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_disjoint", {"vclassURI": vclassURI, 
-		"oldDisjointClassURI": oldDisjointClassURI, "newDisjointClassURI": newDisjointClassURI},
-		function(res) {
-			if(!(res === newDisjointClassURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+			var newDisjointClassURI = data;
+			$.post("/vivo/edit_api/edit_disjoint", {"vclassURI": vclassURI, 
+			"oldDisjointClassURI": oldDisjointClassURI, "newDisjointClassURI": newDisjointClassURI},
+			function(res) {
+				if(!(res === newDisjointClassURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
@@ -366,9 +374,9 @@ $(document).ready(function() {
 			}
 			
 			$.each($(".scroll-list"), function(i, div) {
-				$(div).css("min-height", "80px");
-				$(div).css("max-height", "81px");
-				if($(div).height() <= 80) {
+				$(div).css("min-height", "60px");
+				$(div).css("max-height", "61px");
+				if($(div).height() <= 60) {
 					$(div).css("overflow-y", "visible");
 				}
 				else {

@@ -47,6 +47,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.shared.Lock;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -256,10 +257,12 @@ public class VClassDaoJena extends JenaBaseDao implements VClassDao {
         OntClass ontClass = getOntClass(getOntModel(), classURI);
         List<String> uriList = new ArrayList<String>();
         getOntModel().enterCriticalSection(Lock.READ);
+        ExtendedIterator<OntClass> classes = ontClass.listDisjointWith();
         try {
             for (Iterator<? extends OntClass> i = 
                     ontClass.listDisjointWith(); i.hasNext(); ) {
                 OntClass disjointClass = i.next();
+                System.out.println(disjointClass);
                 uriList.add(getClassURIStr(disjointClass));
             }
         } catch (ProfileException pe) {
