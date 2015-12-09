@@ -383,6 +383,8 @@ $(document).ready(function() {
 					$(div).css("overflow-y", "scroll");
 				}
 			});
+
+			window.history.pushState($("html").html(), document.title, "/vivo/classpage?uri=" + encodeURIComponent(uri));
 		});
 	}
 
