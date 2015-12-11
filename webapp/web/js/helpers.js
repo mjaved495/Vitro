@@ -38,7 +38,7 @@ var deleteItem = function(jQElement, onRemovalCallback) {
 }
 
 var createAutocompleteInput = function() {
-	var input = $("<select class='option-select'></select>");
+	var input = $("<select class='option-select' style='width:50%'></select>");
 	$.each($(".option-data"), function(i, optionInput) {
 		input.append($('<option data-uri="' + $(optionInput).attr('data-uri') + '">' + $(optionInput).val() + '</option>'));
 	});
