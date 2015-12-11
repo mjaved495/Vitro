@@ -1,4 +1,4 @@
-package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass;
+package edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.composite;
 
 import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.ReasoningOption.ASSERTIONS_ONLY;
 

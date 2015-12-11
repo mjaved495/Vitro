@@ -338,7 +338,7 @@ $(document).ready(function() {
 			$("#ontology-name").text(ontology);
 			$("#class-group").text(group);
 
-			$(".vclass-label").text(classLabel);
+			$(".vclass-label").html(classLabel + '<b class="concept">(CLASS)</b><i class="fa fa-pencil"></i>');
 			$("#uri").val(uri);
 
 			$("#superclass-table").html('');
@@ -385,24 +385,35 @@ $(document).ready(function() {
 			});
 
 			window.history.pushState($("html").html(), document.title, "/vivo/classpage?uri=" + encodeURIComponent(uri));
+			
+			updateEventHandlers();
 		});
 	}
 
+	function updateInitialEventHandlers() {
 
-	$(".action-edit-superclass").click(actionEditSuperclass);
-	$(".action-delete-superclass").click(actionDeleteSuperclass);
-	$(".action-edit-subclass").click(actionEditSubclass);
-	$(".action-delete-subclass").click(actionDeleteSubclass);
-	$(".action-edit-eqclass").click(actionEditEqClass);
-	$(".action-delete-eqclass").click(actionDeleteEqClass);
-	$(".action-edit-disjoint").click(actionEditDisjoint);
-	$(".action-delete-disjoint").click(actionDeleteDisjoint);
+		$(".action-add-superclass").click(addSuperclass);
+		$(".action-add-subclass").click(addSubclass);
+		$(".action-add-eqclass").click(addEqClass);
+		$(".action-add-disjoint").click(addDisjoint);
 
-	$(".action-add-superclass").click(addSuperclass);
-	$(".action-add-subclass").click(addSubclass);
-	$(".action-add-eqclass").click(addEqClass);
-	$(".action-add-disjoint").click(addDisjoint);
+		$(".action-delete-vclass").click(deleteVClass);
 
-	$(".action-delete-vclass").click(deleteVClass);
+		updateEventHandlers();
+	}
+
+	function updateEventHandlers() {
+		$(".action-edit-superclass").click(actionEditSuperclass);
+		$(".action-delete-superclass").click(actionDeleteSuperclass);
+		$(".action-edit-subclass").click(actionEditSubclass);
+		$(".action-delete-subclass").click(actionDeleteSubclass);
+		$(".action-edit-eqclass").click(actionEditEqClass);
+		$(".action-delete-eqclass").click(actionDeleteEqClass);
+		$(".action-edit-disjoint").click(actionEditDisjoint);
+		$(".action-delete-disjoint").click(actionDeleteDisjoint);
+	}
+
+	updateInitialEventHandlers();
+	
 });
 </script>
