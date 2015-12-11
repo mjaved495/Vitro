@@ -3,7 +3,7 @@ var replaceWithInput = function(jQElement, onSubmitCallback) {
 	var input = createAutocompleteInput();
 	jQElement.html('');
 	jQElement.append(input);
-	input.chosen();
+	input.select2();
 	var cancelSpan = $("<span>&nbsp; <a href='#' id='save-select'>save</a> <a href='#' id='cancel'>cancel</a></span>");
 	jQElement.append(cancelSpan);
 

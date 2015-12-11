@@ -248,7 +248,7 @@
             <tr>
                 <td><p><a href="#">Split class into</a></p></td>
                 <td><p><a href="#">Specialize</a></p></td>
-                <td><p><a href="#">Show asserted individuals</a></p></td>
+                <td><p><a href="#">Generalize</a></p></td>
             </tr>
             <tr>
                 <td><p><a href="#">Make sibling classes disjoint</a></p></td>
