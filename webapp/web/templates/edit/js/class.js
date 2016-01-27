@@ -420,6 +420,11 @@ $(document).ready(function() {
 		$.post("/edit_api/edit_vclass_uri", {"uri": $("#uri").val()}, function(data) {
 			setTimeout(function() {
 				$("#uri").val(data);
+				var status = $("<p class='status'>Changes saved.</p>");
+				$("#uri").parent().append(status);
+				setTimeout(function() {
+					$(status).fadeOut(1000);
+				}, 5000)
 			}, 2000);
 		})
 	}
