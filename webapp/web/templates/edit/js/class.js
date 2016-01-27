@@ -390,6 +390,27 @@ $(document).ready(function() {
 		});
 	}
 
+	var actionEditName = function() {
+		$("#name").hide();
+		var nameInput = $("<input type='text' id='name-input'/>");
+		$("#name").parent.append(nameInput);
+		$(nameInput).keypress(function(e) {
+			if(e.keyCode == 13) {
+				editVClassName($(this).val());
+			}
+		})
+	}
+
+	var editVClassName = function(name) {
+		$.post("/edit_api/edit_vclass_name", {"uri": $("#uri").val()}, function(data) {
+			setTimeout(function() {
+				$("#name-input").remove();
+				$("#name").show();
+				$("#name").text(data);
+			}, 2000);
+		})
+	}
+
 	function updateInitialEventHandlers() {
 
 		$(".action-add-superclass").click(addSuperclass);
@@ -398,6 +419,8 @@ $(document).ready(function() {
 		$(".action-add-disjoint").click(addDisjoint);
 
 		$(".action-delete-vclass").click(deleteVClass);
+
+		$(".action-edit-name").click(actionEditName);
 
 		updateEventHandlers();
 	}
