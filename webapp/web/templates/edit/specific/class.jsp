@@ -99,7 +99,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <span class="vclass-label">${VClass.getName()} <b class="concept">(CLASS)</b> <i class="fa fa-pencil"></i> </span>
+                     <span class="vclass-label">${VClass.getName()} &nbsp; &nbsp; &nbsp; <b class="concept">(CLASS)</b> <i class="fa fa-pencil"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
                     <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
