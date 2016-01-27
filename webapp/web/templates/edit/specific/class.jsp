@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<% /* ?xml version="1.0" encoding="UTF-8"?> */ %>
 
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <!-- TODO: replace /vivo with base URL, add onclicks to edit and delete within superclasses, equivalent, disjoint, etc. -->
 
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0">
+<% /* jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0" */ %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
@@ -99,7 +100,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <span class="vclass-label"><span id="name">${VClass.getName()}</span> &nbsp; &nbsp; &nbsp; <b class="concept">(CLASS)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
+                     <span class="vclass-label"><span id="name">${VClass.getName()}</span>   <b class="concept">(CLASS)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
                     <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
@@ -218,7 +219,6 @@
 
     <div class="item">
         <h4>Raw Statements</h4>
-        <p>
             <c:set var="query" 
                  value="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -246,7 +246,7 @@
             <input type="hidden" name="query" value="${query}"/>
             <input type="hidden" name="resultFormat" value="text/plain"/>
             <input type="submit" class="submit" value="Class as object"/></p>
-            </form>
+          </form>
     </div>
 
 </div>
@@ -290,4 +290,4 @@
     </div>
 </div>
 
-</jsp:root>
+<% /* </jsp:root> */ %>
