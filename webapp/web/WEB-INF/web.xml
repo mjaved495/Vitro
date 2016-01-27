@@ -681,6 +681,16 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>EditVClassNameController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditVClassNameController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditVClassNameController</servlet-name>
+   	<url-pattern>/edit_api/edit_vclass_name</url-pattern>
+  </servlet-mapping>
+
+  
+  <servlet>
   	<servlet-name>MakeSiblingsDisjointController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.MakeSiblingsDisjointController</servlet-class>
   </servlet>
