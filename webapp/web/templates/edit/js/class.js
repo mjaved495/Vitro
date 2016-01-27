@@ -67,6 +67,11 @@ $(document).ready(function() {
 		var uriInput = $("#uri-field").find("input");
 		if(uriInput.attr("readonly")) {
 			uriInput.removeAttr("readonly");
+			$(uriInput).keypress(function() {
+				if(e.keyCode == 13) {
+					editURI($(this).val());
+				}
+			})
 		}
 		else {
 			uriInput.attr("readonly", "true");
@@ -398,7 +403,7 @@ $(document).ready(function() {
 			if(e.keyCode == 13) {
 				editVClassName($(this).val());
 			}
-		})
+		});
 	}
 
 	var editVClassName = function(name) {
@@ -407,6 +412,14 @@ $(document).ready(function() {
 				$("#name-input").remove();
 				$("#name").show();
 				$("#name").text(data);
+			}, 2000);
+		})
+	}
+
+	var editURI = function(uri) {
+		$.post("/edit_api/edit_vclass_uri", {"uri": $("#uri").val()}, function(data) {
+			setTimeout(function() {
+				$("#uri").val(data);
 			}, 2000);
 		})
 	}
