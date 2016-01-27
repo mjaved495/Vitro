@@ -218,7 +218,22 @@
 
     <div class="item">
         <h4>Raw Statements</h4>
-        <p><input type="submit" class="submit" value="Class as subject"/><input type="submit" class="submit" value="Class as object"/></p>
+        <p>
+            <c:set var="query" 
+                 value="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                        SELECT ?sub ?pred ?graph
+                        WHERE 
+                        {
+                          GRAPH ?graph { ?sub ?pred <${entity.URI}> }
+                        } ORDER BY ?graph ?pred
+                        limit 10000"/>
+            <form action="admin/sparqlquery" method="get">
+                <input type="hidden" name="query" value="${query}"/>
+                <input type="hidden" name="resultFormat" value="text/plain"/>
+                <input type="submit" class="submit" value="Class as subject"/>
+            </form>
+        <input type="submit" class="submit" value="Class as object"/></p>
     </div>
 
 </div>

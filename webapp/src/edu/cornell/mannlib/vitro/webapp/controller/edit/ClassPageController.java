@@ -17,6 +17,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 
 import edu.cornell.mannlib.vedit.beans.EditProcessObject;
 import edu.cornell.mannlib.vedit.controller.BaseEditController;
+import edu.cornell.mannlib.vitro.webapp.beans.Individual;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.Controllers;
@@ -62,7 +63,9 @@ public class ClassPageController extends BaseEditController {
         	log.debug("namespace is null");
         	log.debug("uri is " + vcl.getURI());
         }
-       
+        
+        Individual ent = request.getUnfilteredAssertionsWebappDaoFactory().getIndividualDao().getIndividualByURI(vcl.getURI());
+        request.setAttribute("entity", ent);
         
         String hiddenFromDisplay = (vcl.getHiddenFromDisplayBelowRoleLevel() == null ? "(unspecified)"
 				: vcl.getHiddenFromDisplayBelowRoleLevel().getDisplayLabel());
