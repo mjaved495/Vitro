@@ -11,7 +11,7 @@
 <script language="JavaScript" type="text/javascript">
 $(document).ready(function() {
 
-	$.get("/vivo/edit_api/get_prop_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+	$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 		var data = JSON.parse(jsonData);
 		console.log(data);
 		$("#tree").jstree({
