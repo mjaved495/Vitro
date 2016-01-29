@@ -59,7 +59,7 @@ public class GetClassHierarchyTree extends HttpServlet {
         WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
         
         VClassDao vcwDao = wadf.getVClassDao();
-        VClass vcl = (VClass)vcwDao.getVClassByURI(request.getParameter("uri"));
+        VClass vcl = vcwDao.getTopConcept();
 		res.getWriter().println(jsonTree(vcl, vcwDao));
 	}
 }

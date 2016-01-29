@@ -51,7 +51,7 @@ var addItem = function(jQElement, onAddCallback, type) {
 	var input = createAutocompleteInput();
 	tdItemDetail.append(input);
 	input.select2({
-		placeholder: "Type a class"
+		placeholder: "Select an item"
 	})
 	var cancelSpan = $("<span>&nbsp;<a href='#' id='save-select'>save</a> <a href='#' id='cancel'>cancel</a></span>");
 	tdItemDetail.append(cancelSpan);
