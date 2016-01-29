@@ -30,6 +30,6 @@ public class EditVClassURIController extends HttpServlet {
 			e.printStackTrace();
 		}
         
-		res.getWriter().println("ok");
+		res.getWriter().println(newURI);
 	}
 }

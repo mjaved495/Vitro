@@ -11,7 +11,7 @@
 
 <input type="hidden" id="property-uri" data-vclass-uri="${objectProperty.getURI()}"/>
 
-<div class="tree-container">
+<!-- <div class="tree-container">
 	<div class="item">
 		<table>
 			<tr class="editformcell">
@@ -70,6 +70,15 @@
 			</tr>
 		</table>
 	</div>
+</div>
+-->
+
+<div class="tree-container">
+    <div class="item">
+        <div id="tree">
+            <p>Loading tree...</p>
+        </div>
+    </div>
 </div>
 
 <div class="item-container">

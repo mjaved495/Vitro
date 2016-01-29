@@ -681,8 +681,17 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>GetPropHierarchyTree</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.GetPropHierarchyTree</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetPropHierarchyTree</servlet-name>
+  	<url-pattern>/edit_api/get_prop_hierarchy</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>EditVClassNameController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditVClassNameController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditVClassNameController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EditVClassNameController</servlet-name>
@@ -691,7 +700,7 @@
   
    <servlet>
   	<servlet-name>EditVClassURIController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditVClassURIController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditVClassURIController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EditVClassURIController</servlet-name>
