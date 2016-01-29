@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import edu.cornell.mannlib.vedit.controller.BaseEditController;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
+import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.Controllers;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
@@ -21,6 +22,7 @@ import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.Reasoning
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -86,5 +88,59 @@ public class ObjectPropertyPageController extends BaseEditController {
 	
 	public void doGet (HttpServletRequest req, HttpServletResponse response) throws IOException {
 		doPost(req, response);
+	}
+	
+	private static List<ObjectProperty> getPropsForURIList(List<String> propURIs, ObjectPropertyDao opDao) {
+        List<ObjectProperty> props = new ArrayList<ObjectProperty>();
+        Iterator<String> urIt = propURIs.iterator();
+        while (urIt.hasNext()) {
+            String propURI = urIt.next();
+            ObjectProperty op = opDao.getObjectPropertyByURI(propURI);
+            if (op != null) {
+                props.add(op);
+            }
+        }
+        return props;
+    }
+	
+	private static List<ObjectProperty> getSubproperties(ObjectPropertyDao opDao, ObjectProperty root) {
+		return getPropsForURIList(
+                opDao.getSubPropertyURIs(root.getURI()), opDao);
+	}
+	
+	private static List<ObjectProperty> getSuperproperties(ObjectPropertyDao opDao, ObjectProperty root) {
+		return getPropsForURIList(
+				opDao.getSuperPropertyURIs(root.getURI(), false), opDao);
+	}
+	
+	public List<ObjectProperty> dfsTraversal(ObjectPropertyDao opDao, ObjectProperty root) {
+		// preorder traversal (depth-first search)
+		List<ObjectProperty> result = new ArrayList<ObjectProperty>();
+		if(getSubproperties(opDao, root).size() == 0) {
+			result.add(root);
+			return result;
+		}
+		else {
+			for(ObjectProperty subproperty : getSubproperties(opDao, root)) {
+				result.addAll(dfsTraversal(opDao, subproperty));
+			}
+			return result;
+		}
+	}
+	
+	public List<ObjectProperty> getVClassesInOntology(ObjectPropertyDao opDao, ObjectProperty op) {
+		// travel up in class hierarchy tree until reaching root
+		
+		ObjectProperty currentProp = op;
+		List<ObjectProperty> superproperties = getSuperproperties(opDao, currentProp);
+		while(superproperties.size() > 0) {
+			currentProp = superproperties.get(0);
+			superproperties = getSuperproperties(opDao, currentProp);
+		}
+		
+		// now at root
+		// preorder traversal (depth-first search)
+		
+		return dfsTraversal(opDao, currentProp);
 	}
 }

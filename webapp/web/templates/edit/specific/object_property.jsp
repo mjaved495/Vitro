@@ -73,6 +73,17 @@
 </div>
 -->
 
+<c:choose>
+    <c:when test="${empty allProps}">
+        <input type="hidden" class="option-data" data-uri="" value="None"/>
+    </c:when>
+    <c:otherwise>
+        <c:forEach items="${allProps}" var="prop">
+            <input type="hidden" class="option-data" data-uri="${prop.getURI()}" value="${prop.getName()}"/>
+        </c:forEach>
+    </c:otherwise>
+</c:choose>
+
 <div class="tree-container">
     <div class="item">
         <div id="tree">
