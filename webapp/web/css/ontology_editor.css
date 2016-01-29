@@ -55,6 +55,10 @@ td#uri-checkbox {
 	margin-left:7px !important;
 }
 
+.action-edit-name, .action-edit-uri {
+	cursor:pointer;
+}
+
 .blank-container {
 	overflow:hidden;
 }

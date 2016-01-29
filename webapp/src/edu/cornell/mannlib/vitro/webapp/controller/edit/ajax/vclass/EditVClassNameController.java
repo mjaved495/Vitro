@@ -30,6 +30,6 @@ public class EditVClassNameController extends HttpServlet {
 			e.printStackTrace();
 		}
         
-		res.getWriter().println("ok");
+		res.getWriter().println(newClassName);
 	}
 }

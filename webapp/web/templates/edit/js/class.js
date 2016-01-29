@@ -67,7 +67,7 @@ $(document).ready(function() {
 		var uriInput = $("#uri-field").find("input");
 		if(uriInput.attr("readonly")) {
 			uriInput.removeAttr("readonly");
-			$(uriInput).keypress(function() {
+			$(uriInput).keypress(function(e) {
 				if(e.keyCode == 13) {
 					editURI($(this).val());
 				}
@@ -396,18 +396,20 @@ $(document).ready(function() {
 	}
 
 	var actionEditName = function() {
-		$("#name").hide();
-		var nameInput = $("<input type='text' id='name-input'/>");
-		$("#name").parent.append(nameInput);
-		$(nameInput).keypress(function(e) {
-			if(e.keyCode == 13) {
-				editVClassName($(this).val());
-			}
-		});
+		if($("#name-input").length == 0) {
+			$("#name").hide();
+			var nameInput = $("<input type='text' id='name-input'/>");
+			$("#name").parent().prepend(nameInput);
+			$(nameInput).keypress(function(e) {
+				if(e.keyCode == 13) {
+					editVClassName($(this).val());
+				}
+			});
+		}
 	}
 
 	var editVClassName = function(name) {
-		$.post("/edit_api/edit_vclass_name", {"uri": $("#uri").val()}, function(data) {
+		$.post("/vivo/edit_api/edit_vclass_name", {"uri": $("#uri").val(), "newClassName": name}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();
@@ -417,9 +419,12 @@ $(document).ready(function() {
 	}
 
 	var editURI = function(uri) {
-		$.post("/edit_api/edit_vclass_uri", {"uri": $("#uri").val()}, function(data) {
+		$("#uri").attr("readonly", "true");
+		$("#uri-check").prop("checked", false);
+		$.post("/vivo/edit_api/edit_vclass_uri", {"uri": $("#vclass-uri").val(), "newURI": $("#uri").val()}, function(data) {
 			setTimeout(function() {
 				$("#uri").val(data);
+				window.history.pushState($("html").html(), document.title, "/vivo/classpage?uri=" + encodeURIComponent(data));
 				var status = $("<p class='status'>Changes saved.</p>");
 				$("#uri").parent().append(status);
 				setTimeout(function() {
