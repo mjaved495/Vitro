@@ -672,6 +672,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>CheckboxController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.objproperty.CheckboxController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CheckboxController</servlet-name>
+  	<url-pattern>/edit_api/checkbox</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>GetClassHierarchyTree</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.GetClassHierarchyTree</servlet-class>
   </servlet>
