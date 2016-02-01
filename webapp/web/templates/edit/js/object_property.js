@@ -310,6 +310,42 @@ $(document).ready(function() {
 		}, "range");
 	}
 
+	var onTransitiveCheck = function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive'}, function(data) {
+
+		});
+	}
+
+	var onSymmetricCheck = function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric'}, function(data) {
+
+		});
+	}
+
+	var onFunctionalCheck = function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional'}, function() {
+
+		});
+	}
+
+	var onInverseFunctionalCheck = function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), , 'attribute': 'inverse_functional'}, function() {
+
+		});
+	}
+
+	var onReflexiveCheck = function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive'}, function() {
+
+		});
+	}
+
+	$("#transitive-check").change(onTransitiveCheck);
+	$("#symmetric-check").change(onSymmetricCheck);
+	$("#functional-check").change(onFunctionalCheck);
+	$("#inverse-functional-check").change(onInverseFunctionalCheck);
+	$("#reflexive-check").change(onReflexiveCheck);
+
 	$(".action-edit-superproperty").click(actionEditSuperproperty);
 	$(".action-delete-superproperty").click(actionDeleteSuperproperty);
 	$(".action-edit-subproperty").click(actionEditSubproperty);
