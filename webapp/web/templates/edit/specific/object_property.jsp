@@ -293,10 +293,10 @@
 
         <c:choose>
             <c:when test="${prop.getInverseFunctional()}">
-                <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Functional</p>
+                <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Inverse Functional</p>
             </c:when>
             <c:otherwise>
-                <p><input type="checkbox" id="inverse-functional-check" /> Functional</p>
+                <p><input type="checkbox" id="inverse-functional-check" /> Inverse Functional</p>
             </c:otherwise>
         </c:choose>
 
