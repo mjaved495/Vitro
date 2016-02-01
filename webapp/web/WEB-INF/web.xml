@@ -663,6 +663,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>DatatypePropertyPageController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.DatatypePropertyPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DatatypePropertyPageController</servlet-name>
+  	<url-pattern>/datapropertypage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>DeleteDisjointClassItemController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.DeleteDisjointClassItemController</servlet-class>
   </servlet>
