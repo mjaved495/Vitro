@@ -311,31 +311,31 @@ $(document).ready(function() {
 	}
 
 	var onTransitiveCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive'}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive', 'value': 'true'}, function(data) {
 
 		});
 	}
 
 	var onSymmetricCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric'}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric', 'value': 'true'}, function(data) {
 
 		});
 	}
 
 	var onFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional'}, function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': 'true'}, function() {
 
 		});
 	}
 
 	var onInverseFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), , 'attribute': 'inverse_functional'}, function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': 'true'}, function() {
 
 		});
 	}
 
 	var onReflexiveCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive'}, function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': 'true'}, function() {
 
 		});
 	}

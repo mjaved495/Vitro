@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
-<input type="hidden" id="property-uri" data-vclass-uri="${objectProperty.getURI()}"/>
+<input type="hidden" id="property-uri" data-property-uri="${objectProperty.getURI()}"/>
 
 <!-- <div class="tree-container">
 	<div class="item">
@@ -263,11 +263,51 @@
 	 <div class="item">
         <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
         <hr/>
-        <p><input type="checkbox" id="transitive-check"/> Transitive</p>
-        <p><input type="checkbox" id="symmetric-check"/> Symmetric</p>
-        <p><input type="checkbox" id="functional-check"/> Functional</p>
-        <p><input type="checkbox" id="inverse-functional-check"/> Inverse functional</p>
-        <p><input type="checkbox" id="reflexive-check"/> Reflexive</p>
+
+        <c:choose>
+            <c:when test="${prop.getTransitive()}">
+                <p><input type="checkbox" id="transitive-check" checked="true"/> Transitive</p>
+            </c:when>
+            <c:otherwise>
+                <p><input type="checkbox" id="transitive-check" /> Transitive</p>
+            </c:otherwise>
+        </c:choose>
+
+       <c:choose>
+            <c:when test="${prop.getSymmetric()}">
+                <p><input type="checkbox" id="symmetric-check" checked="true"/> Symmetric</p>
+            </c:when>
+            <c:otherwise>
+                <p><input type="checkbox" id="symmetric-check" /> Symmetric</p>
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${prop.getFunctional()}">
+                <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
+            </c:when>
+            <c:otherwise>
+                <p><input type="checkbox" id="functional-check" /> Functional</p>
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${prop.getInverseFunctional()}">
+                <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Functional</p>
+            </c:when>
+            <c:otherwise>
+                <p><input type="checkbox" id="inverse-functional-check" /> Functional</p>
+            </c:otherwise>
+        </c:choose>
+
+        <!-- <c:choose>
+            <c:when test="${prop.getTransitive()}">
+                <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Functional</p>
+            </c:when>
+            <c:otherwise>
+                <p><input type="checkbox" id="inverse-functional-check" checked="false"/> Functional</p>
+            </c:otherwise>
+        </c:choose> -->
     </div>
 </div>
 
