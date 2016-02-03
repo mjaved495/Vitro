@@ -57,7 +57,12 @@ public class GetClassHierarchyUtils {
 			currentNode = new ClassHierarchyNode(superclasses.get(0));
 			superclasses = getSuperclasses(vcDao, currentNode.getVClass());
 		}
-		return generateSubTree(currentNode.getVClass(), vcDao);
+		ClassHierarchyNode entityTree = generateSubTree(currentNode.getVClass(), vcDao);
+		VClass thing = vcDao.getTopConcept();
+		ClassHierarchyNode fullTree = generateSubTree(thing, vcDao);
+		fullTree.addChild(entityTree);
+		return fullTree;
+		
 	}
 	
 	private static ClassHierarchyNode generateSubTree(VClass root, VClassDao vcDao) {
