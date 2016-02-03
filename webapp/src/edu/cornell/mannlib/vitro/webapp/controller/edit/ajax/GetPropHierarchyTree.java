@@ -43,8 +43,9 @@ public class GetPropHierarchyTree extends HttpServlet {
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 		gsonBuilder.registerTypeAdapter(ObjectProperty.class, new PropSerializer());
 		Gson gson = gsonBuilder.create();
-		PropHierarchyNode tree = GetPropHierarchyUtils.generateFullTree(root, opDao);
-		return gson.toJson(tree);
+		//PropHierarchyNode tree = GetPropHierarchyUtils.generateFullTree(root, opDao);
+		//return gson.toJson(tree);
+		return "";
 	}
 	
 	@Override
