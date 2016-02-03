@@ -74,12 +74,12 @@
 -->
 
 <c:choose>
-    <c:when test="${empty allProps}">
+    <c:when test="${empty allProperties}">
         <input type="hidden" class="option-data" data-uri="" value="None"/>
     </c:when>
     <c:otherwise>
-        <c:forEach items="${allProps}" var="prop">
-            <input type="hidden" class="option-data" data-uri="${prop.getURI()}" value="${prop.getName()}"/>
+        <c:forEach items="${allProperties}" var="prop">
+            <input type="hidden" class="option-data" data-uri="${prop.getURI()}" value="${prop.getLabel()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>

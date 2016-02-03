@@ -50,8 +50,9 @@ public class ObjectPropertyPageController extends BaseEditController {
              
              request.setAttribute("ontology",  ont);
              request.setAttribute("allClasses", ont.getVClassesList());
-             request.setAttribute("allProperties", ont.getPropsList());
 		}
+		
+		request.setAttribute("allProperties", opDao.getAllObjectProperties());
 		
 		List<Object> superproperties = new ArrayList<Object>();
 		List<Object> siblings = new ArrayList<Object>();
