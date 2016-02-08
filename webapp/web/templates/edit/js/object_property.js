@@ -55,65 +55,70 @@ $(document).ready(function() {
 			"disjoints": [{"uri": "some uri", "name": "the name"}, ... ]} */
 
 			var data = JSON.parse(jsonData);
-			console.log(data);
 
-			/*var ontology = data["ontology"];
-			var group = data["group"];
+			var ontology = data["ontology"];
 			var displayLevel = data["displayLevel"];
 			var updateLevel = data["updateLevel"];
 			var publishLevel = data["publishLevel"];
 
-			var classLabel = data["label"];
-			var superclasses = data["superclasses"];
-			var subclasses = data["subclasses"];
-			var eqclasses = data["eqclasses"];
-			var disjoints = data["disjoints"];
+			var propLabel = data["label"];
+			var superproperties = data["superproperties"];
+			var subproperties = data["subproperties"];
+			var eqproperties = data["eqprops"];
+			var domain = data["domain"];
+			var range = data["range"];
 
 			$("#vclass-uri").attr("data-vclass-uri", uri);
 			$("#vclass-uri").val(uri);
 
-			$("#update-level").text(updateLevel);
+			/*$("#update-level").text(updateLevel);
 			$("#publish-level").text(publishLevel);
-			$("#display-level").text(displayLevel);
+			$("#display-level").text(displayLevel);*/
 
 			$("#ontology-name").text(ontology);
-			$("#class-group").text(group);
+			//$("#class-group").text(group);
 
-			$(".vclass-label").html(classLabel + '<b class="concept">(CLASS)</b><i class="fa fa-pencil"></i>');
+			$(".prop-label").html(propLabel + '<b class="object-property">(OBJECT PROPERTY)</b><i class="fa fa-pencil"></i>');
 			$("#uri").val(uri);
 
-			$("#superclass-table").html('');
+			$("#superproperty-table").html('');
 
-			for(var i = 0; i < superclasses.length; i++) {
-				var superclass = superclasses[i];
-				var superclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + superclass["uri"] + '" data-superclass-uri="' + superclass["uri"] + '"><p>' + superclass["name"] + '</p></td><td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-superclass" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-superclass" title="Remove this"></i> </td></tr>')
-				$("#superclass-table").append(superclassDiv);
+			for(var i = 0; i < superproperties.length; i++) {
+				var superproperty = superproperties[i];
+				var superpropertyDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + superproperty["uri"] + '" data-superproperty-uri="' + superproperty["uri"] + '"><p>' + superproperty["name"] + '</p></td><td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-superproperty" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-superproperty" title="Remove this"></i> </td></tr>')
+				$("#superproperty-table").append(superpropertyDiv);
 			}
 
-			$("#subclass-table").html('');
+			$("#subproperty-table").html('');
 
-			for(var i = 0; i < subclasses.length; i++) {
-				var subclass = subclasses[i];
-				var subclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + subclass["uri"] + '" data-subclass-uri="' + subclass["uri"] + '"><p>' + subclass["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-subclass" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-subclass" title="Remove this"></i> </td></tr>')
-				$("#subclass-table").append(subclassDiv);
+			for(var i = 0; i < subproperties.length; i++) {
+				var subproperty = subproperty[i];
+				var subpropertyDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + subproperty["uri"] + '" data-subproperty-uri="' + subproperty["uri"] + '"><p>' + subproperty["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-subproperty" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-subproperty" title="Remove this"></i> </td></tr>')
+				$("#subproperty-table").append(subpropertyDiv);
 			}
 
-			$("#eqclass-table").html('');
+			$("#eqproperty-table").html('');
 
-			for(var i = 0; i < eqclasses.length; i++) {
-				var eqclass = eqclasses[i];
-				var eqclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + eqclass["uri"] + '" data-eqclass-uri="' + eqclass["uri"] + '"><p>' + eqclass["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td></tr>')
-				$("#eqclass-table").append(eqclassDiv);
+			for(var i = 0; i < eqproperties.length; i++) {
+				var eqproperty = eqproperties[i];
+				var eqpropertyDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + eqproperty["uri"] + '" data-eqproperty-uri="' + eqproperty["uri"] + '"><p>' + eqproperty["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-eqproperty" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqproperty" title="Remove this"></i></td></tr>')
+				$("#eqproperty-table").append(eqpropertyDiv);
 			}
 
-			$("#disjoint-table").html('')
+			/*$("#disjoint-table").html('')
 
 			for(var i = 0; i < disjoints.length; i++) {
 				var disjoint = disjoints[i];
 				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjoint-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
 				$("#disjoint-table").append(disjointDiv);
-			}
-			
+			}*/
+
+			var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain" title="Remove this"></i></td></tr>')
+			$("#domain-table").append(domainDiv);
+
+			var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range" title="Remove this"></i></td></tr>')
+			$("#range-table").append(rangeDiv);
+
 			$.each($(".scroll-list"), function(i, div) {
 				$(div).css("min-height", "60px");
 				$(div).css("max-height", "61px");
@@ -125,9 +130,9 @@ $(document).ready(function() {
 				}
 			});
 
-			window.history.pushState($("html").html(), document.title, "/vivo/classpage?uri=" + encodeURIComponent(uri));
+			window.history.pushState($("html").html(), document.title, "/vivo/propertypage?uri=" + encodeURIComponent(uri));
 			
-			updateEventHandlers();*/
+			//updateEventHandlers();
 		});
 	}
 

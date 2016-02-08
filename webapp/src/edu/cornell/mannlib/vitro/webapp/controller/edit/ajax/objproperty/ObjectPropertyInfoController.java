@@ -97,7 +97,7 @@ public class ObjectPropertyInfoController extends HttpServlet {
         	subpropertiesInfo.add(info);
         }
         
-        responseObject.put("subclasses", subpropertiesInfo);
+        responseObject.put("subproperties", subpropertiesInfo);
         
         List<ObjectProperty> eqprops = getPropsForURIList(
                 opDao.getEquivalentPropertyURIs(op.getURI()), displayOpDao);
@@ -127,6 +127,24 @@ public class ObjectPropertyInfoController extends HttpServlet {
         
         VClass domain = vcDao.getVClassByURI(op.getDomainVClassURI());
         VClass range = vcDao.getVClassByURI(op.getRangeVClassURI());
+        
+        Hashtable<String, String> domainInfo = new Hashtable<String, String>();
+        if(domain == null) {
+        	domain = vcDao.getTopConcept();
+        }
+        domainInfo.put("uri", domain.getURI());
+        domainInfo.put("name", domain.getName());
+        
+        responseObject.put("domain", domainInfo);
+        
+        Hashtable<String, String> rangeInfo = new Hashtable<String, String>();
+        if(range == null) {
+        	range = vcDao.getTopConcept();
+        }
+        rangeInfo.put("uri", range.getURI());
+        rangeInfo.put("name", range.getName());
+        
+        responseObject.put("range", rangeInfo);
 
         responseObject.put("label", op.getLabel());
         

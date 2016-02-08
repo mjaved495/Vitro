@@ -97,7 +97,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <span class="vclass-label">${objectProperty.getLabel()} <b class="object-property">(OBJECT PROPERTY)</b> <i class="fa fa-pencil"></i> </span>
+                     <span class="prop-label">${objectProperty.getLabel()} <b class="object-property">(OBJECT PROPERTY)</b> <i class="fa fa-pencil"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
                     <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
@@ -125,7 +125,7 @@
                 <td valign="bottom" colspan="4">
                    <p><b>Superproperties:</b> <span class="fa fa-plus action action-add-superproperty"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="superproperty-table">
                             <c:forEach items="${superproperties}" var="superproperty">
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superclass-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
@@ -143,7 +143,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table class="subproperty">
             <tr>
                 <td valign="bottom" colspan="4">
                    <p><b>Subproperties:</b> <span class="fa fa-plus action action-add-subproperty"></span></p>
@@ -166,7 +166,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table class="eqproperty-table">
             <tr>
                 <td valign="bottom" colspan="4">
                    <p><b>Equivalent properties:</b> <span class="fa fa-plus action action-add-eqproperty"></span></p>
@@ -212,7 +212,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table class="domain-table">
             <tr>
                 <td valign="bottom" colspan="4">
                    <p><b>Domains:</b> <span class="fa fa-plus action action-add-domain"></span></p>
@@ -234,7 +234,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table class="range-table">
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr>
                 <td valign="bottom" colspan="4">
