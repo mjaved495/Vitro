@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jena.atlas.logging.Log;
+
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -43,9 +45,12 @@ public class GetPropHierarchyTree extends HttpServlet {
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 		gsonBuilder.registerTypeAdapter(ObjectProperty.class, new PropSerializer());
 		Gson gson = gsonBuilder.create();
-		//PropHierarchyNode tree = GetPropHierarchyUtils.generateFullTree(root, opDao);
-		//return gson.toJson(tree);
-		return "";
+		List<PropHierarchyNode> tree = GetPropHierarchyUtils.generatePropList(opDao);
+		PropHierarchyNode parent = new PropHierarchyNode("All Properties");
+		for(PropHierarchyNode node : tree) {
+			parent.addChild(node);
+		}
+		return gson.toJson(parent);
 	}
 	
 	@Override
@@ -59,3 +64,4 @@ public class GetPropHierarchyTree extends HttpServlet {
 		res.getWriter().println(jsonTree(op, opDao));
 	}
 }
+

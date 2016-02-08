@@ -27,16 +27,109 @@ $(document).ready(function() {
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
 				console.log(link.find(".jstree-icon").css("background-image"));
-				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
-					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot.png')");
+				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("bluedot-open.png") > -1) {
+					link.find(".jstree-icon").css("background-image", "url('/vivo/images/bluedot.png')");
 				}
 				else {
-					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot-open.png')");
+					link.find(".jstree-icon").css("background-image", "url('/vivo/images/bluedot-open.png')");
 				}
 				
 			});
 		});
 	});
+
+	var updateData = function(uri) {
+		$.get("/vivo/edit_api/propinfo", {"uri": uri}, function(jsonData) {
+
+			/* jsonData will look like this:
+
+			{"displayLevel": "display level",
+			"updateLevel": "update level",
+			"publishLevel": "publish level",
+			"label": "the class label",
+			"group": "group",
+			"ontology": "ontology name",
+			"superclasses": [{"uri": "some uri", "name": "the name"}, ... ],
+			"subclasses": [{"uri": "some uri", "name": "the name"}, ... ],
+			"eqclasses": [{"uri": "some uri", "name": "the name"}, ... ],
+			"disjoints": [{"uri": "some uri", "name": "the name"}, ... ]} */
+
+			var data = JSON.parse(jsonData);
+			console.log(data);
+
+			/*var ontology = data["ontology"];
+			var group = data["group"];
+			var displayLevel = data["displayLevel"];
+			var updateLevel = data["updateLevel"];
+			var publishLevel = data["publishLevel"];
+
+			var classLabel = data["label"];
+			var superclasses = data["superclasses"];
+			var subclasses = data["subclasses"];
+			var eqclasses = data["eqclasses"];
+			var disjoints = data["disjoints"];
+
+			$("#vclass-uri").attr("data-vclass-uri", uri);
+			$("#vclass-uri").val(uri);
+
+			$("#update-level").text(updateLevel);
+			$("#publish-level").text(publishLevel);
+			$("#display-level").text(displayLevel);
+
+			$("#ontology-name").text(ontology);
+			$("#class-group").text(group);
+
+			$(".vclass-label").html(classLabel + '<b class="concept">(CLASS)</b><i class="fa fa-pencil"></i>');
+			$("#uri").val(uri);
+
+			$("#superclass-table").html('');
+
+			for(var i = 0; i < superclasses.length; i++) {
+				var superclass = superclasses[i];
+				var superclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + superclass["uri"] + '" data-superclass-uri="' + superclass["uri"] + '"><p>' + superclass["name"] + '</p></td><td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-superclass" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-superclass" title="Remove this"></i> </td></tr>')
+				$("#superclass-table").append(superclassDiv);
+			}
+
+			$("#subclass-table").html('');
+
+			for(var i = 0; i < subclasses.length; i++) {
+				var subclass = subclasses[i];
+				var subclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + subclass["uri"] + '" data-subclass-uri="' + subclass["uri"] + '"><p>' + subclass["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-subclass" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-subclass" title="Remove this"></i> </td></tr>')
+				$("#subclass-table").append(subclassDiv);
+			}
+
+			$("#eqclass-table").html('');
+
+			for(var i = 0; i < eqclasses.length; i++) {
+				var eqclass = eqclasses[i];
+				var eqclassDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + eqclass["uri"] + '" data-eqclass-uri="' + eqclass["uri"] + '"><p>' + eqclass["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-eqclass" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqclass" title="Remove this"></i></td></tr>')
+				$("#eqclass-table").append(eqclassDiv);
+			}
+
+			$("#disjoint-table").html('')
+
+			for(var i = 0; i < disjoints.length; i++) {
+				var disjoint = disjoints[i];
+				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjoint-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
+				$("#disjoint-table").append(disjointDiv);
+			}
+			
+			$.each($(".scroll-list"), function(i, div) {
+				$(div).css("min-height", "60px");
+				$(div).css("max-height", "61px");
+				if($(div).height() <= 60) {
+					$(div).css("overflow-y", "visible");
+				}
+				else {
+					$(div).css("overflow-y", "scroll");
+				}
+			});
+
+			window.history.pushState($("html").html(), document.title, "/vivo/classpage?uri=" + encodeURIComponent(uri));
+			
+			updateEventHandlers();*/
+		});
+	}
 
 	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
 	$(".stretch-panel-header").click(function() {
@@ -323,19 +416,19 @@ $(document).ready(function() {
 	}
 
 	var onFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': 'true'}, function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': 'true'}, function(data) {
 
 		});
 	}
 
 	var onInverseFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': 'true'}, function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': 'true'}, function(data) {
 
 		});
 	}
 
 	var onReflexiveCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': 'true'}, function() {
+		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': 'true'}, function(data) {
 
 		});
 	}
