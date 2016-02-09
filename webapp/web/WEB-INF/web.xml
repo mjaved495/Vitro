@@ -760,6 +760,15 @@
   	<servlet-name>ObjectPropertyPageController</servlet-name>
   	<url-pattern>/propertypage</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddSuperpropertyItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSuperpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddSuperpropertyItemController</servlet-name>
+  	<url-pattern>/edit_api/add_superproperty</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>DatatypeRetryController</servlet-name>

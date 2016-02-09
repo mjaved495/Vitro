@@ -43,6 +43,8 @@ public class ObjectPropertyPageController extends BaseEditController {
 		ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
 		ObjectProperty op = (ObjectProperty) opDao.getObjectPropertyByURI(request.getParameter("uri"));
 		
+		VClassDao vcDao = wadf.getVClassDao();
+		
 		request.setAttribute("objectProperty", op);
 		
 		if(op.getNamespace() != null) {
@@ -54,16 +56,16 @@ public class ObjectPropertyPageController extends BaseEditController {
 		
 		request.setAttribute("allProperties", opDao.getAllObjectProperties());
 		
-		List<Object> superproperties = new ArrayList<Object>();
-		List<Object> siblings = new ArrayList<Object>();
-		List<Object> subproperties = new ArrayList<Object>();
+		List<ObjectProperty> superproperties = getPropsForURIList(opDao.getAllSuperPropertyURIs(op.getURI()), opDao);
+		List<ObjectProperty> subproperties = getPropsForURIList(opDao.getAllSubPropertyURIs(op.getURI()), opDao);
 		List<Object> inverses = new ArrayList<Object>();
 		
 		List<Object> domains = new ArrayList<Object>();
+		domains.add(op.getDomainVClass());
 		List<Object> ranges = new ArrayList<Object>();
+		ranges.add(op.getRangeVClass());
 		
 		request.setAttribute("superproperties", superproperties);
-		request.setAttribute("siblings", siblings);
 		request.setAttribute("subproperties", subproperties);
 		request.setAttribute("inverses", inverses);
 		
@@ -114,34 +116,58 @@ public class ObjectPropertyPageController extends BaseEditController {
 				opDao.getSuperPropertyURIs(root.getURI(), false), opDao);
 	}
 	
-	public List<ObjectProperty> dfsTraversal(ObjectPropertyDao opDao, ObjectProperty root) {
+	private List<VClass> getVClassesForURIList(List<String> vclassURIs, VClassDao vcDao) {
+        List<VClass> vclasses = new ArrayList<VClass>();
+        Iterator<String> urIt = vclassURIs.iterator();
+        while (urIt.hasNext()) {
+            String vclassURI = urIt.next();
+            VClass vclass = vcDao.getVClassByURI(vclassURI);
+            if (vclass != null) {
+                vclasses.add(vclass);
+            }
+        }
+        return vclasses;
+    }
+	
+	private List<VClass> getSuperclasses(VClassDao vcDao, VClass root) {
+		return getVClassesForURIList(
+                vcDao.getSuperClassURIs(root.getURI(),false), vcDao);
+	}
+	
+	private List<VClass> getSubclasses(VClassDao vcDao, VClass root) {
+		return getVClassesForURIList(
+                vcDao.getSubClassURIs(root.getURI()), vcDao);
+	}
+	
+	public List<VClass> dfsTraversal(VClassDao vcDao, VClass root) {
 		// preorder traversal (depth-first search)
-		List<ObjectProperty> result = new ArrayList<ObjectProperty>();
-		if(getSubproperties(opDao, root).size() == 0) {
+		List<VClass> result = new ArrayList<VClass>();
+		if(getSubclasses(vcDao, root).size() == 0) {
 			result.add(root);
 			return result;
 		}
 		else {
-			for(ObjectProperty subproperty : getSubproperties(opDao, root)) {
-				result.addAll(dfsTraversal(opDao, subproperty));
+			for(VClass subclass : getSubclasses(vcDao, root)) {
+				result.addAll(dfsTraversal(vcDao, subclass));
 			}
 			return result;
 		}
 	}
 	
-	public List<ObjectProperty> getVClassesInOntology(ObjectPropertyDao opDao, ObjectProperty op) {
+	public List<VClass> getVClassesInOntology(VClassDao vcDao, VClass vcl) {
 		// travel up in class hierarchy tree until reaching root
 		
-		ObjectProperty currentProp = op;
-		List<ObjectProperty> superproperties = getSuperproperties(opDao, currentProp);
-		while(superproperties.size() > 0) {
-			currentProp = superproperties.get(0);
-			superproperties = getSuperproperties(opDao, currentProp);
+		VClass currentVClass = vcl;
+		List<VClass> superclasses = getSuperclasses(vcDao, currentVClass);
+		while(superclasses.size() > 0) {
+			currentVClass = superclasses.get(0);
+			superclasses = getSuperclasses(vcDao, currentVClass);
 		}
 		
 		// now at root
 		// preorder traversal (depth-first search)
 		
-		return dfsTraversal(opDao, currentProp);
+		return dfsTraversal(vcDao, currentVClass);
 	}
+	
 }

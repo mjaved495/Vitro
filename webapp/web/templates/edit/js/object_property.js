@@ -156,9 +156,24 @@ $(document).ready(function() {
 		}
 	});
 
+	function updateEventHandlers() {
+		$(".action-edit-superproperty").click(actionEditSuperproperty);
+		$(".action-delete-superproperty").click(actionDeleteSuperproperty);
+		$(".action-edit-subproperty").click(actionEditSubproperty);
+		$(".action-delete-subproperty").click(actionDeleteSubproperty);
+		$(".action-edit-eqproperty").click(actionEditEqProperty);
+		$(".action-delete-eqproperty").click(actionDeleteEqProperty);
+		$(".action-edit-inverse").click(actionEditInverse);
+		$(".action-delete-inverse").click(actionDeleteInverse);
+		$(".action-edit-domain").click(actionEditDomain);
+		$(".action-delete-domain").click(actionDeleteDomain);
+		$(".action-edit-range").click(actionEditRange);
+		$(".action-delete-range").click(actionDeleteRange);
+	}
+
 	var actionEditSuperproperty = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditSuperpropertyCallback);
+		replaceWithInput(itemDetail, actionEditSuperpropertyCallback, "superproperty");
 	}
 
 	var actionDeleteSuperproperty = function() {
@@ -171,7 +186,7 @@ $(document).ready(function() {
 
 	var actionEditSubproperty = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditSubpropertyCallback);
+		replaceWithInput(itemDetail, actionEditSubpropertyCallback, "subproperty");
 	}
 
 	var actionDeleteSubproperty = function() {
@@ -184,7 +199,7 @@ $(document).ready(function() {
 
 	var actionEditEqProperty = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditEqPropertyCallback);
+		replaceWithInput(itemDetail, actionEditEqPropertyCallback, "eqproperty");
 	}
 
 	var actionDeleteEqProperty = function() {
@@ -197,7 +212,7 @@ $(document).ready(function() {
 
 	var actionEditInverse = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditInverseCallback);
+		replaceWithInput(itemDetail, actionEditInverseCallback, "inverseproperty");
 	}
 
 	var actionDeleteInverse = function() {
@@ -210,7 +225,7 @@ $(document).ready(function() {
 
 	var actionEditDomain = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditDomainCallback);
+		replaceWithInput(itemDetail, actionEditDomainCallback, "domainclass");
 	}
 
 	var actionDeleteDomain = function() {
@@ -223,7 +238,7 @@ $(document).ready(function() {
 
 	var actionEditRange = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditRangeCallback);
+		replaceWithInput(itemDetail, actionEditRangeCallback, "rangeclass");
 	}
 
 	var actionDeleteRange = function() {
@@ -315,9 +330,9 @@ $(document).ready(function() {
 	var addSuperproperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var superpropertyURI = getURI(td.text());
+			var superpropertyURI = td.attr("data-superproperty-uri")
 			$.post('/vivo/edit_api/add_superproperty', {'propertyURI': propertyURI, 'superpropertyURI': superpropertyURI}, function(res) {
-				if(res != inverseURI) {
+				if(res != superpropertyURI) {
 					console.log("error: " + res);
 				}
 				else {
@@ -373,7 +388,7 @@ $(document).ready(function() {
 					td.parent().find(".action-delete-inverse").click(actionDeleteInverse);
 				}
 			})
-		}, "inverse");
+		}, "inverseproperty");
 	}
 
 	var addDomain = function() {
@@ -389,7 +404,7 @@ $(document).ready(function() {
 					td.parent().find(".action-delete-domain").click(actionDeleteDomain);
 				}
 			})
-		}, "domain");
+		}, "domainclass");
 	}
 
 	var addRange = function() {
@@ -405,7 +420,7 @@ $(document).ready(function() {
 					td.parent().find(".action-delete-range").click(actionDeleteRange);
 				}
 			})
-		}, "range");
+		}, "rangeclass");
 	}
 
 	var onTransitiveCheck = function() {
