@@ -769,6 +769,24 @@
   	<servlet-name>AddSuperpropertyItemController</servlet-name>
   	<url-pattern>/edit_api/add_superproperty</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>AddSubpropertyItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSubpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddSubpropertyItemController</servlet-name>
+  	<url-pattern>/edit_api/add_subproperty</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddEqPropertyItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddEqPropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddEqPropertyItemController</servlet-name>
+  	<url-pattern>/edit_api/add_eqproperty</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>DatatypeRetryController</servlet-name>

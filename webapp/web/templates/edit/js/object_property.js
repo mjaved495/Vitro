@@ -330,7 +330,7 @@ $(document).ready(function() {
 	var addSuperproperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var superpropertyURI = td.attr("data-superproperty-uri")
+			var superpropertyURI = td.attr("data-superproperty-uri");
 			$.post('/vivo/edit_api/add_superproperty', {'propertyURI': propertyURI, 'superpropertyURI': superpropertyURI}, function(res) {
 				if(res != superpropertyURI) {
 					console.log("error: " + res);
@@ -346,9 +346,9 @@ $(document).ready(function() {
 	var addSubproperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var subpropertyURI = getURI(td.text());
+			var subpropertyURI = td.attr("data-subproperty-uri");
 			$.post('/vivo/edit_api/add_subproperty', {'propertyURI': propertyURI, 'subpropertyURI': subpropertyURI}, function(res) {
-				if(res != inverseURI) {
+				if(res != subpropertyURI) {
 					console.log("error: " + res);
 				}
 				else {
@@ -362,8 +362,8 @@ $(document).ready(function() {
 	var addEqProperty = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var eqPropertyURI = getURI(td.text());
-			$.post('/vivo/edit_api/add_eqproperty', {'propertyURI': propertyURI, 'eqPropertyURI': inverseURI}, function(res) {
+			var eqPropertyURI = td.attr("data-eqproperty-uri")
+			$.post('/vivo/edit_api/add_eqproperty', {'propertyURI': propertyURI, 'eqPropertyURI': eqPropertyURI}, function(res) {
 				if(res != eqPropertyURI) {
 					console.log("error: " + res);
 				}
