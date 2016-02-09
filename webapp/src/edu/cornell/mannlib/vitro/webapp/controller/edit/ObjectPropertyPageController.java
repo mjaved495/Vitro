@@ -61,9 +61,14 @@ public class ObjectPropertyPageController extends BaseEditController {
 		List<Object> inverses = new ArrayList<Object>();
 		
 		List<Object> domains = new ArrayList<Object>();
-		domains.add(op.getDomainVClass());
+		if(op.getDomainVClass() != null) {
+			domains.add(op.getDomainVClass());
+		}
+		
 		List<Object> ranges = new ArrayList<Object>();
-		ranges.add(op.getRangeVClass());
+		if(op.getRangeVClass() != null) {
+			ranges.add(op.getRangeVClass());
+		}
 		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("subproperties", subproperties);
