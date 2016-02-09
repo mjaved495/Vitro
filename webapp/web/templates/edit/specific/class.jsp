@@ -15,11 +15,11 @@
 
 <c:choose>
     <c:when test="${empty allClasses}">
-        <input type="hidden" class="option-data" data-uri="" value="None"/>
+        <input type="hidden" class="class-option-data" data-uri="" value="None"/>
     </c:when>
     <c:otherwise>
         <c:forEach items="${allClasses}" var="vclass">
-            <input type="hidden" class="option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}"/>
+            <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>

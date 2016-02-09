@@ -1,6 +1,6 @@
-var replaceWithInput = function(jQElement, onSubmitCallback) {
+var replaceWithInput = function(jQElement, onSubmitCallback, type) {
 	var text = jQElement.text();
-	var input = createAutocompleteInput();
+	var input = createAutocompleteInput(type);
 	jQElement.html('');
 	jQElement.append(input);
 	input.select2();
@@ -37,18 +37,27 @@ var deleteItem = function(jQElement, onRemovalCallback) {
 	});
 }
 
-var createAutocompleteInput = function() {
+var createAutocompleteInput = function(type) {
 	var input = $("<select class='option-select' style='width:50%'></select>");
-	$.each($(".option-data"), function(i, optionInput) {
+	var identifier = "";
+	if(type.indexOf("class") > -1) {
+		identifier = ".class-option-data";
+	}
+	else {
+		identifier = ".property-option-data";
+	}
+	$.each($(identifier), function(i, optionInput) {
 		input.append($('<option data-uri="' + $(optionInput).attr('data-uri') + '">' + $(optionInput).val() + '</option>'));
 	});
 	return input;
 }
 
+
+
 var addItem = function(jQElement, onAddCallback, type) {
 	var tableRow = $("<tr class='class-item'></tr>");
 	var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
-	var input = createAutocompleteInput();
+	var input = createAutocompleteInput(type);
 	tdItemDetail.append(input);
 	input.select2({
 		placeholder: "Select an item"
