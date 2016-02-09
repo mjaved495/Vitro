@@ -252,65 +252,75 @@ $(document).ready(function() {
 	var actionEditSuperpropertyCallback = function() { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldSuperpropertyURI = itemDetail.attr("data-superproperty-uri");
-		var newSuperpropertyURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_superproperty", {"propertyURI": propertyURI, 
-		"oldSuperpropertyURI": oldSuperpropertyURI, "newSuperpropertyURI": newSuperpropertyURI},
-		function(res) {
-			if(!(res === newSuperpropertyURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+			var newSuperpropertyURI = data;
+			$.post("/vivo/edit_api/edit_superproperty", {"propertyURI": propertyURI, 
+			"oldSuperpropertyURI": oldSuperpropertyURI, "newSuperpropertyURI": newSuperpropertyURI},
+			function(res) {
+				if(!(res === newSuperpropertyURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	};
 
 	var actionEditSubpropertyCallback = function() { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldSubpropertyURI = itemDetail.attr("data-subproperty-uri");
-		var newSubpropertyURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_subproperty", {"propertyURI": propertyURI, 
-		"oldSubpropertyURI": oldSuperpropertyURI, "newSubpropertyURI": newSubpropertyURI},
-		function(res) {
-			if(!(res === newSubpropertyURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "property"}, function(data) {
+			var newSubpropertyURI = data;
+			$.post("/vivo/edit_api/edit_subproperty", {"propertyURI": propertyURI, 
+			"oldSubpropertyURI": oldSuperpropertyURI, "newSubpropertyURI": newSubpropertyURI},
+			function(res) {
+				if(!(res === newSubpropertyURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
 	var actionEditEqProperty = function() { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldEqPropertyURI = itemDetail.attr("data-eqproperty-uri");
-		var newEqPropertyURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_eqproperty", {"propertyURI": propertyURI, 
-		"oldEqPropertyURI": oldEqPropertyURI, "newEqPropertyURI": newEqPropertyURI},
-		function(res) {
-			if(!(res === newEqPropertyURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "property"}, function(data) {
+			var newEqPropertyURI = data;
+			$.post("/vivo/edit_api/edit_eqproperty", {"propertyURI": propertyURI, 
+			"oldEqPropertyURI": oldEqPropertyURI, "newEqPropertyURI": newEqPropertyURI},
+			function(res) {
+				if(!(res === newEqPropertyURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
 	var actionEditInverseCallback = function() { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldInverseURI = itemDetail.attr("data-inverse-uri");
-		var newInverseURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_inverse", {"propertyURI": propertyURI, 
-		"oldInverseURI": oldInverseURI, "newInverseURI": newInverseURI},
-		function(res) {
-			if(!(res === newInverseURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "property"}, function(data) {
+			var newInverseURI = data;
+			$.post("/vivo/edit_api/edit_inverse", {"propertyURI": propertyURI, 
+			"oldInverseURI": oldInverseURI, "newInverseURI": newInverseURI},
+			function(res) {
+				if(!(res === newInverseURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
 	var actionEditDomainCallback = function() { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldDomainURI = itemDetail.attr("data-domain-uri");
-		var newDomainURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_domain", {"propertyURI": propertyURI, 
-		"oldDomainURI": oldDomainURI, "newDomainURI": newDomainURI},
-		function(res) {
-			if(!(res === newDomainURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+			var newDomainURI = data;
+			$.post("/vivo/edit_api/edit_domain", {"propertyURI": propertyURI, 
+			"oldDomainURI": oldDomainURI, "newDomainURI": newDomainURI},
+			function(res) {
+				if(!(res === newDomainURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
