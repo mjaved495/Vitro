@@ -225,7 +225,7 @@ $(document).ready(function() {
 
 	var actionEditDomain = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditDomainCallback, "domainclass");
+		replaceWithInput(itemDetail, actionEditDomainCallback, "domain-class");
 	}
 
 	var actionDeleteDomain = function() {
@@ -238,7 +238,7 @@ $(document).ready(function() {
 
 	var actionEditRange = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditRangeCallback, "rangeclass");
+		replaceWithInput(itemDetail, actionEditRangeCallback, "range-class");
 	}
 
 	var actionDeleteRange = function() {
@@ -394,7 +394,7 @@ $(document).ready(function() {
 	var addDomain = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var domainURI = getURI(td.text());
+			var domainURI = td.attr('data-domain-class-uri');
 			$.post('/vivo/edit_api/add_domain', {'propertyURI': propertyURI, 'domainURI': domainURI}, function(res) {
 				if(res != domainURI) {
 					console.log("error: " + res);
@@ -404,13 +404,13 @@ $(document).ready(function() {
 					td.parent().find(".action-delete-domain").click(actionDeleteDomain);
 				}
 			})
-		}, "domainclass");
+		}, "domain-class");
 	}
 
 	var addRange = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var rangeURI = getURI(td.text());
+			var rangeURI = td.attr('data-range-class-uri');
 			$.post('/vivo/edit_api/add_range', {'propertyURI': propertyURI, 'rangeURI': rangeURI}, function(res) {
 				if(res != rangeURI) {
 					console.log("error: " + res);
@@ -420,7 +420,7 @@ $(document).ready(function() {
 					td.parent().find(".action-delete-range").click(actionDeleteRange);
 				}
 			})
-		}, "rangeclass");
+		}, "range-class");
 	}
 
 	var onTransitiveCheck = function() {
