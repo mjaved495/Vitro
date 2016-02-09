@@ -617,6 +617,15 @@
   	<url-pattern>/edit_api/propinfo</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>EditSuperclassItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditSuperclassItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditSuperclassItemController</servlet-name>
+  	<url-pattern>/edit_api/edit_superclass</url-pattern>
+  </servlet-mapping>
+  
    <servlet>
   	<servlet-name>EditSubclassItemController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditSubclassItemController</servlet-class>
@@ -787,6 +796,33 @@
   	<servlet-name>AddEqPropertyItemController</servlet-name>
   	<url-pattern>/edit_api/add_eqproperty</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddDomainItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddDomainItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddDomainItemController</servlet-name>
+  	<url-pattern>/edit_api/add_domain</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddRangeItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddRangeItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddRangeItemController</servlet-name>
+  	<url-pattern>/edit_api/add_range</url-pattern>
+  </servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetURIController</servlet-name>
+		<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.GetURIController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetURIController</servlet-name>
+		<url-pattern>/edit_api/uri</url-pattern>
+	</servlet-mapping>
 
   <servlet>
     <servlet-name>DatatypeRetryController</servlet-name>

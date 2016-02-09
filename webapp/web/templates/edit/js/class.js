@@ -94,7 +94,7 @@ $(document).ready(function() {
 
 	var actionEditSuperclass = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditSuperclassCallback);
+		replaceWithInput(itemDetail, actionEditSuperclassCallback, "superclass");
 	}
 
 	var actionDeleteSuperclass = function() {
@@ -104,7 +104,7 @@ $(document).ready(function() {
 
 	var actionEditSubclass = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditSubclassCallback);
+		replaceWithInput(itemDetail, actionEditSubclassCallback, "subclass");
 	}
 
 	var actionDeleteSubclass = function() {
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
 	var actionEditEqClass = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditEqclassCallback);
+		replaceWithInput(itemDetail, actionEditEqclassCallback, "eqclass");
 	}
 
 	var actionDeleteEqClass = function() {
@@ -124,7 +124,7 @@ $(document).ready(function() {
 
 	var actionEditDisjoint = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditDisjointCallback);
+		replaceWithInput(itemDetail, actionEditDisjointCallback, "disjointclass");
 	}
 
 	var actionDeleteDisjoint = function() {
@@ -194,7 +194,7 @@ $(document).ready(function() {
 					td.parent().find(".action-delete-disjoint").click(actionDeleteDisjoint);
 				}
 			});
-		}, "disjoint")
+		}, "disjointclass")
 	}
 
 	var deleteVClass = function() {
@@ -214,7 +214,7 @@ $(document).ready(function() {
 	var actionEditSuperclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSuperclassURI = itemDetail.attr("data-superclass-uri");
-		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
 			var newSuperclassURI = data;
 			$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
 			"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
@@ -237,7 +237,7 @@ $(document).ready(function() {
 	var actionEditSubclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSubclassURI = itemDetail.attr("data-subclass-uri");
-		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
 			var newSubclassURI = data;
 			$.post("/vivo/edit_api/edit_subclass", {"vclassURI": vclassURI, 
 			"oldSubclassURI": oldSubclassURI, "newSubclassURI": newSubclassURI},
@@ -260,7 +260,7 @@ $(document).ready(function() {
 	var actionEditEqclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldEqClassURI = itemDetail.attr("data-eqclass-uri");
-		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
 			var newEqClassURI = data;
 			$.post("/vivo/edit_api/edit_eqclass", {"vclassURI": vclassURI, 
 			"oldEqClassURI": oldEqClassURI, "newEqClassURI": newEqClassURI},
@@ -283,7 +283,7 @@ $(document).ready(function() {
 	var actionEditDisjointCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldDisjointClassURI = itemDetail.attr("data-disjoint-uri");
-		$.get("/vivo/edit_api/uri", {"className": itemDetail.text()}, function(data) {
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
 			var newDisjointClassURI = data;
 			$.post("/vivo/edit_api/edit_disjoint", {"vclassURI": vclassURI, 
 			"oldDisjointClassURI": oldDisjointClassURI, "newDisjointClassURI": newDisjointClassURI},
@@ -409,7 +409,7 @@ $(document).ready(function() {
 	}
 
 	var editVClassName = function(name) {
-		$.post("/vivo/edit_api/edit_vclass_name", {"uri": $("#uri").val(), "newClassName": name}, function(data) {
+		$.post("/vivo/edit_api/edit_vclass_name", {"uri": $("#uri").val(), "newname": name}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();
