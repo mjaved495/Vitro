@@ -139,10 +139,10 @@
                     <table id="superproperty-table">
                             <c:forEach items="${superproperties}" var="superproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superclass-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superproperty-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-superproperty" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-superproperty" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>
@@ -159,13 +159,13 @@
                 <td valign="bottom" colspan="4">
                    <p><b>Subproperties:</b> <span class="fa fa-plus action action-add-subproperty"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="subproperty-table">
                             <c:forEach items="${subproperties}" var="subproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-superclass-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-subproperty-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-subproperty" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-subproperty" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>
@@ -185,10 +185,10 @@
                     <table>
                             <c:forEach items="${eqproperties}" var="eqproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-superclass-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-eqproperty-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-eqproperty" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-eqproperty" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>
@@ -208,7 +208,7 @@
                     <table>
                             <c:forEach items="${inverses}" var="inverse">
                                 <tr class="class-item">
-                        	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-superclass-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
+                        	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-inverse-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>

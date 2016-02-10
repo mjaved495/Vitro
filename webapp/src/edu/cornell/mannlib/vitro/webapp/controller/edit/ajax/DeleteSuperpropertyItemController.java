@@ -18,7 +18,7 @@ public class DeleteSuperpropertyItemController extends HttpServlet {
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory();
         ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
 		
-		opDao.addSuperproperty(propertyURI, superpropertyURI);
+		opDao.removeSuperproperty(propertyURI, superpropertyURI);
 		
 		res.getWriter().print(superpropertyURI);
 	}
