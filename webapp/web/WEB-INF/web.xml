@@ -771,6 +771,42 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>DeleteSuperpropertyItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSuperpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteSuperpropertyItemController</servlet-name>
+  	<url-pattern>/edit_api/delete_superproperty</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>DeleteSubpropertyItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSubpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteSubpropertyItemController</servlet-name>
+  	<url-pattern>/edit_api/delete_subproperty</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DeleteEqpropertyItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEqpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteEqpropertyItemController</servlet-name>
+  	<url-pattern>/edit_api/delete_eqproperty</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>DeleteInverseItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEqpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteInverseItemController</servlet-name>
+  	<url-pattern>/edit_api/delete_inverse</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>AddSuperpropertyItemController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddSuperpropertyItemController</servlet-class>
   </servlet>
