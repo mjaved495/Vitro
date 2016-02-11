@@ -57,7 +57,7 @@ public class ObjectPropertyPageController extends BaseEditController {
 		request.setAttribute("allProperties", opDao.getAllObjectProperties());
 		
 		List<ObjectProperty> superproperties = getPropsForURIList(opDao.getAllSuperPropertyURIs(op.getURI()), opDao);
-		List<ObjectProperty> subproperties = getPropsForURIList(opDao.getAllSubPropertyURIs(op.getURI()), opDao);
+		List<ObjectProperty> subproperties = getPropsForURIList(opDao.getSubPropertyURIs(op.getURI()), opDao);
 		List<Object> inverses = new ArrayList<Object>();
 		
 		List<Object> domains = new ArrayList<Object>();
