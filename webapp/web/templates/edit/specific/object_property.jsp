@@ -79,7 +79,7 @@
     </c:when>
     <c:otherwise>
         <c:forEach items="${allProperties}" var="prop">
-            <input type="hidden" class="property-option-data" data-uri="${objectProperty.getURI()}" value="${objectProperty.getLabel()}"/>
+            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getLabel()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>

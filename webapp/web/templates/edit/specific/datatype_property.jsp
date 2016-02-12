@@ -11,68 +11,6 @@
 
 <input type="hidden" id="property-uri" data-property-uri="${objectProperty.getURI()}"/>
 
-<!-- <div class="tree-container">
-	<div class="item">
-		<table>
-			<tr class="editformcell">
-				<td valign="top" colspan="4">
-					<table>
-						<tr>
-							<td><p><b>Superproperties:</b></p>
-							<c:choose>
-								<c:when test="${empty superproperties}">
-									<p>None</p>
-								</c:when>
-								<c:otherwise>
-									<div class="scroll-list">
-										<c:forEach items="${superproperties}" var="superproperty">
-											<p><a href="#">${superproperty.getLabel()}</a></p>
-										</c:forEach>
-									</div>
-								</c:otherwise>
-							</c:choose>
-							</td>
-						</tr>
-						<tr>
-							<td><p><b>Sibling properties:</b></p>
-							<c:choose>
-								<c:when test="${empty siblings}">
-									<p>None</p>
-								</c:when>
-								<c:otherwise>
-									<div class="scroll-list">
-										<c:forEach items="${siblings}" var="sibling">
-											<p><a href="#">${sibling.getLabel()}</a></p>
-										</c:forEach>
-									</div>
-								</c:otherwise>
-							</c:choose>
-							</td>
-						</tr>
-						<tr>
-							<td><p><b>Subproperties:</b></p>
-							<c:choose>
-								<c:when test="${empty subproperties}">
-									<p>None</p>
-								</c:when>
-								<c:otherwise>
-									<div class="scroll-list">
-										<c:forEach items="${subproperties}" var="subproperty">
-											<p><a href="#">${subproperty.getLabel()}</a></p>
-										</c:forEach>
-									</div>
-								</c:otherwise>
-							</c:choose>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-	</div>
-</div>
--->
-
 <c:choose>
     <c:when test="${empty allProps}">
         <input type="hidden" class="option-data" data-uri="" value="None"/>
