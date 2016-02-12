@@ -125,6 +125,13 @@ public class ObjectPropertyInfoController extends HttpServlet {
         
         /* responseObject.put("disjoints", disjointsInfo); */
         
+        // attributes of the property
+        
+        responseObject.put("transitive", op.getTransitive());
+        responseObject.put("symmetric", op.getSymmetric());
+        responseObject.put("functional", op.getFunctional());
+        responseObject.put("inverseFunctional", op.getInverseFunctional());
+        
         VClass domain = vcDao.getVClassByURI(op.getDomainVClassURI());
         VClass range = vcDao.getVClassByURI(op.getRangeVClassURI());
         
