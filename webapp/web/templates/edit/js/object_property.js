@@ -68,6 +68,29 @@ $(document).ready(function() {
 			var domain = data["domain"];
 			var range = data["range"];
 
+			var transitive = data["transitive"];
+			var symmetric = data["symmetric"];
+			var functional = data["functional"];
+			var inverseFunctional = data["inverseFunctional"];
+
+			$("#transitive-check").prop('checked', false);
+			$("#symmetric-check").prop('checked', false);
+			$("#functional-check").prop('checked', false);
+			$("#inverse-functional-check").prop('checked', false);
+
+			if(transitive) {
+				$("#transitive-check").prop('checked', true);
+			}
+			if(symmetric) {
+				$("#symmetric-check").prop('checked', true);
+			}
+			if(functional) {
+				$("#functional-check").prop('checked', true);
+			}
+			if(inverseFunctional) {
+				$("#inverse-functional-check").prop('checked', true);
+			}
+
 			$("#vclass-uri").attr("data-vclass-uri", uri);
 			$("#vclass-uri").val(uri);
 
