@@ -113,10 +113,10 @@ $(document).ready(function() {
 				$("#disjoint-table").append(disjointDiv);
 			}*/
 
-			var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain" title="Remove this"></i></td></tr>')
+			var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain-class" title="Remove this"></i></td></tr>')
 			$("#domain-table").append(domainDiv);
 
-			var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range" title="Remove this"></i></td></tr>')
+			var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-class" title="Remove this"></i></td></tr>')
 			$("#range-table").append(rangeDiv);
 
 			$.each($(".scroll-list"), function(i, div) {
@@ -165,10 +165,10 @@ $(document).ready(function() {
 		$(".action-delete-eqproperty").click(actionDeleteEqProperty);
 		$(".action-edit-inverse").click(actionEditInverse);
 		$(".action-delete-inverse").click(actionDeleteInverse);
-		$(".action-edit-domain").click(actionEditDomain);
-		$(".action-delete-domain").click(actionDeleteDomain);
-		$(".action-edit-range").click(actionEditRange);
-		$(".action-delete-range").click(actionDeleteRange);
+		$(".action-edit-domain-class").click(actionEditDomain);
+		$(".action-delete-domain-class").click(actionDeleteDomain);
+		$(".action-edit-range-class").click(actionEditRange);
+		$(".action-delete-range-class").click(actionDeleteRange);
 	}
 
 	var actionEditSuperproperty = function() {
@@ -427,8 +427,8 @@ $(document).ready(function() {
 					console.log("error: " + res);
 				}
 				else {
-					td.parent().find(".action-edit-domain").click(actionEditDomain);
-					td.parent().find(".action-delete-domain").click(actionDeleteDomain);
+					td.parent().find(".action-edit-domain-class").click(actionEditDomain);
+					td.parent().find(".action-delete-domain-class").click(actionDeleteDomain);
 				}
 			})
 		}, "domain-class");
@@ -494,10 +494,10 @@ $(document).ready(function() {
 	$(".action-delete-eqproperty").click(actionDeleteEqProperty);
 	$(".action-edit-inverse").click(actionEditInverse);
 	$(".action-delete-inverse").click(actionDeleteInverse);
-	$(".action-edit-domain").click(actionEditDomain);
-	$(".action-delete-domain").click(actionDeleteDomain);
-	$(".action-edit-range").click(actionEditRange);
-	$(".action-delete-range").click(actionDeleteRange);
+	$(".action-edit-domain-class").click(actionEditDomain);
+	$(".action-delete-domain-class").click(actionDeleteDomain);
+	$(".action-edit-range-class").click(actionEditRange);
+	$(".action-delete-range-class").click(actionDeleteRange);
 
 	$(".action-add-superproperty").click(addSuperproperty);
 	$(".action-add-subproperty").click(addSubproperty);
