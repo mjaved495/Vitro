@@ -42,6 +42,6 @@ public class GetURIController extends HttpServlet {
 			}
 		}
 		
-		res.getWriter().println(uri);
+		res.getWriter().print(uri);
 	}
 }
