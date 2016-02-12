@@ -79,7 +79,7 @@
     </c:when>
     <c:otherwise>
         <c:forEach items="${allProperties}" var="prop">
-            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getLabel()}"/>
+            <input type="hidden" class="property-option-data" data-uri="${objectProperty.getURI()}" value="${objectProperty.getLabel()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>
@@ -276,7 +276,7 @@
         <hr/>
 
         <c:choose>
-            <c:when test="${prop.getTransitive()}">
+            <c:when test="${objectProperty.getTransitive()}">
                 <p><input type="checkbox" id="transitive-check" checked="true"/> Transitive</p>
             </c:when>
             <c:otherwise>
@@ -285,7 +285,7 @@
         </c:choose>
 
        <c:choose>
-            <c:when test="${prop.getSymmetric()}">
+            <c:when test="${objectProperty.getSymmetric()}">
                 <p><input type="checkbox" id="symmetric-check" checked="true"/> Symmetric</p>
             </c:when>
             <c:otherwise>
@@ -294,7 +294,7 @@
         </c:choose>
 
         <c:choose>
-            <c:when test="${prop.getFunctional()}">
+            <c:when test="${objectProperty.getFunctional()}">
                 <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
             </c:when>
             <c:otherwise>
@@ -303,7 +303,7 @@
         </c:choose>
 
         <c:choose>
-            <c:when test="${prop.getInverseFunctional()}">
+            <c:when test="${objectProperty.getInverseFunctional()}">
                 <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Inverse Functional</p>
             </c:when>
             <c:otherwise>
@@ -312,7 +312,7 @@
         </c:choose>
 
         <!-- <c:choose>
-            <c:when test="${prop.getTransitive()}">
+            <c:when test="${objectProperty.getTransitive()}">
                 <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Functional</p>
             </c:when>
             <c:otherwise>
