@@ -54,16 +54,14 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		}
 		
 		List<String> superproperties = dpDao.getAllSuperPropertyURIs(propertyURI);
-		//List<String> disjointProperties = dpDao.
-		//List<Object> inverses = dpDao.get
+		List<String> subproperties = dpDao.getAllSubPropertyURIs(propertyURI);
+		List<String> eqproperties = dpDao.getEquivalentPropertyURIs(propertyURI);
 		
 		Object domain = dp.getDomainClassURI();
 		Object range = dp.getRangeDatatypeURI();
 		
 		request.setAttribute("superproperties", superproperties);
-		//request.setAttribute("siblings", siblings);
-		//request.setAttribute("subproperties", subproperties);
-		//request.setAttribute("inverses", inverses);
+		request.setAttribute("subproperties", subproperties);
 		
 		request.setAttribute("domain", domain);
 		request.setAttribute("range", range);
@@ -72,9 +70,9 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		
 		RequestDispatcher rd = request.getRequestDispatcher(Controllers.BASIC_JSP);
         request.setAttribute("bodyJsp", blankJsp);
-        request.setAttribute("formJsp","/templates/edit/specific/object_property.jsp");
+        request.setAttribute("formJsp","/templates/edit/specific/datatype_property.jsp");
         request.setAttribute("colspan","4");
-        request.setAttribute("scripts","/templates/edit/js/object_property.js");
+        request.setAttribute("scripts","/templates/edit/js/datatype_property.js");
         request.setAttribute("title","Datatype Property Editing Form");
 		
         try {
