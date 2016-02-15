@@ -4,18 +4,12 @@ import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.Reasoning
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jena.atlas.logging.Log;
-
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -25,29 +19,27 @@ import com.google.gson.JsonSerializer;
 
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
-import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
+import edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.GetPropHierarchyTree.PropSerializer;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
-import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
-public class GetPropHierarchyTree extends HttpServlet {
-	
-	public class PropSerializer implements JsonSerializer<ObjectProperty> {
+public class GetDatatypePropertyHierarchyTree extends HttpServlet {
+	public class PropSerializer implements JsonSerializer<DataProperty> {
 		@Override
-		public JsonElement serialize(ObjectProperty src, Type typeOfSrc, JsonSerializationContext context) {
+		public JsonElement serialize(DataProperty src, Type typeOfSrc, JsonSerializationContext context) {
 			return new JsonPrimitive(src.getLocalName());
 		}
 	}
 	
-	public String jsonTree(ObjectProperty root, ObjectPropertyDao opDao) {
+	public String jsonTree(DataProperty root, DataPropertyDao dpDao) {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 		gsonBuilder.registerTypeAdapter(ObjectProperty.class, new PropSerializer());
 		Gson gson = gsonBuilder.create();
-		List<PropHierarchyNode> tree = GetPropHierarchyUtils.generatePropList(opDao);
+		List<PropHierarchyNode> tree = GetPropHierarchyUtils.generateDataPropList(dpDao);
 		PropHierarchyNode parent = new PropHierarchyNode("All Properties");
 		for(PropHierarchyNode node : tree) {
 			parent.addChild(node);
@@ -61,9 +53,8 @@ public class GetPropHierarchyTree extends HttpServlet {
         
         WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
         
-        ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
-        ObjectProperty op = (ObjectProperty)opDao.getObjectPropertyByURI(request.getParameter("uri"));
-		res.getWriter().println(jsonTree(op, opDao));
+        DataPropertyDao dpDao = wadf.getDataPropertyDao();
+        DataProperty dp = (DataProperty)dpDao.getDataPropertyByURI(request.getParameter("uri"));
+		res.getWriter().println(jsonTree(dp, dpDao));
 	}
 }
-

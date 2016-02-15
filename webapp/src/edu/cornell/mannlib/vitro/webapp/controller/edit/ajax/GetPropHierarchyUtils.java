@@ -6,12 +6,14 @@ import java.util.List;
 
 import com.hp.hpl.jena.ontology.ConversionException;
 
+import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
+import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
 
 public class GetPropHierarchyUtils {
 	
-	public static class PropGraphNode {
+	/*public static class PropGraphNode {
 		List<PropGraphNode> incomingNeighbors;
 		List<PropGraphNode> outgoingNeighbors;
 		ObjectProperty prop;
@@ -137,12 +139,21 @@ public class GetPropHierarchyUtils {
 	public static PropHierarchyNode generateFullTree(ObjectPropertyDao opDao) {
 		PropGraph pg = new PropGraph(opDao);
 		return pg.generateHierarchy();
-	}
+	}*/
 	
 	public static List<PropHierarchyNode> generatePropList(ObjectPropertyDao opDao) {
 		List<ObjectProperty> ops = opDao.getAllObjectProperties();
 		List<PropHierarchyNode> nodes = new ArrayList<PropHierarchyNode>();
 		for(ObjectProperty prop : ops) {
+			nodes.add(new PropHierarchyNode(prop));
+		}
+		return nodes;
+	}
+	
+	public static List<PropHierarchyNode> generateDataPropList(DataPropertyDao dpDao) {
+		List<DataProperty> dps = dpDao.getAllDataProperties();
+		List<PropHierarchyNode> nodes = new ArrayList<PropHierarchyNode>();
+		for(DataProperty prop : dps) {
 			nodes.add(new PropHierarchyNode(prop));
 		}
 		return nodes;

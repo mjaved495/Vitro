@@ -21,7 +21,7 @@ $(document).ready(function() {
 		}).on("ready.jstree", function(e, data) {
 			$("#tree").on("click", "a", function(e) {
 				// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
-				var uri = $(this).attr("data-vclass-uri");
+				var uri = $(this).attr("data-property-uri");
 				updateData(uri);
 			});
 			$("#tree").on("click", "i", function(e) {
