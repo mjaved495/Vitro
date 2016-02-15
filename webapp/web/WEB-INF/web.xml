@@ -725,6 +725,15 @@
     <url-pattern>/edit_api/get_prop_hierarchy</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>GetDataPropHierarchyTree</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.GetDatatypePropertyHierarchyTree</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetDataPropHierarchyTree</servlet-name>
+    <url-pattern>/edit_api/get_dataprop_hierarchy</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>EditVClassNameController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditVClassNameController</servlet-class>

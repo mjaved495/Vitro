@@ -6,10 +6,13 @@ import java.util.List;
 
 import com.google.gson.annotations.Expose;
 
+import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 
 public class PropHierarchyNode {
+	private DataProperty dp;
 	private ObjectProperty op;
+	
 	@Expose
 	private List<PropHierarchyNode> children;
 	
@@ -35,7 +38,7 @@ public class PropHierarchyNode {
 		this.propURI = op.getURI();
 		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
-		this.a_attr.put("data-vclass-uri", op.getURI());
+		this.a_attr.put("data-property-uri", op.getURI());
 		this.a_attr.put("title", op.getURI());
 	}
 	
@@ -46,8 +49,19 @@ public class PropHierarchyNode {
 		this.propURI = op.getURI();
 		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
-		this.a_attr.put("data-vclass-uri", op.getURI());
+		this.a_attr.put("data-property-uri", op.getURI());
 		this.a_attr.put("title", op.getURI());
+	}
+	
+	public PropHierarchyNode(DataProperty dp) {
+		this.dp = dp;
+		this.children = new ArrayList<PropHierarchyNode>();
+		this.text = dp.getLocalName();
+		this.propURI = dp.getURI();
+		this.icon = "/vivo/images/greendot.png";
+		this.a_attr = new Hashtable<String, String>();
+		this.a_attr.put("data-property-uri", dp.getURI());
+		this.a_attr.put("title", dp.getURI());
 	}
 	
 	public PropHierarchyNode(String name) {
