@@ -226,15 +226,22 @@
         <table class="domain-table">
             <tr>
                 <td valign="bottom" colspan="4">
-                   <p><b>Domains:</b> <span class="fa fa-plus action action-add-domain"></span></p>
+                   <p id="add-domain-container"><b>Domain:</b> 
+                    <c:choose>
+                        <c:when test="${empty domains}">
+                            <span class="fa fa-plus action action-add-domain"></span>
+                        </c:when>
+                        <c:otherwise></c:otherwise>
+                    </c:choose>
+                </p>
                    <div class="scroll-list">
                     <table>
                             <c:forEach items="${domains}" var="domain">
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-superclass-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-domain" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-domain" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-domain-class" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>
@@ -249,15 +256,22 @@
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr>
                 <td valign="bottom" colspan="4">
-                   <p><b>Ranges:</b> <span class="fa fa-plus action action-add-range"></span></p>
+                   <p id="add-range-container"><b>Range:</b> 
+                    <c:choose>
+                        <c:when test="${empty ranges}">
+                            <span class="fa fa-plus action action-add-range"></span>
+                        </c:when>
+                        <c:otherwise></c:otherwise>
+                    </c:choose>
+                </p>
                    <div class="scroll-list">
                     <table>
                             <c:forEach items="${ranges}" var="range">
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-superclass-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-range" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-range-class" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>

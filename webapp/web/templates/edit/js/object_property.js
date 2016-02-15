@@ -137,10 +137,10 @@ $(document).ready(function() {
 			}*/
 
 			var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain-class" title="Remove this"></i></td></tr>')
-			$("#domain-table").append(domainDiv);
+			$(".domain-table").append(domainDiv);
 
 			var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-class" title="Remove this"></i></td></tr>')
-			$("#range-table").append(rangeDiv);
+			$(".range-table").append(rangeDiv);
 
 			$.each($(".scroll-list"), function(i, div) {
 				$(div).css("min-height", "60px");
@@ -363,6 +363,15 @@ $(document).ready(function() {
 		});
 	}
 
+	var actionDeleteDomainCallback = function(row) {
+		var domainURI = row.find(".item-detail").attr("data-domain-class-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_domain", {"domainURI": domainURI, "propertyURI": propertyURI}, function(res) {
+			$("#add-domain-container").append("<span class='fa fa-plus action action-add-domain'></span>");
+			$(".action-add-domain").click(addDomain);
+		})
+	}
+
 	var actionEditRangeCallback = function(itemDetail) { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldRangeURI = itemDetail.attr("data-range-uri");
@@ -374,6 +383,10 @@ $(document).ready(function() {
 				console.log("error: " + res);
 			}
 		});
+	}
+
+	var actionDeleteRangeCallback = function(row) {
+
 	}
 
 	var addSuperproperty = function() {
