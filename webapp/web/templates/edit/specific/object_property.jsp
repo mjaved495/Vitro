@@ -238,7 +238,7 @@
                     <table>
                             <c:forEach items="${domains}" var="domain">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-superclass-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-domain-class-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-domain-class" title="Remove this"></i> </td>
@@ -268,7 +268,7 @@
                     <table>
                             <c:forEach items="${ranges}" var="range">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-superclass-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-range-class-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-range-class" title="Remove this"></i> </td>

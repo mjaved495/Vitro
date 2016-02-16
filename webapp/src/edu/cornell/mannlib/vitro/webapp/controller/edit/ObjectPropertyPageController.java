@@ -58,6 +58,7 @@ public class ObjectPropertyPageController extends BaseEditController {
 		
 		List<ObjectProperty> superproperties = getPropsForURIList(opDao.getAllSuperPropertyURIs(op.getURI()), opDao);
 		List<ObjectProperty> subproperties = getPropsForURIList(opDao.getSubPropertyURIs(op.getURI()), opDao);
+		List<ObjectProperty> eqproperties = getPropsForURIList(opDao.getEquivalentPropertyURIs(op.getURI()), opDao);
 		List<Object> inverses = new ArrayList<Object>();
 		
 		List<Object> domains = new ArrayList<Object>();
@@ -72,6 +73,8 @@ public class ObjectPropertyPageController extends BaseEditController {
 		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("subproperties", subproperties);
+		request.setAttribute("eqproperties", eqproperties);
+		log.debug(eqproperties);
 		request.setAttribute("inverses", inverses);
 		
 		request.setAttribute("domains", domains);

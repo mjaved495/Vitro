@@ -834,11 +834,11 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>DeleteEqpropertyItemController</servlet-name>
-    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEqpropertyItemController</servlet-class>
+    <servlet-name>DeleteEqPropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEqPropertyItemController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeleteEqpropertyItemController</servlet-name>
+    <servlet-name>DeleteEqPropertyItemController</servlet-name>
     <url-pattern>/edit_api/delete_eqproperty</url-pattern>
   </servlet-mapping>
   

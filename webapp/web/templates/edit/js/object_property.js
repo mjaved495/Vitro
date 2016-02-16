@@ -350,7 +350,7 @@ $(document).ready(function() {
 
 	var actionEditDomainCallback = function(itemDetail) { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		var oldDomainURI = itemDetail.attr("data-domain-uri");
+		var oldDomainURI = itemDetail.attr("data-domain-class-uri");
 		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "property"}, function(data) {
 			var newDomainURI = data;
 			$.post("/vivo/edit_api/edit_domain", {"propertyURI": propertyURI, 
@@ -428,7 +428,7 @@ $(document).ready(function() {
 			$.ajax({
 				"type": "POST",
 				"url": '/vivo/edit_api/add_eqproperty', 
-				"data": {'propertyURI': propertyURI, 'eqPropertyURI': eqPropertyURI}, 
+				"data": {'propertyURI': propertyURI, 'eqpropertyURI': eqPropertyURI}, 
 				"success": function(res) {
 					td.parent().find(".action-edit-eqproperty").click(actionEditEqProperty);
 					td.parent().find(".action-delete-eqproperty").click(actionDeleteEqProperty);

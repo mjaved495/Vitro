@@ -21,8 +21,8 @@ public class DeleteDomainItemController extends HttpServlet {
         ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
 		VClassDao vcDao = wadf.getVClassDao();
         
-		ObjectProperty op = opDao.getObjectPropertyByURI("propertyURI");
-		op.setDomainVClassURI(vcDao.getTopConcept().getURI());
+		ObjectProperty op = opDao.getObjectPropertyByURI(propertyURI);
+		op.setDomainVClassURI("");
 		opDao.updateObjectProperty(op);
 		
 		res.getWriter().print("ok");
