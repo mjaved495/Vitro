@@ -177,12 +177,12 @@
     </div>
 
     <div class="item">
-        <table class="eqproperty-table">
+        <table>
             <tr>
                 <td valign="bottom" colspan="4">
                    <p><b>Equivalent properties:</b> <span class="fa fa-plus action action-add-eqproperty"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="eqproperty-table">
                             <c:forEach items="${eqproperties}" var="eqproperty">
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-eqproperty-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
@@ -223,7 +223,7 @@
     </div>
 
     <div class="item">
-        <table class="domain-table">
+        <table>
             <tr>
                 <td valign="bottom" colspan="4">
                    <p id="add-domain-container"><b>Domain:</b> 
@@ -235,7 +235,7 @@
                     </c:choose>
                 </p>
                    <div class="scroll-list">
-                    <table>
+                    <table class="domain-table">
                             <c:forEach items="${domains}" var="domain">
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-domain-class-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
@@ -252,7 +252,7 @@
     </div>
 
     <div class="item">
-        <table class="range-table">
+        <table>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr>
                 <td valign="bottom" colspan="4">
@@ -265,7 +265,7 @@
                     </c:choose>
                 </p>
                    <div class="scroll-list">
-                    <table>
+                    <table class="range-table">
                             <c:forEach items="${ranges}" var="range">
                                 <tr class="class-item">
                                    <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-range-class-uri="${range.getURI()}"><p>${range.getName()}</p></td> 

@@ -136,22 +136,13 @@ $(document).ready(function() {
 				$("#disjoint-table").append(disjointDiv);
 			}*/
 
+			$(".domain-table").html('');
 			var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain-class" title="Remove this"></i></td></tr>')
 			$(".domain-table").append(domainDiv);
 
+			$(".range-table").html('');
 			var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-class" title="Remove this"></i></td></tr>')
 			$(".range-table").append(rangeDiv);
-
-			$.each($(".scroll-list"), function(i, div) {
-				$(div).css("min-height", "60px");
-				$(div).css("max-height", "61px");
-				if($(div).height() <= 60) {
-					$(div).css("overflow-y", "visible");
-				}
-				else {
-					$(div).css("overflow-y", "scroll");
-				}
-			});
 
 			window.history.pushState($("html").html(), document.title, "/vivo/propertypage?uri=" + encodeURIComponent(uri));
 			
@@ -386,7 +377,12 @@ $(document).ready(function() {
 	}
 
 	var actionDeleteRangeCallback = function(row) {
-
+		var rangeURI = row.find(".item-detail").attr("data-range-class-uri");
+		var propertyURI = $("#property-uri").attr("data-property-uri");
+		$.post("/vivo/edit_api/delete_range", {"rangeURI": rangeURI, "propertyURI": propertyURI}, function(res) {
+			$("#add-range-container").append("<span class='fa fa-plus action action-add-range'></span>");
+			$(".action-add-range").click(addRange);
+		})
 	}
 
 	var addSuperproperty = function() {
@@ -467,6 +463,7 @@ $(document).ready(function() {
 				else {
 					td.parent().find(".action-edit-domain-class").click(actionEditDomain);
 					td.parent().find(".action-delete-domain-class").click(actionDeleteDomain);
+					$("#add-domain-container").html("<b>Domain:</b>");
 				}
 			})
 		}, "domain-class");
@@ -483,6 +480,7 @@ $(document).ready(function() {
 				else {
 					td.parent().find(".action-edit-range").click(actionEditRange);
 					td.parent().find(".action-delete-range").click(actionDeleteRange);
+					$("#add-range-container").html("<b>Range:</b>");
 				}
 			})
 		}, "range-class");

@@ -74,7 +74,7 @@ public class ObjectPropertyInfoController extends HttpServlet {
         responseObject.put("group", group);*/
         
         List<ObjectProperty> superproperties = getPropsForURIList(
-                opDao.getSuperPropertyURIs(op.getURI(),false), displayOpDao);
+                opDao.getAllSuperPropertyURIs(op.getURI()), displayOpDao);
         
         List<Hashtable<String, String>> superpropertiesInfo = new ArrayList<Hashtable<String, String>>();
         for(ObjectProperty prop : superproperties) {
