@@ -815,6 +815,24 @@
     <url-pattern>/edit_api/edit_inverse</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>EditDomainItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditDomainItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDomainItemController</servlet-name>
+    <url-pattern>/edit_api/edit_domain</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>EditRangeItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditRangeItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditRangeItemController</servlet-name>
+    <url-pattern>/edit_api/edit_range</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>DeleteSuperpropertyItemController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteSuperpropertyItemController</servlet-class>
@@ -867,6 +885,15 @@
   <servlet-mapping>
     <servlet-name>DeleteRangeItemController</servlet-name>
     <url-pattern>/edit_api/delete_range</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>EditPropNameController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.objproperty.EditPropNameController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditPropNameController</servlet-name>
+  	<url-pattern>/edit_api/edit_prop_name</url-pattern>
   </servlet-mapping>
   
   <servlet>
