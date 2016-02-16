@@ -409,7 +409,7 @@ $(document).ready(function() {
 	}
 
 	var editVClassName = function(name) {
-		$.post("/vivo/edit_api/edit_vclass_name", {"uri": $("#uri").val(), "newname": name}, function(data) {
+		$.post("/vivo/edit_api/edit_vclass_name", {"uri": $("#uri").val(), "newClassName": name}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();

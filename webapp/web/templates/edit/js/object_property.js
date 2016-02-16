@@ -170,6 +170,29 @@ $(document).ready(function() {
 		}
 	});
 
+	var actionEditName = function() {
+		if($("#name-input").length == 0) {
+			$("#name").hide();
+			var nameInput = $("<input type='text' id='name-input'/>");
+			$("#name").parent().prepend(nameInput);
+			$(nameInput).keypress(function(e) {
+				if(e.keyCode == 13) {
+					editPropName($(this).val());
+				}
+			});
+		}
+	}
+
+	var editPropName = function(name) {
+		$.post("/vivo/edit_api/edit_prop_name", {"uri": $("#uri").val(), "newPropertyName": name}, function(data) {
+			setTimeout(function() {
+				$("#name-input").remove();
+				$("#name").show();
+				$("#name").text(data);
+			}, 2000);
+		})
+	}
+
 	function updateEventHandlers() {
 		$(".action-edit-superproperty").click(actionEditSuperproperty);
 		$(".action-delete-superproperty").click(actionDeleteSuperproperty);
@@ -342,7 +365,7 @@ $(document).ready(function() {
 	var actionEditDomainCallback = function(itemDetail) { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldDomainURI = itemDetail.attr("data-domain-class-uri");
-		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "property"}, function(data) {
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
 			var newDomainURI = data;
 			$.post("/vivo/edit_api/edit_domain", {"propertyURI": propertyURI, 
 			"oldDomainURI": oldDomainURI, "newDomainURI": newDomainURI},
@@ -366,13 +389,15 @@ $(document).ready(function() {
 	var actionEditRangeCallback = function(itemDetail) { 
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		var oldRangeURI = itemDetail.attr("data-range-uri");
-		var newRangeURI = getURI(itemDetail.text());
-		$.post("/vivo/edit_api/edit_range", {"propertyURI": propertyURI, 
-		"oldRangeURI": oldRangeURI, "newRangeURI": newRangeURI},
-		function(res) {
-			if(!(res === newRangeURI)) {
-				console.log("error: " + res);
-			}
+		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+			var newRangeURI = data;
+			$.post("/vivo/edit_api/edit_range", {"propertyURI": propertyURI, 
+			"oldRangeURI": oldRangeURI, "newRangeURI": newRangeURI},
+			function(res) {
+				if(!(res === newRangeURI)) {
+					console.log("error: " + res);
+				}
+			});
 		});
 	}
 
@@ -541,6 +566,8 @@ $(document).ready(function() {
 	$(".action-add-inverse").click(addInverse);
 	$(".action-add-domain").click(addDomain);
 	$(".action-add-range").click(addRange);
+
+	$(".action-edit-name").click(actionEditName);
 
 });
 </script>

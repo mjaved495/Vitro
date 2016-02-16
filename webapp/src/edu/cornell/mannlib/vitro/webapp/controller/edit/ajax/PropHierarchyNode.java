@@ -67,6 +67,7 @@ public class PropHierarchyNode {
 	public PropHierarchyNode(String name) {
 		this.text = name;
 		this.children = new ArrayList<PropHierarchyNode>();
+		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", "#");
 		this.a_attr.put("title", "#");
