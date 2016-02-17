@@ -37,6 +37,83 @@ $(function() {
 		});
 	});
 
+	var updateData = function(uri) {
+		$.get("/vivo/edit_api/datapropinfo", {"uri": uri}, function(jsonData) {
+			var data = JSON.parse(jsonData);
+
+			var ontology = data["ontology"];
+			var displayLevel = data["displayLevel"];
+			var updateLevel = data["updateLevel"];
+			var publishLevel = data["publishLevel"];
+
+			var propLabel = data["label"];
+			var superproperties = data["superproperties"];
+			var subproperties = data["subproperties"];
+			var eqproperties = data["eqprops"];
+			var domain = data["domain"];
+			var range = data["range"];
+
+			var functional = data["functional"];
+
+			$("#functional-check").prop('checked', false);
+			
+			if(functional) {
+				$("#functional-check").prop('checked', true);
+			}
+
+			$("#data-property-uri").attr("data-property-uri", uri);
+			$("#data-property-uri").val(uri);
+			$("#ontology-name").text(ontology);
+
+			$(".dataprop-label").html(propLabel + '<b class="datatype-property">(DATATYPE PROPERTY)</b><i class="fa fa-pencil"></i>');
+			$("#uri").val(uri);
+
+			$("#superproperty-table").html('');
+
+			for(var i = 0; i < superproperties.length; i++) {
+				var superproperty = superproperties[i];
+				var superpropertyDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + superproperty["uri"] + '" data-superproperty-uri="' + superproperty["uri"] + '"><p>' + superproperty["name"] + '</p></td><td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-superproperty" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-superproperty" title="Remove this"></i> </td></tr>')
+				$("#superproperty-table").append(superpropertyDiv);
+			}
+
+			$("#subproperty-table").html('');
+
+			for(var i = 0; i < subproperties.length; i++) {
+				var subproperty = subproperties[i];
+				var subpropertyDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + subproperty["uri"] + '" data-subproperty-uri="' + subproperty["uri"] + '"><p>' + subproperty["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"> <i class="fa fa-pencil action action-edit-subproperty" title="Edit/replace"> </i></td><td class="item-action"> <i class="fa fa-trash action action-delete-subproperty" title="Remove this"></i> </td></tr>')
+				$("#subproperty-table").append(subpropertyDiv);
+			}
+
+			$("#eqproperty-table").html('');
+
+			for(var i = 0; i < eqproperties.length; i++) {
+				var eqproperty = eqproperties[i];
+				var eqpropertyDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + eqproperty["uri"] + '" data-eqproperty-uri="' + eqproperty["uri"] + '"><p>' + eqproperty["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-eqproperty" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-eqproperty" title="Remove this"></i></td></tr>')
+				$("#eqproperty-table").append(eqpropertyDiv);
+			}
+
+			/*$("#disjoint-table").html('')
+
+			for(var i = 0; i < disjoints.length; i++) {
+				var disjoint = disjoints[i];
+				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjoint-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
+				$("#disjoint-table").append(disjointDiv);
+			}*/
+
+			$("#domain-table").html('');
+			var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain-class" title="Remove this"></i></td></tr>')
+			$("#domain-table").append(domainDiv);
+
+			$("#range-table").html('');
+			var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-class" title="Remove this"></i></td></tr>')
+			$("#range-table").append(rangeDiv);
+
+			window.history.pushState($("html").html(), document.title, "/vivo/datapropertypage?uri=" + encodeURIComponent(uri));
+			
+			updateEventHandlers();
+		});
+	}
+
 	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
 	$(".stretch-panel-header").click(function() {
 		if($(this).parent().height() > 50) {

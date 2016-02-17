@@ -35,7 +35,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <span class="vclass-label">${dataProperty.getLabel()} <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
+                     <span class="dataprop-label">${dataProperty.getLabel()} <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
                     <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
@@ -63,10 +63,10 @@
                 <td valign="bottom" colspan="4">
                    <p><b>Superproperties:</b> <span class="fa fa-plus action action-add-superproperty"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="superproperty-table">
                             <c:forEach items="${superproperties}" var="superproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superclass-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superproperty-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-superproperty" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-superproperty" title="Remove this"></i> </td>
@@ -86,10 +86,10 @@
                 <td valign="bottom" colspan="4">
                    <p><b>Subproperties:</b> <span class="fa fa-plus action action-add-subproperty"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="subproperty-table">
                             <c:forEach items="${subproperties}" var="subproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-superclass-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-subproperty-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-subproperty" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-subproperty" title="Remove this"></i> </td>
@@ -109,10 +109,10 @@
                 <td valign="bottom" colspan="4">
                    <p><b>Equivalent properties:</b> <span class="fa fa-plus action action-add-eqproperty"></span></p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="eqproperty-table">
                             <c:forEach items="${eqproperties}" var="eqproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-superclass-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-eqproperty-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-eqproperty" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-eqproperty" title="Remove this"></i> </td>
@@ -127,7 +127,7 @@
     </div>
 
      <div class="item">
-        <table class="domain-table">
+        <table>
             <tr>
                 <td valign="bottom" colspan="4">
                    <p id="add-domain-container"><b>Domain:</b> 
@@ -139,10 +139,10 @@
                     </c:choose>
                 </p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="domain-table">
                             <c:forEach items="${domains}" var="domain">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-superclass-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${domain.getURI()}" data-domain-class-uri="${domain.getURI()}"><p>${domain.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-domain-class" title="Remove this"></i> </td>
@@ -156,7 +156,7 @@
     </div>
 
     <div class="item">
-        <table class="range-table">
+        <table>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr>
                 <td valign="bottom" colspan="4">
@@ -169,10 +169,10 @@
                     </c:choose>
                 </p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="range-table">
                             <c:forEach items="${ranges}" var="range">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-superclass-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-range-class-uri="${range.getURI()}"><p>${range.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-range-class" title="Remove this"></i> </td>
