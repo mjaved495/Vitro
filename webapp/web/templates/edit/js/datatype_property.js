@@ -382,7 +382,7 @@ $(function() {
 	}
 
 	var onFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'objprop': false, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')}, function(data) {
 
 		});
 	}
@@ -406,6 +406,8 @@ $(function() {
 			uriInput.attr("readonly", "true");
 		}
 	});
+
+	$("#functional-check").change(onFunctionalCheck);
 
 	$(".action-edit-superproperty").click(actionEditSuperproperty);
 	$(".action-delete-superproperty").click(actionDeleteSuperproperty);

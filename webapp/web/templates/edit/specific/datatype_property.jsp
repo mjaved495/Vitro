@@ -193,7 +193,7 @@
         <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
         <hr/>
         <c:choose>
-            <c:when test="${prop.getFunctional()}">
+            <c:when test="${dataProperty.getFunctional()}">
                 <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
             </c:when>
             <c:otherwise>
