@@ -53,7 +53,7 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
              
              request.setAttribute("ontology",  ont);
              request.setAttribute("allClasses", ont.getVClassesList());
-             request.setAttribute("allProperties", ont.getPropsList());
+             request.setAttribute("allProperties", dpDao.getAllDataProperties());
 		}
 		
 		List<String> superproperties = dpDao.getAllSuperPropertyURIs(propertyURI);

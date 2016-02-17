@@ -12,11 +12,11 @@
 <input type="hidden" id="property-uri" data-property-uri="${dataProperty.getURI()}"/>
 
 <c:choose>
-    <c:when test="${empty allProps}">
+    <c:when test="${empty allProperties}">
         <input type="hidden" class="option-data" data-uri="" value="None"/>
     </c:when>
     <c:otherwise>
-        <c:forEach items="${allProps}" var="prop">
+        <c:forEach items="${allProperties}" var="prop">
             <input type="hidden" class="option-data" data-uri="${prop.getURI()}" value="${prop.getName()}"/>
         </c:forEach>
     </c:otherwise>
