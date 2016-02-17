@@ -18,10 +18,12 @@ import org.apache.commons.logging.LogFactory;
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
+import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.Controllers;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
+import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
@@ -42,6 +44,7 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		
 		DataPropertyDao dpDao = wadf.getDataPropertyDao();
 		DataProperty dp = dpDao.getDataPropertyByURI(propertyURI);
+		VClassDao vcDao = wadf.getVClassDao();
 		
 		request.setAttribute("dataProperty", dp);
 		
@@ -57,14 +60,20 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		List<String> subproperties = dpDao.getAllSubPropertyURIs(propertyURI);
 		List<String> eqproperties = dpDao.getEquivalentPropertyURIs(propertyURI);
 		
-		Object domain = dp.getDomainClassURI();
-		Object range = dp.getRangeDatatypeURI();
+		VClass domain = vcDao.getVClassByURI(dp.getDomainVClassURI());
+		VClass range = vcDao.getVClassByURI(dp.getRangeVClassURI());
+		
+		List<VClass> domains = new ArrayList<VClass>();
+		domains.add(domain);
+		
+		List<VClass> ranges = new ArrayList<VClass>();
+		ranges.add(range);
 		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("subproperties", subproperties);
-		
-		request.setAttribute("domain", domain);
-		request.setAttribute("range", range);
+		request.setAttribute("eqproperties", eqproperties);
+		request.setAttribute("domains", domains);
+		request.setAttribute("ranges", ranges);
 		
 		String blankJsp = "/templates/edit/blank.jsp";
 		
