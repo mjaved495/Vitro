@@ -114,6 +114,59 @@ $(function() {
 		});
 	}
 
+	function updateEventHandlers() {
+		$(".action-edit-superproperty").click(actionEditSuperproperty);
+		$(".action-delete-superproperty").click(actionDeleteSuperproperty);
+		$(".action-edit-subproperty").click(actionEditSubproperty);
+		$(".action-delete-subproperty").click(actionDeleteSubproperty);
+		$(".action-edit-eqproperty").click(actionEditEqProperty);
+		$(".action-delete-eqproperty").click(actionDeleteEqProperty);
+		$(".action-edit-domain-class").click(actionEditDomain);
+		$(".action-delete-domain-class").click(actionDeleteDomain);
+		$(".action-edit-range-class").click(actionEditRange);
+		$(".action-delete-range-class").click(actionDeleteRange);
+	}
+
+	var actionEditSuperproperty = function() {
+
+	}
+
+	var actionDeleteSuperproperty = function() {
+
+	}
+
+	var actionEditSubproperty = function() {
+
+	}
+
+	var actionDeleteSubproperty = function() {
+
+	}
+
+	var actionEditEqProperty = function() {
+
+	}
+
+	var actionDeleteEqProperty = function() {
+
+	}
+
+	var actionEditDomain = function() {
+
+	}
+
+	var actionDeleteDomain = function() {
+
+	}
+
+	var actionEditRange = function() {
+
+	}
+
+	var actionDeleteRange = function() {
+
+	}
+
 	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
 	$(".stretch-panel-header").click(function() {
 		if($(this).parent().height() > 50) {
