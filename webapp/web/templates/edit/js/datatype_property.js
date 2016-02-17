@@ -128,43 +128,53 @@ $(function() {
 	}
 
 	var actionEditSuperproperty = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditSuperpropertyCallback, "superproperty");
 	}
 
 	var actionDeleteSuperproperty = function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteSuperpropertyCallback);
 	}
 
 	var actionEditSubproperty = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditSubpropertyCallback, "subproperty");
 	}
 
 	var actionDeleteSubproperty = function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteSubpropertyCallback);
 	}
 
 	var actionEditEqProperty = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditEqPropertyCallback, "eqproperty");
 	}
 
 	var actionDeleteEqProperty = function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteEqpropertyCallback);
 	}
 
 	var actionEditDomain = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditDomainCallback, "domain-class");
 	}
 
 	var actionDeleteDomain = function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteDomainCallback);
 	}
 
 	var actionEditRange = function() {
-
+		var itemDetail = $(this).parent().parent().find(".item-detail");
+		replaceWithInput(itemDetail, actionEditRangeCallback, "range-class");
 	}
 
 	var actionDeleteRange = function() {
-
+		var row = $(this).parent().parent();
+		deleteItem(row, actionDeleteRangeCallback);
 	}
 
 	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
@@ -186,6 +196,23 @@ $(function() {
 			uriInput.attr("readonly", "true");
 		}
 	});
+
+	$(".action-edit-superproperty").click(actionEditSuperproperty);
+	$(".action-delete-superproperty").click(actionDeleteSuperproperty);
+	$(".action-edit-subproperty").click(actionEditSubproperty);
+	$(".action-delete-subproperty").click(actionDeleteSubproperty);
+	$(".action-edit-eqproperty").click(actionEditEqProperty);
+	$(".action-delete-eqproperty").click(actionDeleteEqProperty);
+	$(".action-edit-domain-class").click(actionEditDomain);
+	$(".action-delete-domain-class").click(actionDeleteDomain);
+	$(".action-edit-range-class").click(actionEditRange);
+	$(".action-delete-range-class").click(actionDeleteRange);
+
+	$(".action-add-superproperty").click(addSuperproperty);
+	$(".action-add-subproperty").click(addSubproperty);
+	$(".action-add-eqproperty").click(addEqProperty);
+	$(".action-add-domain").click(addDomain);
+	$(".action-add-range").click(addRange);
 
 })
 </script>
