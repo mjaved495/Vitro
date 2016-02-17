@@ -505,25 +505,25 @@ $(document).ready(function() {
 	}
 
 	var onSymmetricCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric', 'value': $(this).prop('checked')}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric', 'value': $(this).prop('checked')}, function(data) {
 
 		});
 	}
 
 	var onFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')}, function(data) {
 
 		});
 	}
 
 	var onInverseFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': $(this).prop('checked')}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': $(this).prop('checked')}, function(data) {
 
 		});
 	}
 
 	var onReflexiveCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': $(this).prop('checked')}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': $(this).prop('checked')}, function(data) {
 
 		});
 	}
