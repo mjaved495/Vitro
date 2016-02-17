@@ -41,19 +41,6 @@ $(document).ready(function() {
 	var updateData = function(uri) {
 		$.get("/vivo/edit_api/propinfo", {"uri": uri}, function(jsonData) {
 
-			/* jsonData will look like this:
-
-			{"displayLevel": "display level",
-			"updateLevel": "update level",
-			"publishLevel": "publish level",
-			"label": "the class label",
-			"group": "group",
-			"ontology": "ontology name",
-			"superclasses": [{"uri": "some uri", "name": "the name"}, ... ],
-			"subclasses": [{"uri": "some uri", "name": "the name"}, ... ],
-			"eqclasses": [{"uri": "some uri", "name": "the name"}, ... ],
-			"disjoints": [{"uri": "some uri", "name": "the name"}, ... ]} */
-
 			var data = JSON.parse(jsonData);
 
 			var ontology = data["ontology"];

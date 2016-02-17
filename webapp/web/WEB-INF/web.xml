@@ -618,6 +618,15 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>DataPropertyInfoController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DataPropertyInfoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DataPropertyInfoController</servlet-name>
+    <url-pattern>/edit_api/datapropinfo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>EditSuperclassItemController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.EditSuperclassItemController</servlet-class>
   </servlet>
