@@ -222,10 +222,10 @@
             <c:set var="query" 
                  value="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                        SELECT ?sub ?pred ?graph
+                        SELECT ?pred ?graph ?obj
                         WHERE 
                         {
-                          GRAPH ?graph { ?sub ?pred <${entity.URI}> }
+                          GRAPH ?graph { <${entity.URI}> ?pred ?obj }
                         } ORDER BY ?graph ?pred
                         limit 10000"/>
             <form action="admin/sparqlquery" method="get">
