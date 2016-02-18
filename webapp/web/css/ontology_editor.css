@@ -20,12 +20,12 @@ p {
 	margin-bottom:0 !important;
 }
 
-td.item-detail {
-	width:40%;
-}
-
 td.item-spacer {
 	width:50%;
+}
+
+td.item-detail {
+	width:100%;
 }
 
 td.item-action {
