@@ -499,7 +499,7 @@ $(document).ready(function() {
 	}
 
 	var onTransitiveCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive', 'value': $(this).prop('checked')}, function(data) {
+		$.post('/vivo/edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive', 'value': $(this).prop('checked')}, function(data) {
 
 		});
 	}
