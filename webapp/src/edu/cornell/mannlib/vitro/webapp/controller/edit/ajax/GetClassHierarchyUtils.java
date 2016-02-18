@@ -49,9 +49,9 @@ public class GetClassHierarchyUtils {
 				vcDao.getSuperClassURIs(root.getURI(), false), vcDao);
 	}
 	
-	public static ClassHierarchyNode generateFullTree(VClass root, VClassDao vcDao) {
-		List<VClass> superclasses = getSuperclasses(vcDao, root);
-		ClassHierarchyNode currentNode = new ClassHierarchyNode(root);
+	public static ClassHierarchyNode generateFullTree(VClass startPoint, VClassDao vcDao) {
+		List<VClass> superclasses = getSuperclasses(vcDao, startPoint);
+		ClassHierarchyNode currentNode = new ClassHierarchyNode(startPoint);
 		log.debug(currentNode.getVClass().getName());
 		while(superclasses.size() > 0) {
 			currentNode = new ClassHierarchyNode(superclasses.get(0));

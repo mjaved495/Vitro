@@ -42,13 +42,13 @@ public class GetClassHierarchyTree extends HttpServlet {
 		}
 	}
 	
-	public String jsonTree(VClass root, VClassDao vcDao) {
+	public String jsonTree(VClass startingPoint, VClassDao vcDao) {
 		
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 		gsonBuilder.registerTypeAdapter(VClass.class, new VClassSerializer());
 		Gson gson = gsonBuilder.create();
-		ClassHierarchyNode tree = GetClassHierarchyUtils.generateFullTree(root, vcDao);
+		ClassHierarchyNode tree = GetClassHierarchyUtils.generateFullTree(startingPoint, vcDao);
 		return gson.toJson(tree);
 	}
 	
