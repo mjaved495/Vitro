@@ -56,9 +56,9 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
              request.setAttribute("allProperties", dpDao.getAllDataProperties());
 		}
 		
-		List<String> superproperties = dpDao.getAllSuperPropertyURIs(propertyURI);
-		List<String> subproperties = dpDao.getAllSubPropertyURIs(propertyURI);
-		List<String> eqproperties = dpDao.getEquivalentPropertyURIs(propertyURI);
+		List<DataProperty> superproperties = getPropsForURIList(dpDao.getAllSuperPropertyURIs(propertyURI), dpDao);
+		List<DataProperty> subproperties = getPropsForURIList(dpDao.getAllSubPropertyURIs(propertyURI), dpDao);
+		List<DataProperty> eqproperties = getPropsForURIList(dpDao.getEquivalentPropertyURIs(propertyURI), dpDao);
 		
 		VClass domain = vcDao.getVClassByURI(dp.getDomainVClassURI());
 		VClass range = vcDao.getVClassByURI(dp.getRangeVClassURI());
@@ -96,57 +96,16 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		doPost(req, response);
 	}
 	
-	private static List<ObjectProperty> getPropsForURIList(List<String> propURIs, ObjectPropertyDao opDao) {
-        List<ObjectProperty> props = new ArrayList<ObjectProperty>();
+	private static List<DataProperty> getPropsForURIList(List<String> propURIs, DataPropertyDao dpDao) {
+        List<DataProperty> props = new ArrayList<DataProperty>();
         Iterator<String> urIt = propURIs.iterator();
         while (urIt.hasNext()) {
             String propURI = urIt.next();
-            ObjectProperty op = opDao.getObjectPropertyByURI(propURI);
-            if (op != null) {
-                props.add(op);
+            DataProperty dp = dpDao.getDataPropertyByURI(propURI);
+            if (dp != null) {
+                props.add(dp);
             }
         }
         return props;
     }
-	
-	private static List<ObjectProperty> getSubproperties(ObjectPropertyDao opDao, ObjectProperty root) {
-		return getPropsForURIList(
-                opDao.getSubPropertyURIs(root.getURI()), opDao);
-	}
-	
-	private static List<ObjectProperty> getSuperproperties(ObjectPropertyDao opDao, ObjectProperty root) {
-		return getPropsForURIList(
-				opDao.getSuperPropertyURIs(root.getURI(), false), opDao);
-	}
-	
-	public List<ObjectProperty> dfsTraversal(ObjectPropertyDao opDao, ObjectProperty root) {
-		// preorder traversal (depth-first search)
-		List<ObjectProperty> result = new ArrayList<ObjectProperty>();
-		if(getSubproperties(opDao, root).size() == 0) {
-			result.add(root);
-			return result;
-		}
-		else {
-			for(ObjectProperty subproperty : getSubproperties(opDao, root)) {
-				result.addAll(dfsTraversal(opDao, subproperty));
-			}
-			return result;
-		}
-	}
-	
-	public List<ObjectProperty> getVClassesInOntology(ObjectPropertyDao opDao, ObjectProperty op) {
-		// travel up in class hierarchy tree until reaching root
-		
-		ObjectProperty currentProp = op;
-		List<ObjectProperty> superproperties = getSuperproperties(opDao, currentProp);
-		while(superproperties.size() > 0) {
-			currentProp = superproperties.get(0);
-			superproperties = getSuperproperties(opDao, currentProp);
-		}
-		
-		// now at root
-		// preorder traversal (depth-first search)
-		
-		return dfsTraversal(opDao, currentProp);
-	}
 }
