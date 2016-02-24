@@ -42,12 +42,50 @@ public class GetPropHierarchyTree extends HttpServlet {
 		}
 	}
 	
+	private List<PropHierarchyNode> getChildren(PropHierarchyNode propNode, ObjectPropertyDao opDao) {
+		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
+		List<String> uris = opDao.getSubPropertyURIs(propNode.getProp().getURI());
+		for(String uri : uris) {
+			result.add(new PropHierarchyNode(opDao.getObjectPropertyByURI(uri)));
+		}
+		return result;
+	}
+	
+	private PropHierarchyNode addChildrenRecursively(PropHierarchyNode propNode, ObjectPropertyDao opDao) {
+		List<PropHierarchyNode> children = getChildren(propNode, opDao);
+		if(children.size() == 0) {
+			return propNode;
+		}
+		else {
+			for(PropHierarchyNode child : children) {
+				propNode.addChild(addChildrenRecursively(child, opDao));
+			}
+			return propNode;
+		}
+	}
+	
+	public List<PropHierarchyNode> treeify(List<PropHierarchyNode> propList, ObjectPropertyDao opDao) {
+		List<PropHierarchyNode> tree = new ArrayList<PropHierarchyNode>();
+		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
+		for(PropHierarchyNode prop : propList) {
+			ObjectProperty op = prop.getProp();
+			if(opDao.getSuperPropertyURIs(op.getURI(), false).size() == 0) {
+				tree.add(prop);
+			}
+		}
+		for(PropHierarchyNode prop : tree) {
+			result.add(addChildrenRecursively(prop, opDao));
+		}
+		return tree;
+	}
+	
 	public String jsonTree(ObjectProperty root, ObjectPropertyDao opDao) {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 		gsonBuilder.registerTypeAdapter(ObjectProperty.class, new PropSerializer());
 		Gson gson = gsonBuilder.create();
-		List<PropHierarchyNode> tree = GetPropHierarchyUtils.generatePropList(opDao);
+		List<PropHierarchyNode> propList = GetPropHierarchyUtils.generatePropList(opDao);
+		List <PropHierarchyNode> tree = treeify(propList, opDao); 
 		PropHierarchyNode parent = new PropHierarchyNode("All Properties");
 		for(PropHierarchyNode node : tree) {
 			parent.addChild(node);
