@@ -34,7 +34,7 @@ public class PropHierarchyNode {
 	public PropHierarchyNode(ObjectProperty op, List<PropHierarchyNode> children) {
 		this.op = op;
 		this.children = children;
-		this.text = op.getLocalName();
+		this.text = op.getLabel();
 		this.propURI = op.getURI();
 		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
@@ -45,7 +45,7 @@ public class PropHierarchyNode {
 	public PropHierarchyNode(ObjectProperty op) {
 		this.op = op;
 		this.children = new ArrayList<PropHierarchyNode>();
-		this.text = op.getLocalName();
+		this.text = op.getLabel();
 		this.propURI = op.getURI();
 		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
@@ -56,7 +56,7 @@ public class PropHierarchyNode {
 	public PropHierarchyNode(DataProperty dp) {
 		this.dp = dp;
 		this.children = new ArrayList<PropHierarchyNode>();
-		this.text = dp.getLocalName();
+		this.text = dp.getLabel();
 		this.propURI = dp.getURI();
 		this.icon = "/vivo/images/greendot.png";
 		this.a_attr = new Hashtable<String, String>();
