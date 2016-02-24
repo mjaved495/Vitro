@@ -128,7 +128,7 @@
             <tr>
             	<td valign="bottom" colspan="4">
                     <!-- TODO make this scrollable -->
-            	   <p><b>Superclasses:</b> <span class="fa fa-plus action action-add-superclass"></span></p>
+            	   <p><b>Superclasses:</b> <span class="fa fa-plus action action-add-superclass" id="action-add-superclass"></span></p>
                    <div class="scroll-list">
                     <table id="superclass-table">
                             <c:forEach items="${superclasses}" var="superclass">
@@ -152,7 +152,7 @@
             <tr>
                 <td valign="bottom" colspan="4">
                     <!-- TODO make this scrollable -->
-                    <p><b>Subclasses:</b> <span class="fa fa-plus action action-add-subclass"></span></p>
+                    <p><b>Subclasses:</b> <span class="fa fa-plus action action-add-subclass" id="action-add-subclass"></span></p>
                     <div class="scroll-list">
                     <table id="subclass-table">
                         <c:forEach items="${subclasses}" var="subclass">
@@ -175,7 +175,7 @@
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="bottom" colspan="4">
-            		<p><b>Equivalent classes:</b> <span class="fa fa-plus action action-add-eqclass"></span></p>
+            		<p><b>Equivalent classes:</b> <span class="fa fa-plus action action-add-eqclass" id="action-add-eqclass"></span></p>
                     <div class="scroll-list">
                         <table id="eqclass-table">
                             <c:forEach items="${equivalentClasses}" var="eqClass">
@@ -198,7 +198,7 @@
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="editformcell">
             	<td valign="top" colspan="4">
-            		<p><b>Disjoint classes:</b> <span class="fa fa-plus action action-add-disjoint"></span></p>
+            		<p><b>Disjoint classes:</b> <span class="fa fa-plus action action-add-disjoint" id="action-add-disjoint"></span></p>
                     <div class="scroll-list">
                         <table id="disjoint-table">
                     	    <c:forEach items="${disjointClasses}" var="djClass">

@@ -13,11 +13,11 @@
 
 <c:choose>
     <c:when test="${empty allProperties}">
-        <input type="hidden" class="option-data" data-uri="" value="None"/>
+        <input type="hidden" class="property-option-data" data-uri="" value="None"/>
     </c:when>
     <c:otherwise>
         <c:forEach items="${allProperties}" var="prop">
-            <input type="hidden" class="option-data" data-uri="${prop.getURI()}" value="${prop.getName()}"/>
+            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>
@@ -35,7 +35,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <span class="dataprop-label">${dataProperty.getLabel()} <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
+                     <span class="dataprop-label">${dataProperty.getName()} <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
                     <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
@@ -66,7 +66,7 @@
                     <table id="superproperty-table">
                             <c:forEach items="${superproperties}" var="superproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superproperty-uri="${superproperty.getURI()}"><p>${superproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${superproperty.getURI()}" data-superproperty-uri="${superproperty.getURI()}"><p>${superproperty.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-superproperty" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-superproperty" title="Remove this"></i> </td>
@@ -89,7 +89,7 @@
                     <table id="subproperty-table">
                             <c:forEach items="${subproperties}" var="subproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-subproperty-uri="${subproperty.getURI()}"><p>${subproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${subproperty.getURI()}" data-subproperty-uri="${subproperty.getURI()}"><p>${subproperty.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-subproperty" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-subproperty" title="Remove this"></i> </td>
@@ -112,7 +112,7 @@
                     <table id="eqproperty-table">
                             <c:forEach items="${eqproperties}" var="eqproperty">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-eqproperty-uri="${eqproperty.getURI()}"><p>${eqproperty.getLabel()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${eqproperty.getURI()}" data-eqproperty-uri="${eqproperty.getURI()}"><p>${eqproperty.getName()}</p></td> 
                                    <td class="item-spacer"></td>
                                    <td class="item-action"> <i class="fa fa-pencil action action-edit-eqproperty" title="Edit/replace"> </i></td>
                                    <td class="item-action"> <i class="fa fa-trash action action-delete-eqproperty" title="Remove this"></i> </td>
