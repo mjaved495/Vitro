@@ -65,7 +65,7 @@ var addItem = function(jQElement, onAddCallback, type) {
 	input.select2({
 		placeholder: "Select an item"
 	})
-	var cancelSpan = $("<span>&nbsp;<a href='#' id='save-select'>save</a> <a href='#' id='cancel'>cancel</a></span>");
+	var cancelSpan = $("<span>&nbsp;<a href='#' id='save-select'>save</a> <a href='#' id='cancel-" + jQElement.attr('id') + "'>cancel</a></span>");
 	tdItemDetail.append(cancelSpan);
 	tableRow.append(tdItemDetail);
 
@@ -77,7 +77,8 @@ var addItem = function(jQElement, onAddCallback, type) {
 		scrollDiv.css("overflow-y", "scroll");
 	}
 
-	$("#cancel").click(function(e) {
+	$("#cancel-" + jQElement.attr('id')).click(function(e) {
+		console.log("cancel was clicked");
 		e.preventDefault();
 		$(this).parent().parent().remove();
 	})

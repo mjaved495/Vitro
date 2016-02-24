@@ -134,7 +134,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="4">
-                   <p><b>Superproperties:</b> <span class="fa fa-plus action action-add-superproperty"></span></p>
+                   <p><b>Superproperties:</b> <span class="fa fa-plus action action-add-superproperty" id="action-add-superproperty"></span></p>
                    <div class="scroll-list">
                     <table id="superproperty-table">
                             <c:forEach items="${superproperties}" var="superproperty">
@@ -157,7 +157,7 @@
         <table class="subproperty">
             <tr>
                 <td valign="bottom" colspan="4">
-                   <p><b>Subproperties:</b> <span class="fa fa-plus action action-add-subproperty"></span></p>
+                   <p><b>Subproperties:</b> <span class="fa fa-plus action action-add-subproperty" id="action-add-subproperty"></span></p>
                    <div class="scroll-list">
                     <table id="subproperty-table">
                             <c:forEach items="${subproperties}" var="subproperty">
@@ -180,7 +180,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="4">
-                   <p><b>Equivalent properties:</b> <span class="fa fa-plus action action-add-eqproperty"></span></p>
+                   <p><b>Equivalent properties:</b> <span class="fa fa-plus action action-add-eqproperty" id="action-add-eqproperty"></span></p>
                    <div class="scroll-list">
                     <table id="eqproperty-table">
                             <c:forEach items="${eqproperties}" var="eqproperty">
@@ -203,7 +203,7 @@
         <table>
             <tr>
             	<td valign="bottom" colspan="4">
-            	   <p><b>Inverse properties:</b> <span class="fa fa-plus action action-add-inverse"></span></p>
+            	   <p><b>Inverse properties:</b> <span class="fa fa-plus action action-add-inverse" id="action-add-inverse"></span></p>
                    <div class="scroll-list">
                     <table>
                             <c:forEach items="${inverses}" var="inverse">
@@ -229,7 +229,7 @@
                    <p id="add-domain-container"><b>Domain:</b> 
                     <c:choose>
                         <c:when test="${empty domains}">
-                            <span class="fa fa-plus action action-add-domain"></span>
+                            <span class="fa fa-plus action action-add-domain" id="action-add-domain"></span>
                         </c:when>
                         <c:otherwise></c:otherwise>
                     </c:choose>
@@ -259,7 +259,7 @@
                    <p id="add-range-container"><b>Range:</b> 
                     <c:choose>
                         <c:when test="${empty ranges}">
-                            <span class="fa fa-plus action action-add-range"></span>
+                            <span class="fa fa-plus action action-add-range" id="action-add-range"></span>
                         </c:when>
                         <c:otherwise></c:otherwise>
                     </c:choose>
