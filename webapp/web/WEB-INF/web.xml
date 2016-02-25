@@ -968,6 +968,144 @@
     <url-pattern>/datatype_retry</url-pattern>
   </servlet-mapping>
 
+	<!-- <servlet>
+    <servlet-name>AddDataSuperpropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddSuperpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDataSuperpropertyItemController</servlet-name>
+    <url-pattern>/edit_api/add_data_superproperty</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AddDataSubpropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddSubpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDataSubpropertyItemController</servlet-name>
+    <url-pattern>/edit_api/add_data_subproperty</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddDataEqPropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddEqPropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDataEqPropertyItemController</servlet-name>
+    <url-pattern>/edit_api/add_data_eqproperty</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddDataDomainItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddDomainItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDataDomainItemController</servlet-name>
+    <url-pattern>/edit_api/add_data_domain</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddDataRangeItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddRangeItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDataRangeItemController</servlet-name>
+    <url-pattern>/edit_api/add_data_range</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>DeleteDataSuperpropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DeleteSuperpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDataSuperpropertyItemController</servlet-name>
+    <url-pattern>/edit_api/delete_data_superproperty</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>DeleteDataSubpropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DeleteSubpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDataSubpropertyItemController</servlet-name>
+    <url-pattern>/edit_api/delete_data_subproperty</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DeleteDataEqPropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DeleteEqPropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDataEqPropertyItemController</servlet-name>
+    <url-pattern>/edit_api/delete_data_eqproperty</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DeleteDataDomainItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DeleteDomainItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDataDomainItemController</servlet-name>
+    <url-pattern>/edit_api/delete_data_domain</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>DeleteDataRangeItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DeleteRangeItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDataRangeItemController</servlet-name>
+    <url-pattern>/edit_api/delete_data_range</url-pattern>
+  </servlet-mapping>
+	
+    <servlet>
+    <servlet-name>EditDataSuperpropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.EditSuperpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataSuperpropertyItemController</servlet-name>
+    <url-pattern>/edit_api/edit_superproperty</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>EditDataSubpropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.EditSubpropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataSubpropertyItemController</servlet-name>
+    <url-pattern>/edit_api/edit_data_subproperty</url-pattern>
+  </servlet-mapping>
+        -->
+  
+    <servlet>
+    <servlet-name>EditDataEqPropertyItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.EditEqPropertyItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataEqPropertyItemController</servlet-name>
+    <url-pattern>/edit_api/edit_data_eqproperty</url-pattern>
+  </servlet-mapping>
+
+  
+   <servlet>
+    <servlet-name>EditDataDomainItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.EditDomainItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataDomainItemController</servlet-name>
+    <url-pattern>/edit_api/edit_data_domain</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EditDataRangeItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.EditRangeItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDataRangeItemController</servlet-name>
+    <url-pattern>/edit_api/edit_data_range</url-pattern>
+  </servlet-mapping>
+
+
   <servlet>
     <servlet-name>ListClassGroupsController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.freemarker.ListClassGroupsController</servlet-class>
