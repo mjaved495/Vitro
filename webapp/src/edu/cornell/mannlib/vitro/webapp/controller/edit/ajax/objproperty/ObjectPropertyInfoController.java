@@ -136,20 +136,26 @@ public class ObjectPropertyInfoController extends HttpServlet {
         VClass range = vcDao.getVClassByURI(op.getRangeVClassURI());
         
         Hashtable<String, String> domainInfo = new Hashtable<String, String>();
-        if(domain == null) {
-        	domain = vcDao.getTopConcept();
+        if(domain != null) {
+        	domainInfo.put("uri", domain.getURI());
+            domainInfo.put("name", domain.getName());
         }
-        domainInfo.put("uri", domain.getURI());
-        domainInfo.put("name", domain.getName());
+        else {
+        	domainInfo.put("uri", "");
+            domainInfo.put("name", "");
+        }
         
         responseObject.put("domain", domainInfo);
         
         Hashtable<String, String> rangeInfo = new Hashtable<String, String>();
-        if(range == null) {
-        	range = vcDao.getTopConcept();
+        if(range != null) {
+        	rangeInfo.put("uri", range.getURI());
+            rangeInfo.put("name", range.getName());
         }
-        rangeInfo.put("uri", range.getURI());
-        rangeInfo.put("name", range.getName());
+        else {
+        	rangeInfo.put("uri", "");
+        	rangeInfo.put("name", "");
+        }
         
         responseObject.put("range", rangeInfo);
 
