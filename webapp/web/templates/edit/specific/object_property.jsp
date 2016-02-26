@@ -325,6 +325,11 @@
             </c:otherwise>
         </c:choose>
 
+        <hr/>
+        <!-- <p class="right-pane-item"><b>Display level:</b> <span id="display-level">${displayLevel}</span></p>
+        <p class="right-pane-item"><b>Update level:</b> <span id="update-level">${updateLevel}</span></p>
+        <p class="right-pane-item"><b>Publish level:</b> <span id="publish-level">${publishLevel}</span></p> -->
+
         <!-- <c:choose>
             <c:when test="${objectProperty.getTransitive()}">
                 <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Functional</p>
