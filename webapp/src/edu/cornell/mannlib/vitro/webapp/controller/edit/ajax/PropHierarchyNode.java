@@ -84,4 +84,8 @@ public class PropHierarchyNode {
 	public ObjectProperty getProp() {
 		return this.op;
 	}
+	
+	public DataProperty getDataProp() {
+		return this.dp;
+	}
 }
