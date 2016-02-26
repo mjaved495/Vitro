@@ -55,14 +55,15 @@ public class ClassPageController extends BaseEditController {
         	 Ontology ont = wadf.getOntologyDao().getOntologyByURI(vcl.getNamespace());
              
              request.setAttribute("ontology",  ont);
-             List<VClass> allClasses = getVClassesInOntology(vcDao, vcl);
-             request.setAttribute("allClasses", allClasses);
              // log.debug("allClasses is " + ont.getVClassesList().size() + " elements long");
         }
         else {
         	log.debug("namespace is null");
         	log.debug("uri is " + vcl.getURI());
         }
+        
+        List<VClass> allClasses = vcDao.getAllVclasses();
+        request.setAttribute("allClasses", allClasses);
         
         Individual ent = request.getUnfilteredAssertionsWebappDaoFactory().getIndividualDao().getIndividualByURI(vcl.getURI());
         request.setAttribute("entity", ent);
