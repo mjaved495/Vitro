@@ -203,15 +203,22 @@
         <table>
             <tr>
             	<td valign="bottom" colspan="4">
-            	   <p><b>Inverse properties:</b> <span class="fa fa-plus action action-add-inverse" id="action-add-inverse"></span></p>
+            	   <p id="add-inverse-container"><b>Inverse:</b>
+                    <c:choose>
+                        <c:when test="${empty inverses}">
+                            <span class="fa fa-plus action action-add-inverse" id="action-add-inverse"></span>
+                        </c:when>
+                        <c:otherwise></c:otherwise>
+                    </c:choose>
+                   </p>
                    <div class="scroll-list">
                     <table>
                             <c:forEach items="${inverses}" var="inverse">
                                 <tr class="class-item">
-                        	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-inverse-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
+                        	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-inverse-property-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-inverse-property" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-inverse-property" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>
@@ -280,55 +287,55 @@
             </tr>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
         </table>
+  
+        <c:choose>
+            <c:when test="${objectProperty.getTransitive()}">
+                <input type="checkbox" id="transitive-check" checked="true"/> Transitive
+            </c:when>
+            <c:otherwise>
+                <input type="checkbox" id="transitive-check" /> Transitive
+            </c:otherwise>
+        </c:choose>
+
+       <c:choose>
+            <c:when test="${objectProperty.getSymmetric()}">
+                <input type="checkbox" id="symmetric-check" checked="true"/> Symmetric
+            </c:when>
+            <c:otherwise>
+                <input type="checkbox" id="symmetric-check" /> Symmetric
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${objectProperty.getFunctional()}">
+                <input type="checkbox" id="functional-check" checked="true"/> Functional
+            </c:when>
+            <c:otherwise>
+                <input type="checkbox" id="functional-check" /> Functional
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${objectProperty.getInverseFunctional()}">
+                <input type="checkbox" id="inverse-functional-check" checked="true"/> Inverse Functional
+            </c:when>
+            <c:otherwise>
+                <input type="checkbox" id="inverse-functional-check" /> Inverse Functional
+            </c:otherwise>
+        </c:choose>
+
     </div>
 
 </div>
 
 <div class="info-container">
 	 <div class="item">
-        <p class="right-pane-item"><b>Ontology:</b> ${ontology.getName()}</p>
-        <hr/>
-
-        <c:choose>
-            <c:when test="${objectProperty.getTransitive()}">
-                <p><input type="checkbox" id="transitive-check" checked="true"/> Transitive</p>
-            </c:when>
-            <c:otherwise>
-                <p><input type="checkbox" id="transitive-check" /> Transitive</p>
-            </c:otherwise>
-        </c:choose>
-
-       <c:choose>
-            <c:when test="${objectProperty.getSymmetric()}">
-                <p><input type="checkbox" id="symmetric-check" checked="true"/> Symmetric</p>
-            </c:when>
-            <c:otherwise>
-                <p><input type="checkbox" id="symmetric-check" /> Symmetric</p>
-            </c:otherwise>
-        </c:choose>
-
-        <c:choose>
-            <c:when test="${objectProperty.getFunctional()}">
-                <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
-            </c:when>
-            <c:otherwise>
-                <p><input type="checkbox" id="functional-check" /> Functional</p>
-            </c:otherwise>
-        </c:choose>
-
-        <c:choose>
-            <c:when test="${objectProperty.getInverseFunctional()}">
-                <p><input type="checkbox" id="inverse-functional-check" checked="true"/> Inverse Functional</p>
-            </c:when>
-            <c:otherwise>
-                <p><input type="checkbox" id="inverse-functional-check" /> Inverse Functional</p>
-            </c:otherwise>
-        </c:choose>
+        <p class="right-pane-item"><b>Ontology:</b><br/> ${ontology.getName()}</p>
 
         <hr/>
-        <!-- <p class="right-pane-item"><b>Display level:</b> <span id="display-level">${displayLevel}</span></p>
-        <p class="right-pane-item"><b>Update level:</b> <span id="update-level">${updateLevel}</span></p>
-        <p class="right-pane-item"><b>Publish level:</b> <span id="publish-level">${publishLevel}</span></p> -->
+        <p class="right-pane-item"><b>Display level:</b> <br/> <span id="display-level">${displayLevel}</span></p>
+        <p class="right-pane-item"><b>Update level:</b> <br/> <span id="update-level">${updateLevel}</span></p>
+        <p class="right-pane-item"><b>Publish level:</b> <br/> <span id="publish-level">${publishLevel}</span></p>
 
         <!-- <c:choose>
             <c:when test="${objectProperty.getTransitive()}">

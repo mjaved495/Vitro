@@ -51,6 +51,7 @@ $(document).ready(function() {
 			var propLabel = data["label"];
 			var superproperties = data["superproperties"];
 			var subproperties = data["subproperties"];
+			var inverse = data["inverse"];
 			var eqproperties = data["eqprops"];
 			var domain = data["domain"];
 			var range = data["range"];
@@ -81,9 +82,9 @@ $(document).ready(function() {
 			$("#vclass-uri").attr("data-vclass-uri", uri);
 			$("#vclass-uri").val(uri);
 
-			/*$("#update-level").text(updateLevel);
+			$("#update-level").text(updateLevel);
 			$("#publish-level").text(publishLevel);
-			$("#display-level").text(displayLevel);*/
+			$("#display-level").text(displayLevel);
 
 			$("#ontology-name").text(ontology);
 			//$("#class-group").text(group);
@@ -115,18 +116,25 @@ $(document).ready(function() {
 				$("#eqproperty-table").append(eqpropertyDiv);
 			}
 
-			/*$("#disjoint-table").html('')
-
-			for(var i = 0; i < disjoints.length; i++) {
-				var disjoint = disjoints[i];
-				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjoint-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
-				$("#disjoint-table").append(disjointDiv);
-			}*/
+			$("#inverse-table").html('')
+			if(inverse["uri"] != "") {
+				var inverseDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + inverse["uri"] + '"" data-vclass-uri="' + inverse["uri"] + '"></p>' + inverse["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-inverse-property" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-inverse-property" title="Remove this"></i></td></tr>')
+				$(".inverse-table").append(inverseDiv);
+				$("#add-inverse-container").html("<b>Inverse:</b>");
+			}
+			else {
+				$("#add-inverse-container").html("<b>Inverse:</b> <span class='fa fa-plus action action-add-inverse'></span>");
+			}
+			
 
 			$(".domain-table").html('');
 			if(domain["uri"] != "") {
 				var domainDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + domain["uri"] + '"" data-vclass-uri="' + domain["uri"] + '"></p>' + domain["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-domain-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-domain-class" title="Remove this"></i></td></tr>')
 				$(".domain-table").append(domainDiv);
+				$("#add-domain-container").html("<b>Domain:</b>");
+			}
+			else {
+				$("#add-domain-container").html("<b>Domain:</b> <span class='fa fa-plus action action-add-domain'></span>");
 			}
 			
 
@@ -134,8 +142,11 @@ $(document).ready(function() {
 			if(range["uri"] != "") {
 				var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-class" title="Remove this"></i></td></tr>')
 				$(".range-table").append(rangeDiv);
+				$("#add-range-container").html("<b>Range:</b>");
 			}
-			
+			else {
+				$("#add-range-container").html("<b>Range:</b> <span class='fa fa-plus action action-add-range'></span>");
+			}
 
 			window.history.pushState($("html").html(), document.title, "/vivo/propertypage?uri=" + encodeURIComponent(uri));
 			
@@ -193,8 +204,8 @@ $(document).ready(function() {
 		$(".action-delete-subproperty").click(actionDeleteSubproperty);
 		$(".action-edit-eqproperty").click(actionEditEqProperty);
 		$(".action-delete-eqproperty").click(actionDeleteEqProperty);
-		$(".action-edit-inverse").click(actionEditInverse);
-		$(".action-delete-inverse").click(actionDeleteInverse);
+		$(".action-edit-inverse-property").click(actionEditInverse);
+		$(".action-delete-inverse-property").click(actionDeleteInverse);
 		$(".action-edit-domain-class").click(actionEditDomain);
 		$(".action-delete-domain-class").click(actionDeleteDomain);
 		$(".action-edit-range-class").click(actionEditRange);
@@ -233,7 +244,7 @@ $(document).ready(function() {
 
 	var actionEditInverse = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditInverseCallback, "inverseproperty");
+		replaceWithInput(itemDetail, actionEditInverseCallback, "inverse-property");
 	}
 
 	var actionDeleteInverse = function() {
@@ -348,9 +359,9 @@ $(document).ready(function() {
 	}
 
 	var actionDeleteInverseCallback = function(row) {
-		var subpropertyURI = row.find(".item-detail").attr("data-inverse-uri");
+		var inverseURI = row.find(".item-detail").attr("data-inverse-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_inverse", {"inverseURI": superpropertyURI, "propertyURI": propertyURI}, function(res) {
+		$.post("/vivo/edit_api/delete_inverse", {"inverseURI": inverseURI, "propertyURI": propertyURI}, function(res) {
 			console.log(res);
 		})
 	}
@@ -457,17 +468,18 @@ $(document).ready(function() {
 	var addInverse = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var inverseURI = getURI(td.text());
+			var inverseURI = td.attr("data-inverse-property-uri");
 			$.post('/vivo/edit_api/add_inverse', {'propertyURI': propertyURI, 'inverseURI': inverseURI}, function(res) {
 				if(res != inverseURI) {
 					console.log("error: " + res);
 				}
 				else {
-					td.parent().find(".action-edit-inverse").click(actionEditInverse);
-					td.parent().find(".action-delete-inverse").click(actionDeleteInverse);
+					td.parent().find(".action-edit-inverse-property").click(actionEditInverse);
+					td.parent().find(".action-delete-inverse-property").click(actionDeleteInverse);
+					$("#add-inverse-container").html("<b>Inverse:</b>");
 				}
 			})
-		}, "inverseproperty");
+		}, "inverse-property");
 	}
 
 	var addDomain = function() {
@@ -546,8 +558,8 @@ $(document).ready(function() {
 	$(".action-delete-subproperty").click(actionDeleteSubproperty);
 	$(".action-edit-eqproperty").click(actionEditEqProperty);
 	$(".action-delete-eqproperty").click(actionDeleteEqProperty);
-	$(".action-edit-inverse").click(actionEditInverse);
-	$(".action-delete-inverse").click(actionDeleteInverse);
+	$(".action-edit-inverse-property").click(actionEditInverse);
+	$(".action-delete-inverse-property").click(actionDeleteInverse);
 	$(".action-edit-domain-class").click(actionEditDomain);
 	$(".action-delete-domain-class").click(actionDeleteDomain);
 	$(".action-edit-range-class").click(actionEditRange);

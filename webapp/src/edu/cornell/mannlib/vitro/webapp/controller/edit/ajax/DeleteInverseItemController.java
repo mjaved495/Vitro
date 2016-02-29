@@ -12,20 +12,18 @@ import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
-public class EditInverseItemController extends HttpServlet {
+public class DeleteInverseItemController extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		String oldInverseURI = req.getParameter("oldInverseURI");
-		String newInverseURI = req.getParameter("newInverseURI");
+		String inverseURI = req.getParameter("inverseURI");
 		String propertyURI = req.getParameter("propertyURI");
 		
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory();
         ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
-		VClassDao vcDao = wadf.getVClassDao();
         
 		ObjectProperty op = opDao.getObjectPropertyByURI(propertyURI);
-		op.setURIInverse(newInverseURI);
+		op.setURIInverse("");
 		opDao.updateObjectProperty(op);
 		
-		res.getWriter().print(newInverseURI);
+		res.getWriter().print("ok");
 	}
 }

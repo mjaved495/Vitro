@@ -871,7 +871,7 @@
   
     <servlet>
     <servlet-name>DeleteInverseItemController</servlet-name>
-    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteEqpropertyItemController</servlet-class>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteInverseItemController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteInverseItemController</servlet-name>
@@ -930,6 +930,15 @@
   <servlet-mapping>
     <servlet-name>AddEqPropertyItemController</servlet-name>
     <url-pattern>/edit_api/add_eqproperty</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>AddInverseItemController</servlet-name>
+    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddInverseItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddInverseItemController</servlet-name>
+    <url-pattern>/edit_api/add_inverse</url-pattern>
   </servlet-mapping>
   
   <servlet>

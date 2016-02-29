@@ -112,18 +112,19 @@ public class ObjectPropertyInfoController extends HttpServlet {
         
         responseObject.put("eqprops", eqpropsInfo);
         
-        /*List<ObjectProperty> invProps = getPropsForURIList(
-                opDao.getInversePropertyURIs(op.getURI()), displayOpDao); // this method does not exist...
-
-        List<Hashtable<String, String>> inversesInfo = new ArrayList<Hashtable<String, String>>();
-        for(ObjectProperty inverse : invProps) {
-        	Hashtable<String, String> info = new Hashtable<String, String>();
-        	info.put("uri", inverse.getURI());
-        	info.put("name", inverse.getName());
-        	inversesInfo.add(info);
-        } */
+        ObjectProperty inverse = opDao.getObjectPropertyByURI(op.getURIInverse());
         
-        /* responseObject.put("disjoints", disjointsInfo); */
+        Hashtable<String, String> inverseInfo = new Hashtable<String, String>();
+        if(inverse != null) {
+        	inverseInfo.put("uri", inverse.getURI());
+        	inverseInfo.put("name", inverse.getLabel());
+        }
+        else {
+        	inverseInfo.put("uri", "");
+            inverseInfo.put("name", "");
+        }
+        
+        responseObject.put("inverse", inverseInfo);
         
         // attributes of the property
         

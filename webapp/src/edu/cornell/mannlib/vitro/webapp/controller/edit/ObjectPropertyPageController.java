@@ -22,6 +22,7 @@ import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.Reasoning
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,14 +53,31 @@ public class ObjectPropertyPageController extends BaseEditController {
              
              request.setAttribute("ontology",  ont);
 		}
+		
+		 String hiddenFromDisplay = (op.getHiddenFromDisplayBelowRoleLevel() == null ? "(unspecified)"
+					: op.getHiddenFromDisplayBelowRoleLevel().getDisplayLabel());
+		String prohibitedFromUpdate = (op
+					.getProhibitedFromUpdateBelowRoleLevel() == null ? "(unspecified)"
+					: op.getProhibitedFromUpdateBelowRoleLevel().getUpdateLabel());
+		String hiddenFromPublish = (op.getHiddenFromPublishBelowRoleLevel() == null ? "(unspecified)"
+					: op.getHiddenFromPublishBelowRoleLevel().getDisplayLabel());
 
+		request.setAttribute("displayLevel", hiddenFromDisplay);
+		request.setAttribute("updateLevel", prohibitedFromUpdate);
+		request.setAttribute("publishLevel", hiddenFromPublish);
+		
         request.setAttribute("allClasses", vcDao.getAllVclasses());
 		request.setAttribute("allProperties", opDao.getAllObjectProperties());
 		
 		List<ObjectProperty> superproperties = getPropsForURIList(opDao.getAllSuperPropertyURIs(op.getURI()), opDao);
 		List<ObjectProperty> subproperties = getPropsForURIList(opDao.getSubPropertyURIs(op.getURI()), opDao);
 		List<ObjectProperty> eqproperties = getPropsForURIList(opDao.getEquivalentPropertyURIs(op.getURI()), opDao);
-		List<Object> inverses = new ArrayList<Object>();
+		List<ObjectProperty> inverses = new ArrayList<ObjectProperty>();
+		
+		if(op.getURIInverse() != null) {
+			ObjectProperty inverse = opDao.getObjectPropertyByURI(op.getURIInverse());
+		    inverses.add(inverse);
+		}
 		
 		List<Object> domains = new ArrayList<Object>();
 		if(op.getDomainVClassURI() != null) {
@@ -74,7 +92,6 @@ public class ObjectPropertyPageController extends BaseEditController {
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("subproperties", subproperties);
 		request.setAttribute("eqproperties", eqproperties);
-		log.debug(eqproperties);
 		request.setAttribute("inverses", inverses);
 		
 		request.setAttribute("domains", domains);
