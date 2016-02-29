@@ -253,7 +253,7 @@
 
 <div class="info-container">
     <div class="item">
-        <p class="right-pane-item"><b>Ontology:</b> <span id="ontology-name">${ontology.getName()}</span></p>
+        <p class="right-pane-item"><b>Ontology:</b> <br> <span id="ontology-name">${ontology.getName()}</span></p>
         <p class="right-pane-item"><b>Class group:</b> <span id="class-group">${classGroup}</span></p>
         <hr/>
         <p class="right-pane-item"><b>Display level:</b> <span id="display-level">${displayLevel}</span></p>

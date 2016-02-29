@@ -77,6 +77,8 @@ var addItem = function(jQElement, onAddCallback, type) {
 		scrollDiv.css("overflow-y", "scroll");
 	}
 
+	scrollDiv[0].scrollTop = scrollDiv[0].scrollHeight;
+
 	$("#cancel-" + jQElement.attr('id')).click(function(e) {
 		console.log("cancel was clicked");
 		e.preventDefault();
