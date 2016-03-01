@@ -434,6 +434,18 @@ $(document).ready(function() {
 		})
 	}
 
+	$("#onProperty").select2({
+		placeholder: "Select an item"
+	})
+
+	$("#ValueClass").select2({
+		"placeholder": "Select an item"
+	})
+
+	$("#onProperty").select2({
+		"placeholder": "Select an item"
+	})
+
 	$("#add-restriction").click(function(e) {
 		e.preventDefault();
 		var formData = $("#restriction-form").serialize();

@@ -253,16 +253,16 @@
         <table>
         <form action="" method="post">
         <tr><td colspan="4"><hr class="formDivider"/></td></tr>
-            <tr><td><p><b>Condition type:</b> <select name="conditionType">
+            <tr class="restriction-field"><td><p><b>Condition type:</b> <select id="conditionType" name="conditionType">
                 <option value="necessary">necessary</option>
                 <option value="necessaryAndSufficient">necessary and sufficient</option>
             </select></p></td></tr>
-            <tr><td><p><b>Property to restrict:</b> <select name="onProperty">
+            <tr class="restriction-field"><td><p><b>Property to restrict:</b> <select id="onProperty" name="onProperty">
                 <c:forEach items="${allProperties}" var="property">
                     <option value="${property.getURI()}">${property.getLabel()}</option>
                 </c:forEach>
             </select></p></td></tr>
-            <tr><td><p><b>All values from:</b> <select name="ValueClass">
+            <tr class="restriction-field"><td><p><b>All values from:</b> <select id="ValueClass" name="ValueClass">
                 <c:forEach items="${allClasses}" var="vclass">
                     <option value="${vclass.getURI()}">${vclass.getName()}</option>
                 </c:forEach>

@@ -65,7 +65,7 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 			DataProperty dp = prop.getDataProp();
 			List<String> superproperties;
 			if(!(dp.getURI().contains("file:///"))) {
-				superproperties = dpDao.getSuperPropertyURIs(dp.getURI(), false);
+				superproperties = dpDao.getAllSuperPropertyURIs(dp.getURI());
 			}
 			else {
 				superproperties = new ArrayList<String>();

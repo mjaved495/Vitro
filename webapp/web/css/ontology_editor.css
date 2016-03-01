@@ -1,4 +1,6 @@
-
+.restriction-field {
+	height:50px;
+}
 
 .action {
 	cursor:pointer;
@@ -97,14 +99,14 @@ td#uri-checkbox {
 	padding-bottom:5px;
 	border-right:1px solid #CCCCCC;
 	background-color:#F5F5F5;
-	height:850px;
+	height:870px;
 }
 
 .item-container {
 	width:53%;
 	float:left;
 	padding-left:20px;
-	height:850px;
+	height:870px;
 	font-size:14px;
 }
 
@@ -114,7 +116,7 @@ td#uri-checkbox {
 	background-color:#FBFBFB;
 	margin-left:20px;
 	padding:10px;
-	height:850px;
+	height:870px;
 	font-size:14px;
 }
 
