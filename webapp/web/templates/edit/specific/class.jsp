@@ -251,6 +251,7 @@
 
     <div class="item">
         <table>
+        <form action="" method="post">
         <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr><td><p><b>Condition type:</b> <select name="conditionType">
                 <option value="necessary">necessary</option>
@@ -266,7 +267,9 @@
                     <option value="${vclass.getURI()}">${vclass.getName()}</option>
                 </c:forEach>
             </select></p></td></tr>
+            <tr><td><input type="submit" class="submit" id="add-restriction" value="Add restriction"></td></tr>
         </table>
+        </form>
     </div>
 
 </div>
