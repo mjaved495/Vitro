@@ -22,6 +22,7 @@ import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.Controllers;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
+import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.dao.jena.VClassDaoJena;
@@ -48,6 +49,7 @@ public class ClassPageController extends BaseEditController {
         }
         
         VClassDao vcDao = wadf.getVClassDao();
+        ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
         VClassDao displayVcDao = wadf.getVClassDao();
       
         if(vcl.getNamespace() != null) {
@@ -64,6 +66,7 @@ public class ClassPageController extends BaseEditController {
         
         List<VClass> allClasses = vcDao.getAllVclasses();
         request.setAttribute("allClasses", allClasses);
+        request.setAttribute("allProperties", opDao.getAllObjectProperties());
         
         Individual ent = request.getUnfilteredAssertionsWebappDaoFactory().getIndividualDao().getIndividualByURI(vcl.getURI());
         request.setAttribute("entity", ent);
