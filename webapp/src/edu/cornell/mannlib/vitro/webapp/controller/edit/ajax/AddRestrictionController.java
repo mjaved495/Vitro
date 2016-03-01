@@ -55,6 +55,8 @@ public class AddRestrictionController extends HttpServlet {
         Model dynamicUnion = ModelFactory.createUnion(temp, origModel);
         OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, dynamicUnion);
         
+
+        
         OntProperty onProperty = ontModel.getOntProperty( (String) request.getParameter("onProperty") );
         
         String conditionTypeStr = request.getParameter("conditionType");
