@@ -249,6 +249,25 @@
           </form>
     </div>
 
+    <div class="item">
+        <table>
+            <tr><td><p><b>Condition type:</b> <select name="conditionType">
+                <option value="necessary">necessary</option>
+                <option value="necessaryAndSufficient">necessary and sufficient</option>
+            </select></p></td></tr>
+            <tr><td><p><b>Property to restrict:</b> <select name="onProperty">
+                <c:forEach items="${allProperties}" var="property">
+                    <option value="${property.getURI()}">${property.getLabel()}</option>
+                </c:forEach>
+            </select></p></td></tr>
+            <tr><td><p><b>All values from:</b> <select name="ValueClass">
+                <c:forEach items="${allClasses}" var="vclass">
+                    <option value="${vclass.getURI()}">${vclass.getName()}</option>
+                </c:forEach>
+            </select></p></td></tr>
+        </table>
+    </div>
+
 </div>
 
 <div class="info-container">
