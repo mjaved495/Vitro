@@ -251,6 +251,7 @@
 
     <div class="item">
         <table>
+        <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr><td><p><b>Condition type:</b> <select name="conditionType">
                 <option value="necessary">necessary</option>
                 <option value="necessaryAndSufficient">necessary and sufficient</option>
