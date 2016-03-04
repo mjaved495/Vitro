@@ -22,7 +22,7 @@ public class AddRangeItemController extends HttpServlet {
 		ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
 		
 		ObjectProperty op = opDao.getObjectPropertyByURI(propertyURI);
-		op.setRangeEntityURI(rangeURI);
+		op.setRangeVClassURI(rangeURI);
 		opDao.updateObjectProperty(op);
 		
 		res.getWriter().print(rangeURI);
