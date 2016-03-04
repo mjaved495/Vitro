@@ -80,12 +80,12 @@ public class ObjectPropertyPageController extends BaseEditController {
 		}
 		
 		List<Object> domains = new ArrayList<Object>();
-		if(op.getDomainVClassURI() != null) {
+		if(op.getDomainVClassURI() != null && !(op.getDomainVClassURI().equals(""))) {
 			domains.add(vcDao.getVClassByURI(op.getDomainVClassURI()));
 		}
 		
 		List<Object> ranges = new ArrayList<Object>();
-		if(op.getRangeVClassURI() != null) {
+		if(op.getRangeVClassURI() != null && !(op.getRangeVClassURI().equals(""))) {
 			ranges.add(vcDao.getVClassByURI(op.getRangeVClassURI()));
 		}
 		

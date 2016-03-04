@@ -22,6 +22,17 @@
     </c:otherwise>
 </c:choose>
 
+<c:choose>
+    <c:when test="${empty allDatatypes}">
+        <input type="hidden" class="datatype-option-data" data-uri="" value="None"/>
+    </c:when>
+    <c:otherwise>
+        <c:forEach items="${allDatatypes}" var="type">
+            <input type="hidden" class="property-option-data" data-uri="${type.getURI()}" value="${type.getLocalName()}"/>
+        </c:forEach>
+    </c:otherwise>
+</c:choose>
+
 <div class="tree-container">
     <div class="item">
         <div id="tree">

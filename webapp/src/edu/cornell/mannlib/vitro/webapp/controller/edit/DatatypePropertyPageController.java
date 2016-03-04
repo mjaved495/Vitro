@@ -3,6 +3,8 @@ package edu.cornell.mannlib.vitro.webapp.controller.edit;
 import static edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess.ReasoningOption.ASSERTIONS_ONLY;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,6 +29,10 @@ import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
+import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.XSD;
+
 public class DatatypePropertyPageController extends HttpServlet {
 private static final Log log = LogFactory.getLog(ClassPageController.class.getName());
 	
@@ -48,30 +54,55 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		
 		request.setAttribute("dataProperty", dp);
 		
+		// retrieve list of Resource objects corresponding to XML schema datatypes using reflection
+		
+		Field[] fields = XSD.class.getDeclaredFields();
+		List<Resource> datatypes = new ArrayList<Resource>();
+		for(Field field : fields) {
+			if(java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
+				try {
+					datatypes.add((Resource)field.get(null));
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		if(dp.getNamespace() != null) {
         	 Ontology ont = wadf.getOntologyDao().getOntologyByURI(dp.getNamespace());
              
              request.setAttribute("ontology",  ont);
              request.setAttribute("allClasses", ont.getVClassesList());
              request.setAttribute("allProperties", dpDao.getAllDataProperties());
+             request.setAttribute("allDatatypes", datatypes);
 		}
 		
+		log.debug(propertyURI);
+
 		List<DataProperty> superproperties = getPropsForURIList(dpDao.getAllSuperPropertyURIs(propertyURI), dpDao);
 		List<DataProperty> subproperties = getPropsForURIList(dpDao.getAllSubPropertyURIs(propertyURI), dpDao);
 		List<DataProperty> eqproperties = getPropsForURIList(dpDao.getEquivalentPropertyURIs(propertyURI), dpDao);
+		
+		request.setAttribute("superproperties", superproperties);
+		request.setAttribute("subproperties", subproperties);
+		request.setAttribute("eqproperties", eqproperties);
 		
 		VClass domain = vcDao.getVClassByURI(dp.getDomainVClassURI());
 		VClass range = vcDao.getVClassByURI(dp.getRangeVClassURI());
 		
 		List<VClass> domains = new ArrayList<VClass>();
-		domains.add(domain);
-		
 		List<VClass> ranges = new ArrayList<VClass>();
-		ranges.add(range);
 		
-		request.setAttribute("superproperties", superproperties);
-		request.setAttribute("subproperties", subproperties);
-		request.setAttribute("eqproperties", eqproperties);
+		if(dp.getDomainVClassURI() != null && dp.getDomainVClassURI() != "") {
+			domains.add(vcDao.getVClassByURI(dp.getDomainVClassURI()));
+		}
+		
+		if(dp.getRangeVClassURI() != null && dp.getRangeVClassURI() != "") {
+			ranges.add(vcDao.getVClassByURI(dp.getRangeVClassURI()));
+		}
+		
 		request.setAttribute("domains", domains);
 		request.setAttribute("ranges", ranges);
 		
@@ -96,14 +127,27 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		doPost(req, response);
 	}
 	
+	private static boolean isValidURI(String uriString) {
+		URL url;
+		try {
+			url = new URL(uriString);
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return "http".equals(url.getProtocol());
+	}
+	
 	private static List<DataProperty> getPropsForURIList(List<String> propURIs, DataPropertyDao dpDao) {
         List<DataProperty> props = new ArrayList<DataProperty>();
         Iterator<String> urIt = propURIs.iterator();
         while (urIt.hasNext()) {
             String propURI = urIt.next();
-            DataProperty dp = dpDao.getDataPropertyByURI(propURI);
-            if (dp != null) {
-                props.add(dp);
+            if(isValidURI(propURI)) {
+            	 DataProperty dp = dpDao.getDataPropertyByURI(propURI);
+                 if (dp != null) {
+                     props.add(dp);
+                 }
             }
         }
         return props;

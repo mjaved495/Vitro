@@ -18,6 +18,9 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.hp.hpl.jena.ontology.ConversionException;
+import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
@@ -38,7 +41,7 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 	
 	private List<PropHierarchyNode> getChildren(PropHierarchyNode propNode, DataPropertyDao dpDao) {
 		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
-		List<String> uris = dpDao.getSubPropertyURIs(propNode.getProp().getURI());
+		List<String> uris = dpDao.getSubPropertyURIs(propNode.getDataProp().getURI());
 		for(String uri : uris) {
 			result.add(new PropHierarchyNode(dpDao.getDataPropertyByURI(uri)));
 		}
@@ -62,9 +65,9 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 		List<PropHierarchyNode> tree = new ArrayList<PropHierarchyNode>();
 		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
 		for(PropHierarchyNode prop : propList) {
-			DataProperty dp = prop.getDataProp();
+			/*DataProperty dp = prop.getDataProp();
 			List<String> superproperties;
-			if(!(dp.getURI().contains("file:///"))) {
+			if(((OntResource)dp).hasProperty(RDF.type, OWL.DatatypeProperty)) {
 				superproperties = dpDao.getAllSuperPropertyURIs(dp.getURI());
 			}
 			else {
@@ -73,7 +76,8 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 			
 			if(superproperties.size() == 0) {
 				tree.add(prop);
-			}
+			}*/
+			tree.add(prop);
 		}
 		for(PropHierarchyNode prop : tree) {
 			result.add(addChildrenRecursively(prop, dpDao));
@@ -88,7 +92,7 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 		Gson gson = gsonBuilder.create();
 		List<PropHierarchyNode> propList = GetPropHierarchyUtils.generateDataPropList(dpDao);
 		List <PropHierarchyNode> tree = treeify(propList, dpDao); 
-		PropHierarchyNode parent = new PropHierarchyNode("All Properties");
+		PropHierarchyNode parent = new PropHierarchyNode("All Properties", "dataproperty");
 		for(PropHierarchyNode node : tree) {
 			parent.addChild(node);
 		}

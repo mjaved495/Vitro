@@ -64,10 +64,15 @@ public class PropHierarchyNode {
 		this.a_attr.put("title", dp.getURI());
 	}
 	
-	public PropHierarchyNode(String name) {
+	public PropHierarchyNode(String name, String type) {
 		this.text = name;
 		this.children = new ArrayList<PropHierarchyNode>();
-		this.icon = "/vivo/images/bluedot.png";
+		if(type.equals("objproperty")) {
+			this.icon = "/vivo/images/bluedot.png";
+		}
+		else if(type.equals("dataproperty")) {
+			this.icon = "/vivo/images/greendot.png";
+		}
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", "#");
 		this.a_attr.put("title", "#");

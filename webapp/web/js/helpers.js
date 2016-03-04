@@ -44,8 +44,11 @@ var createAutocompleteInput = function(type) {
 		if(type.indexOf("class") > -1) {
 			identifier = ".class-option-data";
 		}
-		else {
+		else if(type.indexOf("property") > -1) {
 			identifier = ".property-option-data";
+		}
+		else if(type.indexOf("datatype") > -1) {
+			identifier = ".datatype-option-data";
 		}
 		$.each($(identifier), function(i, optionInput) {
 			input.append($('<option data-uri="' + $(optionInput).attr('data-uri') + '">' + $(optionInput).val() + '</option>'));

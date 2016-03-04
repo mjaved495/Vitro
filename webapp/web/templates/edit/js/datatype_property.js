@@ -26,11 +26,11 @@ $(function() {
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
 				console.log(link.find(".jstree-icon").css("background-image"));
-				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("bluedot-open.png") > -1) {
-					link.find(".jstree-icon").css("background-image", "url('/vivo/images/bluedot.png')");
+				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("greendot-open.png") > -1) {
+					link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot.png')");
 				}
 				else {
-					link.find(".jstree-icon").css("background-image", "url('/vivo/images/bluedot-open.png')");
+					link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot-open.png')");
 				}
 				
 			});
@@ -378,7 +378,7 @@ $(function() {
 					$("#add-range-container").html("<b>Range:</b>");
 				}
 			})
-		}, "range-class");
+		}, "range-datatype");
 	}
 
 	var onFunctionalCheck = function() {
