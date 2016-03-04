@@ -86,7 +86,7 @@ public class GetPropHierarchyTree extends HttpServlet {
 		Gson gson = gsonBuilder.create();
 		List<PropHierarchyNode> propList = GetPropHierarchyUtils.generatePropList(opDao);
 		List <PropHierarchyNode> tree = treeify(propList, opDao); 
-		PropHierarchyNode parent = new PropHierarchyNode("All Properties");
+		PropHierarchyNode parent = new PropHierarchyNode("All Properties", "objproperty");
 		for(PropHierarchyNode node : tree) {
 			parent.addChild(node);
 		}
