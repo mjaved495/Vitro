@@ -23,12 +23,23 @@
 </c:choose>
 
 <c:choose>
+    <c:when test="${empty allClasses}">
+        <input type="hidden" class="class-option-data" data-uri="" value="None"/>
+    </c:when>
+    <c:otherwise>
+        <c:forEach items="${allClasses}" var="vclass">
+            <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getLabel()}"/>
+        </c:forEach>
+    </c:otherwise>
+</c:choose>
+
+<c:choose>
     <c:when test="${empty allDatatypes}">
         <input type="hidden" class="datatype-option-data" data-uri="" value="None"/>
     </c:when>
     <c:otherwise>
         <c:forEach items="${allDatatypes}" var="type">
-            <input type="hidden" class="property-option-data" data-uri="${type.getURI()}" value="${type.getLocalName()}"/>
+            <input type="hidden" class="datatype-option-data" data-uri="${type.getURI()}" value="${type.getLocalName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>
