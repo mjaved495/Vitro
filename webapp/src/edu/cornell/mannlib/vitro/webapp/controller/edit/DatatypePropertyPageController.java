@@ -18,12 +18,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
+import edu.cornell.mannlib.vitro.webapp.beans.Datatype;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.Controllers;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
+import edu.cornell.mannlib.vitro.webapp.dao.DatatypeDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
@@ -93,14 +95,15 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		VClass range = vcDao.getVClassByURI(dp.getRangeVClassURI());
 		
 		List<VClass> domains = new ArrayList<VClass>();
-		List<VClass> ranges = new ArrayList<VClass>();
+		List<Datatype> ranges = new ArrayList<Datatype>();
 		
 		if(dp.getDomainVClassURI() != null && dp.getDomainVClassURI() != "") {
 			domains.add(vcDao.getVClassByURI(dp.getDomainVClassURI()));
 		}
 		
-		if(dp.getRangeVClassURI() != null && dp.getRangeVClassURI() != "") {
-			ranges.add(vcDao.getVClassByURI(dp.getRangeVClassURI()));
+		if(dp.getRangeDatatypeURI() != null && dp.getRangeDatatypeURI() != "") {
+			DatatypeDao dtDao = wadf.getDatatypeDao();
+			ranges.add(dtDao.getDatatypeByURI(dp.getRangeDatatypeURI()));
 		}
 		
 		request.setAttribute("domains", domains);

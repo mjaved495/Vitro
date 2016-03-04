@@ -1031,6 +1031,24 @@
   	<url-pattern>/edit_api/add_data_subproperty</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+  	<servlet-name>AddDataDomainItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddDomainItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddDataDomainItemController</servlet-name>
+  	<url-pattern>/edit_api/add_data_domain</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddDataRangeItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddRangeItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddDataRangeItemController</servlet-name>
+  	<url-pattern>/edit_api/add_data_range</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
   	<servlet-name>EditDataSubpropertyItemController</servlet-name>
   	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.EditSubpropertyItemController</servlet-class>
