@@ -112,19 +112,26 @@ public class DataPropertyInfoController extends HttpServlet {
         
         Hashtable<String, String> domainInfo = new Hashtable<String, String>();
         if(domain == null) {
-        	domain = vcDao.getTopConcept();
+        	domainInfo.put("uri", "");
+        	domainInfo.put("name", "");
         }
-        domainInfo.put("uri", domain.getURI());
-        domainInfo.put("name", domain.getName());
+        else {
+        	 domainInfo.put("uri", domain.getURI());
+             domainInfo.put("name", domain.getName());
+        }
         
         responseObject.put("domain", domainInfo);
         
         Hashtable<String, String> rangeInfo = new Hashtable<String, String>();
         if(range == null) {
-        	range = vcDao.getTopConcept();
+        	rangeInfo.put("uri", "");
+        	rangeInfo.put("name", "");
         }
-        rangeInfo.put("uri", range.getURI());
-        rangeInfo.put("name", range.getName());
+        else {
+        	rangeInfo.put("uri", range.getURI());
+            rangeInfo.put("name", range.getName());
+        }
+        
         
         responseObject.put("range", rangeInfo);
 
