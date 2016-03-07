@@ -28,6 +28,7 @@ import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class DataPropertyInfoController extends HttpServlet {
 	public void doGet (HttpServletRequest req, HttpServletResponse response) throws IOException {
+		
 		Hashtable<String, Object> responseObject = new Hashtable<String, Object>();
 		
 		VitroRequest request = new VitroRequest(req);
