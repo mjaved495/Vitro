@@ -31,15 +31,15 @@
             <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getLabel()}"/>
         </c:forEach>
     </c:otherwise>
-</c:choose>
+</c:choose>g
 
 <c:choose>
     <c:when test="${empty allDatatypes}">
         <input type="hidden" class="datatype-option-data" data-uri="" value="None"/>
     </c:when>
     <c:otherwise>
-        <c:forEach items="${allDatatypes}" var="type">
-            <input type="hidden" class="datatype-option-data" data-uri="${type.getURI()}" value="${type.getLocalName()}"/>
+        <c:forEach items="${allDatatypes}" var="t">
+            <input type="hidden" class="datatype-option-data" data-uri="${t.getURI()}" value="${t.getLocalName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>
@@ -194,10 +194,10 @@
                     <table id="range-table">
                             <c:forEach items="${ranges}" var="range">
                                 <tr class="class-item">
-                                   <td class="item-detail" id="editable-item-detail" title="${range.getURI()}" data-range-class-uri="${range.getURI()}"><p>${range.getLocalName()}</p></td> 
+                                   <td class="item-detail" id="editable-item-detail" title="${range.getUri()}" data-range-datatype-uri="${range.getUri()}"><p>${range.getName()}</p></td> 
                                    <td class="item-spacer"></td>
-                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td>
-                                   <td class="item-action"> <i class="fa fa-trash action action-delete-range-class" title="Remove this"></i> </td>
+                                   <td class="item-action"> <i class="fa fa-pencil action action-edit-range-datatype" title="Edit/replace"> </i></td>
+                                   <td class="item-action"> <i class="fa fa-trash action action-delete-range-datatype" title="Remove this"></i> </td>
                                 </tr>
                             </c:forEach>
                     </table>

@@ -36,7 +36,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.XSD;
 
 public class DatatypePropertyPageController extends HttpServlet {
-private static final Log log = LogFactory.getLog(ClassPageController.class.getName());
+private static final Log log = LogFactory.getLog(DatatypePropertyPageController.class.getName());
 	
 	public void doPost (HttpServletRequest req, HttpServletResponse response) throws IOException {
 		if(req.getParameter("uri") == null) {
@@ -63,7 +63,8 @@ private static final Log log = LogFactory.getLog(ClassPageController.class.getNa
 		for(Field field : fields) {
 			if(java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
 				try {
-					datatypes.add((Resource)field.get(null));
+					Resource r = (Resource)field.get(null);
+					datatypes.add(r);
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {

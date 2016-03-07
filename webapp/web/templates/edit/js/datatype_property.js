@@ -113,7 +113,7 @@ $(function() {
 
 			$("#range-table").html('');
 			if(range["uri"] != "") {
-				var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-class" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-class" title="Remove this"></i></td></tr>')
+				var rangeDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + range["uri"] + '"" data-vclass-uri="' + range["uri"] + '"></p>' + range["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-range-datatype" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-range-datatype" title="Remove this"></i></td></tr>')
 				$("#range-table").append(rangeDiv);
 				$("#add-range-container").html("<b>Range:</b>");
 			}
@@ -137,8 +137,8 @@ $(function() {
 		$(".action-delete-eqproperty").click(actionDeleteEqProperty);
 		$(".action-edit-domain-class").click(actionEditDomain);
 		$(".action-delete-domain-class").click(actionDeleteDomain);
-		$(".action-edit-range-class").click(actionEditRange);
-		$(".action-delete-range-class").click(actionDeleteRange);
+		$(".action-edit-range-datatype").click(actionEditRange);
+		$(".action-delete-range-datatype").click(actionDeleteRange);
 	}
 
 	var actionEditSuperproperty = function() {
@@ -183,7 +183,7 @@ $(function() {
 
 	var actionEditRange = function() {
 		var itemDetail = $(this).parent().parent().find(".item-detail");
-		replaceWithInput(itemDetail, actionEditRangeCallback, "range-class");
+		replaceWithInput(itemDetail, actionEditRangeCallback, "range-datatype");
 	}
 
 	var actionDeleteRange = function() {
@@ -302,7 +302,7 @@ $(function() {
 	}
 
 	var actionDeleteRangeCallback = function(row) {
-		var rangeURI = row.find(".item-detail").attr("data-range-class-uri");
+		var rangeURI = row.find(".item-detail").attr("data-range-datatype-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		$.post("/vivo/edit_api/delete_data_range", {"rangeURI": rangeURI, "propertyURI": propertyURI}, function(res) {
 			$("#add-range-container").append("<span class='fa fa-plus action action-add-range'></span>");
@@ -381,7 +381,7 @@ $(function() {
 	var addRange = function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			var rangeURI = td.attr('data-range-class-uri');
+			var rangeURI = td.attr('data-range-datatype-uri');
 			$.post('/vivo/edit_api/add_data_range', {'propertyURI': propertyURI, 'rangeURI': rangeURI}, function(res) {
 				if(res != rangeURI) {
 					console.log("error: " + res);
@@ -431,8 +431,8 @@ $(function() {
 	$(".action-delete-eqproperty").click(actionDeleteEqProperty);
 	$(".action-edit-domain-class").click(actionEditDomain);
 	$(".action-delete-domain-class").click(actionDeleteDomain);
-	$(".action-edit-range-class").click(actionEditRange);
-	$(".action-delete-range-class").click(actionDeleteRange);
+	$(".action-edit-range-datatype").click(actionEditRange);
+	$(".action-delete-range-datatype").click(actionDeleteRange);
 
 	$(".action-add-superproperty").click(addSuperproperty);
 	$(".action-add-subproperty").click(addSubproperty);
