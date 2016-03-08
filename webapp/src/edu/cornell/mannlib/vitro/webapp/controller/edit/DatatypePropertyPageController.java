@@ -88,6 +88,8 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
 		List<DataProperty> subproperties = getPropsForURIList(dpDao.getAllSubPropertyURIs(propertyURI), dpDao);
 		List<DataProperty> eqproperties = getPropsForURIList(dpDao.getEquivalentPropertyURIs(propertyURI), dpDao);
 		
+		log.info(subproperties);
+		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("subproperties", subproperties);
 		request.setAttribute("eqproperties", eqproperties);

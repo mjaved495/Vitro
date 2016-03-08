@@ -18,7 +18,7 @@ public class AddEqPropertyItemController extends HttpServlet {
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory();
         DataPropertyDao dpDao = wadf.getDataPropertyDao();
 		
-		dpDao.addSuperproperty(propertyURI, eqPropertyURI);
+		dpDao.addEquivalentProperty(propertyURI, eqPropertyURI);
 		
 		res.getWriter().print(eqPropertyURI);
 	}

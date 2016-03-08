@@ -349,7 +349,7 @@ $(function() {
 			$.ajax({
 				"type": "POST",
 				"url": '/vivo/edit_api/add_data_eqproperty', 
-				"data": {'propertyURI': propertyURI, 'eqpropertyURI': eqPropertyURI}, 
+				"data": {'propertyURI': propertyURI, 'eqPropertyURI': eqPropertyURI}, 
 				"success": function(res) {
 					td.parent().find(".action-edit-eqproperty").click(actionEditEqProperty);
 					td.parent().find(".action-delete-eqproperty").click(actionDeleteEqProperty);

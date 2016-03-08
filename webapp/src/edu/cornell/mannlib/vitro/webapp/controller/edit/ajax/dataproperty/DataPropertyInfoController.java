@@ -16,11 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
+import edu.cornell.mannlib.vitro.webapp.beans.Datatype;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
+import edu.cornell.mannlib.vitro.webapp.dao.DatatypeDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
@@ -39,6 +41,7 @@ public class DataPropertyInfoController extends HttpServlet {
         DataProperty dp = (DataProperty)dpDao.getDataPropertyByURI(URLDecoder.decode(request.getParameter("uri"), "UTF-8"));
         
         VClassDao vcDao = wadf.getVClassDao();
+        DatatypeDao dtDao = wadf.getDatatypeDao();
       
         Ontology ont = null;
         
@@ -109,7 +112,7 @@ public class DataPropertyInfoController extends HttpServlet {
         responseObject.put("functional", dp.getFunctional());
         
         VClass domain = vcDao.getVClassByURI(dp.getDomainVClassURI());
-        VClass range = vcDao.getVClassByURI(dp.getRangeVClassURI());
+        Datatype range = dtDao.getDatatypeByURI(dp.getRangeDatatypeURI());
         
         Hashtable<String, String> domainInfo = new Hashtable<String, String>();
         if(domain == null) {
@@ -129,7 +132,7 @@ public class DataPropertyInfoController extends HttpServlet {
         	rangeInfo.put("name", "");
         }
         else {
-        	rangeInfo.put("uri", range.getURI());
+        	rangeInfo.put("uri", range.getUri());
             rangeInfo.put("name", range.getName());
         }
         
