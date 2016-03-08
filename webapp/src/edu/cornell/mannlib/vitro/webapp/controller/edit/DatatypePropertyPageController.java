@@ -77,7 +77,7 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
         	 Ontology ont = wadf.getOntologyDao().getOntologyByURI(dp.getNamespace());
              
              request.setAttribute("ontology",  ont);
-             request.setAttribute("allClasses", ont.getVClassesList());
+             request.setAttribute("allClasses", vcDao.getAllVclasses());
              request.setAttribute("allProperties", dpDao.getAllDataProperties());
              request.setAttribute("allDatatypes", datatypes);
 		}

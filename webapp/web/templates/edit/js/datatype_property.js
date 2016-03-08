@@ -108,6 +108,7 @@ $(function() {
 			}
 			else {
 				$("#add-domain-container").html("<b>Domain:</b> <span class='fa fa-plus action action-add-domain'></span>");
+				$(".action-add-domain").click(addDomain);
 			}
 			
 
@@ -119,6 +120,7 @@ $(function() {
 			}
 			else {
 				$("#add-range-container").html("<b>Range:</b> <span class='fa fa-plus action action-add-range'></span>");
+				$(".action-add-range").click(addRange);
 			}
 			
 
@@ -257,7 +259,7 @@ $(function() {
 	var actionDeleteEqPropertyCallback = function(row) {
 		var eqpropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_data_eqproperty", {"eqpropertyURI": eqpropertyURI, "propertyURI": propertyURI}, function(res) {
+		$.post("/vivo/edit_api/delete_data_eqproperty", {"eqPropertyURI": eqpropertyURI, "propertyURI": propertyURI}, function(res) {
 			console.log(res);
 		})
 	}

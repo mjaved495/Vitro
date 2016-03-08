@@ -31,7 +31,7 @@
             <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getLabel()}"/>
         </c:forEach>
     </c:otherwise>
-</c:choose>g
+</c:choose>
 
 <c:choose>
     <c:when test="${empty allDatatypes}">

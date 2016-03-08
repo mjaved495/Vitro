@@ -47,7 +47,7 @@ public class GetURIController extends HttpServlet {
 			DataPropertyDao dpDao = wadf.getDataPropertyDao();
 			List<DataProperty> allDataProperties = dpDao.getAllDataProperties();
 			for(DataProperty dp : allDataProperties) {
-				if(dp.getLabel().equals(name)) {
+				if(dp.getName().equals(name)) {
 					uri = dp.getURI();
 				}
 			}
