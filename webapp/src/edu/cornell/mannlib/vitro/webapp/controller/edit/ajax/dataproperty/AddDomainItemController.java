@@ -32,10 +32,10 @@ public class AddDomainItemController extends HttpServlet {
 		log.info(domainURI);
 		
 		DataProperty dp = dpDao.getDataPropertyByURI(propertyURI);
-		dp.setDomainVClassURI(domainURI);
-		//dpDao.updateDataProperty(dp);
+		dp.setDomainClassURI(domainURI);
+		dpDao.updateDataProperty(dp);
 		
-		log.info(dp.getDomainVClassURI());
+		log.info(dp.getDomainClassURI());
 		
 		res.getWriter().print(domainURI);
 	}
