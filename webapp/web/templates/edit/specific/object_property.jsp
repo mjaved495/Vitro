@@ -330,7 +330,7 @@
 
 <div class="info-container">
 	 <div class="item">
-        <p class="right-pane-item"><b>Ontology:</b><br/> ${ontology.getName()}</p>
+        <p class="right-pane-item"><b>Ontology:</b><br/> <span id="ontology-name">${ontology.getName()}</span></p>
 
         <hr/>
         <p class="right-pane-item"><b>Display level:</b> <br/> <span id="display-level">${displayLevel}</span></p>

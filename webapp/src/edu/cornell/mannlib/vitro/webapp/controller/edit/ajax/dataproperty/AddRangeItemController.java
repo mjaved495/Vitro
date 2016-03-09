@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
@@ -15,6 +18,9 @@ import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class AddRangeItemController extends HttpServlet {
+	
+	private static final Log log = LogFactory.getLog(AddRangeItemController.class.getName());
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String rangeURI = req.getParameter("rangeURI");
 		String propertyURI = req.getParameter("propertyURI");
@@ -26,6 +32,8 @@ public class AddRangeItemController extends HttpServlet {
 		DataProperty dp = dpDao.getDataPropertyByURI(propertyURI);
 		dp.setRangeDatatypeURI(rangeURI);
 		dpDao.updateDataProperty(dp);
+		
+		log.info(dp.getRangeDatatypeURI());
 		
 		res.getWriter().print(rangeURI);
 	}
