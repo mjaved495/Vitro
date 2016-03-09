@@ -82,13 +82,21 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
              request.setAttribute("allDatatypes", datatypes);
 		}
 		
-		log.debug(propertyURI);
+		String hiddenFromDisplay = (dp.getHiddenFromDisplayBelowRoleLevel() == null ? "(unspecified)"
+				: dp.getHiddenFromDisplayBelowRoleLevel().getDisplayLabel());
+		String prohibitedFromUpdate = (dp
+					.getProhibitedFromUpdateBelowRoleLevel() == null ? "(unspecified)"
+					: dp.getProhibitedFromUpdateBelowRoleLevel().getUpdateLabel());
+		String hiddenFromPublish = (dp.getHiddenFromPublishBelowRoleLevel() == null ? "(unspecified)"
+					: dp.getHiddenFromPublishBelowRoleLevel().getDisplayLabel());
+	
+		request.setAttribute("displayLevel", hiddenFromDisplay);
+		request.setAttribute("updateLevel", prohibitedFromUpdate);
+		request.setAttribute("publishLevel", hiddenFromPublish);
 
 		List<DataProperty> superproperties = getPropsForURIList(dpDao.getAllSuperPropertyURIs(propertyURI), dpDao);
 		List<DataProperty> subproperties = getPropsForURIList(dpDao.getAllSubPropertyURIs(propertyURI), dpDao);
 		List<DataProperty> eqproperties = getPropsForURIList(dpDao.getEquivalentPropertyURIs(propertyURI), dpDao);
-		
-		log.info(subproperties);
 		
 		request.setAttribute("superproperties", superproperties);
 		request.setAttribute("subproperties", subproperties);
@@ -104,10 +112,14 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
 			domains.add(vcDao.getVClassByURI(dp.getDomainVClassURI()));
 		}
 		
+		DatatypeDao dtDao = wadf.getDatatypeDao();
+		log.info(dp.getRangeDatatypeURI());
+		
 		if(dp.getRangeDatatypeURI() != null && dp.getRangeDatatypeURI() != "") {
-			DatatypeDao dtDao = wadf.getDatatypeDao();
-			ranges.add(dtDao.getDatatypeByURI(dp.getRangeDatatypeURI()));
+			ranges.add(dtDao.getDatatypeByURI(dp.getRangeDatatypeURI())); // why does this return null?
 		}
+		
+		log.info(ranges);
 		
 		request.setAttribute("domains", domains);
 		request.setAttribute("ranges", ranges);
