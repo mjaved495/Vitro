@@ -212,7 +212,7 @@
                     </c:choose>
                    </p>
                    <div class="scroll-list">
-                    <table>
+                    <table id="inverse-table">
                             <c:forEach items="${inverses}" var="inverse">
                                 <tr class="class-item">
                         	       <td class="item-detail" id="editable-item-detail" title="${inverse.getURI()}" data-inverse-property-uri="${inverse.getURI()}"><p>${inverse.getLabel()}</p></td> 
