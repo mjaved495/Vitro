@@ -119,7 +119,7 @@ $(document).ready(function() {
 			$("#inverse-table").html('')
 			if(inverse["uri"] != "") {
 				var inverseDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + inverse["uri"] + '"" data-vclass-uri="' + inverse["uri"] + '"></p>' + inverse["name"] + '</p></td> <td class="item-spacer"></td> <td class="item-action"><i class="fa fa-pencil action action-edit-inverse-property" title="Edit/replace"> </i></td> <td class="item-action"> <i class="fa fa-trash action action-delete action-delete-inverse-property" title="Remove this"></i></td></tr>')
-				$(".inverse-table").append(inverseDiv);
+				$("#inverse-table").append(inverseDiv);
 				$("#add-inverse-container").html("<b>Inverse:</b>");
 			}
 			else {
