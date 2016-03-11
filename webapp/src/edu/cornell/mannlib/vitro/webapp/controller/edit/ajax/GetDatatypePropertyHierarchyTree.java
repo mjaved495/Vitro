@@ -65,7 +65,7 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 		List<PropHierarchyNode> tree = new ArrayList<PropHierarchyNode>();
 		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
 		for(PropHierarchyNode prop : propList) {
-			/*DataProperty dp = prop.getDataProp();
+			DataProperty dp = prop.getDataProp();
 			List<String> superproperties;
 			if(((OntResource)dp).hasProperty(RDF.type, OWL.DatatypeProperty)) {
 				superproperties = dpDao.getAllSuperPropertyURIs(dp.getURI());
@@ -76,8 +76,7 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 			
 			if(superproperties.size() == 0) {
 				tree.add(prop);
-			}*/
-			tree.add(prop);
+			}
 		}
 		for(PropHierarchyNode prop : tree) {
 			result.add(addChildrenRecursively(prop, dpDao));
