@@ -217,6 +217,7 @@
         <p class="right-pane-item"><b>Display level:</b> <br/> <span id="display-level">${displayLevel}</span></p>
         <p class="right-pane-item"><b>Update level:</b> <br/> <span id="update-level">${updateLevel}</span></p>
         <p class="right-pane-item"><b>Publish level:</b> <br/> <span id="publish-level">${publishLevel}</span></p>
+        <hr/>
         <c:choose>
             <c:when test="${dataProperty.getFunctional()}">
                 <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
