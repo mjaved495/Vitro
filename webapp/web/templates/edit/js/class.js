@@ -446,10 +446,34 @@ $(document).ready(function() {
 		"placeholder": "Select an item"
 	})
 
+	$("#restrictionType").change(function() {
+		var val = $(this).val();
+		var startHtml = '<td><p>';
+		var htmls = {"allValuesFrom": '<b>All values from:</b> <select id="ValueClass" name="ValueClass"></select>',
+					 "someValuesFrom": '<b>Some values from:</b> <select id="ValueClass" name="ValueClass"></select>',
+					 "hasValue": '<b>Has value:</b> <input id="ValueIndividual" name="ValueIndividual" placeholder="Enter individual URI..."/>',
+					 "minCardinality": '<b>Minimum cardinality:</b> <input id="cardinality" name="cardinality"/>',
+					 "maxCardinality": '<b>Maximum cardinality:</b> <input id="cardinality" name="cardinality"/>',
+					 "cardinality": '<b>Exact cardinality:</b> <input id="cardinality" name="cardinality"/>'}
+		var endHtml = '</p></td>';
+		$("#restriction-container").html(startHtml + htmls[val] + endHtml);
+		$.each($(".class-option-data"), function(i, optionInput) {
+			$("#ValueClass").append($('<option value="' + $(optionInput).attr('data-uri') + '">' + $(optionInput).val() + '</option>'));
+		});
+		$("#ValueClass").select2();
+	})
+
 	$("#add-restriction").click(function(e) {
 		e.preventDefault();
-		var formData = $("#restriction-form").serialize();
-		console.log($("#restriction-form").serialize());
+		var formData = $("#restriction-form").serializeArray();
+		var dynamicInputIds = ["ValueClass", "ValueIndividual", "cardinality"]
+		for(var i = 0; i < dynamicInputIds.length; i++) {
+			var id = dynamicInputIds[i];
+			if($("#"+id).length > 0) {
+				formData.push({"name": id, "value": $("#"+id).val()})
+			}
+		}
+		
 		$.post("/vivo/edit_api/add_restriction", formData, function(data) {
 			console.log(data);
 		});

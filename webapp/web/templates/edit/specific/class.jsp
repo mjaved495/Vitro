@@ -252,8 +252,16 @@
     <div class="item">
         <table>
         <form action="" method="post" id="restriction-form">
-        <input type="hidden" name="VClassURI" value="${vclass.getURI()}"/>
+        <input type="hidden" name="VClassURI" value="${VClass.getURI()}"/>
         <tr><td colspan="4"><hr class="formDivider"/></td></tr>
+            <tr class="restriction-field"><td><p><b>Restriction type:</b> <select id="restrictionType" name="restrictionType">
+                <option value="allValuesFrom">all values from</option>
+                <option value="someValuesFrom">some values from</option>
+                <option value="hasValue">has value</option>
+                <option value="minCardinality">minimum cardinality</option>
+                <option value="maxCardinality">maximum cardinality</option>
+                <option value="cardinality">cardinality</option>
+            </select></p></td></tr>
             <tr class="restriction-field"><td><p><b>Condition type:</b> <select id="conditionType" name="conditionType">
                 <option value="necessary">necessary</option>
                 <option value="necessaryAndSufficient">necessary and sufficient</option>
@@ -263,11 +271,11 @@
                     <option value="${property.getURI()}">${property.getLabel()}</option>
                 </c:forEach>
             </select></p></td></tr>
-            <tr class="restriction-field"><td><p><b>All values from:</b> <select id="ValueClass" name="ValueClass">
-                <c:forEach items="${allClasses}" var="vclass">
-                    <option value="${vclass.getURI()}">${vclass.getName()}</option>
-                </c:forEach>
-            </select></p></td></tr>
+                <tr class="restriction-field" id="restriction-container"><td><p><b>All values from:</b> <select id="ValueClass" name="ValueClass">
+                    <c:forEach items="${allClasses}" var="vclass">
+                        <option value="${vclass.getURI()}">${vclass.getName()}</option>
+                    </c:forEach>
+                </select></p></td></tr>
             <tr><td><input type="submit" class="submit" id="add-restriction" value="Add restriction"></td></tr>
         </table>
         </form>
