@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -24,49 +26,50 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import edu.cornell.mannlib.vedit.beans.EditProcessObject;
 import edu.cornell.mannlib.vitro.webapp.auth.permissions.SimplePermission;
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
+import edu.cornell.mannlib.vitro.webapp.controller.edit.ClassPageController;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class AddRestrictionController extends HttpServlet {
+	
+	private static final Log log = LogFactory.getLog(AddRestrictionController.class.getName());
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		VitroRequest request = new VitroRequest(req);
 		
-	    try {
-			OntModel ontModel = ModelAccess.on(getServletContext())
-					.getOntModel(TBOX_ASSERTIONS);
-		    
-            HashMap epoHash = null;
-            EditProcessObject epo = null;
-            try {
-                epoHash = (HashMap) request.getSession().getAttribute("epoHash");
-                epo = (EditProcessObject) epoHash.get(request.getParameter("_epoKey"));
-                processCreate(request, epo, ontModel);
-            } catch (NullPointerException e) {
-                res.getWriter().println("error: nullpointerexception");
-            }
-		} catch (Exception e) {
-	    	res.getWriter().println("error");
-	    }
-           
+		OntModel ontModel = ModelAccess.on(getServletContext())
+				.getOntModel(TBOX_ASSERTIONS);
+	    
+        processCreate(request, ontModel);
 	}
 	
-	private void processCreate(VitroRequest request, EditProcessObject epo, OntModel origModel) {
+	private void processCreate(VitroRequest request, OntModel origModel) {
 		Model temp = ModelFactory.createDefaultModel();
         Model dynamicUnion = ModelFactory.createUnion(temp, origModel);
         OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, dynamicUnion);
         
-
+        log.info("onProperty is " + request.getParameter("onProperty"));
         
         OntProperty onProperty = ontModel.getOntProperty( (String) request.getParameter("onProperty") );
         
         String conditionTypeStr = request.getParameter("conditionType");
         
-        String restrictionTypeStr = (String) epo.getAttribute("restrictionType");
+        log.info("conditionTypeStr is " + conditionTypeStr);
+        
+        String restrictionTypeStr = (String) request.getParameter("restrictionType");
+        
         Restriction rest = null;
         
-        OntClass ontClass = ontModel.getOntClass( (String) epo.getAttribute("VClassURI") );
+        String vClassURI = (String) request.getParameter("VClassURI");
+        OntClass ontClass = ontModel.getOntClass(vClassURI);
+        log.info("VClassURI is " + vClassURI);
+        
+        log.info("restrictionTypeStr is " + restrictionTypeStr);
         
         String roleFillerURIStr = request.getParameter("ValueClass");
+        
+        log.info("roleFillerURIStr is " + roleFillerURIStr);
+        
         Resource roleFiller = null;
         if (roleFillerURIStr != null) {
             roleFiller = ontModel.getResource(roleFillerURIStr);

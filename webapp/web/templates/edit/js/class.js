@@ -449,8 +449,9 @@ $(document).ready(function() {
 	$("#add-restriction").click(function(e) {
 		e.preventDefault();
 		var formData = $("#restriction-form").serialize();
+		console.log($("#restriction-form").serialize());
 		$.post("/vivo/edit_api/add_restriction", formData, function(data) {
-			alert("Restriction added.");
+			console.log(data);
 		});
 	})
 

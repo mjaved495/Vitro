@@ -251,7 +251,8 @@
 
     <div class="item">
         <table>
-        <form action="" method="post">
+        <form action="" method="post" id="restriction-form">
+        <input type="hidden" name="VClassURI" value="${vclass.getURI()}"/>
         <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr class="restriction-field"><td><p><b>Condition type:</b> <select id="conditionType" name="conditionType">
                 <option value="necessary">necessary</option>
