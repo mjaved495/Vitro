@@ -89,6 +89,9 @@
 
 <div class="tree-container">
     <div class="item">
+        <input type="submit" class="submit add-vclass" value="Add New Class"/>
+    </div>
+    <div class="item">
         <div id="tree">
             <p>Loading tree...</p>
         </div>

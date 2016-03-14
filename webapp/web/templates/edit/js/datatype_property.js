@@ -130,6 +130,29 @@ $(function() {
 		});
 	}
 
+	var actionEditName = function() {
+		if($("#name-input").length == 0) {
+			$("#name").hide();
+			var nameInput = $("<input type='text' id='name-input'/>");
+			$("#name").parent().prepend(nameInput);
+			$(nameInput).keypress(function(e) {
+				if(e.keyCode == 13) {
+					editDataPropName($(this).val());
+				}
+			});
+		}
+	}
+
+	var editDataPropName = function(name) {
+		$.post("/vivo/edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "dataprop"}, function(data) {
+			setTimeout(function() {
+				$("#name-input").remove();
+				$("#name").show();
+				$("#name").text(data);
+			}, 2000);
+		})
+	}
+
 	function updateEventHandlers() {
 		$(".action-edit-superproperty").click(actionEditSuperproperty);
 		$(".action-delete-superproperty").click(actionDeleteSuperproperty);

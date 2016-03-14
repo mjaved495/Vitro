@@ -46,6 +46,9 @@
 
 <div class="tree-container">
     <div class="item">
+        <input type="submit" class="submit add-data-property" value="Add New Data Property"/>
+    </div>
+    <div class="item">
         <div id="tree">
             <p>Loading tree...</p>
         </div>
