@@ -188,7 +188,7 @@ $(document).ready(function() {
 	}
 
 	var editPropName = function(name) {
-		$.post("/vivo/edit_api/edit_prop_name", {"uri": $("#uri").val(), "newPropertyName": name}, function(data) {
+		$.post("/vivo/edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "objprop"}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();

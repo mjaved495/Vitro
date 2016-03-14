@@ -343,7 +343,8 @@ $(document).ready(function() {
 			$("#ontology-name").text(ontology);
 			$("#class-group").text(group);
 
-			$(".vclass-label").html(classLabel + '<b class="concept">(CLASS)</b><i class="fa fa-pencil"></i>');
+			$(".vclass-label").html(classLabel + '<b class="concept">(CLASS)</b><i class="fa fa-pencil action-edit-name"></i>');
+			$("#action-edit-name").click(actionEditName);
 			$("#uri").val(uri);
 
 			$("#superclass-table").html('');
@@ -409,7 +410,7 @@ $(document).ready(function() {
 	}
 
 	var editVClassName = function(name) {
-		$.post("/vivo/edit_api/edit_vclass_name", {"uri": $("#uri").val(), "newClassName": name}, function(data) {
+		$.post("/vivo/edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "vclass"}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();
