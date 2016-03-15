@@ -88,8 +88,8 @@
 -->
 
 <div class="tree-container">
-    <div class="item">
-        <input type="submit" class="submit add-vclass" value="Add New Class"/>
+    <div class="item" id="new-class-container">
+        <p><i class="fa fa-plus add-vclass"></i>Add New Class</p>
     </div>
     <div class="item">
         <div id="tree">
