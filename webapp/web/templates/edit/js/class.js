@@ -409,6 +409,23 @@ $(document).ready(function() {
 		}
 	}
 
+	var addClass = function() {
+		var nameInput = $("<input type='text' id='new-vclass-name' placeholder='New class name...'/>");
+		var superclassInput = createAutocompleteInput("class");
+		var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
+		$("#new-class-container").append(nameInput);
+		$("#new-class-container").append(superclassInput);
+		$("#new-class-container").append(confirmButton);
+		superclassInput.select2({
+			placeholder: "Select a superclass"
+		});
+		$(confirmButton).click(function(e) {
+			$.post("/edit_api/add_entity", {"name": $("#new-vclass-name").val(), "supertype": $("#class-select").val(), "type": "vclass"}, function(data) {
+				console.log("success: " + data);
+			})
+		})
+	}
+
 	var editVClassName = function(name) {
 		$.post("/vivo/edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "vclass"}, function(data) {
 			setTimeout(function() {
@@ -490,6 +507,8 @@ $(document).ready(function() {
 		$(".action-delete-vclass").click(deleteVClass);
 
 		$(".action-edit-name").click(actionEditName);
+
+		$(".add-vclass").click(addClass);
 
 		updateEventHandlers();
 	}

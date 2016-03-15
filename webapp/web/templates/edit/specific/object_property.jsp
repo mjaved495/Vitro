@@ -96,8 +96,8 @@
 </c:choose>
 
 <div class="tree-container">
-    <div class="item">
-        <input type="submit" class="submit add-data-property" value="Add New Data Property"/>
+    <div class="item" id="new-property-container">
+        <p><i class="fa fa-plus add-object-property"></i> Add Object Property</p>
     </div>
     <div class="item">
         <div id="tree">
