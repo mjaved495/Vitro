@@ -97,7 +97,7 @@
 
 <div class="tree-container">
     <div class="item" id="new-property-container">
-        <p><i class="fa fa-plus add-object-property"></i> Add Object Property</p>
+        <p><span class="fa fa-plus add-object-property"></span> Add Object Property</p>
     </div>
     <div class="item">
         <div id="tree">

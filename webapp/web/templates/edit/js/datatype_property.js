@@ -65,7 +65,7 @@ $(function() {
 			$("#data-property-uri").val(uri);
 			$("#ontology-name").text(ontology);
 
-			$(".dataprop-label").html(propLabel + '<b class="datatype-property">(DATATYPE PROPERTY)</b><i class="fa fa-pencil"></i>');
+			$("#name").html(propLabel + '<b class="datatype-property">(DATATYPE PROPERTY)</b><i class="fa fa-pencil"></i>');
 			$("#uri").val(uri);
 
 			$("#superproperty-table").html('');
@@ -128,6 +128,26 @@ $(function() {
 			
 			updateEventHandlers();
 		});
+	}
+
+	var addProperty = function() {
+		if($("#new-property-name").length == 0) {
+			var nameInput = $("<input type='text' id='new-property-name' placeholder='New property name...'/>");
+			var superpropertyInput = createAutocompleteInput("data-property"); // this will have the ID data-property-select
+			var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
+			$("#new-property-container").append(nameInput);
+			$("#new-property-container").append(superpropertyInput);
+			$("#new-property-container").append(confirmButton);
+			superpropertyInput.select2({
+				placeholder: "Select a superproperty"
+			});
+			$(confirmButton).click(function(e) {
+				$.post("/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": $("#data-property-select").val(), "type": "dataprop"}, function(data) {
+					console.log("success: " + data);
+				})
+			})
+		}
+		
 	}
 
 	var actionEditName = function() {
@@ -464,6 +484,10 @@ $(function() {
 	$(".action-add-eqproperty").click(addEqProperty);
 	$(".action-add-domain").click(addDomain);
 	$(".action-add-range").click(addRange);
+
+	$(".action-edit-name").click(actionEditName);
+
+	$(".add-data-property").click(addProperty);
 
 })
 </script>

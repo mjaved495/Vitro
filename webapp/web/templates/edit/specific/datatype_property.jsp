@@ -45,8 +45,8 @@
 </c:choose>
 
 <div class="tree-container">
-    <div class="item">
-        <input type="submit" class="submit add-data-property" value="Add New Data Property"/>
+    <div class="item" id="new-property-container">
+        <p><span class="fa fa-plus add-data-property"></span> Add Data Property</p>
     </div>
     <div class="item">
         <div id="tree">
@@ -60,7 +60,7 @@
         <table>
             <tr>
                 <td valign="bottom" colspan="2">
-                     <span class="dataprop-label">${dataProperty.getName()} <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
+                     <span id="dataprop-label"><span id="name">${dataProperty.getName()}</span> <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
                     <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
