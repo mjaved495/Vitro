@@ -50,8 +50,6 @@ public class EditNameController extends HttpServlet {
         	try {
         		op = (ObjectProperty)opDao.getObjectPropertyByURI(URLDecoder.decode(uri, "UTF-8"));
         		op.setLabel(newName);
-        		log.info("New name: " + newName);
-        		log.info("OP's label: " + op.getLabel());
         		opDao.updateObjectProperty(op);
         	}
         	catch (UnsupportedEncodingException e) {

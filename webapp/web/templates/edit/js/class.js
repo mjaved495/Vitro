@@ -421,7 +421,7 @@ $(document).ready(function() {
 		});
 		$(confirmButton).click(function(e) {
 			$.post("/edit_api/add_entity", {"name": $("#new-vclass-name").val(), "supertype": $("#class-select").val(), "type": "vclass"}, function(data) {
-				console.log("success: " + data);
+				// add child node programmatically in jstree
 			})
 		})
 	}
