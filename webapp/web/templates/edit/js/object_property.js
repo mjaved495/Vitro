@@ -17,7 +17,8 @@ $(document).ready(function() {
 		$("#tree").jstree({
 			"core": {
 				"data": [ data ]
-			} 
+			},
+			"plugins": [ "sort" ]
 		}).on("ready.jstree", function(e, data) {
 			$("#tree").on("click", "a", function(e) {
 				// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
@@ -199,7 +200,7 @@ $(document).ready(function() {
 				placeholder: "Select a superproperty"
 			});
 			$(confirmButton).click(function(e) {
-				$.post("/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": $("#object-property-select").val(), "type": "objprop"}, function(data) {
+				$.post("/vivo/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": $("#object-property-select").val(), "type": "objprop"}, function(data) {
 					console.log("success: " + data);
 				})
 			})
