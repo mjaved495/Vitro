@@ -14,7 +14,6 @@ import org.apache.commons.logging.LogFactory;
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
-import edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.AddDomainItemController;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
@@ -23,7 +22,7 @@ import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class EditNameController extends HttpServlet {
 	
-	private static final Log log = LogFactory.getLog(AddDomainItemController.class.getName());
+	private static final Log log = LogFactory.getLog(EditNameController.class.getName());
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String uri = req.getParameter("uri");
