@@ -816,6 +816,15 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>AddItemController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.AddItemController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddItemController</servlet-name>
+  	<url-pattern>/edit_api/add_item</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>EditSuperpropertyItemController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.EditSuperpropertyItemController</servlet-class>
   </servlet>
