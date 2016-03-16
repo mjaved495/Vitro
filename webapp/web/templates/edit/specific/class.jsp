@@ -89,7 +89,8 @@
 
 <div class="tree-container">
     <div class="item" id="new-class-container">
-        <p><i class="fa fa-plus add-vclass"></i>Add New Class</p>
+        <p style="text-align:center;"><a href="#" class="add-vclass">Add New Class</a></p>
+        <hr/>
     </div>
     <div class="item">
         <div id="tree">

@@ -17,7 +17,8 @@ $(document).ready(function() {
 		$("#tree").jstree({
 			"core": {
 				"data": [ data ]
-			} 
+			},
+			"plugins": [ "sort" ]
 		}).on("ready.jstree", function(e, data) {
 			$("#tree").on("click", "a", function(e) {
 				// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
@@ -410,20 +411,22 @@ $(document).ready(function() {
 	}
 
 	var addClass = function() {
-		var nameInput = $("<input type='text' id='new-vclass-name' placeholder='New class name...'/>");
-		var superclassInput = createAutocompleteInput("class");
-		var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
-		$("#new-class-container").append(nameInput);
-		$("#new-class-container").append(superclassInput);
-		$("#new-class-container").append(confirmButton);
-		superclassInput.select2({
-			placeholder: "Select a superclass"
-		});
-		$(confirmButton).click(function(e) {
-			$.post("/edit_api/add_entity", {"name": $("#new-vclass-name").val(), "supertype": $("#class-select").val(), "type": "vclass"}, function(data) {
-				// add child node programmatically in jstree
+		if($("#new-vclass-name").length == 0) {
+			var nameInput = $("<input type='text' id='new-vclass-name' placeholder='New class name...'/>");
+			var superclassInput = createAutocompleteInput("class");
+			var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
+			$("#new-class-container").append(nameInput);
+			$("#new-class-container").append(superclassInput);
+			$("#new-class-container").append(confirmButton);
+			superclassInput.select2({
+				placeholder: "Select a superclass"
+			});
+			$(confirmButton).click(function(e) {
+				$.post("/vivo/edit_api/add_entity", {"name": $("#new-vclass-name").val(), "supertype": $("#class-select").val(), "type": "vclass"}, function(data) {
+					$("#new-class-container").html('');
+				})
 			})
-		})
+		}
 	}
 
 	var editVClassName = function(name) {
