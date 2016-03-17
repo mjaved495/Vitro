@@ -19,7 +19,7 @@
     </c:when>
     <c:otherwise>
         <c:forEach items="${allClasses}" var="vclass">
-            <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}"/>
+            <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}" data-localname="${vclass.getLocalName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>

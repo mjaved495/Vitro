@@ -31,6 +31,9 @@ public class PropHierarchyNode {
 	@Expose
 	public Hashtable<String, String> a_attr;
 	
+	@Expose
+	public Hashtable<String, String> li_attr;
+	
 	public PropHierarchyNode(ObjectProperty op, List<PropHierarchyNode> children) {
 		this.op = op;
 		this.children = children;
@@ -40,6 +43,8 @@ public class PropHierarchyNode {
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", op.getURI());
 		this.a_attr.put("title", op.getURI());
+		this.li_attr = new Hashtable<String, String>();
+		this.li_attr.put("id", op.getLocalName());
 	}
 	
 	public PropHierarchyNode(ObjectProperty op) {
@@ -51,6 +56,8 @@ public class PropHierarchyNode {
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", op.getURI());
 		this.a_attr.put("title", op.getURI());
+		this.li_attr = new Hashtable<String, String>();
+		this.li_attr.put("id", op.getLocalName());
 	}
 	
 	public PropHierarchyNode(DataProperty dp) {
@@ -62,6 +69,8 @@ public class PropHierarchyNode {
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", dp.getURI());
 		this.a_attr.put("title", dp.getURI());
+		this.li_attr = new Hashtable<String, String>();
+		this.li_attr.put("id", dp.getLocalName());
 	}
 	
 	public PropHierarchyNode(String name, String type) {
@@ -74,7 +83,7 @@ public class PropHierarchyNode {
 			this.icon = "/vivo/images/greendot.png";
 		}
 		this.a_attr = new Hashtable<String, String>();
-		this.a_attr.put("data-vclass-uri", "#");
+		this.a_attr.put("data-property-uri", "#");
 		this.a_attr.put("title", "#");
 	}
 	
