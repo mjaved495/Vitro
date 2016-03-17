@@ -121,3 +121,13 @@ var addItem = function(jQElement, onAddCallback, type) {
 	})
 	}
 }
+
+var editItem = function(myURI, oldItemURI, newItemURI, relationship, type) {
+	$.post("/vivo/edit_api/delete_item", {"uri": myURI, "itemURI": oldItemURI, "relationship": relationship, "type": type}, function(data) {
+		$.post("/vivo/edit_api/add_item", {"uri": myURI, "itemURI": newItemURI, "relationship": relationship, "type": type});
+	})
+}
+
+var getURI = function(name, type, callback) {
+	$.get("/vivo/edit_api/uri", {"name": name, "type": type}, callback);
+}

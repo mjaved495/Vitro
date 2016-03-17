@@ -194,93 +194,61 @@ $(document).ready(function() {
 	var actionEditSuperclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSuperclassURI = itemDetail.attr("data-superclass-uri");
-		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+		getURI(itemDetail.text(), "class", function(data) {
 			var newSuperclassURI = data;
-			$.post("/vivo/edit_api/edit_superclass", {"vclassURI": vclassURI, 
-			"oldSuperclassURI": oldSuperclassURI, "newSuperclassURI": newSuperclassURI},
-			function(res) {
-				if(!(res === newSuperclassURI)) {
-					console.log("error: " + res);
-				}
-			});
+			editItem(vclassURI, oldSuperclassURI, newSuperclassURI, "super", "vclass");
 		});
 	}
 
 	var actionDeleteSuperclassCallback = function(row) {
 		var superclassURI = row.find(".item-detail").attr("data-superclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_superclass", {"vclassURI": vclassURI, "superclassURI": superclassURI}, function(res) {
-			console.log(res);
-		});
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": superclassURI, "relationship": "super", "type": "vclass"});
 	}
 
 	var actionEditSubclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldSubclassURI = itemDetail.attr("data-subclass-uri");
-		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+		getURI(itemDetail.text(), "class", function(data) {
 			var newSubclassURI = data;
-			$.post("/vivo/edit_api/edit_subclass", {"vclassURI": vclassURI, 
-			"oldSubclassURI": oldSubclassURI, "newSubclassURI": newSubclassURI},
-			function(res) {
-				if(!(res === newSubclassURI)) {
-					console.log("error: " + res);
-				}
-			});
+			editItem(vclassURI, oldSubclassURI, newSubclassURI, "sub", "vclass")
 		});
 	}
 
 	var actionDeleteSubclassCallback = function(row) {
 		var subclassURI = row.find(".item-detail").attr("data-subclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_subclass", {"vclassURI": vclassURI, "subclassURI": subclassURI}, function(res) {
-			console.log(res);
-		});
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"};
 	}
 
 	var actionEditEqclassCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldEqClassURI = itemDetail.attr("data-eqclass-uri");
-		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+		getURI(itemDetail.text(), "class", function(data) {
 			var newEqClassURI = data;
-			$.post("/vivo/edit_api/edit_eqclass", {"vclassURI": vclassURI, 
-			"oldEqClassURI": oldEqClassURI, "newEqClassURI": newEqClassURI},
-			function(res) {
-				if(!(res === newEqClassURI)) {
-					console.log("error: " + res);
-				}
-			});
+			editItem(vclassURI, oldEqClassURI, newEqClassURI, "eq", "vclass");
 		});
 	}
 
 	var actionDeleteEqclassCallback = function(row) {
 		var eqClassURI = row.find(".item-detail").attr("data-eqclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_eqclass", {"vclassURI": vclassURI, "eqClassURI": eqClassURI}, function(res) {
-			console.log(res);
-		});
+		$.post("/vivo/edit_api/delete_eqclass", {"uri": vclassURI, "itemURI": eqClassURI, "relationship": "eq", "type": "vclass"});
 	}
 
 	var actionEditDisjointCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		var oldDisjointClassURI = itemDetail.attr("data-disjoint-uri");
-		$.get("/vivo/edit_api/uri", {"name": itemDetail.text(), "type": "class"}, function(data) {
+		getURI(itemDetail.text(), "class", function(data) {
 			var newDisjointClassURI = data;
-			$.post("/vivo/edit_api/edit_disjoint", {"vclassURI": vclassURI, 
-			"oldDisjointClassURI": oldDisjointClassURI, "newDisjointClassURI": newDisjointClassURI},
-			function(res) {
-				if(!(res === newDisjointClassURI)) {
-					console.log("error: " + res);
-				}
-			});
+			editItem(vclassURI, oldDisjointClassURI, newDisjointClassURI, "disjoint", "vclass")
 		});
 	}
 
 	var actionDeleteDisjointCallback = function(row) {
 		var disjointClassURI = row.find(".item-detail").attr("data-disjoint-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_disjoint", {"vclassURI": vclassURI, "disjointClassURI": disjointClassURI}, function(res) {
-			console.log(res);
-		});
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": disjointClassURI, "relationship": "disjoint", "type": "vclass"});
 	}
 
 	var updateData = function(uri) {
