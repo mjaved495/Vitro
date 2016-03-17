@@ -709,12 +709,21 @@
   
   <servlet>
   	<servlet-name>AddItemController</servlet-name>
-  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.AddItemController</servlet-class>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.AddItemController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddItemController</servlet-name>
   	<url-pattern>/edit_api/add_item</url-pattern>
   </servlet-mapping>
+
+	<servlet>
+		<servlet-name>DeleteItemController</servlet-name>
+		<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.DeleteItemController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteItemController</servlet-name>
+		<url-pattern>/edit_api/delete_item</url-pattern>
+	</servlet-mapping>
 
   <servlet>
     <servlet-name>GetURIController</servlet-name>
