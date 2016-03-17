@@ -13,6 +13,14 @@ import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class AddItemController extends HttpServlet {
+	
+	private boolean isValid(String uri) {
+		boolean result = true;
+		result = result && !uri.contains("file:///");
+		result = result && uri != null;
+		return result;
+	}
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		String type = req.getParameter("type");
 		String relationship = req.getParameter("relationship");
@@ -21,7 +29,7 @@ public class AddItemController extends HttpServlet {
 		
 		WebappDaoFactory wadf =  ModelAccess.on(getServletContext()).getWebappDaoFactory();
 		
-		if(type == null || relationship == null || itemURI == null || myURI == null) {
+		if(type == null || relationship == null || !isValid(itemURI) || !isValid(myURI)) {
 			return;
 		}
 		
