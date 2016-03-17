@@ -79,7 +79,7 @@
     </c:when>
     <c:otherwise>
         <c:forEach items="${allProperties}" var="prop">
-            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getLabel()}"/>
+            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getLabel()}" data-localname="${prop.getLocalName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>
@@ -90,15 +90,16 @@
     </c:when>
     <c:otherwise>
         <c:forEach items="${allClasses}" var="vclass">
-            <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}"/>
+            <input type="hidden" class="class-option-data" data-uri="${vclass.getURI()}" value="${vclass.getName()}" data-localname="${prop.getLocalName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>
 
 <div class="tree-container">
     <div class="item" id="new-property-container">
-        <p><span class="fa fa-plus add-object-property"></span> Add Object Property</p>
+        <p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>
     </div>
+    <hr/>
     <div class="item">
         <div id="tree">
             <p>Loading tree...</p>

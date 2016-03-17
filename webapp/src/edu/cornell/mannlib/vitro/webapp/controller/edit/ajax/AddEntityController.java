@@ -6,7 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.LogFactory;
+import org.apache.jena.atlas.logging.Log;
+
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
+import edu.cornell.mannlib.vitro.webapp.controller.edit.ClassPageController;
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 
@@ -18,8 +22,10 @@ import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 
 public class AddEntityController extends HttpServlet {
+	private static final org.apache.commons.logging.Log log = LogFactory.getLog(AddEntityController.class.getName());
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		String name = req.getParameter("name");
+		String uri = req.getParameter("uri");
 		String supertypeURI = req.getParameter("supertype");
 		String type = req.getParameter("type");
 		
@@ -28,14 +34,19 @@ public class AddEntityController extends HttpServlet {
 		if(type.equals("vclass")) {
 			VClassDao vcDao = wadf.getVClassDao();
 			
-			VClass vcl = new VClass();
-			vcl.setName(name);
+			VClass vcl = new VClass(uri);
+			vcl.setName(vcl.getLocalName());
+			
 			try {
 				vcDao.insertNewVClass(vcl);
+				log.info(vcDao.getVClassByURI(uri));
+				log.info(vcl.getURI());
+				vcDao.addSuperclass(vcl.getURI(), supertypeURI);
+				vcDao.addSubclass(supertypeURI, vcl.getURI());
+				log.info(vcDao.getAllSuperClassURIs(vcl.getURI()));
 			} catch (InsertException e) {
 				e.printStackTrace();
 			}
-			vcDao.addSuperclass(vcl.getURI(), supertypeURI);
 			
 			res.getWriter().print(vcl.getURI());
 		}
@@ -43,7 +54,8 @@ public class AddEntityController extends HttpServlet {
 			ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
 			
 			ObjectProperty op = new ObjectProperty();
-			op.setLocalName(name);
+			op.setURI(uri);
+			op.setLabel(op.getLocalName());
 			try {
 				opDao.insertObjectProperty(op);
 			}
@@ -56,7 +68,8 @@ public class AddEntityController extends HttpServlet {
 			DataPropertyDao dpDao = wadf.getDataPropertyDao();
 			
 			DataProperty dp = new DataProperty();
-			dp.setLocalName(name);
+			dp.setURI(uri);
+			dp.setLabel(dp.getLocalName());
 			try {
 				dpDao.insertDataProperty(dp);
 			}

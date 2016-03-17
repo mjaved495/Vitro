@@ -29,6 +29,9 @@ public class ClassHierarchyNode {
 	@Expose
 	public Hashtable<String, String> a_attr;
 	
+	@Expose
+	public Hashtable<String, String> li_attr;
+	
 	public ClassHierarchyNode(VClass vcl, List<ClassHierarchyNode> children) {
 		this.vcl = vcl;
 		this.children = children;
@@ -39,6 +42,8 @@ public class ClassHierarchyNode {
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
 		this.a_attr.put("title", vcl.getURI());
+		this.li_attr = new Hashtable<String, String>();
+		this.li_attr.put("id", vcl.getLocalName());
 	}
 	
 	public ClassHierarchyNode(VClass vcl) {
@@ -51,6 +56,8 @@ public class ClassHierarchyNode {
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
 		this.a_attr.put("title", vcl.getURI());
+		this.li_attr = new Hashtable<String, String>();
+		this.li_attr.put("id", vcl.getLocalName());
 	}
 	
 	public void addChild(ClassHierarchyNode node) {
