@@ -90,8 +90,8 @@
 <div class="tree-container">
     <div class="item" id="new-class-container">
         <p style="text-align:center;"><a href="#" class="add-vclass">Add New Class</a></p>
-        <hr/>
     </div>
+    <hr/>
     <div class="item">
         <div id="tree">
             <p>Loading tree...</p>

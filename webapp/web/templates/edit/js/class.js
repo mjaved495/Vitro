@@ -137,7 +137,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			var superclassURI = td.attr("data-superclass-uri");
-			$.post('/vivo/edit_api/add_item', {'myURI': vclassURI, 'itemURI': superclassURI, 'relationship': 'super', 'type': 'vclass'}, function(res) {
+			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': superclassURI, 'relationship': 'super', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-superclass").click(actionEditSuperclass);
 				td.parent().find(".action-delete-superclass").click(actionDeleteSuperclass);
 			})
@@ -148,7 +148,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			var subclassURI = td.attr("data-subclass-uri");
-			$.post('/vivo/edit_api/add_subclass', {'myURI': vclassURI, 'itemURI': subclassURI, 'relationship': 'sub', 'type': 'vclass'}, function(res) {
+			$.post('/vivo/edit_api/add_subclass', {'uri': vclassURI, 'itemURI': subclassURI, 'relationship': 'sub', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-subclass").click(actionEditSubclass);
 				td.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
 			})
@@ -159,7 +159,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			var eqClassURI = td.attr("data-eqclass-uri");
-			$.post('/vivo/edit_api/add_item', {'myURI': vclassURI, 'itemURI': eqClassURI, 'relationship': 'eq', 'type': 'vclass'}, function(res) {
+			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': eqClassURI, 'relationship': 'eq', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-eqclass").click(actionEditEqClass);
 				td.parent().find(".action-delete-eqclass").click(actionDeleteEqClass);
 			});
@@ -170,7 +170,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			var disjointClassURI = td.attr("data-disjoint-uri");
-			$.post('/vivo/edit_api/add_item', {'myURI': vclassURI, 'itemURI': disjointClassURI, 'relationship': 'disjoint', 'type': 'vclass'}, function(res) {
+			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': disjointClassURI, 'relationship': 'disjoint', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-disjoint").click(actionEditDisjoint);
 				td.parent().find(".action-delete-disjoint").click(actionDeleteDisjoint);
 			});
@@ -218,7 +218,7 @@ $(document).ready(function() {
 	var actionDeleteSubclassCallback = function(row) {
 		var subclassURI = row.find(".item-detail").attr("data-subclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"};
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"});
 	}
 
 	var actionEditEqclassCallback = function(itemDetail) {
