@@ -58,11 +58,13 @@ public class AddEntityController extends HttpServlet {
 			op.setLabel(op.getLocalName());
 			try {
 				opDao.insertObjectProperty(op);
+				opDao.addSuperproperty(op.getURI(), supertypeURI);
+				opDao.addSubproperty(supertypeURI, op.getURI());
 			}
 			catch(InsertException e) {
 				e.printStackTrace();
 			}
-			opDao.addSuperproperty(op.getURI(), supertypeURI);
+			
 		}
 		else if(type.equals("dataprop")) {
 			DataPropertyDao dpDao = wadf.getDataPropertyDao();
@@ -72,11 +74,13 @@ public class AddEntityController extends HttpServlet {
 			dp.setLabel(dp.getLocalName());
 			try {
 				dpDao.insertDataProperty(dp);
+				dpDao.addSuperproperty(dp.getURI(), supertypeURI);
+				dpDao.addSubproperty(supertypeURI, dp.getURI());
 			}
 			catch(InsertException e) {
 				e.printStackTrace();
 			}
-			dpDao.addSuperproperty(dp.getURI(), supertypeURI);
+			
 		}
 	}
 }
