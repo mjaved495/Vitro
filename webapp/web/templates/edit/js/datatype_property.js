@@ -12,7 +12,6 @@
 $(function() {
 	$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 		var data = JSON.parse(jsonData);
-		console.log(data);
 		$("#tree").jstree({
 			"core": {
 				"data": [ data ]
@@ -26,7 +25,6 @@ $(function() {
 			});
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
-				console.log(link.find(".jstree-icon").css("background-image"));
 				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("greendot-open.png") > -1) {
 					link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot.png')");
 				}
@@ -143,9 +141,7 @@ $(function() {
 				placeholder: "Select a superproperty"
 			});
 			$(confirmButton).click(function(e) {
-				$.post("/vivo/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": $("#data-property-select").val(), "type": "dataprop"}, function(data) {
-					console.log("success: " + data);
-				})
+				$.post("/vivo/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": $("#data-property-select").val(), "type": "dataprop"});
 			})
 		}
 		

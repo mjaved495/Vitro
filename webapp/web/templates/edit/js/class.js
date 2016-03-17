@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 	$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 		var data = JSON.parse(jsonData);
-		console.log(data);
 		$("#tree").jstree({
 			"core": {
 				"data": [ data ]
@@ -27,7 +26,6 @@ $(document).ready(function() {
 			});
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
-				console.log(link.find(".jstree-icon").css("background-image"));
 				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("orangedot-open.png") > -1) {
 					link.find(".jstree-icon").css("background-image", "url('/vivo/images/orangedot.png')");
 				}
@@ -442,9 +440,7 @@ $(document).ready(function() {
 			}
 		}
 		
-		$.post("/vivo/edit_api/add_restriction", formData, function(data) {
-			console.log(data);
-		});
+		$.post("/vivo/edit_api/add_restriction", formData);
 	})
 
 	function updateInitialEventHandlers() {
