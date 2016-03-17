@@ -26,7 +26,6 @@ var replaceWithInput = function(jQElement, onSubmitCallback, type) {
 var deleteItem = function(jQElement, onRemovalCallback) {
 	var jQElementCopy = jQElement.clone();
 	var scope = jQElement.parent().parent().parent().parent();
-	console.log(scope);
 	jQElement.fadeOut(500, function() {
 		// remove scrollbar if necessary
 		var scrollDiv = scope.find(".scroll-list");
