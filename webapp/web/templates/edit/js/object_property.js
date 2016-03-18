@@ -187,8 +187,8 @@ $(document).ready(function() {
 	}
 
 	var addProperty = function() {
-		if($("#new-property-name").length == 0) {
-			var nameInput = $("<input type='text' id='new-property-name' placeholder='New property name...'/>");
+		if($("#new-property-uri").length == 0) {
+			var nameInput = $("<input type='text' id='new-property-uri' placeholder='New property URI...'/>");
 			var superpropertyInput = createAutocompleteInput("object-property"); // this will have the ID object-property-select
 			var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
 			$("#new-property-container").append(nameInput);
@@ -197,15 +197,18 @@ $(document).ready(function() {
 			superpropertyInput.select2({
 				placeholder: "Select a superproperty"
 			});
-			var selectedLabel = $("#object-property-select").val();
-			var selectedURI = null;
-			$(".property-option-data").each(function(i, el) {
-				if($(el).val() == selectedLabel) {
-					selectedURI = $(el).attr("data-uri");
-				}
-			})
 			$(confirmButton).click(function(e) {
-				$.post("/vivo/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": selectedURI, "type": "objprop"});
+				var selectedLabel = $("#object-property-select").val();
+				var selectedURI = null;
+				$(".property-option-data").each(function(i, el) {
+					if($(el).val() == selectedLabel) {
+						selectedURI = $(el).attr("data-uri");
+					}
+				})
+				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function() {
+					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>');
+					$(".add-object-property").click(addProperty);
+				});
 			})
 		}
 		

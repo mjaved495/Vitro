@@ -39,12 +39,8 @@ public class AddEntityController extends HttpServlet {
 			
 			try {
 				vcDao.insertNewVClass(vcl);
-				log.info(vcDao.getVClassByURI(uri));
-				log.info("VClass URI: " + vcl.getURI());
-				log.info("supertype URI: " + supertypeURI);
 				vcDao.addSuperclass(vcl.getURI(), supertypeURI);
 				vcDao.addSubclass(supertypeURI, vcl.getURI());
-				log.info(vcDao.getAllSuperClassURIs(vcl.getURI()));
 			} catch (InsertException e) {
 				e.printStackTrace();
 			}
