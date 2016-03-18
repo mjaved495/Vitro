@@ -64,7 +64,7 @@ $(function() {
 			$("#data-property-uri").val(uri);
 			$("#ontology-name").text(ontology);
 
-			$("#name").html(propLabel + '<b class="datatype-property">(DATATYPE PROPERTY)</b><i class="fa fa-pencil"></i>');
+			$("#name").html(propLabel);
 			$("#uri").val(uri);
 
 			$("#superproperty-table").html('');

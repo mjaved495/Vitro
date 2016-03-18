@@ -62,7 +62,7 @@ public class EditNameController extends HttpServlet {
         	
         	try {
         		dp = (DataProperty)dpDao.getDataPropertyByURI(URLDecoder.decode(uri, "UTF-8"));
-        		dp.setName(newName);
+        		dp.setPublicName(newName);
         		dpDao.updateDataProperty(dp);
         	}
         	catch (UnsupportedEncodingException e) {
