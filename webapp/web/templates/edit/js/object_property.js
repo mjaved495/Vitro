@@ -197,8 +197,15 @@ $(document).ready(function() {
 			superpropertyInput.select2({
 				placeholder: "Select a superproperty"
 			});
+			var selectedLabel = $("#object-property-select").val();
+			var selectedURI = null;
+			$(".property-option-data").each(function(i, el) {
+				if($(el).val() == selectedLabel) {
+					selectedURI = $(el).attr("data-uri");
+				}
+			})
 			$(confirmButton).click(function(e) {
-				$.post("/vivo/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": $("#object-property-select").val(), "type": "objprop"});
+				$.post("/vivo/edit_api/add_entity", {"name": $("#new-property-name").val(), "supertype": selectedURI, "type": "objprop"});
 			})
 		}
 		
