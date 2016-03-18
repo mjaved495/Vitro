@@ -100,6 +100,14 @@ public class ObjectProperty extends Property implements Comparable<ObjectPropert
         return getDomainPublic();
     }
     
+    public void setLabel(String label) {
+    	this.domainPublic = label;
+    }
+    
+    public String getPropertyLabel() {
+    	return super.getLabel();
+    }
+    
     public String getDomainPublic() {
         return domainPublic;
     }
