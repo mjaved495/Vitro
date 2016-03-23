@@ -38,6 +38,7 @@ $(document).ready(function() {
 	});
 
 	var updateData = function(uri) {
+		$("#property-uri").attr("data-property-uri", uri);
 		$.get("/vivo/edit_api/propinfo", {"uri": uri}, function(jsonData) {
 
 			var data = JSON.parse(jsonData);

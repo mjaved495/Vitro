@@ -1,4 +1,3 @@
-<!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
@@ -10,33 +9,42 @@
 <script src="/vivo/js/helpers.js"></script>
 <script language="JavaScript" type="text/javascript">
 $(function() {
-	$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-		var data = JSON.parse(jsonData);
-		$("#tree").jstree({
-			"core": {
-				"data": [ data ]
-			},
-			"plugins": [ "sort" ]
-		}).on("ready.jstree", function(e, data) {
-			$("#tree").on("click", "a", function(e) {
-				// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
-				var uri = $(this).attr("data-property-uri");
-				updateData(uri);
+	function getTree(callback) {
+		$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+			var data = JSON.parse(jsonData);
+			console.log(data);
+			$("#tree").jstree({
+				"core": {
+					"data": [ data ]
+				},
+				"plugins": [ "sort" ]
 			});
-			$("#tree").on("click", "i", function(e) {
-				var link = $(this).parent().find("a").first();
-				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("greendot-open.png") > -1) {
-					link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot.png')");
-				}
-				else {
-					link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot-open.png')");
-				}
-				
+			callback();
+			$("#tree").on("loaded.jstree", function(e, data) {
+				console.log("ready");
+				$("#tree").on("click", "a", function(e) {
+					// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
+					var uri = $(this).attr("data-property-uri");
+					updateData(uri);
+				});
+				$("#tree").on("click", "i", function(e) {
+					var link = $(this).parent().find("a").first();
+					if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("greendot-open.png") > -1) {
+						link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot.png')");
+					}
+					else {
+						link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot-open.png')");
+					}
+					
+				});
 			});
 		});
-	});
+	}
 
+	getTree(function(){});
+	
 	var updateData = function(uri) {
+		$("#property-uri").attr("data-property-uri", uri);
 		$.get("/vivo/edit_api/datapropinfo", {"uri": uri}, function(jsonData) {
 			var data = JSON.parse(jsonData);
 
@@ -149,8 +157,10 @@ $(function() {
 					}
 				})
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "dataprop"}, function() {
-					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-data-property">Add Data Property</a></p>');
-					$(".add-data-property").click(addProperty);
+					getTree(function() {
+						$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-data-property">Add Data Property</a></p>');
+						$(".add-data-property").click(addProperty);
+					});
 				});
 			})
 		}
@@ -191,6 +201,9 @@ $(function() {
 		$(".action-delete-domain-class").click(actionDeleteDomain);
 		$(".action-edit-range-datatype").click(actionEditRange);
 		$(".action-delete-range-datatype").click(actionDeleteRange);
+
+		$("#functional-check").change(onFunctionalCheck);
+		$(".action-edit-name").click(actionEditName);
 	}
 
 	var actionEditSuperproperty = function() {
