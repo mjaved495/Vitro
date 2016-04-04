@@ -79,7 +79,7 @@ public class AddEntityController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-			res.getWriter().println(dp.getLabel());
+			res.getWriter().println(dp.getLocalName());
 		}
 	}
 }
