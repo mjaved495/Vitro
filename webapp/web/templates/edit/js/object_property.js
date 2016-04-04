@@ -207,6 +207,16 @@ $(document).ready(function() {
 					}
 				})
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function() {
+					$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+						var data = JSON.parse(jsonData);
+						$("#tree").jstree("destroy");
+						$("#tree").jstree({
+							"core": {
+								"data": [ data ]
+							},
+							"plugins": [ "sort" ]
+						});
+					});
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>');
 					$(".add-object-property").click(addProperty);
 				});
