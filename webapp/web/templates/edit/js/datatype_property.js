@@ -9,17 +9,14 @@
 <script src="/vivo/js/helpers.js"></script>
 <script language="JavaScript" type="text/javascript">
 $(function() {
-	function getTree(callback) {
 		$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 			var data = JSON.parse(jsonData);
-			console.log(data);
 			$("#tree").jstree({
 				"core": {
 					"data": [ data ]
 				},
 				"plugins": [ "sort" ]
 			});
-			callback();
 			$("#tree").on("loaded.jstree", function(e, data) {
 				console.log("ready");
 				$("#tree").on("click", "a", function(e) {
@@ -39,9 +36,6 @@ $(function() {
 				});
 			});
 		});
-	}
-
-	getTree(function(){});
 	
 	var updateData = function(uri) {
 		$("#property-uri").attr("data-property-uri", uri);
@@ -157,10 +151,18 @@ $(function() {
 					}
 				})
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "dataprop"}, function() {
-					getTree(function() {
+					$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+						var data = JSON.parse(jsonData);
+						$("#tree").jstree("destroy");
+						$("#tree").jstree({
+							"core": {
+								"data": [ data ]
+							},
+							"plugins": [ "sort" ]
+						});
+					});
 						$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-data-property">Add Data Property</a></p>');
 						$(".add-data-property").click(addProperty);
-					});
 				});
 			})
 		}

@@ -375,6 +375,16 @@ $(document).ready(function() {
 					}
 				})
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-vclass-uri").val(), "supertype": selectedURI, "type": "vclass"}, function(data) {
+					$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+						var data = JSON.parse(jsonData);
+						$("#tree").jstree("destroy");
+						$("#tree").jstree({
+							"core": {
+								"data": [ data ]
+							},
+							"plugins": [ "sort" ]
+						});
+					});
 					$("#new-class-container").html('<p style="text-align:center;"><a href="#" class="add-vclass">Add New Class</a></p>');
 					$(".add-vclass").click(addClass);
 				})
