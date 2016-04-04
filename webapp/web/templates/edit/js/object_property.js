@@ -206,7 +206,7 @@ $(document).ready(function() {
 						selectedURI = $(el).attr("data-uri");
 					}
 				})
-				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function() {
+				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function(label) {
 					$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 						var data = JSON.parse(jsonData);
 						$("#tree").jstree("destroy");
@@ -219,6 +219,28 @@ $(document).ready(function() {
 					});
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>');
 					$(".add-object-property").click(addProperty);
+					if($("#uri").val() == selectedURI) { // if the superproperty is the same as the current page
+						// add item to subproperty list
+						var tableRow = $("<tr class='class-item'></tr>");
+						var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
+						tdItemDetail.text(label);
+						tdItemDetail.attr('title', uri);
+						tdItemDetail.attr('data-subproperty-uri', $("#new-property-uri").val());
+
+						tableRow.append(tdItemDetail);
+
+						var scope = $(".action-add-subproperty").parent().parent();
+						scope.find("table").append(tableRow);
+
+						tableRow.append($("<td class='item-spacer'></td>"));
+						tableRow.append($("<td class='item-action'><i class='fa fa-pencil action action-edit-subproperty' title='Edit/replace'></i></td>"))
+						tableRow.append($("<td class='item-action'><i class='fa fa-trash action action-delete-subproperty' title='Remove this'></i></td>"))
+
+						tableRow.css({'background-color': '#FFFFAA'});
+						tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500);
+						tdItemDetail.parent().find(".action-edit-subproperty").click(actionEditSubproperty);
+						tdItemDetail.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
+					}
 				});
 			})
 		}

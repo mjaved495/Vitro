@@ -45,7 +45,7 @@ public class AddEntityController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			res.getWriter().print(vcl.getURI());
+			res.getWriter().print(vcl.getName());
 		}
 		else if(type.equals("objprop")) {
 			ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
@@ -62,6 +62,7 @@ public class AddEntityController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			res.getWriter().println(op.getLabel());
 		}
 		else if(type.equals("dataprop")) {
 			DataPropertyDao dpDao = wadf.getDataPropertyDao();
@@ -77,7 +78,8 @@ public class AddEntityController extends HttpServlet {
 			catch(InsertException e) {
 				e.printStackTrace();
 			}
-			
+		
+			res.getWriter().println(dp.getLabel());
 		}
 	}
 }

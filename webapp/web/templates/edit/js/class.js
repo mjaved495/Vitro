@@ -374,7 +374,7 @@ $(document).ready(function() {
 						selectedURI = $(el).attr("data-uri");
 					}
 				})
-				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-vclass-uri").val(), "supertype": selectedURI, "type": "vclass"}, function(data) {
+				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-vclass-uri").val(), "supertype": selectedURI, "type": "vclass"}, function(label) {
 					$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 						var data = JSON.parse(jsonData);
 						$("#tree").jstree("destroy");
@@ -387,7 +387,29 @@ $(document).ready(function() {
 					});
 					$("#new-class-container").html('<p style="text-align:center;"><a href="#" class="add-vclass">Add New Class</a></p>');
 					$(".add-vclass").click(addClass);
-				})
+					if($("#uri").val() == selectedURI) { // if the superproperty is the same as the current page
+						// add item to subproperty list
+						var tableRow = $("<tr class='class-item'></tr>");
+						var tdItemDetail = $("<td class='item-detail' id='editable-item-detail'></td>");
+						tdItemDetail.text(label);
+						tdItemDetail.attr('title', uri);
+						tdItemDetail.attr('data-subproperty-uri', $("#new-vclass-uri").val());
+
+						tableRow.append(tdItemDetail);
+
+						var scope = $(".action-add-subclass").parent().parent();
+						scope.find("table").append(tableRow);
+
+						tableRow.append($("<td class='item-spacer'></td>"));
+						tableRow.append($("<td class='item-action'><i class='fa fa-pencil action action-edit-subclass' title='Edit/replace'></i></td>"))
+						tableRow.append($("<td class='item-action'><i class='fa fa-trash action action-delete-subclass' title='Remove this'></i></td>"))
+
+						tableRow.css({'background-color': '#FFFFAA'});
+						tableRow.animate({'backgroundColor': '#FFFFFF'}, 1500);
+						tdItemDetail.parent().find(".action-edit-subclass").click(actionEditSubclass);
+						tdItemDetail.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
+					}
+				});
 			})
 		}
 	}
