@@ -146,7 +146,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			var subclassURI = td.attr("data-subclass-uri");
-			$.post('/vivo/edit_api/add_subclass', {'uri': vclassURI, 'itemURI': subclassURI, 'relationship': 'sub', 'type': 'vclass'}, function(res) {
+			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': subclassURI, 'relationship': 'sub', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-subclass").click(actionEditSubclass);
 				td.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
 			})
