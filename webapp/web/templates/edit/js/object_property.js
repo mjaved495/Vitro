@@ -191,7 +191,9 @@ $(document).ready(function() {
 		if($("#new-property-uri").length == 0) {
 			var nameInput = $("<input type='text' id='new-property-uri' placeholder='New property URI...'/>");
 			var superpropertyInput = createAutocompleteInput("object-property"); // this will have the ID object-property-select
-			var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
+			nameInput.css("width", "200px");
+			superpropertyInput.css("width", "200px");
+			var confirmButton = $("<p><input type='submit' class='submit' value='Finish'/></p>");
 			$("#new-property-container").append(nameInput);
 			$("#new-property-container").append(superpropertyInput);
 			$("#new-property-container").append(confirmButton);
@@ -289,7 +291,7 @@ $(document).ready(function() {
 
 	var actionDeleteSubproperty = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteSubpropertyCallback);
+		deleteItem(row, actionDeleteSubpropertyRequest);
 	}
 
 	var actionEditEqProperty = function() {
@@ -299,7 +301,7 @@ $(document).ready(function() {
 
 	var actionDeleteEqProperty = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteEqpropertyCallback);
+		deleteItem(row, actionDeleteEqpropertyRequest);
 	}
 
 	var actionEditInverse = function() {
@@ -309,7 +311,7 @@ $(document).ready(function() {
 
 	var actionDeleteInverse = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteInverseCallback);
+		deleteItem(row, actionDeleteInverseRequest);
 	}
 
 	var actionEditDomain = function() {
@@ -319,7 +321,7 @@ $(document).ready(function() {
 
 	var actionDeleteDomain = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteDomainCallback);
+		deleteItem(row, actionDeleteDomainRequest);
 	}
 
 	var actionEditRange = function() {
@@ -329,7 +331,7 @@ $(document).ready(function() {
 
 	var actionDeleteRange = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteRangeCallback);
+		deleteItem(row, actionDeleteRangeRequest);
 	}
 
 	var actionEditSuperpropertyCallback = function(itemDetail) { 
@@ -341,10 +343,10 @@ $(document).ready(function() {
 		});
 	};
 
-	var actionDeleteSuperpropertyCallback = function(row) {
+	var actionDeleteSuperpropertyRequest = function(row, callback) {
 		var superpropertyURI = row.find(".item-detail").attr("data-superproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"});
+		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"}, callback);
 	}
 
 	var actionEditSubpropertyCallback = function(itemDetail) { 
@@ -356,10 +358,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteSubpropertyCallback = function(row) {
+	var actionDeleteSubpropertyRequest = function(row, callback) {
 		var subpropertyURI = row.find(".item-detail").attr("data-subproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"});
+		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"}, callback);
 	}
 
 	var actionEditEqPropertyCallback = function(itemDetail) { 
@@ -371,10 +373,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteEqpropertyCallback = function(row) {
+	var actionDeleteEqpropertyCallback = function(row, callback) {
 		var eqpropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"itemURI": eqpropertyURI, "uri": propertyURI, "relationship": "eq", "type": "objprop"});
+		$.post("/vivo/edit_api/delete_item", {"itemURI": eqpropertyURI, "uri": propertyURI, "relationship": "eq", "type": "objprop"}, callback);
 	}
 
 	var actionEditInverseCallback = function(itemDetail) { 
@@ -386,10 +388,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteInverseCallback = function(row) {
+	var actionDeleteInverseRequest = function(row, callback) {
 		var inverseURI = row.find(".item-detail").attr("data-inverse-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"itemURI": inverseURI, "uri": propertyURI, "relationship": "inverse", "type": "objprop"});
+		$.post("/vivo/edit_api/delete_item", {"itemURI": inverseURI, "uri": propertyURI, "relationship": "inverse", "type": "objprop"}, callback);
 	}
 
 	var actionEditDomainCallback = function(itemDetail) { 
@@ -401,12 +403,13 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteDomainCallback = function(row) {
+	var actionDeleteDomainRequest = function(row, callback) {
 		var domainURI = row.find(".item-detail").attr("data-domain-class-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		$.post("/vivo/edit_api/delete_item", {"itemURI": domainURI, "uri": propertyURI, "relationship": "domain", "type": "objprop"}, function(res) {
 			$("#add-domain-container").append("<span class='fa fa-plus action action-add-domain'></span>");
 			$(".action-add-domain").click(addDomain);
+			callback();
 		})
 	}
 
@@ -419,12 +422,13 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteRangeCallback = function(row) {
+	var actionDeleteRangeRequest = function(row, callback) {
 		var rangeURI = row.find(".item-detail").attr("data-range-class-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		$.post("/vivo/edit_api/delete_item", {"itemURI": rangeURI, "uri": propertyURI, "relationship": "range", "type": "objprop"}, function(res) {
 			$("#add-range-container").append("<span class='fa fa-plus action action-add-range'></span>");
 			$(".action-add-range").click(addRange);
+			callback();
 		})
 	}
 
