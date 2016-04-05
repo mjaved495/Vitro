@@ -258,7 +258,16 @@
         <form action="" method="post" id="restriction-form">
         <input type="hidden" name="VClassURI" value="${VClass.getURI()}"/>
         <tr><td colspan="4"><hr class="formDivider"/></td></tr>
-            <tr class="restriction-field"><td><p><b>Restriction type:</b> <select id="restrictionType" name="restrictionType">
+            <tr class="restriction-field"><td><p><b>Condition type:</b></p></td><td> <select id="conditionType" name="conditionType">
+                <option value="necessary">necessary</option>
+                <option value="necessaryAndSufficient">necessary and sufficient</option>
+            </select></p></td></tr>
+            <tr class="restriction-field"><td><p><b>Property to restrict:</b></p></td><td> <select id="onProperty" name="onProperty">
+                <c:forEach items="${allProperties}" var="property">
+                    <option value="${property.getURI()}">${property.getLabel()}</option>
+                </c:forEach>
+            </select></p></td></tr>
+            <tr class="restriction-field"><td><p><b>Restriction type:</b></p></td><td> <select id="restrictionType" name="restrictionType">
                 <option value="allValuesFrom">all values from</option>
                 <option value="someValuesFrom">some values from</option>
                 <option value="hasValue">has value</option>
@@ -266,16 +275,7 @@
                 <option value="maxCardinality">maximum cardinality</option>
                 <option value="cardinality">cardinality</option>
             </select></p></td></tr>
-            <tr class="restriction-field"><td><p><b>Condition type:</b> <select id="conditionType" name="conditionType">
-                <option value="necessary">necessary</option>
-                <option value="necessaryAndSufficient">necessary and sufficient</option>
-            </select></p></td></tr>
-            <tr class="restriction-field"><td><p><b>Property to restrict:</b> <select id="onProperty" name="onProperty">
-                <c:forEach items="${allProperties}" var="property">
-                    <option value="${property.getURI()}">${property.getLabel()}</option>
-                </c:forEach>
-            </select></p></td></tr>
-                <tr class="restriction-field" id="restriction-container"><td><p><b>All values from:</b> <select id="ValueClass" name="ValueClass">
+                <tr class="restriction-field" id="restriction-container"><td><p><b>All values from:</b></p></td><td><select id="ValueClass" name="ValueClass">
                     <c:forEach items="${allClasses}" var="vclass">
                         <option value="${vclass.getURI()}">${vclass.getName()}</option>
                     </c:forEach>
