@@ -122,9 +122,9 @@ var addItem = function(jQElement, onAddCallback, type) {
 	}
 }
 
-var editItem = function(myURI, oldItemURI, newItemURI, relationship, type) {
+var editItem = function(myURI, oldItemURI, newItemURI, relationship, type, callback) {
 	$.post("/vivo/edit_api/delete_item", {"uri": myURI, "itemURI": oldItemURI, "relationship": relationship, "type": type}, function(data) {
-		$.post("/vivo/edit_api/add_item", {"uri": myURI, "itemURI": newItemURI, "relationship": relationship, "type": type});
+		$.post("/vivo/edit_api/add_item", {"uri": myURI, "itemURI": newItemURI, "relationship": relationship, "type": type}, callback);
 	})
 }
 
