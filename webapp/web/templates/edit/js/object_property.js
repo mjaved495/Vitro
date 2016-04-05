@@ -281,7 +281,7 @@ $(document).ready(function() {
 
 	var actionDeleteSuperproperty = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteSuperpropertyCallback);
+		deleteItem(row, actionDeleteSuperpropertyRequest);
 	}
 
 	var actionEditSubproperty = function() {
@@ -346,7 +346,19 @@ $(document).ready(function() {
 	var actionDeleteSuperpropertyRequest = function(row, callback) {
 		var superpropertyURI = row.find(".item-detail").attr("data-superproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"}, callback);
+		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"}, function() {
+			callback();
+			$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+				var data = JSON.parse(jsonData);
+				$("#tree").jstree("destroy");
+				$("#tree").jstree({
+					"core": {
+						"data": [ data ]
+					},
+					"plugins": [ "sort" ]
+				});
+			});
+		});
 	}
 
 	var actionEditSubpropertyCallback = function(itemDetail) { 
@@ -361,7 +373,19 @@ $(document).ready(function() {
 	var actionDeleteSubpropertyRequest = function(row, callback) {
 		var subpropertyURI = row.find(".item-detail").attr("data-subproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"}, callback);
+		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"}, function() {
+			callback();
+			$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+				var data = JSON.parse(jsonData);
+				$("#tree").jstree("destroy");
+				$("#tree").jstree({
+					"core": {
+						"data": [ data ]
+					},
+					"plugins": [ "sort" ]
+				});
+			});
+		});
 	}
 
 	var actionEditEqPropertyCallback = function(itemDetail) { 
@@ -439,6 +463,16 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': superpropertyURI, 'relationship': 'super', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-superproperty").click(actionEditSuperproperty);
 				td.parent().find(".action-delete-superproperty").click(actionDeleteSuperproperty);
+				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+					var data = JSON.parse(jsonData);
+					$("#tree").jstree("destroy");
+					$("#tree").jstree({
+						"core": {
+							"data": [ data ]
+						},
+						"plugins": [ "sort" ]
+					});
+				});
 			})
 		}, "superproperty");
 	}
@@ -450,6 +484,16 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': subpropertyURI, 'relationship': 'sub', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-subproperty").click(actionEditSubproperty);
 				td.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
+				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+					var data = JSON.parse(jsonData);
+					$("#tree").jstree("destroy");
+					$("#tree").jstree({
+						"core": {
+							"data": [ data ]
+						},
+						"plugins": [ "sort" ]
+					});
+				});
 			})
 		}, "subproperty");
 	}

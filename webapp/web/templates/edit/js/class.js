@@ -138,6 +138,16 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': superclassURI, 'relationship': 'super', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-superclass").click(actionEditSuperclass);
 				td.parent().find(".action-delete-superclass").click(actionDeleteSuperclass);
+				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+					var data = JSON.parse(jsonData);
+					$("#tree").jstree("destroy");
+					$("#tree").jstree({
+						"core": {
+							"data": [ data ]
+						},
+						"plugins": [ "sort" ]
+					});
+				});
 			})
 		}, "superclass");
 	}
@@ -149,6 +159,16 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': subclassURI, 'relationship': 'sub', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-subclass").click(actionEditSubclass);
 				td.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
+				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+					var data = JSON.parse(jsonData);
+					$("#tree").jstree("destroy");
+					$("#tree").jstree({
+						"core": {
+							"data": [ data ]
+						},
+						"plugins": [ "sort" ]
+					});
+				});
 			})
 		}, "subclass");
 	}
@@ -201,7 +221,19 @@ $(document).ready(function() {
 	var actionDeleteSuperclassRequest = function(row, callback) {
 		var superclassURI = row.find(".item-detail").attr("data-superclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": superclassURI, "relationship": "super", "type": "vclass"}, callback);
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": superclassURI, "relationship": "super", "type": "vclass"}, function() {
+			callback();
+			$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+				var data = JSON.parse(jsonData);
+				$("#tree").jstree("destroy");
+				$("#tree").jstree({
+					"core": {
+						"data": [ data ]
+					},
+					"plugins": [ "sort" ]
+				});
+			});
+		});
 	}
 
 	var actionEditSubclassCallback = function(itemDetail) {
@@ -216,7 +248,19 @@ $(document).ready(function() {
 	var actionDeleteSubclassRequest = function(row, callback) {
 		var subclassURI = row.find(".item-detail").attr("data-subclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"}, callback);
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"}, function() {
+			callback();
+			$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+				var data = JSON.parse(jsonData);
+				$("#tree").jstree("destroy");
+				$("#tree").jstree({
+					"core": {
+						"data": [ data ]
+					},
+					"plugins": [ "sort" ]
+				});
+			});
+		});
 	}
 
 	var actionEditEqclassCallback = function(itemDetail) {
