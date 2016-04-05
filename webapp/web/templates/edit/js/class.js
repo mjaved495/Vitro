@@ -98,7 +98,7 @@ $(document).ready(function() {
 
 	var actionDeleteSuperclass = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteSuperclassCallback);
+		deleteItem(row, actionDeleteSuperclassRequest);
 	}
 
 	var actionEditSubclass = function() {
@@ -108,7 +108,7 @@ $(document).ready(function() {
 
 	var actionDeleteSubclass = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteSubclassCallback);
+		deleteItem(row, actionDeleteSubclassRequest);
 	}
 
 	var actionEditEqClass = function() {
@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 	var actionDeleteEqClass = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteEqclassCallback);
+		deleteItem(row, actionDeleteEqclassRequest);
 	}
 
 	var actionEditDisjoint = function() {
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
 	var actionDeleteDisjoint = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteDisjointCallback);
+		deleteItem(row, actionDeleteDisjointRequest);
 	}
 
 	var addSuperclass = function() {
@@ -198,10 +198,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteSuperclassCallback = function(row) {
+	var actionDeleteSuperclassRequest = function(row, callback) {
 		var superclassURI = row.find(".item-detail").attr("data-superclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": superclassURI, "relationship": "super", "type": "vclass"});
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": superclassURI, "relationship": "super", "type": "vclass"}, callback);
 	}
 
 	var actionEditSubclassCallback = function(itemDetail) {
@@ -213,10 +213,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteSubclassCallback = function(row) {
+	var actionDeleteSubclassRequest = function(row, callback) {
 		var subclassURI = row.find(".item-detail").attr("data-subclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"});
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": subclassURI, "relationship": "sub", "type": "vclass"}, callback);
 	}
 
 	var actionEditEqclassCallback = function(itemDetail) {
@@ -228,10 +228,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteEqclassCallback = function(row) {
+	var actionDeleteEqclassCallback = function(row, callback) {
 		var eqClassURI = row.find(".item-detail").attr("data-eqclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_eqclass", {"uri": vclassURI, "itemURI": eqClassURI, "relationship": "eq", "type": "vclass"});
+		$.post("/vivo/edit_api/delete_eqclass", {"uri": vclassURI, "itemURI": eqClassURI, "relationship": "eq", "type": "vclass"}, callback);
 	}
 
 	var actionEditDisjointCallback = function(itemDetail) {
@@ -243,10 +243,10 @@ $(document).ready(function() {
 		});
 	}
 
-	var actionDeleteDisjointCallback = function(row) {
+	var actionDeleteDisjointCallback = function(row, callback) {
 		var disjointClassURI = row.find(".item-detail").attr("data-disjoint-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": disjointClassURI, "relationship": "disjoint", "type": "vclass"});
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": disjointClassURI, "relationship": "disjoint", "type": "vclass"}, callback);
 	}
 
 	var updateData = function(uri) {
@@ -359,7 +359,9 @@ $(document).ready(function() {
 		if($("#new-vclass-name").length == 0) {
 			var nameInput = $("<input type='text' id='new-vclass-uri' placeholder='URI...'/>");
 			var superclassInput = createAutocompleteInput("class");
-			var confirmButton = $("<input type='submit' class='submit' value='Finish'/>");
+			nameInput.css("width", "200px");
+			superclassInput.css("width", "200px");
+			var confirmButton = $("<p><input type='submit' class='submit' value='Finish'/></p>");
 			$("#new-class-container").append(nameInput);
 			$("#new-class-container").append(superclassInput);
 			$("#new-class-container").append(confirmButton);
