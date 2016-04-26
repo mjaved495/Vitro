@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import edu.cornell.mannlib.vedit.controller.BaseEditController;
+import edu.cornell.mannlib.vitro.webapp.auth.permissions.SimplePermission;
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.Datatype;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
@@ -35,7 +37,7 @@ import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.XSD;
 
-public class DatatypePropertyPageController extends HttpServlet {
+public class DatatypePropertyPageController extends BaseEditController {
 private static final Log log = LogFactory.getLog(DatatypePropertyPageController.class.getName());
 	
 	public void doPost (HttpServletRequest req, HttpServletResponse response) throws IOException {
@@ -142,6 +144,10 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
 	}
 	
 	public void doGet (HttpServletRequest req, HttpServletResponse response) throws IOException {
+		if (!isAuthorizedToDisplayPage(req, response,
+				SimplePermission.DO_BACK_END_EDITING.ACTION)) {
+        	return;
+        }
 		doPost(req, response);
 	}
 	
