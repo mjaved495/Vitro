@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import edu.cornell.mannlib.vedit.controller.BaseEditController;
+import edu.cornell.mannlib.vitro.webapp.auth.permissions.SimplePermission;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
@@ -115,6 +116,10 @@ public class ObjectPropertyPageController extends BaseEditController {
 	}
 	
 	public void doGet (HttpServletRequest req, HttpServletResponse response) throws IOException {
+		if (!isAuthorizedToDisplayPage(req, response,
+				SimplePermission.DO_BACK_END_EDITING.ACTION)) {
+        	return;
+        }
 		doPost(req, response);
 	}
 	

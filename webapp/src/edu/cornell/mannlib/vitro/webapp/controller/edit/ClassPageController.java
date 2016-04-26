@@ -17,6 +17,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 
 import edu.cornell.mannlib.vedit.beans.EditProcessObject;
 import edu.cornell.mannlib.vedit.controller.BaseEditController;
+import edu.cornell.mannlib.vitro.webapp.auth.permissions.SimplePermission;
 import edu.cornell.mannlib.vitro.webapp.beans.Individual;
 import edu.cornell.mannlib.vitro.webapp.beans.Ontology;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
@@ -142,6 +143,10 @@ public class ClassPageController extends BaseEditController {
 	}
 	
 	public void doGet (HttpServletRequest req, HttpServletResponse response) {
+		if (!isAuthorizedToDisplayPage(req, response,
+				SimplePermission.DO_BACK_END_EDITING.ACTION)) {
+        	return;
+        }
 		doPost(req, response);
 	}
 	
