@@ -110,7 +110,6 @@ public class ObjectPropertyPageController extends BaseEditController {
         try {
             rd.forward(request, response);
         } catch (Exception e) {
-            log.error("ObjectPropertyPageController could not forward to view.", e);
             throw new RuntimeException(e);
         }
 	}

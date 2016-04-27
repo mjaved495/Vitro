@@ -115,13 +115,10 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
 		}
 		
 		DatatypeDao dtDao = wadf.getDatatypeDao();
-		log.info(dp.getRangeDatatypeURI());
-		
+
 		if(dp.getRangeDatatypeURI() != null && dp.getRangeDatatypeURI() != "") {
 			ranges.add(dtDao.getDatatypeByURI(dp.getRangeDatatypeURI())); // why does this return null?
 		}
-		
-		log.info(ranges);
 		
 		request.setAttribute("domains", domains);
 		request.setAttribute("ranges", ranges);
@@ -138,7 +135,6 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
         try {
             rd.forward(request, response);
         } catch (Exception e) {
-            log.error("DatatypePropertyPageController could not forward to view.", e);
             throw new RuntimeException(e);
         }
 	}
