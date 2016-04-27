@@ -87,7 +87,7 @@
 </div>
 -->
 
-<div class="tree-container">
+<div class="tree-container" id="tree-container-vclass">
     <div class="item" id="new-class-container">
         <p style="text-align:center;"><a href="#" class="add-vclass">Add New Class</a></p>
     </div>
@@ -99,7 +99,7 @@
     </div>
 </div>
 
-<div class="item-container">
+<div class="item-container" id="item-container-vclass">
     <div class="item">
         <table>
             <tr>
@@ -287,7 +287,7 @@
 
 </div>
 
-<div class="info-container">
+<div class="info-container" id="info-container-vclass">
     <div class="item">
         <p class="right-pane-item"><b>Ontology:</b> <br> <span id="ontology-name">${ontology.getName()}</span></p>
         <p class="right-pane-item"><b>Class group:</b> <span id="class-group">${classGroup}</span></p>
