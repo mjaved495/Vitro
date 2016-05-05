@@ -41,10 +41,6 @@ public class DatatypePropertyPageController extends BaseEditController {
 private static final Log log = LogFactory.getLog(DatatypePropertyPageController.class.getName());
 	
 	public void doPost (HttpServletRequest req, HttpServletResponse response) throws IOException {
-		if(req.getParameter("uri") == null) {
-			response.getWriter().println("404 Not Found");
-			return;
-		}
 		
 		VitroRequest request = new VitroRequest(req);
 		
@@ -53,7 +49,17 @@ private static final Log log = LogFactory.getLog(DatatypePropertyPageController.
 		String propertyURI = request.getParameter("uri");
 		
 		DataPropertyDao dpDao = wadf.getDataPropertyDao();
-		DataProperty dp = dpDao.getDataPropertyByURI(propertyURI);
+		
+		DataProperty dp;
+		
+		if(req.getParameter("uri") == null) {
+			List<DataProperty> allProperties = dpDao.getAllDataProperties();
+			dp = allProperties.get(0);
+		}
+		else {
+			dp = dpDao.getDataPropertyByURI(propertyURI);
+		}
+		
 		VClassDao vcDao = wadf.getVClassDao();
 		
 		request.setAttribute("dataProperty", dp);

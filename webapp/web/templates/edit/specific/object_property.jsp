@@ -115,7 +115,7 @@
                      <span class="prop-label"><span id="name">${objectProperty.getLabel()}</span>   <b class="object-property">(OBJECT PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
-                    <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
+                    <p><input type="submit" class="delete action-delete-property" name="_delete" value="Delete"></input></p>
                 </td>
             </tr>
         </table>

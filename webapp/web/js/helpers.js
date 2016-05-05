@@ -26,11 +26,11 @@ var replaceWithInput = function(jQElement, onSubmitCallback, type) {
 var deleteItem = function(jQElement, removalRequest) {
 	removalRequest(jQElement, function() {
 		var jQElementCopy = jQElement.clone();
-		var scope = jQElement.parent().parent().parent().parent();
+		var scope = jQElement.parent().parent().parent().parent().parent();
 		jQElement.fadeOut(500, function() {
 			// remove scrollbar if necessary
 			var scrollDiv = scope.find(".scroll-list");
-			if(scrollDiv.height() <= 75) {
+			if(scrollDiv.find(".class-item").length <= 3) {
 				scrollDiv.css("overflow-y", "visible");
 			}
 		});

@@ -254,7 +254,7 @@
     </div>
 
     <div class="item">
-        <table>
+        <table class="restrictions">
         <form action="" method="post" id="restriction-form">
         <input type="hidden" name="VClassURI" value="${VClass.getURI()}"/>
         <tr><td colspan="4"><hr class="formDivider"/></td></tr>

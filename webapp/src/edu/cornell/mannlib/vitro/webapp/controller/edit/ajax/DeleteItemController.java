@@ -76,6 +76,7 @@ public class DeleteItemController extends HttpServlet {
 			
 			if(relationship.equals("super")) {
 				vcDao.removeSuperclass(myURI, itemURI);
+				vcDao.addSuperclass(myURI, vcDao.getTopConcept().getURI());
 			}
 			else if(relationship.equals("sub")) {
 				vcDao.removeSubclass(myURI, itemURI);

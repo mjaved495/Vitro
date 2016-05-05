@@ -33,17 +33,22 @@ public class ObjectPropertyPageController extends BaseEditController {
 	private static final Log log = LogFactory.getLog(ClassPageController.class.getName());
 	
 	public void doPost (HttpServletRequest req, HttpServletResponse response) throws IOException {
-		if(req.getParameter("uri") == null) {
-			response.getWriter().println("");
-			return;
-		}
-		
+				
 		VitroRequest request = new VitroRequest(req);
 		
 		WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
 		
 		ObjectPropertyDao opDao = wadf.getObjectPropertyDao();
-		ObjectProperty op = (ObjectProperty) opDao.getObjectPropertyByURI(request.getParameter("uri"));
+		ObjectProperty op;
+		
+		if(req.getParameter("uri") == null) {
+			List<ObjectProperty> allProperties = opDao.getAllObjectProperties();
+			op = allProperties.get(0);
+		}
+		else {
+			op = (ObjectProperty) opDao.getObjectPropertyByURI(request.getParameter("uri"));
+		}
+		
 		
 		VClassDao vcDao = wadf.getVClassDao();
 		

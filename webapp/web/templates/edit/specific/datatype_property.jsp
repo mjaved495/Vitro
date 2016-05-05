@@ -64,7 +64,7 @@
                      <span id="dataprop-label"><span id="name">${dataProperty.getPublicName()}</span> <b class="datatype-property">(DATATYPE PROPERTY)</b> <i class="fa fa-pencil action-edit-name"></i> </span>
                 </td>
                 <td valign="bottom" colspan="2" id="edit-delete-vclass">
-                    <p><input type="submit" class="delete action-delete-vclass" name="_delete" value="Delete"></input></p>
+                    <p><input type="submit" class="delete action-delete-property" name="_delete" value="Delete"></input></p>
                 </td>
             </tr>
         </table>
