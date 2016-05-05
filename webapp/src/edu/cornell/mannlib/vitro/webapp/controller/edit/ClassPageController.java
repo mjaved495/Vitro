@@ -42,11 +42,15 @@ public class ClassPageController extends BaseEditController {
         WebappDaoFactory wadf = ModelAccess.on(getServletContext()).getWebappDaoFactory(ASSERTIONS_ONLY);
         
         VClassDao vcwDao = wadf.getVClassDao();
-        VClass vcl = (VClass)vcwDao.getVClassByURI(request.getParameter("uri"));
         
-        if (vcl == null) {
+        VClass vcl;
+        
+        if(request.getParameter("uri") != "") {
         	vcl = request.getUnfilteredWebappDaoFactory()
         	        .getVClassDao().getTopConcept();
+        }
+        else {
+        	vcl = (VClass)vcwDao.getVClassByURI(request.getParameter("uri"));
         }
         
         VClassDao vcDao = wadf.getVClassDao();

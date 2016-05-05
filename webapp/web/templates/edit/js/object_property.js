@@ -193,13 +193,22 @@ $(document).ready(function() {
 			var superpropertyInput = createAutocompleteInput("object-property"); // this will have the ID object-property-select
 			nameInput.css("width", "200px");
 			superpropertyInput.css("width", "200px");
-			var confirmButton = $("<p><input type='submit' class='submit' value='Finish'/></p>");
-			$("#new-property-container").append(nameInput);
-			$("#new-property-container").append(superpropertyInput);
-			$("#new-property-container").append(confirmButton);
+			var confirmButton = $("<input type='submit' class='submit' value='Add property'/>");
+			var cancelButton = $("<a href='#' class='cancel-add'>Cancel</a>");
+			var itemsContainer = $("<div class='items-container'></div>");
+			$(itemsContainer).append(nameInput);
+			$(itemsContainer).append($("<p>Superproperty URI:</p>"));
+			$(itemsContainer).append(superpropertyInput);
+			$(itemsContainer).append(confirmButton);
+			$(itemsContainer).append(cancelButton);
+			$("#new-property-container").append(itemsContainer);
 			superpropertyInput.select2({
 				placeholder: "Select a superproperty"
 			});
+			$(cancelButton).click(function() {
+				$(this).parent().remove();
+				$("#add-object-property").click(addProperty);
+			})
 			$(confirmButton).click(function(e) {
 				var selectedLabel = $("#object-property-select").val();
 				var selectedURI = null;
@@ -602,6 +611,7 @@ $(document).ready(function() {
 	$(".action-edit-name").click(actionEditName);
 
 	$(".add-object-property").click(addProperty);
+	$(".action-delete-property").click(deleteProperty);
 
 });
 </script>

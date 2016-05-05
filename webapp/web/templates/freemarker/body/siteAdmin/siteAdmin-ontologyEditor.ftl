@@ -30,17 +30,17 @@
         
         <h4>${i18n().property_management}</h4>
         
-        <!-- <ul role="navigation">
+        <ul role="navigation">
             <li role="listitem"><a href="${ontologyEditor.urls.objectPropertyHierarchy}" title="${i18n().object_property_hierarchy}">${i18n().object_property_hierarchy}</a></li>
             <li role="listitem"><a href="${ontologyEditor.urls.dataPropertyHierarchy}" title="${i18n().data_property_hierarchy}">${i18n().data_property_hierarchy}</a></li>
             <li role="listitem"><a href="${ontologyEditor.urls.fauxPropertyList}" title="${i18n().data_property_hierarchy}">${i18n().faux_property_listing}</a></li>
             <li role="listitem"><a href="${ontologyEditor.urls.propertyGroups}" title="${i18n().property_groups}">${i18n().property_groups}</a></li>
-        </ul> -->
+        </ul>
         
         <ul role="navigation">
-        	<li role="listitem"><a href="/vivo/classpage?uri=http://www.w3.org/2002/07/owl#Thing">Class editor</a></li>
-        	<li role="listitem"><a href="/vivo/propertypage?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23assignedBy">Object property editor</a></li>
-        	<li role="listitem"><a href="/vivo/datapropertypage?uri=http%3A%2F%2Fwww.w3.org%2F2006%2Fvcard%2Fns%23additionalName">Data property editor</a></li>
+        	<li role="listitem"><a href="/vivo/classpage">Class editor</a></li>
+        	<li role="listitem"><a href="/vivo/propertypage">Object property editor</a></li>
+        	<li role="listitem"><a href="/vivo/datapropertypage">Data property editor</a></li>
         </ul>
         
     </section>

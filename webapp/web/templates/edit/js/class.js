@@ -199,10 +199,19 @@ $(document).ready(function() {
 		var sure = confirm("Are you sure you want to delete this class?");
 		if(sure) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
+			console.log(vclassURI);
 			$.post("/vivo/edit_api/delete_vclass", {"vclassURI": vclassURI}, function(res) {
-				if(res === "done") {
-					window.location.href = "/vivo/siteAdmin";
-				}
+				updateData(res);
+				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+					var data = JSON.parse(jsonData);
+					$("#tree").jstree("destroy");
+					$("#tree").jstree({
+						"core": {
+							"data": [ data ]
+						},
+						"plugins": [ "sort" ]
+					});
+				});
 			})
 		}
 	}
@@ -401,17 +410,26 @@ $(document).ready(function() {
 
 	var addClass = function() {
 		if($("#new-vclass-name").length == 0) {
-			var nameInput = $("<input type='text' id='new-vclass-uri' placeholder='URI...'/>");
+			var nameInput = $("<p>Class URI: <input type='text' id='new-vclass-uri'/></p>");
 			var superclassInput = createAutocompleteInput("class");
 			nameInput.css("width", "200px");
 			superclassInput.css("width", "200px");
-			var confirmButton = $("<p><input type='submit' class='submit' value='Finish'/></p>");
-			$("#new-class-container").append(nameInput);
-			$("#new-class-container").append(superclassInput);
-			$("#new-class-container").append(confirmButton);
+			var confirmButton = $("<input type='submit' class='submit' value='Add class'/>");
+			var cancelButton = $("<a href='#' class='cancel-add'>Cancel</a>");
+			var itemsContainer = $("<div class='items-container'></div>");
+			$(itemsContainer).append(nameInput);
+			$(itemsContainer).append($("<p>Superclass URI:</p>"));
+			$(itemsContainer).append(superclassInput);
+			$(itemsContainer).append(confirmButton);
+			$(itemsContainer).append(cancelButton);
+			$("#new-class-container").append(itemsContainer);
 			superclassInput.select2({
 				placeholder: "Select a superclass"
 			});
+			$(cancelButton).click(function() {
+				$(this).parent().remove();
+				$("#add-vclass").click(addClass);
+			})
 			$(confirmButton).click(function(e) {
 				var selectedLabel = $("#class-select").val();
 				var selectedURI = null;
@@ -546,6 +564,14 @@ $(document).ready(function() {
 	}
 
 	function updateEventHandlers() {
+
+		if($("#vclass-uri").attr("data-vclass-uri").indexOf("#Thing") >= 0) {
+			$(".action-delete-vclass").hide();
+		}
+		else {
+			$(".action-delete-vclass").show();
+		}
+
 		$(".action-edit-superclass").click(actionEditSuperclass);
 		$(".action-delete-superclass").click(actionDeleteSuperclass);
 		$(".action-edit-subclass").click(actionEditSubclass);
