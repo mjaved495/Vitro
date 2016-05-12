@@ -45,7 +45,7 @@ public class ClassPageController extends BaseEditController {
         
         VClass vcl;
         
-        if(request.getParameter("uri") != "") {
+        if(request.getParameter("uri") == null) {
         	vcl = request.getUnfilteredWebappDaoFactory()
         	        .getVClassDao().getTopConcept();
         }

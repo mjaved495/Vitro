@@ -22,7 +22,9 @@ $(function() {
 				$("#tree").on("click", "a", function(e) {
 					// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
 					var uri = $(this).attr("data-property-uri");
-					updateData(uri);
+					if(uri != "#") {
+						updateData(uri);
+					}
 				});
 				$("#tree").on("click", "i", function(e) {
 					var link = $(this).parent().find("a").first();
@@ -135,13 +137,14 @@ $(function() {
 		if($("#new-property-uri").length == 0) {
 			var nameInput = $("<p>Property URI: <input type='text' id='new-property-uri'/></p>");
 			var superpropertyInput = createAutocompleteInput("data-property"); // this will have the ID data-property-select
+			
 			nameInput.css("width", "200px");
 			superpropertyInput.css("width", "200px");
 			var confirmButton = $("<input type='submit' class='submit' value='Add property'/><");
 			var cancelButton = $("<a href='#' class='cancel-add'>Cancel</a>");
 			var itemsContainer = $("<div class='items-container'></div>");
 			$(itemsContainer).append(nameInput);
-			$(itemsContainer).append($("<p>Superproperty URI:</p>"));
+			$(itemsContainer).append($("<p>Superproperty:</p>"));
 			$(itemsContainer).append(superpropertyInput);
 			$(itemsContainer).append(confirmButton);
 			$(itemsContainer).append(cancelButton);
@@ -200,6 +203,26 @@ $(function() {
 			})
 		}
 		
+	}
+
+	var deleteProperty = function() {
+		var sure = confirm("Are you sure you want to delete this data property?");
+		if(sure) {
+			var propertyURI = $("#property-uri").attr("data-property-uri");
+			$.post("/vivo/edit_api/delete_dataprop", {"propertyURI": propertyURI}, function(res) {
+				updateData(res);
+				$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+					var data = JSON.parse(jsonData);
+					$("#tree").jstree("destroy");
+					$("#tree").jstree({
+						"core": {
+							"data": [ data ]
+						},
+						"plugins": [ "sort" ]
+					});
+				});
+			})
+		}
 	}
 
 	var actionEditName = function() {

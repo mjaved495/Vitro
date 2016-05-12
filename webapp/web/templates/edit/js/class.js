@@ -77,18 +77,6 @@ $(document).ready(function() {
 		}
 	})
 
-	/* tooltips */
-
-	var identifiers = ['.item-detail', '.action-delete', '.action-edit', '.action-add'];
-	for(var i = 0; i < identifiers.length; i++) {
-		$(identifiers[i]).qtip({
-			position: {
-				my: "top left",
-				at: "bottom left"
-			}
-		})
-	}
-
 	/* click handlers */
 
 	var actionEditSuperclass = function() {
@@ -418,7 +406,7 @@ $(document).ready(function() {
 			var cancelButton = $("<a href='#' class='cancel-add'>Cancel</a>");
 			var itemsContainer = $("<div class='items-container'></div>");
 			$(itemsContainer).append(nameInput);
-			$(itemsContainer).append($("<p>Superclass URI:</p>"));
+			$(itemsContainer).append($("<p>Superclass:</p>"));
 			$(itemsContainer).append(superclassInput);
 			$(itemsContainer).append(confirmButton);
 			$(itemsContainer).append(cancelButton);
@@ -426,6 +414,7 @@ $(document).ready(function() {
 			superclassInput.select2({
 				placeholder: "Select a superclass"
 			});
+			superclassInput.select2({})
 			$(cancelButton).click(function() {
 				$(this).parent().remove();
 				$("#add-vclass").click(addClass);
