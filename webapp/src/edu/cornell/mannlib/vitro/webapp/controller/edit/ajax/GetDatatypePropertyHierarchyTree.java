@@ -51,13 +51,13 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 	private PropHierarchyNode addChildrenRecursively(PropHierarchyNode propNode, DataPropertyDao dpDao) {
 		List<PropHierarchyNode> children = getChildren(propNode, dpDao);
 		if(children.size() == 0) {
-			return propNode;
+			return new PropHierarchyNode(propNode.getDataProp());
 		}
 		else {
 			for(PropHierarchyNode child : children) {
 				propNode.addChild(addChildrenRecursively(child, dpDao));
 			}
-			return propNode;
+			return new PropHierarchyNode(propNode.getDataProp());
 		}
 	}
 	

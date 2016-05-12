@@ -50,17 +50,14 @@ public class GetClassHierarchyUtils {
 	}
 	
 	public static ClassHierarchyNode generateFullTree(VClass startPoint, VClassDao vcDao) {
-		List<VClass> superclasses = getSuperclasses(vcDao, startPoint);
-		ClassHierarchyNode currentNode = new ClassHierarchyNode(startPoint);
-		log.debug(currentNode.getVClass().getName());
-		while(superclasses.size() > 0) {
-			currentNode = new ClassHierarchyNode(superclasses.get(0));
-			superclasses = getSuperclasses(vcDao, currentNode.getVClass());
-		}
-		ClassHierarchyNode entityTree = generateSubTree(currentNode.getVClass(), vcDao);
 		VClass thing = vcDao.getTopConcept();
 		ClassHierarchyNode fullTree = generateSubTree(thing, vcDao);
-		fullTree.addChild(entityTree);
+		List<VClass> allClasses = vcDao.getAllVclasses();
+		for(VClass vcl : allClasses) {
+			if(vcDao.getSuperClassURIs(vcl.getURI(), false).size() == 0 && !fullTree.children().contains(vcl)) {
+				fullTree.addChild(generateSubTree(vcl, vcDao));
+			}
+		}
 		return fullTree;
 		
 	}

@@ -564,6 +564,24 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>DeleteObjectPropertyController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.objproperty.DeleteObjectPropertyController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteObjectPropertyController</servlet-name>
+  	<url-pattern>/edit_api/delete_objprop</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DeleteDataPropertyController</servlet-name>
+  	<servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.dataproperty.DeleteDataPropertyController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteDataPropertyController</servlet-name>
+  	<url-pattern>/edit_api/delete_dataprop</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>VClassInfoController</servlet-name>
     <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.edit.ajax.vclass.VClassInfoController</servlet-class>
   </servlet>

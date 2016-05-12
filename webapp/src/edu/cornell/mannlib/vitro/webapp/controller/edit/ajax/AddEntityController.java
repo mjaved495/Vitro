@@ -36,6 +36,7 @@ public class AddEntityController extends HttpServlet {
 			
 			VClass vcl = new VClass(uri);
 			vcl.setName(vcl.getLocalName());
+			vcl.setNamespace(uri);
 			
 			try {
 				vcDao.insertNewVClass(vcl);
@@ -53,6 +54,8 @@ public class AddEntityController extends HttpServlet {
 			ObjectProperty op = new ObjectProperty();
 			op.setURI(uri);
 			op.setLabel(op.getLocalName());
+			op.setNamespace(uri);
+			
 			try {
 				opDao.insertObjectProperty(op);
 				opDao.addSuperproperty(op.getURI(), supertypeURI);
@@ -69,7 +72,9 @@ public class AddEntityController extends HttpServlet {
 			
 			DataProperty dp = new DataProperty();
 			dp.setURI(uri);
-			dp.setLabel(dp.getLocalName());
+			//dp.setLabel(dp.getLocalName());
+			dp.setNamespace(uri);
+			
 			try {
 				dpDao.insertDataProperty(dp);
 				dpDao.addSuperproperty(dp.getURI(), supertypeURI);

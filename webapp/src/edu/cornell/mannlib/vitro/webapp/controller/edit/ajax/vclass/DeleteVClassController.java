@@ -27,33 +27,17 @@ public class DeleteVClassController extends HttpServlet {
         
         VClass vcl = vcwDao.getVClassByURI(vclassURI);
 		
-        String immediateParentURI; // we need this to know where to redirect to after the deletion
+        String nextURI;
         
-        // remove all relationships, then delete the class
-        
-        immediateParentURI = vcwDao.getSuperClassURIs(vclassURI, true).get(0);
-        
-        for(String subclassURI : vcwDao.getSubClassURIs(vcl.getURI())) {
-        	vcwDao.removeSubclass(vcl, vcwDao.getVClassByURI(subclassURI));
-        	for(String superclassURI : vcwDao.getSuperClassURIs(vcl.getURI(), true)) {
-        		vcwDao.addSuperclass(vcl, vcwDao.getVClassByURI(superclassURI));
-        	}
+        if(vcwDao.getSuperClassURIs(vclassURI, true).size() > 0) {
+        	nextURI = vcwDao.getSuperClassURIs(vclassURI, true).get(0);
+        }
+        else {
+        	nextURI = vcwDao.getAllVclasses().get(0).getURI();
         }
         
-        for(String superclassURI : vcwDao.getSuperClassURIs(vcl.getURI(), true)) {
-        	vcwDao.removeSuperclass(vcl, vcwDao.getVClassByURI(superclassURI));
-        }
-        
-        for(String eqclassURI : vcwDao.getEquivalentClassURIs(vcl.getURI())) {
-        	vcwDao.removeEquivalentClass(vcl.getURI(), eqclassURI);
-        }
-        
-        for(String djclassURI : vcwDao.getDisjointWithClassURIs(vcl.getURI())) {
-        	vcwDao.removeDisjointWithClass(vcl.getURI(), djclassURI);
-        }
-		
         vcwDao.deleteVClass(vcl);
 		
-		res.getWriter().print(immediateParentURI);
+		res.getWriter().print(nextURI);
 	}
 }
