@@ -126,10 +126,6 @@
                 <td id="uri-field">
                      <input type="text" readonly="true" value="${objectProperty.getURI()}" id="uri"></input>
                 </td>
-                <td id="uri-checkbox">
-
-                   <p><input type="checkbox" id="uri-check"></input> Edit URI</p>
-                 </td>
             </tr>
         </table>
     </div>
