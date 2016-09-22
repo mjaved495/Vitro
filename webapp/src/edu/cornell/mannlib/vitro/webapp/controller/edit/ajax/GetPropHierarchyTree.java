@@ -46,7 +46,7 @@ public class GetPropHierarchyTree extends HttpServlet {
 		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
 		List<String> uris = opDao.getSubPropertyURIs(propNode.getProp().getURI());
 		for(String uri : uris) {
-			result.add(new PropHierarchyNode(opDao.getObjectPropertyByURI(uri)));
+			result.add(new PropHierarchyNode(propNode.getProp(), opDao.getObjectPropertyByURI(uri)));
 		}
 		return result;
 	}

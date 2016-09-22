@@ -43,21 +43,31 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 		List<PropHierarchyNode> result = new ArrayList<PropHierarchyNode>();
 		List<String> uris = dpDao.getSubPropertyURIs(propNode.getDataProp().getURI());
 		for(String uri : uris) {
-			result.add(new PropHierarchyNode(dpDao.getDataPropertyByURI(uri)));
+			result.add(new PropHierarchyNode(propNode.getDataProp(), dpDao.getDataPropertyByURI(uri)));
 		}
 		return result;
 	}
 	
-	private PropHierarchyNode addChildrenRecursively(PropHierarchyNode propNode, DataPropertyDao dpDao) {
+	private PropHierarchyNode addChildrenRecursively(PropHierarchyNode superPropNode, PropHierarchyNode propNode, DataPropertyDao dpDao) {
 		List<PropHierarchyNode> children = getChildren(propNode, dpDao);
 		if(children.size() == 0) {
-			return new PropHierarchyNode(propNode.getDataProp());
+			if(superPropNode != null) {
+				return new PropHierarchyNode(superPropNode.getDataProp(), propNode.getDataProp());
+			}
+			else {
+				return new PropHierarchyNode(null, propNode.getDataProp());
+			}
 		}
 		else {
 			for(PropHierarchyNode child : children) {
-				propNode.addChild(addChildrenRecursively(child, dpDao));
+				propNode.addChild(addChildrenRecursively(propNode, child, dpDao));
 			}
-			return new PropHierarchyNode(propNode.getDataProp());
+			if (superPropNode != null) {
+				return new PropHierarchyNode(superPropNode.getDataProp(), propNode.getDataProp());
+			}
+			else {
+				return new PropHierarchyNode(null, propNode.getDataProp());
+			}
 		}
 	}
 	
@@ -73,7 +83,7 @@ public class GetDatatypePropertyHierarchyTree extends HttpServlet {
 			}
 		}
 		for(PropHierarchyNode prop : tree) {
-			result.add(addChildrenRecursively(prop, dpDao));
+			result.add(addChildrenRecursively(null, prop, dpDao));
 		}
 		return tree;
 	}
