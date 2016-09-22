@@ -34,11 +34,22 @@ public class PropHierarchyNode {
 	@Expose
 	public Hashtable<String, String> li_attr;
 	
-	public PropHierarchyNode(ObjectProperty op, List<PropHierarchyNode> children) {
+	@Expose
+	public String id; // the classname followed by an underscore, then the superclass name
+	
+	public PropHierarchyNode(ObjectProperty superproperty, ObjectProperty op, List<PropHierarchyNode> children) {
 		this.op = op;
 		this.children = children;
 		this.text = op.getLabel();
 		this.propURI = op.getURI();
+		
+		if(superproperty != null) {
+			this.id = op.getLabel() + "_" + superproperty.getLabel();
+		}
+		else {
+			this.id = op.getLabel();
+		}
+		
 		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", op.getURI());
@@ -47,11 +58,19 @@ public class PropHierarchyNode {
 		this.li_attr.put("id", op.getLocalName());
 	}
 	
-	public PropHierarchyNode(ObjectProperty op) {
+	public PropHierarchyNode(ObjectProperty superproperty, ObjectProperty op) {
 		this.op = op;
 		this.children = new ArrayList<PropHierarchyNode>();
 		this.text = op.getLabel();
 		this.propURI = op.getURI();
+		
+		if(superproperty != null) {
+			this.id = op.getLabel() + "_" + superproperty.getLabel();
+		}
+		else {
+			this.id = op.getLabel();
+		}
+		
 		this.icon = "/vivo/images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", op.getURI());
@@ -60,11 +79,19 @@ public class PropHierarchyNode {
 		this.li_attr.put("id", op.getLocalName());
 	}
 	
-	public PropHierarchyNode(DataProperty dp) {
+	public PropHierarchyNode(DataProperty superproperty, DataProperty dp) {
 		this.dp = dp;
 		this.children = new ArrayList<PropHierarchyNode>();
 		this.text = dp.getLabel();
 		this.propURI = dp.getURI();
+		
+		if(superproperty != null) {
+			this.id = dp.getLabel() + "_" + superproperty.getLabel();
+		}
+		else {
+			this.id = dp.getLabel();
+		}
+		
 		this.icon = "/vivo/images/greendot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", dp.getURI());
@@ -82,6 +109,7 @@ public class PropHierarchyNode {
 		else if(type.equals("dataproperty")) {
 			this.icon = "/vivo/images/greendot.png";
 		}
+		this.id = name;
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", "#");
 		this.a_attr.put("title", "#");

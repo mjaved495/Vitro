@@ -145,7 +145,7 @@ public class GetPropHierarchyUtils {
 		List<ObjectProperty> ops = opDao.getAllObjectProperties();
 		List<PropHierarchyNode> nodes = new ArrayList<PropHierarchyNode>();
 		for(ObjectProperty prop : ops) {
-			nodes.add(new PropHierarchyNode(prop));
+			nodes.add(new PropHierarchyNode(null, prop));
 		}
 		return nodes;
 	}
@@ -154,7 +154,7 @@ public class GetPropHierarchyUtils {
 		List<DataProperty> dps = dpDao.getAllDataProperties();
 		List<PropHierarchyNode> nodes = new ArrayList<PropHierarchyNode>();
 		for(DataProperty prop : dps) {
-			nodes.add(new PropHierarchyNode(prop));
+			nodes.add(new PropHierarchyNode(null, prop));
 		}
 		return nodes;
 	}
