@@ -51,22 +51,22 @@ public class GetClassHierarchyUtils {
 	
 	public static ClassHierarchyNode generateFullTree(VClass startPoint, VClassDao vcDao) {
 		VClass thing = vcDao.getTopConcept();
-		ClassHierarchyNode fullTree = generateSubTree(thing, vcDao);
+		ClassHierarchyNode fullTree = generateSubTree(null, thing, vcDao);
 		List<VClass> allClasses = vcDao.getAllVclasses();
 		for(VClass vcl : allClasses) {
 			if(vcDao.getSuperClassURIs(vcl.getURI(), false).size() == 0 && !fullTree.children().contains(vcl)) {
-				fullTree.addChild(generateSubTree(vcl, vcDao));
+				fullTree.addChild(generateSubTree(null, vcl, vcDao));
 			}
 		}
 		return fullTree;
 		
 	}
 	
-	private static ClassHierarchyNode generateSubTree(VClass root, VClassDao vcDao) {
+	private static ClassHierarchyNode generateSubTree(VClass superclass, VClass root, VClassDao vcDao) {
 		List<VClass> subclasses = getSubclasses(vcDao, root);
-		ClassHierarchyNode currentNode = new ClassHierarchyNode(root);
+		ClassHierarchyNode currentNode = new ClassHierarchyNode(superclass, root);
 		for(VClass subclass : subclasses) {
-			currentNode.addChild(generateSubTree(subclass, vcDao));
+			currentNode.addChild(generateSubTree(root, subclass, vcDao));
 		}
 		return currentNode;
 	}

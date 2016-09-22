@@ -18,6 +18,9 @@ public class ClassHierarchyNode {
 	public String text;
 	
 	@Expose
+	public String id; // the classname followed by an underscore, then the superclass name
+	
+	@Expose
 	public String vClassURI;
 	
 	@Expose
@@ -32,12 +35,20 @@ public class ClassHierarchyNode {
 	@Expose
 	public Hashtable<String, String> li_attr;
 	
-	public ClassHierarchyNode(VClass vcl, List<ClassHierarchyNode> children) {
+	public ClassHierarchyNode(VClass superclass, VClass vcl, List<ClassHierarchyNode> children) {
 		this.vcl = vcl;
 		this.children = children;
 		this.text = vcl.getName();
 		this.vClassURI = vcl.getURI();
 		this.ontName = ontName;
+		
+		if(superclass != null) {
+			this.id = vcl.getName() + "_" + superclass.getName();
+		}
+		else {
+			this.id = vcl.getName();
+		}
+		
 		this.icon = "/vivo/images/orangedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
@@ -46,12 +57,20 @@ public class ClassHierarchyNode {
 		this.li_attr.put("id", vcl.getLocalName());
 	}
 	
-	public ClassHierarchyNode(VClass vcl) {
+	public ClassHierarchyNode(VClass superclass, VClass vcl) {
 		this.vcl = vcl;
 		this.children = new ArrayList<ClassHierarchyNode>();
 		this.text = vcl.getName();
 		this.vClassURI = vcl.getURI();
 		this.ontName = ontName;
+		
+		if(superclass != null) {
+			this.id = vcl.getName() + "_" + superclass.getName();
+		}
+		else {
+			this.id = vcl.getName();
+		}
+		
 		this.icon = "/vivo/images/orangedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
