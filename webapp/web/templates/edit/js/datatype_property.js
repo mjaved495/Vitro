@@ -18,7 +18,6 @@ $(function() {
 				"plugins": [ "sort" ]
 			});
 			$("#tree").on("loaded.jstree", function(e, data) {
-				console.log("ready");
 				$("#tree").on("click", "a", function(e) {
 					// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
 					var uri = $(this).attr("data-property-uri");
@@ -291,7 +290,7 @@ $(function() {
 
 	var actionDeleteEqProperty = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteEqpropertyRequest);
+		deleteItem(row, actionDeleteEqPropertyRequest);
 	}
 
 	var actionEditDomain = function() {

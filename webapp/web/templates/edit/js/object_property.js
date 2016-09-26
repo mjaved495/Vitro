@@ -332,7 +332,7 @@ $(document).ready(function() {
 
 	var actionDeleteEqProperty = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteEqpropertyRequest);
+		deleteItem(row, actionDeleteEqpropertyCallback);
 	}
 
 	var actionEditInverse = function() {
