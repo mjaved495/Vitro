@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 	var actionDeleteEqClass = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteEqclassRequest);
+		deleteItem(row, actionDeleteEqclassCallback);
 	}
 
 	var actionEditDisjoint = function() {
@@ -170,7 +170,6 @@ $(document).ready(function() {
 		var sure = confirm("Are you sure you want to delete this class?");
 		if(sure) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			console.log(vclassURI);
 			$.post("/vivo/edit_api/delete_vclass", {"vclassURI": vclassURI}, function(res) {
 				updateData(res);
 				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
@@ -255,7 +254,7 @@ $(document).ready(function() {
 	var actionDeleteEqclassCallback = function(row, callback) {
 		var eqClassURI = row.find(".item-detail").attr("data-eqclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		$.post("/vivo/edit_api/delete_eqclass", {"uri": vclassURI, "itemURI": eqClassURI, "relationship": "eq", "type": "vclass"}, callback);
+		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": eqClassURI, "relationship": "eq", "type": "vclass"}, callback);
 	}
 
 	var actionEditDisjointCallback = function(itemDetail) {
