@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import edu.cornell.mannlib.vitro.webapp.beans.ObjectProperty;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
 import edu.cornell.mannlib.vitro.webapp.beans.DataProperty;
+import edu.cornell.mannlib.vitro.webapp.beans.Datatype;
 import edu.cornell.mannlib.vitro.webapp.dao.DataPropertyDao;
+import edu.cornell.mannlib.vitro.webapp.dao.DatatypeDao;
 import edu.cornell.mannlib.vitro.webapp.dao.ObjectPropertyDao;
 import edu.cornell.mannlib.vitro.webapp.dao.VClassDao;
 import edu.cornell.mannlib.vitro.webapp.dao.WebappDaoFactory;
@@ -49,6 +51,15 @@ public class GetURIController extends HttpServlet {
 			for(DataProperty dp : allDataProperties) {
 				if(dp.getName().equals(name)) {
 					uri = dp.getURI();
+				}
+			}
+		}
+		else if(type.equals("datatype")) {
+			DatatypeDao dtDao = wadf.getDatatypeDao();
+			List<Datatype> allDataTypes = dtDao.getAllDatatypes();
+			for(Datatype dt : allDataTypes) {
+				if(dt.getName().equals(name)) {
+					uri = dt.getUri();
 				}
 			}
 		}

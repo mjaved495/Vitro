@@ -2,13 +2,11 @@
 
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
-<!-- TODO: replace /vivo with base URL, add onclicks to edit and delete within superclasses, equivalent, disjoint, etc. -->
-
 <% /* jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0" */ %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-<link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
+<link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
 <input type="hidden" id="vclass-uri" data-vclass-uri="${VClass.getURI()}" value="${VClass.getURI()}"/>
@@ -150,7 +148,6 @@
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
             <tr>
                 <td valign="bottom" colspan="4">
-                    <!-- TODO make this scrollable -->
                     <p><b>Subclasses:</b> <span class="fa fa-plus action action-add-subclass" id="action-add-subclass"></span></p>
                     <div class="scroll-list">
                     <table id="subclass-table">

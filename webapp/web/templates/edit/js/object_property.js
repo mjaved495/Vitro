@@ -126,6 +126,7 @@ $(document).ready(function() {
 			}
 			else {
 				$("#add-inverse-container").html("<b>Inverse:</b> <span class='fa fa-plus action action-add-inverse'></span>");
+				$(".action-add-inverse").click(addInverse);
 			}
 			
 
@@ -137,6 +138,7 @@ $(document).ready(function() {
 			}
 			else {
 				$("#add-domain-container").html("<b>Domain:</b> <span class='fa fa-plus action action-add-domain'></span>");
+				$(".action-add-domain").click(addDomain);
 			}
 			
 
@@ -148,6 +150,7 @@ $(document).ready(function() {
 			}
 			else {
 				$("#add-range-container").html("<b>Range:</b> <span class='fa fa-plus action action-add-range'></span>");
+				$(".action-add-range").click(addRange);
 			}
 
 			window.history.pushState($("html").html(), document.title, "/vivo/propertypage?uri=" + encodeURIComponent(uri));
