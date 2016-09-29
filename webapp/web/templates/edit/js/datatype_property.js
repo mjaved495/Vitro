@@ -367,7 +367,7 @@ $(function() {
 	}
 
 	var actionDeleteEqPropertyRequest = function(row, callback) {
-		var eqpropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
+		var eqPropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": eqPropertyURI, "relationship": "eq", "type": "dataprop"}, callback);
 	}
@@ -393,8 +393,8 @@ $(function() {
 
 	var actionEditRangeCallback = function(itemDetail) {
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		var oldRangeURI = itemDetail.attr("data-range-uri");
-		getURI(itemDetail.text(), "class", function(data) {
+		var oldRangeURI = itemDetail.attr("data-range-datatype-uri");
+		getURI(itemDetail.text(), "datatype", function(data) {
 			var newRangeURI = data;
 			editItem(propertyURI, oldRangeURI, newRangeURI, "range", "dataprop");
 		});

@@ -2,8 +2,6 @@
 
 <!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
-<!-- TODO: replace /vivo with base URL, add onclicks to edit and delete within superclasses, equivalent, disjoint, etc. -->
-
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0">
 
 <link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
@@ -206,6 +204,14 @@
             </tr>
             <tr><td colspan="4"><hr class="formDivider"/></td></tr>
         </table>
+        <c:choose>
+            <c:when test="${dataProperty.getFunctional()}">
+                <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
+            </c:when>
+            <c:otherwise>
+                <p><input type="checkbox" id="functional-check" /> Functional</p>
+            </c:otherwise>
+        </c:choose>
     </div>
 
 </div>
@@ -217,15 +223,6 @@
         <p class="right-pane-item"><b>Display level:</b> <br/> <span id="display-level">${displayLevel}</span></p>
         <p class="right-pane-item"><b>Update level:</b> <br/> <span id="update-level">${updateLevel}</span></p>
         <p class="right-pane-item"><b>Publish level:</b> <br/> <span id="publish-level">${publishLevel}</span></p>
-        <hr/>
-        <c:choose>
-            <c:when test="${dataProperty.getFunctional()}">
-                <p><input type="checkbox" id="functional-check" checked="true"/> Functional</p>
-            </c:when>
-            <c:otherwise>
-                <p><input type="checkbox" id="functional-check" /> Functional</p>
-            </c:otherwise>
-        </c:choose>
     </div>
 </div>
 
