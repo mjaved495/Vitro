@@ -127,7 +127,6 @@
         <table>
             <tr>
             	<td valign="bottom" colspan="4">
-                    <!-- TODO make this scrollable -->
             	   <p><b>Superclasses:</b> <span class="fa fa-plus action action-add-superclass" id="action-add-superclass"></span></p>
                    <div class="scroll-list">
                     <table id="superclass-table">
@@ -203,7 +202,7 @@
                         <table id="disjoint-table">
                     	    <c:forEach items="${disjointClasses}" var="djClass">
                                 <tr class="class-item">
-                                    <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjoint-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
+                                    <td class="item-detail" id="editable-item-detail" title="${djClass.getURI()}" data-disjointclass-uri="${djClass.getURI()}"><p>${djClass.getName()}</p></td> 
                                     <td class="item-spacer"></td>
                                     <td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> 
                                     <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td>

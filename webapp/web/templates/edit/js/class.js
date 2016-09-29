@@ -99,16 +99,19 @@ $(document).ready(function() {
 
 	var actionDeleteDisjoint = function() {
 		var row = $(this).parent().parent();
-		deleteItem(row, actionDeleteDisjointRequest);
+		deleteItem(row, actionDeleteDisjointCallback);
 	}
 
-	var refreshTree = function(data) {
-		$("#tree").jstree("destroy");
-		$("#tree").jstree({
-			"core": {
-				"data": [ data ]
-			},
-			"plugins": [ "sort" ]
+	var refreshTree = function() {
+		$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
+			var data = JSON.parse(jsonData);
+			$("#tree").jstree("destroy");
+			$("#tree").jstree({
+				"core": {
+					"data": [ data ]
+				},
+				"plugins": [ "sort" ]
+			});
 		});
 	}
 
@@ -119,10 +122,7 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': superclassURI, 'relationship': 'super', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-superclass").click(actionEditSuperclass);
 				td.parent().find(".action-delete-superclass").click(actionDeleteSuperclass);
-				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
-					var data = JSON.parse(jsonData);
-					refreshTree(data);
-				});
+				refreshTree();
 			})
 		}, "superclass");
 	}
@@ -134,10 +134,7 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': subclassURI, 'relationship': 'sub', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-subclass").click(actionEditSubclass);
 				td.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
-				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
-					var data = JSON.parse(jsonData);
-					refreshTree(data);
-				});
+				refreshTree();
 			})
 		}, "subclass");
 	}
@@ -156,7 +153,7 @@ $(document).ready(function() {
 	var addDisjoint = function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-			var disjointClassURI = td.attr("data-disjoint-uri");
+			var disjointClassURI = td.attr("data-disjointclass-uri");
 			$.post('/vivo/edit_api/add_item', {'uri': vclassURI, 'itemURI': disjointClassURI, 'relationship': 'disjoint', 'type': 'vclass'}, function(res) {
 				td.parent().find(".action-edit-disjoint").click(actionEditDisjoint);
 				td.parent().find(".action-delete-disjoint").click(actionDeleteDisjoint);
@@ -170,10 +167,7 @@ $(document).ready(function() {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 			$.post("/vivo/edit_api/delete_vclass", {"vclassURI": vclassURI}, function(res) {
 				updateData(res);
-				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
-					var data = JSON.parse(jsonData);
-					refreshTree(data);
-				});
+				refreshTree();
 			})
 		}
 	}
@@ -185,7 +179,9 @@ $(document).ready(function() {
 		var oldSuperclassURI = itemDetail.attr("data-superclass-uri");
 		getURI(itemDetail.text(), "class", function(data) {
 			var newSuperclassURI = data;
-			editItem(vclassURI, oldSuperclassURI, newSuperclassURI, "super", "vclass");
+			editItem(vclassURI, oldSuperclassURI, newSuperclassURI, "super", "vclass", function() {
+				refreshTree();
+			});
 		});
 	}
 
@@ -194,10 +190,7 @@ $(document).ready(function() {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": superclassURI, "relationship": "super", "type": "vclass"}, function() {
 			callback();
-			$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
-				var data = JSON.parse(jsonData);
-				refreshTree(data);
-			});
+			refreshTree();
 		});
 	}
 
@@ -206,7 +199,9 @@ $(document).ready(function() {
 		var oldSubclassURI = itemDetail.attr("data-subclass-uri");
 		getURI(itemDetail.text(), "class", function(data) {
 			var newSubclassURI = data;
-			editItem(vclassURI, oldSubclassURI, newSubclassURI, "sub", "vclass")
+			editItem(vclassURI, oldSubclassURI, newSubclassURI, "sub", "vclass", function() {
+				refreshTree();
+			})
 		});
 	}
 
@@ -239,7 +234,7 @@ $(document).ready(function() {
 
 	var actionEditDisjointCallback = function(itemDetail) {
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
-		var oldDisjointClassURI = itemDetail.attr("data-disjoint-uri");
+		var oldDisjointClassURI = itemDetail.attr("data-disjointclass-uri");
 		getURI(itemDetail.text(), "class", function(data) {
 			var newDisjointClassURI = data;
 			editItem(vclassURI, oldDisjointClassURI, newDisjointClassURI, "disjoint", "vclass")
@@ -247,7 +242,7 @@ $(document).ready(function() {
 	}
 
 	var actionDeleteDisjointCallback = function(row, callback) {
-		var disjointClassURI = row.find(".item-detail").attr("data-disjoint-uri");
+		var disjointClassURI = row.find(".item-detail").attr("data-disjointclass-uri");
 		var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
 		$.post("/vivo/edit_api/delete_item", {"uri": vclassURI, "itemURI": disjointClassURI, "relationship": "disjoint", "type": "vclass"}, callback);
 	}
@@ -324,7 +319,7 @@ $(document).ready(function() {
 
 			for(var i = 0; i < disjoints.length; i++) {
 				var disjoint = disjoints[i];
-				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjoint-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
+				var disjointDiv = $('<tr class="class-item"><td class="item-detail" id="editable-item-detail" title="' + disjoint["uri"] + '" data-disjointclass-uri="' + disjoint["uri"] + '"><p>' + disjoint["name"] + '</p></td> <td class="item-spacer"></td><td class="item-action"><i class="fa fa-pencil action action-edit-disjoint" title="Edit/replace"></i></td> <td class="item-action"> <i class="fa fa-trash action action-delete-disjoint" title="Remove this"></i></td></tr>')
 				$("#disjoint-table").append(disjointDiv);
 			}
 			
@@ -473,7 +468,10 @@ $(document).ready(function() {
 			}
 		}
 		
-		$.post("/vivo/edit_api/add_restriction", formData);
+		$.post("/vivo/edit_api/add_restriction", formData, function() {
+			alert("Restriction added.");
+			updateData($("#vclass-uri").val());
+		});
 	})
 
 	function updateInitialEventHandlers() {
