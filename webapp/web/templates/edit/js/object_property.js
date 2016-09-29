@@ -189,6 +189,16 @@ $(document).ready(function() {
 		}
 	}
 
+	var refreshTree = function(data) {
+		$("#tree").jstree("destroy");
+		$("#tree").jstree({
+			"core": {
+				"data": [ data ]
+			},
+			"plugins": [ "sort" ]
+		});
+	}
+
 	var addProperty = function() {
 		if($("#new-property-uri").length == 0) {
 			var nameInput = $("<input type='text' id='new-property-uri' placeholder='New property URI...'/>");
@@ -222,13 +232,7 @@ $(document).ready(function() {
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function(label) {
 					$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 						var data = JSON.parse(jsonData);
-						$("#tree").jstree("destroy");
-						$("#tree").jstree({
-							"core": {
-								"data": [ data ]
-							},
-							"plugins": [ "sort" ]
-						});
+						refreshTree(data);
 					});
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>');
 					$(".add-object-property").click(addProperty);
@@ -268,13 +272,7 @@ $(document).ready(function() {
 				updateData(res);
 				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 					var data = JSON.parse(jsonData);
-					$("#tree").jstree("destroy");
-					$("#tree").jstree({
-						"core": {
-							"data": [ data ]
-						},
-						"plugins": [ "sort" ]
-					});
+					refreshTree(data);
 				});
 			})
 		}
@@ -381,13 +379,7 @@ $(document).ready(function() {
 			callback();
 			$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 				var data = JSON.parse(jsonData);
-				$("#tree").jstree("destroy");
-				$("#tree").jstree({
-					"core": {
-						"data": [ data ]
-					},
-					"plugins": [ "sort" ]
-				});
+				refreshTree(data);
 			});
 		});
 	}
@@ -408,13 +400,7 @@ $(document).ready(function() {
 			callback();
 			$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 				var data = JSON.parse(jsonData);
-				$("#tree").jstree("destroy");
-				$("#tree").jstree({
-					"core": {
-						"data": [ data ]
-					},
-					"plugins": [ "sort" ]
-				});
+				refreshTree(data);
 			});
 		});
 	}
@@ -496,13 +482,7 @@ $(document).ready(function() {
 				td.parent().find(".action-delete-superproperty").click(actionDeleteSuperproperty);
 				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 					var data = JSON.parse(jsonData);
-					$("#tree").jstree("destroy");
-					$("#tree").jstree({
-						"core": {
-							"data": [ data ]
-						},
-						"plugins": [ "sort" ]
-					});
+					refreshTree(data);
 				});
 			})
 		}, "superproperty");
@@ -517,13 +497,7 @@ $(document).ready(function() {
 				td.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
 				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 					var data = JSON.parse(jsonData);
-					$("#tree").jstree("destroy");
-					$("#tree").jstree({
-						"core": {
-							"data": [ data ]
-						},
-						"plugins": [ "sort" ]
-					});
+					refreshTree(data);
 				});
 			})
 		}, "subproperty");
