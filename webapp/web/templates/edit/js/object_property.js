@@ -190,12 +190,15 @@ $(document).ready(function() {
 	}
 
 	var refreshTree = function(data) {
-		$("#tree").jstree("destroy");
-		$("#tree").jstree({
-			"core": {
-				"data": [ data ]
-			},
-			"plugins": [ "sort" ]
+		$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+			var data = JSON.parse(jsonData);
+			$("#tree").jstree("destroy");
+			$("#tree").jstree({
+				"core": {
+					"data": [ data ]
+				},
+				"plugins": [ "sort" ]
+			});
 		});
 	}
 
@@ -230,10 +233,7 @@ $(document).ready(function() {
 					}
 				})
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function(label) {
-					$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-						var data = JSON.parse(jsonData);
-						refreshTree(data);
-					});
+					refreshTree();
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>');
 					$(".add-object-property").click(addProperty);
 					if($("#uri").val() == selectedURI) { // if the superproperty is the same as the current page
@@ -270,10 +270,7 @@ $(document).ready(function() {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			$.post("/vivo/edit_api/delete_objprop", {"propertyURI": propertyURI}, function(res) {
 				updateData(res);
-				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-					var data = JSON.parse(jsonData);
-					refreshTree(data);
-				});
+				refreshTree();
 			})
 		}
 	}
@@ -368,7 +365,9 @@ $(document).ready(function() {
 		var oldSuperpropertyURI = itemDetail.attr("data-superproperty-uri");
 		getURI(itemDetail.text(), "property", function(data) {
 			var newSuperpropertyURI = data;
-			editItem(propertyURI, oldSuperpropertyURI, newSuperpropertyURI, "super", "objprop");
+			editItem(propertyURI, oldSuperpropertyURI, newSuperpropertyURI, "super", "objprop", function() {
+				refreshTree();
+			});
 		});
 	};
 
@@ -377,10 +376,7 @@ $(document).ready(function() {
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"}, function() {
 			callback();
-			$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-				var data = JSON.parse(jsonData);
-				refreshTree(data);
-			});
+			refreshTree();
 		});
 	}
 
@@ -389,7 +385,9 @@ $(document).ready(function() {
 		var oldSubpropertyURI = itemDetail.attr("data-subproperty-uri");
 		getURI(itemDetail.text(), "property", function(data) {
 			var newSubpropertyURI = data;
-			editItem(propertyURI, oldSubpropertyURI, newSubpropertyURI, "sub", "objprop");
+			editItem(propertyURI, oldSubpropertyURI, newSubpropertyURI, "sub", "objprop", function() {
+				refreshTree();
+			});
 		});
 	}
 
@@ -398,10 +396,7 @@ $(document).ready(function() {
 		var propertyURI = $("#property-uri").attr("data-property-uri");
 		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"}, function() {
 			callback();
-			$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-				var data = JSON.parse(jsonData);
-				refreshTree(data);
-			});
+			refreshTree();
 		});
 	}
 
@@ -480,10 +475,7 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': superpropertyURI, 'relationship': 'super', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-superproperty").click(actionEditSuperproperty);
 				td.parent().find(".action-delete-superproperty").click(actionDeleteSuperproperty);
-				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-					var data = JSON.parse(jsonData);
-					refreshTree(data);
-				});
+				refreshTree();
 			})
 		}, "superproperty");
 	}
@@ -495,10 +487,7 @@ $(document).ready(function() {
 			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': subpropertyURI, 'relationship': 'sub', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-subproperty").click(actionEditSubproperty);
 				td.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
-				$.get("/vivo/edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-					var data = JSON.parse(jsonData);
-					refreshTree(data);
-				});
+				refreshTree();
 			})
 		}, "subproperty");
 	}
