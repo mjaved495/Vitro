@@ -102,6 +102,16 @@ $(document).ready(function() {
 		deleteItem(row, actionDeleteDisjointRequest);
 	}
 
+	var refreshTree = function(data) {
+		$("#tree").jstree("destroy");
+		$("#tree").jstree({
+			"core": {
+				"data": [ data ]
+			},
+			"plugins": [ "sort" ]
+		});
+	}
+
 	var addSuperclass = function() {
 		addItem($(this), function(td) {
 			var vclassURI = $("#vclass-uri").attr("data-vclass-uri");
@@ -111,13 +121,7 @@ $(document).ready(function() {
 				td.parent().find(".action-delete-superclass").click(actionDeleteSuperclass);
 				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 					var data = JSON.parse(jsonData);
-					$("#tree").jstree("destroy");
-					$("#tree").jstree({
-						"core": {
-							"data": [ data ]
-						},
-						"plugins": [ "sort" ]
-					});
+					refreshTree(data);
 				});
 			})
 		}, "superclass");
@@ -132,13 +136,7 @@ $(document).ready(function() {
 				td.parent().find(".action-delete-subclass").click(actionDeleteSubclass);
 				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 					var data = JSON.parse(jsonData);
-					$("#tree").jstree("destroy");
-					$("#tree").jstree({
-						"core": {
-							"data": [ data ]
-						},
-						"plugins": [ "sort" ]
-					});
+					refreshTree(data);
 				});
 			})
 		}, "subclass");
@@ -174,13 +172,7 @@ $(document).ready(function() {
 				updateData(res);
 				$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 					var data = JSON.parse(jsonData);
-					$("#tree").jstree("destroy");
-					$("#tree").jstree({
-						"core": {
-							"data": [ data ]
-						},
-						"plugins": [ "sort" ]
-					});
+					refreshTree(data);
 				});
 			})
 		}
@@ -204,13 +196,7 @@ $(document).ready(function() {
 			callback();
 			$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 				var data = JSON.parse(jsonData);
-				$("#tree").jstree("destroy");
-				$("#tree").jstree({
-					"core": {
-						"data": [ data ]
-					},
-					"plugins": [ "sort" ]
-				});
+				refreshTree(data);
 			});
 		});
 	}
@@ -231,13 +217,7 @@ $(document).ready(function() {
 			callback();
 			$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 				var data = JSON.parse(jsonData);
-				$("#tree").jstree("destroy");
-				$("#tree").jstree({
-					"core": {
-						"data": [ data ]
-					},
-					"plugins": [ "sort" ]
-				});
+				refreshTree(data);
 			});
 		});
 	}
@@ -412,13 +392,7 @@ $(document).ready(function() {
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-vclass-uri").val(), "supertype": selectedURI, "type": "vclass"}, function(label) {
 					$.get("/vivo/edit_api/get_hierarchy?uri=http%3A%2F%2Fvivoweb.org%2Fontology%2Fcore%23FacultyMember", function(jsonData) {
 						var data = JSON.parse(jsonData);
-						$("#tree").jstree("destroy");
-						$("#tree").jstree({
-							"core": {
-								"data": [ data ]
-							},
-							"plugins": [ "sort" ]
-						});
+						refreshTree(data);
 					});
 					$("#new-class-container").html('<p style="text-align:center;"><a href="#" class="add-vclass">Add New Class</a></p>');
 					$(".add-vclass").click(addClass);
