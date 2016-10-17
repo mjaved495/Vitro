@@ -15,7 +15,7 @@
     </c:when>
     <c:otherwise>
         <c:forEach items="${allProperties}" var="prop">
-            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getName()}" data-localname="${prop.getLocalName()}"/>
+            <input type="hidden" class="property-option-data" data-uri="${prop.getURI()}" value="${prop.getName()}"/>
         </c:forEach>
     </c:otherwise>
 </c:choose>

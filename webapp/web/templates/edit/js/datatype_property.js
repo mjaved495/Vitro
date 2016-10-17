@@ -40,6 +40,7 @@ $(function() {
 	
 	var updateData = function(uri) {
 		$("#property-uri").attr("data-property-uri", uri);
+
 		$.get("/vivo/edit_api/datapropinfo", {"uri": uri}, function(jsonData) {
 			var data = JSON.parse(jsonData);
 
@@ -177,12 +178,11 @@ $(function() {
 					}
 				})
 				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "dataprop"}, function(label) {
-					$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
-						var data = JSON.parse(jsonData);
-						
-					});
+					refreshTree();
+					var uri = $("#new-property-uri").val();
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-data-property">Add Data Property</a></p>');
 					$(".add-data-property").click(addProperty);
+					$("body").append($("<input type='hidden' class='property-option-data' data-uri='" + uri +'" value="'+ label + "'>"))
 					if($("#uri").val() == selectedURI) { // if the superproperty is the same as the current page
 						// add item to subproperty list
 						var tableRow = $("<tr class='class-item'></tr>");
@@ -218,6 +218,12 @@ $(function() {
 			$.post("/vivo/edit_api/delete_dataprop", {"propertyURI": propertyURI}, function(res) {
 				updateData(res);
 				refreshTree();
+				/* Remove item from dropdown */
+				$.each($(".property-option-data"), function(i, optionInput) {
+					if($(optionInput).attr("data-uri") == propertyURI) {
+						$(optionInput).remove();
+					}
+				});
 			})
 		}
 	}
