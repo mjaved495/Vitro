@@ -45,13 +45,8 @@
   <listener>
     <listener-class>edu.cornell.mannlib.vitro.webapp.startup.StartupManager</listener-class>
   </listener>
-
-  <!-- TwelveMonkeys ImageIO listener -->
-  <listener>
-    <display-name>ImageIO service provider loader/unloader</display-name>
-    <listener-class>com.twelvemonkeys.servlet.image.IIOProviderContextListener</listener-class>
-  </listener>
-
+  
+  
   <!-- Filters ********************************************************** -->
   <!-- in 2.4 spec, filter chain order is first by filter-mapping <url-pattern> order in web.xml,
    then filter-mapping <servlet-name> order in web.xml -->
@@ -1429,7 +1424,7 @@
     <servlet-name>SearchServiceController</servlet-name>
     <url-pattern>/searchService/*</url-pattern>
   </servlet-mapping>
- 
+
   <!-- VIVO OpenSocial Extension by UCSF -->
   <servlet>
     <servlet-name>GadgetController</servlet-name>

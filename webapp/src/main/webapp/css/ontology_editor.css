@@ -1,0 +1,198 @@
+.restriction-field {
+	height:40px;
+}
+
+.action {
+	cursor:pointer;
+}
+
+tr.class-item {
+	/* padding-top:10px; */
+}
+
+.class-item {
+	padding:0;
+	margin:0;
+}
+
+.class-item td {
+	padding:0;
+	margin:0;
+}
+
+p {
+	margin-bottom:0 !important;
+}
+
+td.item-spacer {
+	width:50%;
+}
+
+td.item-detail {
+	width:100%;
+}
+
+td.item-action {
+	width:5%;
+	margin:0;
+}
+
+td#uri-field {
+	width:40%;
+}
+
+td#uri-field input[type='text'], td#editable-item-detail input[type='text'] {
+	width:100% !important;
+}
+
+td#uri-checkbox {
+	width:20%;
+	text-align:right;
+}
+
+#tabbed {
+	margin-top:20px;
+	padding-left:20px;
+}
+
+.action-edit-vclass-label, .action-delete-vclass {
+	margin-left:7px !important;
+}
+
+.action-edit-name, .action-edit-uri {
+	cursor:pointer;
+}
+
+.blank-container {
+	overflow:hidden;
+}
+
+.stretch-panel {
+	float:left;
+	width:100%;
+}
+
+.stretch-panel-header {
+	border-top:1px solid #AAAAAA;
+	background-color:#E1E1E1;
+	height:30px;
+	cursor:pointer;
+	padding:10px;
+}
+
+.stretch-panel-header:hover {
+	background-color:#E1E1FF;
+}
+
+.stretch-panel-body {
+	background-color:#FBFBFB;
+}
+
+.tree-container {
+	min-width:26%;
+	max-width:26%;
+	min-height:500px;
+	overflow-x:scroll;
+	float:left;
+	padding-left:5px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-right:1px solid #CCCCCC;
+	background-color:#F5F5F5;
+	height:600px;
+}
+
+#tree-container-vclass {
+	height:920px !important;
+}
+
+.item-container {
+	width:53%;
+	float:left;
+	padding-left:20px;
+	height:600px;
+	font-size:14px;
+}
+
+#item-container-vclass {
+	height:920px !important;
+}
+
+.info-container {
+	width:13%;
+	float:left;
+	background-color:#FBFBFB;
+	margin-left:20px;
+	padding:10px;
+	height:600px;
+	font-size:14px;
+}
+
+#info-container-vclass {
+	height:920px;
+}
+
+.item table {
+	width:100%;
+}
+
+.raw-statements {
+	margin-top:100px;
+}
+
+.stretch-panel table {
+	width:100%;
+	font-size:14px;
+}
+
+#newinput {
+	width:50px !important;
+}
+
+.right-pane-item {
+	margin:0px;
+}
+
+.right-pane-item .submit {
+	font-size:14px;
+}
+
+.concept {
+	color:#EE8800;
+}
+
+.object-property {
+	color:#398aac;
+}
+
+.datatype-property {
+	color:#66af8e;
+}
+
+#edit-delete-vclass {
+	text-align:right;
+}
+
+.tree-container p, .stretch-panel-body p {
+	margin:5px;
+}
+
+.fa-pencil, .fa-trash {
+	margin-left:5px !important;
+}
+
+.fa-plus {
+	margin-left:10px !important;
+}
+
+#tree {
+	font-size:14px;
+}
+
+.scroll-list {
+	margin:0px;
+}
+
+.status {
+	color:#555555;
+}
