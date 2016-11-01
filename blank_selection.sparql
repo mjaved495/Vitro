@@ -1,8 +1,0 @@
-SELECT ?s ?p ?o
-WHERE
-{
-      vcard:additionalName rdfs:subPropertyOf ?o .
-      ?s ?p ?o . 
-      not exists {?o rdfs:label ?label}
-      FILTER (?o != <http://www.w3.org/2002/07/owl#topDataProperty>).
-}
