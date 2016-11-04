@@ -5,11 +5,11 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script src="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
-<script src="/vivo/js/jquery.color.js"></script>
-<script src="/vivo/js/helpers.js"></script>
+<script src="../js/jquery.color.js"></script>
+<script src="../js/helpers.js"></script>
 <script language="JavaScript" type="text/javascript">
 $(function() {
-		$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+		$.get("../edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 			var data = JSON.parse(jsonData);
 			$("#tree").jstree({
 				"core": {
@@ -19,7 +19,7 @@ $(function() {
 			});
 			$("#tree").on("loaded.jstree", function(e, data) {
 				$("#tree").on("click", "a", function(e) {
-					// window.location.href = "/vivo/classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
+					// window.location.href = "../classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
 					var uri = $(this).attr("data-property-uri");
 					if(uri != "#") {
 						updateData(uri);
@@ -28,10 +28,10 @@ $(function() {
 				$("#tree").on("click", "i", function(e) {
 					var link = $(this).parent().find("a").first();
 					if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("greendot-open.png") > -1) {
-						link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot.png')");
+						link.find(".jstree-icon").css("background-image", "url('../images/greendot.png')");
 					}
 					else {
-						link.find(".jstree-icon").css("background-image", "url('/vivo/images/greendot-open.png')");
+						link.find(".jstree-icon").css("background-image", "url('../images/greendot-open.png')");
 					}
 					
 				});
@@ -41,7 +41,7 @@ $(function() {
 	var updateData = function(uri) {
 		$("#property-uri").attr("data-property-uri", uri);
 
-		$.get("/vivo/edit_api/datapropinfo", {"uri": uri}, function(jsonData) {
+		$.get("../edit_api/datapropinfo", {"uri": uri}, function(jsonData) {
 			var data = JSON.parse(jsonData);
 
 			var ontology = data["ontology"];
@@ -127,14 +127,14 @@ $(function() {
 			}
 			
 
-			window.history.pushState($("html").html(), document.title, "/vivo/datapropertypage?uri=" + encodeURIComponent(uri));
+			window.history.pushState($("html").html(), document.title, "../datapropertypage?uri=" + encodeURIComponent(uri));
 			
 			updateEventHandlers();
 		});
 	}
 
 	var refreshTree = function(data) {
-		$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+		$.get("../edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 			var data = JSON.parse(jsonData);
 			$("#tree").jstree("destroy");
 			$("#tree").jstree({
@@ -177,7 +177,7 @@ $(function() {
 						selectedURI = $(el).attr("data-uri");
 					}
 				})
-				$.post("/vivo/edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "dataprop"}, function(label) {
+				$.post("../edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "dataprop"}, function(label) {
 					refreshTree();
 					var uri = $("#new-property-uri").val();
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-data-property">Add Data Property</a></p>');
@@ -215,7 +215,7 @@ $(function() {
 		var sure = confirm("Are you sure you want to delete this data property?");
 		if(sure) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			$.post("/vivo/edit_api/delete_dataprop", {"propertyURI": propertyURI}, function(res) {
+			$.post("../edit_api/delete_dataprop", {"propertyURI": propertyURI}, function(res) {
 				updateData(res);
 				refreshTree();
 				/* Remove item from dropdown */
@@ -242,7 +242,7 @@ $(function() {
 	}
 
 	var editDataPropName = function(name) {
-		$.post("/vivo/edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "dataprop"}, function(data) {
+		$.post("../edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "dataprop"}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();
@@ -331,9 +331,9 @@ $(function() {
 	var actionDeleteSuperpropertyRequest = function(row, callback) {
 		var superpropertyURI = row.find(".item-detail").attr("data-superproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "dataprop"}, function() {
+		$.post("../edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "dataprop"}, function() {
 			callback();
-			$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+			$.get("../edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 				var data = JSON.parse(jsonData);
 				refreshTree();
 			});
@@ -354,9 +354,9 @@ $(function() {
 	var actionDeleteSubpropertyRequest = function(row, callback) {
 		var subpropertyURI = row.find(".item-detail").attr("data-subproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "dataprop"}, function() {
+		$.post("../edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "dataprop"}, function() {
 			callback();
-			$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+			$.get("../edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 				var data = JSON.parse(jsonData);
 				refreshTree();
 			});
@@ -375,7 +375,7 @@ $(function() {
 	var actionDeleteEqPropertyRequest = function(row, callback) {
 		var eqPropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": eqPropertyURI, "relationship": "eq", "type": "dataprop"}, callback);
+		$.post("../edit_api/delete_item", {"uri": propertyURI, "itemURI": eqPropertyURI, "relationship": "eq", "type": "dataprop"}, callback);
 	}
 
 	var actionEditDomainCallback = function(itemDetail) {
@@ -390,7 +390,7 @@ $(function() {
 	var actionDeleteDomainRequest = function(row, callback) {
 		var domainURI = row.find(".item-detail").attr("data-domain-class-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": propertyURI, "itemURI": domainURI, "relationship": "domain", "type": "dataprop"}, function(res) {
+		$.post("../edit_api/delete_item", {"uri": propertyURI, "itemURI": domainURI, "relationship": "domain", "type": "dataprop"}, function(res) {
 			$("#add-domain-container").append("<span class='fa fa-plus action action-add-domain'></span>");
 			$(".action-add-domain").click(addDomain);
 			callback();
@@ -409,7 +409,7 @@ $(function() {
 	var actionDeleteRangeRequest = function(row, callback) {
 		var rangeURI = row.find(".item-detail").attr("data-range-datatype-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("/vivo/edit_api/delete_item", {"uri": rangeURI, "itemURI": propertyURI, "relationship": "range", "type": "dataprop"}, function(res) {
+		$.post("../edit_api/delete_item", {"uri": rangeURI, "itemURI": propertyURI, "relationship": "range", "type": "dataprop"}, function(res) {
 			$("#add-range-container").append("<span class='fa fa-plus action action-add-range'></span>");
 			$(".action-add-range").click(addRange);
 			callback();
@@ -420,10 +420,10 @@ $(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var superpropertyURI = td.attr("data-superproperty-uri");
-			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': superpropertyURI, 'relationship': 'super', 'type': 'dataprop'}, function(res) {
+			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': superpropertyURI, 'relationship': 'super', 'type': 'dataprop'}, function(res) {
 				td.parent().find(".action-edit-superproperty").click(actionEditSuperproperty);
 				td.parent().find(".action-delete-superproperty").click(actionDeleteSuperproperty);
-				$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+				$.get("../edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 					var data = JSON.parse(jsonData);
 					refreshTree();
 				});
@@ -435,10 +435,10 @@ $(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var subpropertyURI = td.attr("data-subproperty-uri");
-			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': subpropertyURI, 'relationship': 'sub', 'type': 'dataprop'}, function(res) {
+			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': subpropertyURI, 'relationship': 'sub', 'type': 'dataprop'}, function(res) {
 				td.parent().find(".action-edit-subproperty").click(actionEditSubproperty);
 				td.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
-				$.get("/vivo/edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+				$.get("../edit_api/get_dataprop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 					var data = JSON.parse(jsonData);
 					refreshTree();
 				});
@@ -452,7 +452,7 @@ $(function() {
 			var eqPropertyURI = td.attr("data-eqproperty-uri")
 			$.ajax({
 				"type": "POST",
-				"url": '/vivo/edit_api/add_item', 
+				"url": '../edit_api/add_item', 
 				"data": {'uri': propertyURI, 'itemURI': eqPropertyURI, 'relationship': 'eq', 'type': 'dataprop'}, 
 				"success": function(res) {
 					td.parent().find(".action-edit-eqproperty").click(actionEditEqProperty);
@@ -469,7 +469,7 @@ $(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var domainURI = td.attr('data-domain-class-uri');
-			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': domainURI, 'relationship': 'domain', 'type': 'dataprop'}, function(res) {
+			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': domainURI, 'relationship': 'domain', 'type': 'dataprop'}, function(res) {
 				td.parent().find(".action-edit-domain-class").click(actionEditDomain);
 				td.parent().find(".action-delete-domain-class").click(actionDeleteDomain);
 				$("#add-domain-container").html("<b>Domain:</b>");
@@ -481,7 +481,7 @@ $(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var rangeURI = td.attr('data-range-datatype-uri');
-			$.post('/vivo/edit_api/add_item', {'uri': propertyURI, 'itemURI': rangeURI, 'relationship': 'range', 'type': 'dataprop'}, function(res) {
+			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': rangeURI, 'relationship': 'range', 'type': 'dataprop'}, function(res) {
 				td.parent().find(".action-edit-range").click(actionEditRange);
 				td.parent().find(".action-delete-range").click(actionDeleteRange);
 				$("#add-range-container").html("<b>Range:</b>");
@@ -490,7 +490,7 @@ $(function() {
 	}
 
 	var onFunctionalCheck = function() {
-		$.post('/vivo/edit_api/checkbox', {'objprop': false, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')});
+		$.post('../edit_api/checkbox', {'objprop': false, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')});
 	}
 
 	$(".stretch-panel").css({'height': '50px', 'margin-top': 25});
