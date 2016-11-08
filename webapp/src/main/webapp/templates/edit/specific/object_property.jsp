@@ -4,7 +4,7 @@
 
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://vitro.mannlib.cornell.edu/edit/tags" version="2.0">
 
-<link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
+<link rel="stylesheet" type="text/css" href="./css/ontology_editor.css"/> <!-- TODO replace /vivo with some base URL -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
 <input type="hidden" id="property-uri" data-property-uri="${objectProperty.getURI()}"/>

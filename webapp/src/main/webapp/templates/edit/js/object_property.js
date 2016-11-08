@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script src="https://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
-<script src="../js/jquery.color.js"></script>
-<script src="../js/helpers.js"></script>
+<script src="./js/jquery.color.js"></script>
+<script src="./js/helpers.js"></script>
 <script language="JavaScript" type="text/javascript">
 $(document).ready(function() {
 
-	$.get("../edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+	$.get("./edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 		var data = JSON.parse(jsonData);
 		$("#tree").jstree({
 			"core": {
@@ -20,7 +20,7 @@ $(document).ready(function() {
 			"plugins": [ "sort" ]
 		}).on("ready.jstree", function(e, data) {
 			$("#tree").on("click", "a", function(e) {
-				// window.location.href = "../classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
+				// window.location.href = "./classpage?uri=" + encodeURIComponent($(this).attr("data-vclass-uri"));
 				var uri = $(this).attr("data-property-uri");
 				if(uri != "#") {
 					updateData(uri);
@@ -29,10 +29,10 @@ $(document).ready(function() {
 			$("#tree").on("click", "i", function(e) {
 				var link = $(this).parent().find("a").first();
 				if(link.find(".jstree-icon").css("background-image") != undefined && link.find(".jstree-icon").css("background-image").indexOf("bluedot-open.png") > -1) {
-					link.find(".jstree-icon").css("background-image", "url('../images/bluedot.png')");
+					link.find(".jstree-icon").css("background-image", "url('./images/bluedot.png')");
 				}
 				else {
-					link.find(".jstree-icon").css("background-image", "url('../images/bluedot-open.png')");
+					link.find(".jstree-icon").css("background-image", "url('./images/bluedot-open.png')");
 				}
 				
 			});
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 	var updateData = function(uri) {
 		$("#property-uri").attr("data-property-uri", uri);
-		$.get("../edit_api/propinfo", {"uri": uri}, function(jsonData) {
+		$.get("./edit_api/propinfo", {"uri": uri}, function(jsonData) {
 
 			var data = JSON.parse(jsonData);
 
@@ -153,7 +153,7 @@ $(document).ready(function() {
 				$(".action-add-range").click(addRange);
 			}
 
-			window.history.pushState($("html").html(), document.title, "../propertypage?uri=" + encodeURIComponent(uri));
+			window.history.pushState($("html").html(), document.title, "./propertypage?uri=" + encodeURIComponent(uri));
 			
 			updateEventHandlers();
 		});
@@ -193,7 +193,7 @@ $(document).ready(function() {
 	}
 
 	var refreshTree = function(data) {
-		$.get("../edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
+		$.get("./edit_api/get_prop_hierarchy?uri="+encodeURIComponent($("#uri").val()), function(jsonData) {
 			var data = JSON.parse(jsonData);
 			$("#tree").jstree("destroy");
 			$("#tree").jstree({
@@ -207,7 +207,7 @@ $(document).ready(function() {
 
 	var addProperty = function() {
 		if($("#new-property-uri").length == 0) {
-			var nameInput = $("<input type='text' id='new-property-uri' placeholder='New property URI...'/>");
+			var nameInput = $("<input type='text' id='new-property-uri' placeholder='New property URI..'/>");
 			var superpropertyInput = createAutocompleteInput("object-property"); // this will have the ID object-property-select
 			nameInput.css("width", "200px");
 			superpropertyInput.css("width", "200px");
@@ -235,7 +235,7 @@ $(document).ready(function() {
 						selectedURI = $(el).attr("data-uri");
 					}
 				})
-				$.post("../edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function(label) {
+				$.post("./edit_api/add_entity", {"uri": $("#new-property-uri").val(), "supertype": selectedURI, "type": "objprop"}, function(label) {
 					refreshTree();
 					$("#new-property-container").html('<p style="text-align:center;"><a href="#" class="add-object-property">Add Object Property</a></p>');
 					$(".add-object-property").click(addProperty);
@@ -271,7 +271,7 @@ $(document).ready(function() {
 		var sure = confirm("Are you sure you want to delete this object property?");
 		if(sure) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
-			$.post("../edit_api/delete_objprop", {"propertyURI": propertyURI}, function(res) {
+			$.post("./edit_api/delete_objprop", {"propertyURI": propertyURI}, function(res) {
 				updateData(res);
 				refreshTree();
 			})
@@ -279,7 +279,7 @@ $(document).ready(function() {
 	}
 
 	var editPropName = function(name) {
-		$.post("../edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "objprop"}, function(data) {
+		$.post("./edit_api/edit_name", {"uri": $("#uri").val(), "newName": name, "type": "objprop"}, function(data) {
 			setTimeout(function() {
 				$("#name-input").remove();
 				$("#name").show();
@@ -377,7 +377,7 @@ $(document).ready(function() {
 	var actionDeleteSuperpropertyRequest = function(row, callback) {
 		var superpropertyURI = row.find(".item-detail").attr("data-superproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("../edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"}, function() {
+		$.post("./edit_api/delete_item", {"uri": propertyURI, "itemURI": superpropertyURI, "relationship": "super", "type": "objprop"}, function() {
 			callback();
 			refreshTree();
 		});
@@ -397,7 +397,7 @@ $(document).ready(function() {
 	var actionDeleteSubpropertyRequest = function(row, callback) {
 		var subpropertyURI = row.find(".item-detail").attr("data-subproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("../edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"}, function() {
+		$.post("./edit_api/delete_item", {"uri": propertyURI, "itemURI": subpropertyURI, "relationship": "sub", "type": "objprop"}, function() {
 			callback();
 			refreshTree();
 		});
@@ -415,7 +415,7 @@ $(document).ready(function() {
 	var actionDeleteEqpropertyCallback = function(row, callback) {
 		var eqpropertyURI = row.find(".item-detail").attr("data-eqproperty-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("../edit_api/delete_item", {"itemURI": eqpropertyURI, "uri": propertyURI, "relationship": "eq", "type": "objprop"}, callback);
+		$.post("./edit_api/delete_item", {"itemURI": eqpropertyURI, "uri": propertyURI, "relationship": "eq", "type": "objprop"}, callback);
 	}
 
 	var actionEditInverseCallback = function(itemDetail) { 
@@ -430,7 +430,7 @@ $(document).ready(function() {
 	var actionDeleteInverseRequest = function(row, callback) {
 		var inverseURI = row.find(".item-detail").attr("data-inverse-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("../edit_api/delete_item", {"itemURI": inverseURI, "uri": propertyURI, "relationship": "inverse", "type": "objprop"}, callback);
+		$.post("./edit_api/delete_item", {"itemURI": inverseURI, "uri": propertyURI, "relationship": "inverse", "type": "objprop"}, callback);
 	}
 
 	var actionEditDomainCallback = function(itemDetail) { 
@@ -445,7 +445,7 @@ $(document).ready(function() {
 	var actionDeleteDomainRequest = function(row, callback) {
 		var domainURI = row.find(".item-detail").attr("data-domain-class-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("../edit_api/delete_item", {"itemURI": domainURI, "uri": propertyURI, "relationship": "domain", "type": "objprop"}, function(res) {
+		$.post("./edit_api/delete_item", {"itemURI": domainURI, "uri": propertyURI, "relationship": "domain", "type": "objprop"}, function(res) {
 			$("#add-domain-container").append("<span class='fa fa-plus action action-add-domain'></span>");
 			$(".action-add-domain").click(addDomain);
 			callback();
@@ -464,7 +464,7 @@ $(document).ready(function() {
 	var actionDeleteRangeRequest = function(row, callback) {
 		var rangeURI = row.find(".item-detail").attr("data-range-class-uri");
 		var propertyURI = $("#property-uri").attr("data-property-uri");
-		$.post("../edit_api/delete_item", {"itemURI": rangeURI, "uri": propertyURI, "relationship": "range", "type": "objprop"}, function(res) {
+		$.post("./edit_api/delete_item", {"itemURI": rangeURI, "uri": propertyURI, "relationship": "range", "type": "objprop"}, function(res) {
 			$("#add-range-container").append("<span class='fa fa-plus action action-add-range'></span>");
 			$(".action-add-range").click(addRange);
 			callback();
@@ -475,7 +475,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var superpropertyURI = td.attr("data-superproperty-uri");
-			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': superpropertyURI, 'relationship': 'super', 'type': 'objprop'}, function(res) {
+			$.post('./edit_api/add_item', {'uri': propertyURI, 'itemURI': superpropertyURI, 'relationship': 'super', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-superproperty").click(actionEditSuperproperty);
 				td.parent().find(".action-delete-superproperty").click(actionDeleteSuperproperty);
 				refreshTree();
@@ -487,7 +487,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var subpropertyURI = td.attr("data-subproperty-uri");
-			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': subpropertyURI, 'relationship': 'sub', 'type': 'objprop'}, function(res) {
+			$.post('./edit_api/add_item', {'uri': propertyURI, 'itemURI': subpropertyURI, 'relationship': 'sub', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-subproperty").click(actionEditSubproperty);
 				td.parent().find(".action-delete-subproperty").click(actionDeleteSubproperty);
 				refreshTree();
@@ -501,7 +501,7 @@ $(document).ready(function() {
 			var eqPropertyURI = td.attr("data-eqproperty-uri")
 			$.ajax({
 				"type": "POST",
-				"url": '../edit_api/add_item', 
+				"url": './edit_api/add_item', 
 				"data": {'uri': propertyURI, 'itemURI': eqPropertyURI, 'relationship': 'eq', 'type': 'objprop'}, 
 				"success": function(res) {
 					td.parent().find(".action-edit-eqproperty").click(actionEditEqProperty);
@@ -518,7 +518,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var inverseURI = td.attr("data-inverse-property-uri");
-			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': inverseURI, 'relationship': 'inverse', 'type': 'objprop'}, function(res) {
+			$.post('./edit_api/add_item', {'uri': propertyURI, 'itemURI': inverseURI, 'relationship': 'inverse', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-inverse-property").click(actionEditInverse);
 				td.parent().find(".action-delete-inverse-property").click(actionDeleteInverse);
 				$("#add-inverse-container").html("<b>Inverse:</b>");
@@ -530,7 +530,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var domainURI = td.attr('data-domain-class-uri');
-			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': domainURI, 'relationship': 'domain', 'type': 'objprop'}, function(res) {
+			$.post('./edit_api/add_item', {'uri': propertyURI, 'itemURI': domainURI, 'relationship': 'domain', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-domain-class").click(actionEditDomain);
 				td.parent().find(".action-delete-domain-class").click(actionDeleteDomain);
 				$("#add-domain-container").html("<b>Domain:</b>");
@@ -542,7 +542,7 @@ $(document).ready(function() {
 		addItem($(this), function(td) {
 			var propertyURI = $("#property-uri").attr("data-property-uri");
 			var rangeURI = td.attr('data-range-class-uri');
-			$.post('../edit_api/add_item', {'uri': propertyURI, 'itemURI': rangeURI, 'relationship': 'range', 'type': 'objprop'}, function(res) {
+			$.post('./edit_api/add_item', {'uri': propertyURI, 'itemURI': rangeURI, 'relationship': 'range', 'type': 'objprop'}, function(res) {
 				td.parent().find(".action-edit-range").click(actionEditRange);
 				td.parent().find(".action-delete-range").click(actionDeleteRange);
 				$("#add-range-container").html("<b>Range:</b>");
@@ -551,23 +551,23 @@ $(document).ready(function() {
 	}
 
 	var onTransitiveCheck = function() {
-		$.post('../edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive', 'value': $(this).prop('checked')});
+		$.post('./edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'transitive', 'value': $(this).prop('checked')});
 	}
 
 	var onSymmetricCheck = function() {
-		$.post('../edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric', 'value': $(this).prop('checked')});
+		$.post('./edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'symmetric', 'value': $(this).prop('checked')});
 	}
 
 	var onFunctionalCheck = function() {
-		$.post('../edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')});
+		$.post('./edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'functional', 'value': $(this).prop('checked')});
 	}
 
 	var onInverseFunctionalCheck = function() {
-		$.post('../edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': $(this).prop('checked')});
+		$.post('./edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'inverse_functional', 'value': $(this).prop('checked')});
 	}
 
 	var onReflexiveCheck = function() {
-		$.post('../edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': $(this).prop('checked')});
+		$.post('./edit_api/checkbox', {'objprop': true, 'propertyURI': $("#property-uri").attr("data-property-uri"), 'attribute': 'reflexive', 'value': $(this).prop('checked')});
 	}
 
 	$("#transitive-check").change(onTransitiveCheck);

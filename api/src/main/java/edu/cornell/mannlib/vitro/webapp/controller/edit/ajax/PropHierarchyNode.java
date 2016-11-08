@@ -50,7 +50,7 @@ public class PropHierarchyNode {
 			this.id = op.getLabel();
 		}
 		
-		this.icon = "/vivo/images/bluedot.png";
+		this.icon = "./images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", op.getURI());
 		this.a_attr.put("title", op.getURI());
@@ -71,7 +71,7 @@ public class PropHierarchyNode {
 			this.id = op.getLabel();
 		}
 		
-		this.icon = "/vivo/images/bluedot.png";
+		this.icon = "./images/bluedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", op.getURI());
 		this.a_attr.put("title", op.getURI());
@@ -92,7 +92,7 @@ public class PropHierarchyNode {
 			this.id = dp.getLabel();
 		}
 		
-		this.icon = "/vivo/images/greendot.png";
+		this.icon = "./images/greendot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-property-uri", dp.getURI());
 		this.a_attr.put("title", dp.getURI());
@@ -104,10 +104,10 @@ public class PropHierarchyNode {
 		this.text = name;
 		this.children = new ArrayList<PropHierarchyNode>();
 		if(type.equals("objproperty")) {
-			this.icon = "/vivo/images/bluedot.png";
+			this.icon = "./images/bluedot.png";
 		}
 		else if(type.equals("dataproperty")) {
-			this.icon = "/vivo/images/greendot.png";
+			this.icon = "./images/greendot.png";
 		}
 		this.id = name;
 		this.a_attr = new Hashtable<String, String>();

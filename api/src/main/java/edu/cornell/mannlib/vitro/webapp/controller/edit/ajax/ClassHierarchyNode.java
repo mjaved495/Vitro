@@ -49,7 +49,7 @@ public class ClassHierarchyNode {
 			this.id = vcl.getName();
 		}
 		
-		this.icon = "/vivo/images/orangedot.png";
+		this.icon = "./images/orangedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
 		this.a_attr.put("title", vcl.getURI());
@@ -71,7 +71,7 @@ public class ClassHierarchyNode {
 			this.id = vcl.getName();
 		}
 		
-		this.icon = "/vivo/images/orangedot.png";
+		this.icon = "./images/orangedot.png";
 		this.a_attr = new Hashtable<String, String>();
 		this.a_attr.put("data-vclass-uri", vcl.getURI());
 		this.a_attr.put("title", vcl.getURI());

@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-<link rel="stylesheet" type="text/css" href="/vivo/css/ontology_editor.css"/>
+<link rel="stylesheet" type="text/css" href="./css/ontology_editor.css"/>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
 <input type="hidden" id="vclass-uri" data-vclass-uri="${VClass.getURI()}" value="${VClass.getURI()}"/>

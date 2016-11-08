@@ -8,7 +8,7 @@
                 <app-name>vitro</app-name>
 
                 <vitro-dir>/usr/local/vitro/home</vitro-dir>
-                <tomcat-dir>/usr/local/tomcat</tomcat-dir>
+                <tomcat-dir>/Library/tomcat</tomcat-dir>
 
                 <default-theme>vitro</default-theme>
             </properties>
